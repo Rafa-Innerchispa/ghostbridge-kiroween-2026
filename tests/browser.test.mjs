@@ -1,0 +1,13 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {append,verify,scenario,incident,validate,canonical} from '../docs/engine.mjs';
+test('Night Watch: 5 events and 3 incidents',async()=>{const rows=[];for(const e of scenario('night'))await append(rows,e);assert.equal(rows.length,5);assert.equal(rows.filter(r=>r.payload.incident).length,3);assert.equal((await verify(rows)).valid,true);});
+test('Normal Shift: 4 events and no incidents',async()=>{const rows=[];for(const e of scenario('normal'))await append(rows,e);assert.equal(rows.length,4);assert.equal(rows.filter(r=>r.payload.incident).length,0);});
+test('replay is idempotent',async()=>{const rows=[];for(const e of [...scenario('night'),...scenario('night')])await append(rows,e);assert.equal(rows.length,5);});
+test('conflicting id is rejected',async()=>{const rows=[],e=scenario('night')[0];await append(rows,e);e.data.duration_seconds=200;await assert.rejects(append(rows,e));});
+test('tampering and middle deletion are detected',async()=>{const rows=[];for(const e of scenario('night'))await append(rows,e);const copy=structuredClone(rows);copy[0].payload.event.type='door.closed';assert.equal((await verify(copy)).valid,false);rows.splice(1,1);assert.equal((await verify(rows)).valid,false);});
+test('serialization preserves chain',async()=>{const rows=[];await append(rows,scenario('night')[0]);assert.equal((await verify(JSON.parse(JSON.stringify(rows)))).valid,true);});
+test('threshold boundaries',()=>{const e=scenario('night')[0];e.data.duration_seconds=119;assert.equal(incident(e),null);e.data.duration_seconds=120;assert.equal(incident(e).rule,'door-held');});
+test('access denied is explained',()=>assert.equal(incident(scenario('denied')[0]).rule,'access-denied'));
+test('invalid events are rejected',()=>{for(const patch of [{id:''},{device:'__proto__'},{type:'camera.online'},{at:'bad'},{data:[]},{data:{duration_seconds:true}},{data:{duration_seconds:Infinity}},{extra:1}])assert.throws(()=>validate({...scenario('night')[0],...patch}));});
+test('canonical field order',()=>assert.equal(canonical({z:1,a:{b:2,a:1}}),'{'+'"a":{"a":1,"b":2},"z":1}'));

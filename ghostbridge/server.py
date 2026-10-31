@@ -1,0 +1,65 @@
+import json
+import threading
+from functools import partial
+from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
+from .core import canonical
+from .simulator import scenario
+
+class Handler(SimpleHTTPRequestHandler):
+    def __init__(self, *args, engine, lock, **kwargs):
+        self.engine, self.lock = engine, lock
+        super().__init__(*args, directory=str(Path(__file__).resolve().parents[1] / "docs"), **kwargs)
+
+    def reply(self, status, payload):
+        data = canonical(payload).encode()
+        self.send_response(status)
+        self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Content-Length", str(len(data)))
+        self.send_header("Cache-Control", "no-store")
+        self.send_header("X-Content-Type-Options", "nosniff")
+        self.end_headers()
+        self.wfile.write(data)
+
+    def do_GET(self):
+        with self.lock:
+            if self.path == "/api/state":
+                return self.reply(200, self.engine.snapshot())
+            if self.path == "/api/verify":
+                return self.reply(200, self.engine.store.verify())
+        if self.path.startswith("/api/"):
+            return self.reply(404, {"error": "Unknown route"})
+        super().do_GET()
+
+    def do_POST(self):
+        # Block cross-origin browser writes and DNS-rebinding hostnames. No CORS.
+        if self.headers.get("Host") not in (f"127.0.0.1:{self.server.server_port}", f"localhost:{self.server.server_port}"):
+            return self.reply(403, {"error": "Loopback host required"})
+        origin = self.headers.get("Origin")
+        if origin and origin not in (f"http://127.0.0.1:{self.server.server_port}", f"http://localhost:{self.server.server_port}"):
+            return self.reply(403, {"error": "Cross-origin writes forbidden"})
+        try:
+            length = int(self.headers.get("Content-Length", "0"))
+            if not 0 < length <= 16384:
+                return self.reply(413, {"error": "JSON body required; maximum 16 KiB"})
+            if self.headers.get("Content-Type", "").split(";")[0] != "application/json":
+                return self.reply(415, {"error": "Use application/json"})
+            payload = json.loads(self.rfile.read(length))
+            if not isinstance(payload, dict):
+                raise ValueError("Body must be an object")
+            with self.lock:
+                if self.path == "/api/events":
+                    return self.reply(200, self.engine.ingest(payload))
+                if self.path == "/api/scenario":
+                    events = scenario(payload.get("name"))
+                    results = [self.engine.ingest(e) for e in events]
+                    return self.reply(200, {"created": sum(r["created"] for r in results), "state": self.engine.snapshot()})
+                if self.path == "/api/reset":
+                    self.engine.store.reset()
+                    return self.reply(200, self.engine.snapshot())
+                return self.reply(404, {"error": "Unknown route"})
+        except (ValueError, TypeError, UnicodeError) as exc:
+            return self.reply(400, {"error": str(exc)})
+
+def make_server(engine, port=8765):
+    return ThreadingHTTPServer(("127.0.0.1", port), partial(Handler, engine=engine, lock=threading.Lock()))

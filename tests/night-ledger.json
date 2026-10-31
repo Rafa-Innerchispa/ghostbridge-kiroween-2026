@@ -1,0 +1,108 @@
+[
+  {
+    "seq": 1,
+    "payload": {
+      "event": {
+        "at": "2026-10-30T22:00:00Z",
+        "data": {
+          "duration_seconds": 180
+        },
+        "device": "door-01",
+        "id": "night-1",
+        "type": "door.open"
+      },
+      "incident": {
+        "at": "2026-10-30T22:00:00Z",
+        "device": "door-01",
+        "event_id": "night-1",
+        "explanation": "North entrance was open for 180 seconds; threshold is 120 seconds.",
+        "id": "night-1:door-held",
+        "rule": "door-held",
+        "severity": "high",
+        "title": "Door held open"
+      }
+    },
+    "previous": "0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "7f87243b501f6efe6129fe801fcb1d223d65a102cf2f21dde88c442b0670c358"
+  },
+  {
+    "seq": 2,
+    "payload": {
+      "event": {
+        "at": "2026-10-30T22:01:00Z",
+        "data": {
+          "duration_seconds": 360
+        },
+        "device": "zone-01",
+        "id": "night-2",
+        "type": "presence.dwell"
+      },
+      "incident": {
+        "at": "2026-10-30T22:01:00Z",
+        "device": "zone-01",
+        "event_id": "night-2",
+        "explanation": "Presence lasted 360 seconds; threshold is 300 seconds.",
+        "id": "night-2:long-dwell",
+        "rule": "long-dwell",
+        "severity": "medium",
+        "title": "Unusual dwell time"
+      }
+    },
+    "previous": "7f87243b501f6efe6129fe801fcb1d223d65a102cf2f21dde88c442b0670c358",
+    "hash": "21acfab212abfb961e1d4fcbedf0f63ac5468a32a2066b80fb45766211e50f4f"
+  },
+  {
+    "seq": 3,
+    "payload": {
+      "event": {
+        "at": "2026-10-30T22:02:00Z",
+        "data": {},
+        "device": "camera-01",
+        "id": "night-3",
+        "type": "camera.offline"
+      },
+      "incident": {
+        "at": "2026-10-30T22:02:00Z",
+        "device": "camera-01",
+        "event_id": "night-3",
+        "explanation": "The synthetic loading bay camera reported offline; coverage may be reduced.",
+        "id": "night-3:camera-offline",
+        "rule": "camera-offline",
+        "severity": "high",
+        "title": "Camera unavailable"
+      }
+    },
+    "previous": "21acfab212abfb961e1d4fcbedf0f63ac5468a32a2066b80fb45766211e50f4f",
+    "hash": "9c8814be20a041868031e43d17a49c2f31ebde89cfe986eb0081d30066fb4f51"
+  },
+  {
+    "seq": 4,
+    "payload": {
+      "event": {
+        "at": "2026-10-30T22:03:00Z",
+        "data": {},
+        "device": "door-01",
+        "id": "night-4",
+        "type": "door.closed"
+      },
+      "incident": null
+    },
+    "previous": "9c8814be20a041868031e43d17a49c2f31ebde89cfe986eb0081d30066fb4f51",
+    "hash": "5a71e153f669a657ca3e7cd9e354d06e6e65ac7442121df6a7177a4d8d3e58af"
+  },
+  {
+    "seq": 5,
+    "payload": {
+      "event": {
+        "at": "2026-10-30T22:04:00Z",
+        "data": {},
+        "device": "reader-01",
+        "id": "night-5",
+        "type": "access.granted"
+      },
+      "incident": null
+    },
+    "previous": "5a71e153f669a657ca3e7cd9e354d06e6e65ac7442121df6a7177a4d8d3e58af",
+    "hash": "b2dac728df494c726af723a4344a220756937a2e53247a2db1cacbfb26209ccd"
+  }
+]
