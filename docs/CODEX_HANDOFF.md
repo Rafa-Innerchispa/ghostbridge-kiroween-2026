@@ -3,8 +3,8 @@
 Owner clarified no original ZIP exists: create GhostBridge from scratch. New code
 is independent of all InnerOS projects and production servers.
 
-Local folder: ghostbridge-kiroween-2026. Python stdlib only. Test result: 27 Python
-tests and 10 Node engine tests PASS; app.js syntax PASS. No browser visual QA yet.
+Local folder: ghostbridge-kiroween-2026. Python stdlib only. Test result: 28 Python
+tests and 11 Node engine tests PASS; app.js syntax PASS. No browser visual QA yet.
 Portable Python was downloaded from python.org into the parent workspace only;
 it is not part of this repository. A system Python 3.11+ works on other machines.
 

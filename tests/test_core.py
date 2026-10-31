@@ -104,4 +104,9 @@ class CoreTests(unittest.TestCase):
     def test_canonical_order(self):
         self.assertEqual(digest("0", {"a":1,"b":2}), digest("0", {"b":2,"a":1}))
 
+    def test_shared_browser_fixture(self):
+        expected = json.loads((Path(__file__).parent / "night-ledger.json").read_text(encoding="utf-8"))
+        for e in scenario("night"): self.engine.ingest(e)
+        self.assertEqual(self.store.rows(), expected)
+
 if __name__ == "__main__": unittest.main()

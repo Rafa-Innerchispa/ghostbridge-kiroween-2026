@@ -2,7 +2,7 @@
 
 - [x] Create independent synthetic event/rules/storage/API implementation.
 - [x] Add browser-only engine and dashboard source.
-- [x] Pass 27 Python tests and 10 JS engine tests on Windows (2026-10-30).
+- [x] Pass 28 Python tests and 11 JS engine tests on Windows (2026-10-30).
 - [x] Syntax-check docs/app.js.
 - [ ] Verify desktop/mobile in a controlled browser.
 - [ ] Publish public GitHub main, MIT and .kiro/; verify CI.
