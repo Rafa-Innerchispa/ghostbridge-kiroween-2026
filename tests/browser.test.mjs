@@ -12,6 +12,7 @@ test('threshold boundaries',()=>{const e=scenario('night')[0];e.data.duration_se
 test('access denied is explained',()=>assert.equal(incident(scenario('denied')[0]).rule,'access-denied'));
 test('invalid events are rejected',()=>{for(const patch of [{id:''},{device:'__proto__'},{type:'camera.online'},{at:'bad'},{data:[]},{data:{duration_seconds:true}},{data:{duration_seconds:Infinity}},{extra:1}])assert.throws(()=>validate({...scenario('night')[0],...patch}));});
 test('canonical field order',()=>assert.equal(canonical({z:1,a:{b:2,a:1}}),'{'+'"a":{"a":1,"b":2},"z":1}'));
+test('UTC calendar validation matches Python',()=>{for(const at of ['2026-02-30T22:00:00Z','2026-10-30Z','2026-10-30T22:00:00+00:00','2026-10-30T24:00:00Z'])assert.throws(()=>validate({...scenario('night')[0],at}));});
 test('browser and Python produce identical evidence chains',async()=>{
  const expected=JSON.parse(await readFile(new URL('./night-ledger.json',import.meta.url),'utf8'));
  const actual=[];for(const e of scenario('night'))await append(actual,e);

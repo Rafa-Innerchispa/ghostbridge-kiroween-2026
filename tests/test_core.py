@@ -59,6 +59,12 @@ class CoreTests(unittest.TestCase):
     def test_unknown_scenario(self):
         with self.assertRaises(ValueError): scenario("unknown")
 
+    def test_utc_calendar_validation(self):
+        for at in ["2026-02-30T22:00:00Z", "2026-10-30Z", "2026-10-30T22:00:00+00:00", "2026-10-30T24:00:00Z"]:
+            with self.subTest(at=at):
+                e = scenario("night")[0]; e["at"] = at
+                with self.assertRaises(ValueError): validate(e)
+
     def test_empty_chain(self):
         self.assertEqual(self.store.verify()["checked"], 0)
         self.assertTrue(self.store.verify()["valid"])

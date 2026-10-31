@@ -1,6 +1,7 @@
 """Strict event contract and deterministic rules. No physical-device adapters."""
 import hashlib
 import json
+import re
 from datetime import datetime
 
 DEVICES = {
@@ -27,10 +28,10 @@ def validate(event):
         raise ValueError("Unknown synthetic device")
     if not isinstance(event["type"], str) or TYPES.get(event["type"]) != DEVICES[event["device"]]["kind"]:
         raise ValueError("Event type is incompatible with device")
-    if not isinstance(event["at"], str) or not event["at"].endswith("Z"):
+    if not isinstance(event["at"], str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z", event["at"]):
         raise ValueError("Timestamp must be UTC ISO 8601 ending in Z")
     try:
-        datetime.fromisoformat(event["at"].replace("Z", "+00:00"))
+        datetime.strptime(event["at"], "%Y-%m-%dT%H:%M:%SZ")
     except ValueError as exc:
         raise ValueError("Invalid event timestamp") from exc
     if not isinstance(event["data"], dict):

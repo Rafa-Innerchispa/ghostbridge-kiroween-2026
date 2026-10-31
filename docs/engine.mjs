@@ -18,7 +18,7 @@ export function validate(e){
  if(!e || Array.isArray(e) || typeof e!=='object' || Object.keys(e).sort().join(',')!=='at,data,device,id,type') throw Error('Invalid event fields');
  if(typeof e.id!=='string'||!e.id.length||e.id.length>80) throw Error('Invalid event id');
  if(!Object.hasOwn(devices,e.device)||types[e.type]!==devices[e.device].kind) throw Error('Unknown or incompatible device/type');
- if(typeof e.at!=='string'||!e.at.endsWith('Z')||!Number.isFinite(Date.parse(e.at))) throw Error('Invalid UTC timestamp');
+ if(typeof e.at!=='string'||!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/.test(e.at)||!Number.isFinite(Date.parse(e.at))||new Date(e.at).toISOString().replace('.000Z','Z')!==e.at) throw Error('Invalid UTC timestamp');
  if(!e.data||typeof e.data!=='object'||Array.isArray(e.data)) throw Error('Data must be an object');
  const timed=['door.open','presence.dwell'].includes(e.type);
  if(Object.keys(e.data).sort().join(',')!==(timed?'duration_seconds':'')) throw Error('Invalid event data fields');
