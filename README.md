@@ -7,8 +7,9 @@ Frankenstein-category project for Kiroween 2026 by InnerChispa LLC.
 
 **Status:** new implementation created October 30, 2026. 29 Python tests and
 12 JavaScript engine tests pass locally. Public source is on `main`; MIT and root
-`.kiro/` are visible. Pages is configured; deployment verification, visual browser QA,
-registration and authentic Kiro development evidence remain pending at this checkpoint.
+`.kiro/` are visible. GitHub CI and Pages deployment passed; public HTML, JavaScript,
+module and CSS return HTTP 200. Visual browser QA, registration and authentic Kiro
+development evidence remain pending. See [verification evidence](docs/VERIFICATION.md).
 No recovered ZIP or previous history is claimed.
 
 Source: https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026
@@ -52,7 +53,8 @@ and localStorage. It does not connect to the Python API or any physical device.
 Serve `docs/` over HTTP/HTTPS; do not open index.html as a file URL (ES modules).
 GitHub Pages is configured at
 https://rafa-innerchispa.github.io/ghostbridge-kiroween-2026/ — see the Pages workflow
-for deployment status. Browser interaction verification is still pending.
+for deployment status. Anonymous HTTP access was verified; browser interaction
+verification is still pending.
 
 ## What is implemented
 

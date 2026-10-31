@@ -15,7 +15,9 @@ Blockers at this checkpoint:
 - Public repo created: https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026
 - Code, MIT and .kiro/ are published on main. Pages is configured as an Actions build.
 - Initial publication commit: 7e49bb4c9d1eec99f722dc024c8bbfb99494105e.
-- CI and Pages workflow verification are in progress at this checkpoint.
+- CI and Pages succeeded for 4e072aa7dea2fcd0b2772648897f7b1315f5589e.
+- Anonymous HTTP 200 verified for HTML, app.js, engine.mjs and styles.css.
+- See VERIFICATION.md for run links and remaining gates.
 - Devpost connector works and says not registered. Requires Kiro user ID/AWS account
   ID, team preference, interests and explicit eligibility/rules/terms agreement.
 - No authentic Kiro session, visual browser QA or final competition entry completed.

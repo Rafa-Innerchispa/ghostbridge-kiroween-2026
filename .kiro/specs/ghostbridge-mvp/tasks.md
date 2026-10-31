@@ -6,7 +6,7 @@
 - [x] Syntax-check docs/app.js.
 - [ ] Verify desktop/mobile in a controlled browser.
 - [x] Publish public GitHub main, MIT and .kiro/.
-- [ ] Verify hosted CI and Pages deployment.
+- [x] Verify hosted CI and Pages deployment, including anonymous HTTP 200 assets.
 - [ ] Deploy Pages; verify anonymous scenarios, exports and integrity.
 - [ ] Run actual Kiro functional improvement; preserve authentic evidence.
 - [ ] Complete Devpost registration after owner legal consent and verified Kiro ID.
