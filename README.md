@@ -5,9 +5,13 @@ GhostBridge turns **synthetic** signals from different generations of building
 systems into explainable incidents and inspectable evidence. A local-first
 Frankenstein-category project for Kiroween 2026 by InnerChispa LLC.
 
-**Status:** new implementation created October 30, 2026. Local backend and rule
-tests pass. Public hosting, visual browser QA, registration and authentic Kiro
-development evidence are pending. No recovered ZIP or previous history is claimed.
+**Status:** new implementation created October 30, 2026. 29 Python tests and
+12 JavaScript engine tests pass locally. Public source is on `main`; MIT and root
+`.kiro/` are visible. Pages is configured; deployment verification, visual browser QA,
+registration and authentic Kiro development evidence remain pending at this checkpoint.
+No recovered ZIP or previous history is claimed.
+
+Source: https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026
 
 ## Run locally
 
@@ -46,7 +50,9 @@ latency or AI inference. Rules are deterministic and run locally.
 GitHub Pages publishes only `docs/`. The browser edition uses Web Crypto SHA-256
 and localStorage. It does not connect to the Python API or any physical device.
 Serve `docs/` over HTTP/HTTPS; do not open index.html as a file URL (ES modules).
-No public URL is claimed until deployment and anonymous access are verified.
+GitHub Pages is configured at
+https://rafa-innerchispa.github.io/ghostbridge-kiroween-2026/ — see the Pages workflow
+for deployment status. Browser interaction verification is still pending.
 
 ## What is implemented
 

@@ -11,11 +11,14 @@ it is not part of this repository. A system Python 3.11+ works on other machines
 Blockers at this checkpoint:
 - CUA browser inventory reports `Local browser use is disabled in Work settings`,
   including after owner enabled it and the tool was reset.
-- gh token for Rafa-Innerchispa is invalid; connector repository lookup returned404.
-- GitHub connector has file/commit APIs but no repository-creation tool available.
+- GitHub login was renewed by the owner, including explicit workflow scope approval.
+- Public repo created: https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026
+- Code, MIT and .kiro/ are published on main. Pages is configured as an Actions build.
+- Initial publication commit: 7e49bb4c9d1eec99f722dc024c8bbfb99494105e.
+- CI and Pages workflow verification are in progress at this checkpoint.
 - Devpost connector works and says not registered. Requires Kiro user ID/AWS account
   ID, team preference, interests and explicit eligibility/rules/terms agreement.
-- No Kiro session, publication, Pages deploy or final competition entry completed.
+- No authentic Kiro session, visual browser QA or final competition entry completed.
 
 Do not claim a repository URL or live app until verified. Keep legal confirmation
 with the owner. Do not touch Guardian/VoiceOps, Intel, AMD, customers or coordination.
