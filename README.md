@@ -8,8 +8,8 @@ Frankenstein-category project for Kiroween 2026 by InnerChispa LLC.
 **Status:** new implementation created October 30, 2026. 29 Python tests and
 12 JavaScript engine tests pass locally. Public source is on `main`; MIT and root
 `.kiro/` are visible. GitHub CI and Pages deployment passed; public HTML, JavaScript,
-module and CSS return HTTP 200. Visual browser QA, registration and authentic Kiro
-development evidence remain pending. See [verification evidence](docs/VERIFICATION.md).
+module and CSS return HTTP 200. Visual browser QA and authentic Kiro development evidence remain pending.
+Devpost registration was verified on 2026-11-06; the project is still a submission draft. See [verification evidence](docs/VERIFICATION.md).
 No recovered ZIP or previous history is claimed.
 
 Source: https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026
@@ -88,7 +88,12 @@ Official rules: https://kiroween.devpost.com/rules — submission deadline Decem
 2026 at 14:00 PST (17:00 Ecuador). Requires actual Kiro use, public GitHub source,
 visible open-source license, root `.kiro/`, a working app and public YouTube video
 under three minutes. Startup bonus requires verified founder details, LinkedIn and
-startup website. Registration and final submission need the owner's legal consent.
+startup website. Devpost registration is complete; the final hackathon submission is NOT sent.
+The owner reports requesting 4,000 promotional Kiro credits, but grant/redemption is not verified.
+The Kiro Free plan currently has 50 covered monthly credits, with 0 consumed at last check.
+Actual Kiro implementation remains mandatory. See the bounded Kiro task at
+[incident severity spec](.kiro/specs/incident-severity-filter/requirements.md) and [KIRO.md](KIRO.md).
+Final submission requires owner approval.
 
 See [architecture](ARCHITECTURE.md), [handoff](docs/CODEX_HANDOFF.md) and
 [demo script](docs/DEMO_SCRIPT.md). MIT licensed.
