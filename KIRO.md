@@ -1,18 +1,32 @@
-# Authentic Kiro session — pending
+# GhostBridge Kiro execution handoff
 
-These specs and steering were authored by Codex. No Kiro execution is claimed.
-Kiro is not currently available through an authenticated session in this workspace.
+**As of 2026-11-06:** the owner signed in to Kiro using a personal Google account on **Kiro Free (50 credits / month, 0 used when checked)** and reports submitting the Kiroween request for **4,000 promotional credits**. Credit grant or redemption is **not confirmed**.
 
-Once the owner signs into Kiro and GitHub is available, open this repository and
-submit this bounded task with existing credits only (no purchases or retry loops):
+The original GhostBridge application, and the initial `.kiro/specs/ghostbridge-mvp/` documents, were authored before Kiro participation by Codex. **No genuine Kiro code contribution has yet been verified.** Do not claim otherwise.
 
-> Read AGENTS.md and .kiro/specs/ghostbridge-mvp/. Implement incident severity
-> filtering in the dashboard with All, High and Medium controls, preserving the
-> full evidence timeline and export. Add meaningful tests for the filter logic,
-> including an empty result and unchanged ledger. No external systems, packages
-> or production data. Run both existing test suites. Summarize changed files and
-> record a real session link or screenshot in docs/KIRO_EVIDENCE.md. Do not claim
-> you implemented the initial application or fabricate prior Kiro activity.
+## First Kiro assignment: severity filter (bounded)
 
-Record actual prompt, session reference, changed files, commit and test results
-after completion. Keep account identifiers and tokens out of public evidence.
+Read:
+- `AGENTS.md`
+- `.kiro/specs/ghostbridge-mvp/`
+- `.kiro/specs/incident-severity-filter/requirements.md`
+- `.kiro/specs/incident-severity-filter/design.md`
+- `.kiro/specs/incident-severity-filter/tasks.md`
+
+Paste this prompt in **Kiro IDE or Kiro CLI**, with this repository open:
+
+> You are working on GhostBridge for Kiroween 2026. This is a new independent MIT-licensed project, currently using synthetic building signals only. Review AGENTS.md, KIRO.md, and both .kiro spec directories. Implement the incident severity filter according to .kiro/specs/incident-severity-filter/: All / High / Medium, default All, accessible controls. Filter Incident desk cards only, without changing full event and incident counters, evidence timeline, exported JSON, or SHA-256 ledger. Add dependency-free tests for mixed severities, zero matches, no incidents, reset, immutable input, and identical evidence verification. Run Python and Node tests, the JS syntax check, and check the browser lab. Capture your genuine Kiro session evidence in docs/KIRO_EVIDENCE.md, listing the Kiro product, prompt, file changes, tests, commit, screenshots, and limitations. Existing code/specs were previously prepared with Codex, so attribute Kiro only to what you actually implement now. Use only existing free credits; do not purchase or trigger cloud providers. No InnerOS production MCP, customer devices, credentials, or external agents. Work on a branch and show the diff before merging.
+
+## Mandatory results
+
+1. A real Kiro-authored implementation commit/PR, not just a ChatGPT-issued patch.
+2. Genuine screenshot/session reference and a provenance note (no credentials).
+3. Node + Python tests and interactive browser QA, with PASS/FAIL logs.
+4. Public GitHub Pages rebuild and anonymous demo verification.
+5. Update the Devpost narrative only after actual Kiro use.
+
+## Isolation policy
+
+Kiro is used to **develop** GhostBridge. It does not become an inference dependency or operator of InnerOS. The browser lab runs synthetic data; production devices and customer infrastructure are out of scope.
+
+The Devpost project description and repo URLs already exist. Final Kiroween submission requires the owner's explicit authorization, plus a public YouTube demo under 3 minutes.
