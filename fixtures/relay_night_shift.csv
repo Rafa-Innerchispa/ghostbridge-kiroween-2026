@@ -1,0 +1,5 @@
+event_id,at,relay,state,duration_seconds
+R001,2026-11-08T22:00:00Z,north-door,OPEN,185
+R002,2026-11-08T22:01:00Z,north-door,CLOSED,
+R003,2026-11-08T22:05:00Z,north-door,OPEN,130
+R004,2026-11-08T22:10:00Z,north-door,CLOSED,

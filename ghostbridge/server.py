@@ -5,6 +5,7 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from .core import canonical
 from .simulator import scenario
+from .adapters.access_webhook import parse_access_webhook
 
 class Handler(SimpleHTTPRequestHandler):
     def __init__(self, *args, engine, lock, **kwargs):
@@ -57,6 +58,9 @@ class Handler(SimpleHTTPRequestHandler):
                 if self.path == "/api/reset":
                     self.engine.store.reset()
                     return self.reply(200, self.engine.snapshot())
+                if self.path == "/api/adapters/access":
+                    event = parse_access_webhook(payload)
+                    return self.reply(200, self.engine.ingest(event))
                 return self.reply(404, {"error": "Unknown route"})
         except (ValueError, TypeError, UnicodeError) as exc:
             return self.reply(400, {"error": str(exc)})

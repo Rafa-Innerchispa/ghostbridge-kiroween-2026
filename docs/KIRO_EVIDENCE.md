@@ -161,3 +161,82 @@ Counters (events / incidents), evidence timeline rows, and exported JSON are
 - The filter is UI-only and purely cosmetic; it does not affect any data layer.
 - Kiro Autopilot performed all file edits and ran all tests within the IDE session. No external cloud inference, production connections, or paid model routing was used.
 - The Devpost write-up must be updated by the owner after manual browser QA and YouTube demo recording.
+
+
+---
+
+## Phase 2 — PR A: local legacy adapters
+
+**Date:** 2026-11-08
+**Branch:** `feat/legacy-adapters`
+**Kiro product:** Kiro IDE (agentic session, Autopilot mode)
+**Issue:** [#3 — Kiro phase 2: local legacy adapters and explainable cross-signal cases](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/issues/3)
+
+### Provenance statement
+
+The original GhostBridge application and the `.kiro/specs/legacy-bridge-correlation/` planning documents were prepared with Codex/ChatGPT.  
+The following was authored **by Kiro** in this session:
+
+| File | Status | Description |
+|---|---|---|
+| `ghostbridge/adapters/__init__.py` | **NEW — Kiro** | Package marker |
+| `ghostbridge/adapters/relay_csv.py` | **NEW — Kiro** | Legacy relay/contact CSV parser |
+| `ghostbridge/adapters/access_webhook.py` | **NEW — Kiro** | JSON access-controller webhook validator |
+| `ghostbridge/server.py` | **MODIFIED — Kiro** | Added `/api/adapters/access` endpoint |
+| `ghostbridge/__main__.py` | **MODIFIED — Kiro** | Added `ingest-relay` CLI subcommand |
+| `fixtures/relay_night_shift.csv` | **NEW — Kiro** | 4-event relay night-shift fixture |
+| `fixtures/relay_normal_shift.csv` | **NEW — Kiro** | 2-event relay normal-shift fixture |
+| `fixtures/access_webhook_denied.json` | **NEW — Kiro** | Denied access webhook fixture |
+| `fixtures/access_webhook_granted.json` | **NEW — Kiro** | Granted access webhook fixture |
+| `fixtures/README.md` | **NEW — Kiro** | Fixture documentation and replay commands |
+| `tests/test_adapters.py` | **NEW — Kiro** | 78 adapter integration and security tests |
+
+### Prompt submitted to Kiro
+
+(See original KIRO.md prompt for Phase 1; Phase 2 prompt was submitted via the Kiro IDE chat panel referring to AGENTS.md, KIRO.md, GitHub Issue #3, and .kiro/specs/legacy-bridge-correlation/.)
+
+### Design decisions
+
+**relay_csv adapter:**
+- Strict CSV schema: exactly five columns (`event_id`, `at`, `relay`, `state`, `duration_seconds`); extra or missing columns rejected.
+- RELAY_MAP maps `north-door` → `door-01`; extensible for future relays.
+- IDs prefixed `relay:` to prevent namespace collisions with built-in scenario IDs.
+- `duration_seconds` required for OPEN, forbidden for CLOSED.
+- Maximum 1 000 rows / 256 KiB per file.
+- Duplicate IDs within one file rejected before ingestion; duplicate across calls is idempotent (Engine handles); conflicting IDs raise ValueError.
+
+**access_webhook adapter:**
+- Exactly four keys required (`event_id`, `at`, `reader`, `decision`); extra keys rejected.
+- READER_MAP maps `archive-reader` → `reader-01`.
+- IDs prefixed `access:`.
+- Reuses existing Host/Origin/size/content-type guards via server.py.
+- Endpoint: `POST /api/adapters/access`.
+
+**CLI:**
+- `python -m ghostbridge ingest-relay FIXTURE.csv [--database PATH]` is a one-shot command (no daemon, no file watcher).
+- Prints per-event result including detected incident rule; exits non-zero on error.
+
+### Test results
+
+```
+python -m unittest discover -s tests   → Ran 107 tests — OK
+  (29 existing CoreTests + ServerTests, unchanged)
+  (78 new TestAdapters)
+node --test tests/browser.test.mjs     → 12 pass, 0 fail
+node --test tests/filter.test.mjs      → 17 pass, 0 fail
+node --check docs/app.js               → OK
+node --check docs/filters.mjs          → OK
+```
+
+### Invariants verified
+
+- `ghostbridge/core.py`, `storage.py`, `engine.py`, `simulator.py` — **not modified**.
+- `tests/night-ledger.json` — **not modified**; cross-language SHA-256 fixture identical.
+- All existing 58 tests (29 Python + 12 browser + 17 filter) continue to pass.
+- `/api/events`, `/api/state`, `/api/verify`, `/api/scenario`, `/api/reset` — unchanged.
+
+### Limitations
+
+- `ingest-relay` is a one-shot CLI tool; no file watcher or daemon.
+- RELAY_MAP and READER_MAP cover the two synthetic devices in the spec; real hardware mappings are out of scope.
+- PR B (cross-source correlator) is a separate branch and PR, not included here.
