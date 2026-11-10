@@ -92,8 +92,9 @@ def parse_relay_csv(source: str | bytes) -> list[dict]:
     # Header validation
     if reader.fieldnames is None:
         raise ValueError("CSV source is empty or has no header row")
-    actual_cols = set(f.strip() for f in reader.fieldnames)
-    if actual_cols != _REQUIRED_COLS:
+    header = [f.strip() for f in reader.fieldnames]
+    actual_cols = set(header)
+    if len(header) != len(_REQUIRED_COLS) or actual_cols != _REQUIRED_COLS:
         missing = _REQUIRED_COLS - actual_cols
         extra   = actual_cols - _REQUIRED_COLS
         parts = []
@@ -101,6 +102,8 @@ def parse_relay_csv(source: str | bytes) -> list[dict]:
             parts.append(f"missing columns: {sorted(missing)}")
         if extra:
             parts.append(f"unexpected columns: {sorted(extra)}")
+        if len(header) != len(_REQUIRED_COLS) and not parts:
+            parts.append("duplicate column names or wrong number of columns")
         raise ValueError("CSV header mismatch — " + "; ".join(parts))
 
     events: list[dict] = []
@@ -110,8 +113,10 @@ def parse_relay_csv(source: str | bytes) -> list[dict]:
         if row_num - 1 > _MAX_ROWS:
             raise ValueError(f"CSV exceeds maximum of {_MAX_ROWS} data rows")
 
-        # Strip whitespace from every field
-        row = {k.strip(): (v.strip() if v is not None else "") for k, v in raw.items()}
+        # Require exactly five physical cells, rejecting surplus or missing values.
+        if None in raw or any(v is None for v in raw.values()):
+            raise ValueError(f"Row {row_num}: expected exactly five CSV fields")
+        row = {k.strip(): v.strip() for k, v in raw.items()}
 
         # --- event_id ---
         event_id = row["event_id"]
@@ -144,10 +149,9 @@ def parse_relay_csv(source: str | bytes) -> list[dict]:
         if duration_required:
             if not dur_raw:
                 raise ValueError(f"Row {row_num}: duration_seconds is required when state=OPEN")
-            try:
-                duration = int(dur_raw)
-            except ValueError:
+            if not re.fullmatch(r"[0-9]+", dur_raw):
                 raise ValueError(f"Row {row_num}: duration_seconds must be an integer, got {dur_raw!r}")
+            duration = int(dur_raw)
             if not 0 <= duration <= 86400:
                 raise ValueError(f"Row {row_num}: duration_seconds {duration} out of range 0–86400")
             data: dict = {"duration_seconds": duration}
