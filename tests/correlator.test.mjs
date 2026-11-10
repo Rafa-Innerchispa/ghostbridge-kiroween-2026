@@ -350,3 +350,20 @@ test('parseAccessWebhook rejects unknown decision',()=>{
 test('parseAccessWebhook rejects unknown reader',()=>{
   assert.throws(()=>parseAccessWebhook({...ACCESS_DENIED_JSON,reader:'lobby-reader'}));
 });
+
+ 
+// Independent review regressions (not part of the original Kiro authorship).
+test('parseRelayCsv rejects physical extra field instead of silently ignoring it',()=>{
+  const csv='event_id,at,relay,state,duration_seconds\nR1,2026-11-08T00:00:00Z,north-door,OPEN,180,EXTRA\n';
+  assert.throws(()=>parseRelayCsv(csv),/exactly five/);
+});
+
+test('parseRelayCsv rejects a missing physical field instead of treating it as blank',()=>{
+  const csv='event_id,at,relay,state,duration_seconds\nR1,2026-11-08T00:00:00Z,north-door,CLOSED\n';
+  assert.throws(()=>parseRelayCsv(csv),/exactly five/);
+});
+
+test('parseRelayCsv rejects scientific notation even when it resolves to an integer',()=>{
+  const csv='event_id,at,relay,state,duration_seconds\nR1,2026-11-08T00:00:00Z,north-door,OPEN,1e2\n';
+  assert.throws(()=>parseRelayCsv(csv),/decimal digits/);
+});
