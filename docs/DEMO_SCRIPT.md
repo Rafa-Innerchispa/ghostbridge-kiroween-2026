@@ -1,50 +1,108 @@
-# GhostBridge | Kiroween 2026 final demo video storyboard
+# GHOSTBRIDGE — WHEN BUILDINGS START TALKING
+## Kiroween 2026 | Premium cinematic product film | 2:52 target
 
-**Status:** Script ready for real recording. **No new video or genuine Kiro footage has been captured by this document.**  
-**Goal:** 2:40–2:55 total, narrated English, 16:9 1080p. Never exceed the contest's video limit.  
-**Project:** GhostBridge: Old Signals, New Instincts | Frankenstein | InnerChispa LLC.  
-**Source:** https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026  
-**Demo:** https://rafa-innerchispa.github.io/ghostbridge-kiroween-2026/  
-**Evidence:** https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/blob/main/docs/KIRO_EVIDENCE.md
+**Creative direction:** Sell the business outcome and finished-product vision through architecture visuals, motion graphics, future operator UX and real product proof. **No talking-head opening.** Use a documentary-tech-thriller look. VO in English; Spanish subtitles optional. 16:9 master, professional sound design and smooth transitions.
 
-## Narrative and real on-screen recording plan
+**Creative boundary:** The film intentionally combines **working software** and **future product experience visualization**. Label the vision transition once on screen, e.g. **NEXT: PRODUCT VISION**, and keep the rest of the film persuasive. Technical deliverables and roadmap details are explained in Devpost, not repeated as warnings throughout the video.
 
-**0:00–0:18 | The problem / founder**  
-*Visual:* Real presenter intro; lower third: “InnerChispa LLC · GhostBridge · Kiroween 2026.”  
-*Voice:* “Older buildings run on layers of technology: relay contacts, access readers, presence sensors, and cameras. Their signals rarely tell one coherent story. GhostBridge is a local-first approach to connecting them.”
+**Actual demo:** https://rafa-innerchispa.github.io/ghostbridge-kiroween-2026/  
+**Public repo:** https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026  
+**Kiro evidence:** https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/blob/main/docs/KIRO_EVIDENCE.md
 
-**0:18–0:37 | What we built**  
-*Visual:* Live site hero, synthetic source cards, processing stages.  
-*Voice:* “This is a reproducible, open-source synthetic lab, not a production surveillance system. It normalizes legacy-shaped events, applies explainable rules, and preserves a local, inspectable evidence chain. No cloud model or customer hardware is needed.”
+## The film
 
-**0:37–1:27 | The most compelling feature: multi-source case**  
-*Visual:* On the **real deployed site after QA**, click **Reset lab**, then **Legacy Bridge Demo**. Show five events, three individual incidents, and one derived high-severity correlated case. Open the case inspection so full event IDs and hashes are visible. Then show full evidence timeline and hash verification; click **Replay last** and verify zero duplicate events and one case.  
-*Voice:* “Two independent adapters bring in synthetic relay CSV signals and access-controller JSON events. Here, access A001 was rejected. Four minutes and thirty seconds later, relay R003 reports a held-open door. GhostBridge correlates those sources into one high-severity case, with the original event IDs and SHA-256 record hashes. A separate earlier door event is excluded because it happened before the access rejection. Replay creates no duplicate evidence.”
+### 0:00–0:17 | COLD OPEN: THE NIGHT
 
-**1:27–1:52 | Baseline scenarios, filtering, and safe export**  
-*Visual:* Reset and run Night Watch, All / High / Medium (3 / 2 / 1); briefly show export and normal shift (4 / 0).  
-*Voice:* “Independent event rules still work. Severity filtering changes only what you see, never the underlying ledger. You can inspect, export, and verify the source evidence. A normal shift produces no incidents.”
+**PICTURE:** Black. Relay click. High-end 3D / filmed apartment tower entry after hours. Access terminal blinks red. Door remains open. On another screen a camera goes offline. Disconnected tiny timestamps float beside each object. A human operator sees different dashboards.
 
-**1:52–2:28 | Authentic Kiro use and engineering discipline**  
-*Visual:* Genuine Kiro IDE screen or genuine previously captured session image; `.kiro/specs/legacy-bridge-correlation/`; open merged GitHub PRs [#2](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/2), [#4](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/4), [#5](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/5); show a **real** passing CI run and evidence provenance.  
-*Voice:* “We used Kiro IDE Autopilot and spec-driven development to add severity filtering, two legacy-source adapters, and Python and JavaScript correlation. The original lab was created earlier with Codex, and our repository attributes contributions transparently. Independent review caught integration bugs before merging. The reviewed build passed 159 Python tests, 75 JavaScript tests, and five syntax checks in GitHub Actions.”
+**SOUND:** muted building air, electrical relay, deep pulse, crescendo. No generic sci-fi laser noises.
 
-**2:28–2:52 | Limitations, value, and closing**  
-*Visual:* One correlated case linking two original evidence entries, then logo and repo URL.  
-*Voice:* “The current demo uses only synthetic data, and its SHA-256 chain checks local consistency, not legal immutability. Real hardware and production integrations remain future work. But the idea is simple: let old systems speak a common language, and turn disconnected signals into evidence people can understand. GhostBridge, by InnerChispa.”
+**VOICE (EN):**
+> “A rejected badge. An open door. A camera gone dark. Three alarms from three different generations of technology. Who connects the dots?”
 
-## Before recording: mandatory checks
+**ON SCREEN:** **THE BUILDING SEES EVERYTHING. NOTHING CONNECTS.**
 
-- [ ] Live public GitHub Pages site anonymously serves the merged PR #5 commit, with no missing modules, CORS or console errors.
-- [ ] In a clean session, Legacy Bridge Demo produces **5 events, 3 individual incidents and 1 correlated case**; inspect links to `access:A001` and `relay:R003` and their actual source-record hashes.
-- [ ] Replay last adds zero events; Reset returns to zero and restores All filter.
-- [ ] Verify normal shift and Night Watch controls, evidence chain, JSON export and tamper test.
-- [ ] Check desktop and mobile 390px for clipping, button accessibility, legibility and responsive presentation.
-- [ ] Capture genuine Kiro IDE footage or screenshot from the owner's actual session. No counterfeit session imagery.
-- [ ] Use only public synthetic fixture data; mask browser profile details, GitHub credentials, Kiro coupon URLs, personal documents and local IPs.
-- [ ] Narrate or record the **real application**, not mockups. Screen-capture artifacts from earlier isolated QA are supplemental B-roll only and must be labeled as such if used.
-- [ ] Confirm actual rendered duration under the contest limit and publish a permitted YouTube URL.
-- [ ] Do not claim Kiro authored the original Codex MVP, independent ChatGPT reviewer patches, or physical device integration.
-- [ ] Devpost edits and final submission require owner authorization.
+### 0:17–0:37 | THE REVEAL: GHOSTBRIDGE
 
-**Current truth:** PRs #2/#4/#5 are merged. The 239 checks passed on the reviewed PR #5 head. Live anonymous-browser QA, the actual final video and the contest submission are not yet verified complete.
+**PICTURE:** Three fragmented feeds become elegant spatial strands feeding GhostBridge. Architectural model materializes. Real product title appears.
+
+**VOICE:**
+> “What if your building could finally tell you one complete story? Meet GhostBridge. A local-first intelligence layer for the infrastructure you already own.”
+
+**ON SCREEN:** **GHOSTBRIDGE / OLD SIGNALS. NEW INSTINCTS.**
+
+### 0:37–1:09 | REAL PRODUCT PROOF
+
+**PICTURE:** Actual app screen recording. Click Reset → Legacy Bridge Demo. Show **5 events / 3 incident findings / 1 correlated case**. Select correlated case; reveal `access:A001` and `relay:R003`, linked hashes. Select Verify chain.
+
+**VOICE:**
+> “Watch the engine work. One source reports a denied access. Another reports a door held open for two minutes and ten seconds, four and a half minutes later. GhostBridge normalizes both formats, recognizes their relationship, and builds one high-priority case, with the original evidence attached.”
+
+**ON SCREEN:** **270s BETWEEN SIGNALS • 1 CORRELATED CASE • LINKED EVIDENCE**  
+**NOTE FOR EDITOR:** This segment uses the actual runnable GhostBridge prototype and synthetic fixture inputs. No video mockup should replace the product interaction.
+
+### 1:09–1:30 | RECONSTRUCT THE STORY
+
+**PICTURE:** Zoom from the actual case into an attractive 2.5D lobby representation. Time ruler replays source events: earlier relay open at 22:00:00 is excluded, denied access at 22:00:30, qualifying relay door open at 22:05:00, correlated case appears. Highlights source IDs and hash-linked evidence. This may be the actual Interactive Reconstruction feature if implemented; otherwise, a conceptual visualization of the current verified event data.
+
+**VOICE:**
+> “Now the sequence makes sense. The earlier door event happened before the rejected access, so it isn't linked. The later one is. Every decision is explainable, and every original record stays inspectable.”
+
+**ON SCREEN:** **FROM EVENTS TO EXPLANATIONS.**
+
+### 1:30–2:05 | THE FULL PRODUCT VISION
+
+**PICTURE:** One subtle **PRODUCT VISION** transition. Highly rendered realistic future UI:
+1. Security supervisor receives one contextual mobile alert and opens the linked case.
+2. Digital floor plan highlights reader, door, source camera health, evidence, affected entrance.
+3. A response workflow lets the operator acknowledge, escalate, and request authorized remote access decisions.
+4. Multi-site view across residential buildings and commercial sites: one operational language.
+
+No need for continuous talking-head. Make this look like a premium real-estate/security SaaS advertisement. Rendered future UIs should be visually consistent with GhostBridge's real dashboard, without inventing live customer recordings.
+
+**VOICE:**
+> “And this is where GhostBridge goes next. A security operator sees the entire incident from one screen. Managers get actionable context on their phones. Every property shares a consistent operational language. Incidents move from confusion to coordinated response.”
+
+**ON SCREEN:** **SEE THE PATTERN. UNDERSTAND THE RISK. COORDINATE THE RESPONSE.**
+
+### 2:05–2:30 | BUILT WITH KIRO
+
+**PICTURE:** Genuine Kiro IDE screenshot/screen recording. Project specs animate into Kiro's real committed files. PRs #2, #4, #5 and CI checks appear as graphic elements, not a lengthy code scroll. If an additional Kiro hook/steering rule was genuinely used, show it. Diagram of legacy CSV + JSON → deterministic correlator → evidence case.
+
+**VOICE:**
+> “We built the bridge with Kiro IDE: spec-driven development, source adapters, correlated cases, and a polished web experience. Three merged Kiro contributions, independently reviewed. The build passed more than two hundred automated checks. Local-first, modular, and ready to evolve.”
+
+**ON SCREEN:** **BUILT WITH KIRO • VERIFIED BY AUTOMATED TESTS**  
+**NOTE:** Clearly attribute initial MVP to Codex/ChatGPT in Devpost technical write-up; do not visually imply Kiro authored earlier baseline.
+
+### 2:30–2:52 | ENDING: BUSINESS IMPACT
+
+**PICTURE:** The original building dark exterior now lights with a subtle flow of interconnected signals. Cut to security operator calmly seeing one clear case. GhostBridge logo, strong product line and repository link.
+
+**VOICE:**
+> “You don't need to replace a building to understand it. Connect what you have. See what matters. Turn old signals into new instincts. GhostBridge, by InnerChispa.”
+
+**ON SCREEN:** **THE FUTURE OF EXISTING INFRASTRUCTURE.**  
+**END CARD:** GhostBridge | InnerChispa LLC | GitHub/demo URLs
+
+## Actual filming and compositing plan
+
+- **Film language:** aspirational enterprise ad; show the buyer experience, avoid endless code and apologetic limitations.
+- **Concept production:** filmed/staged sequences, Blender 2.5D/3D, motion graphics and future product-interface comps; voice and sound treatment elevate it.
+- **Proof production:** OBS/desktop real browser recording of the working GhostBridge, real GitHub PRs, real Kiro session images. One seamless blend, not two separate videos.
+- **Narrative balance:** ~40% cinematic product vision/problem, ~30% real running demo, ~15% Kiro evidence, ~15% brand/business close.
+- **Status attribution:** one elegant visual cue for PRODUCT VISION. Put detailed current-vs-roadmap disclosure in Devpost, not repeated on every frame.
+- **English subtitles, consistency across screens, 1080p or better, under 3 minutes.**
+- **Do not use customer camera footage, badge IDs, IPs or private records without permission.** Choose original concept imagery instead.
+
+## Acceptance before publication
+
+- [ ] Confirm live public GhostBridge loads with current correlated case.
+- [ ] Capture real app output, source hash inspection and evidence verification.
+- [ ] Record or obtain an authentic Kiro IDE scene and real merged PR evidence.
+- [ ] Produce staged/product-vision 3D sequences and mobile/operations center concept.
+- [ ] Edit to 2:52 with original/licensed sound, subtitles, color and pacing.
+- [ ] Get an independent watch-through for clarity and persuasion.
+- [ ] Upload video and add Devpost only after owner approval, confirm final submission separately.
+
+**Official deadline:** December 4, 2026, 14:00 PT / 17:00 Ecuador. This is a creative script and storyboard; the final video is not yet produced.
