@@ -84,6 +84,8 @@ export function parseRelayCsv(csvText) {
     if (i > MAX_ROWS) throw new Error(`CSV exceeds maximum of ${MAX_ROWS} data rows`);
     const row = lines[i].split(',').map(v => v.trim());
     const rowNum = i + 1;
+    if (row.length !== REQUIRED_COLS.length)
+      throw new Error(`Row ${rowNum}: expected exactly five CSV fields`);
 
     const rawId = row[idx.event_id] ?? '';
     if (!ID_RE.test(rawId))
@@ -113,6 +115,8 @@ export function parseRelayCsv(csvText) {
     let data = {};
     if (durRequired) {
       if (!durRaw) throw new Error(`Row ${rowNum}: duration_seconds required when state=OPEN`);
+      if (!/^[0-9]+$/.test(durRaw))
+        throw new Error(`Row ${rowNum}: duration_seconds must be decimal digits`);
       const dur = Number(durRaw);
       if (!Number.isInteger(dur) || dur < 0 || dur > 86400)
         throw new Error(`Row ${rowNum}: duration_seconds ${JSON.stringify(durRaw)} invalid`);
