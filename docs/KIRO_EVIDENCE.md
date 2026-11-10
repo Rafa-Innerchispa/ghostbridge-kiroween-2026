@@ -357,3 +357,99 @@ The first Phase 2B correlator, Python /api/cases endpoint, JS parity implementat
 **Authoritative passing GitHub CI result on reviewed PR head** `266283ac5558cdade2c2efecacb2acc3cf9b2f4c`: **159 Python + 12 original Node + 17 severity-filter Node + 46 correlator Node + 5 JavaScript syntax checks = 239 checks, zero failures**, as verified from GitHub Actions job logs. The user-provided original Kiro session test report reflected the pre-review head (158 Python / 43 correlator Node).
 
 **Limitations:** All data sources remain synthetic. GitHub CI does not prove a live GitHub Pages load or browser/mobile interaction for the new case dashboard; a separate interactive QA session is needed before video and final Devpost submission. No production InnerOS, customer access controller, live camera or physical relay is connected.
+
+
+---
+
+## Phase 3 — Interactive Evidence Reconstruction ([Issue #6](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/issues/6))
+
+**Date:** 2026-11-10
+**Branch:** `feat/evidence-reconstruction` (from `main` at `efb4ffa`)
+**Kiro product:** Kiro IDE, Autopilot mode, spec-driven workflow
+**Spec used:** `.kiro/specs/evidence-reconstruction/` (requirements, design, tasks). The specs were drafted by ChatGPT; this session implemented them and made the design changes listed below. Commit SHA and PR number are recorded in the pull request.
+
+### Attribution
+
+Everything below this line that is marked **Kiro** was written in this session. The baseline application and the earlier `engine.mjs`, `correlator.mjs`, adapters, and filters are unchanged in behaviour. Reviewer patches from PRs #4 and #5 are untouched. No Python file changed in this PR.
+
+| File | Status | Description |
+|---|---|---|
+| `docs/reconstruction.mjs` | **NEW — Kiro** | Pure projection: verifies the chain, re-derives the case, builds ordered steps, exclusions and checks |
+| `docs/playback.mjs` | **NEW — Kiro** | DOM-free playback state machine with an injectable scheduler |
+| `docs/reconstruction-view.mjs` | **NEW — Kiro** | SVG 2.5D entryway, controls, inspector, error state (no `innerHTML`) |
+| `docs/app.js` | **MODIFIED — Kiro** | Reconstruct button per case, open/close lifecycle, cleanup on run/reset/ledger change |
+| `docs/index.html` | **MODIFIED — Kiro** | Hidden `#reconstruction` host section |
+| `docs/styles.css` | **MODIFIED — Kiro** | Scene, controls, 390 px layout, focus, reduced-motion rules |
+| `tests/reconstruction.test.mjs` | **NEW — Kiro** | 39 projection / integrity / no-hardcoding / CI-wiring tests |
+| `tests/reconstruction-view.test.mjs` | **NEW — Kiro** | 23 view tests against a fake DOM |
+| `tests/playback.test.mjs` | **NEW — Kiro** | 20 state-machine tests |
+| `tests/helpers/fake-dom.mjs` | **NEW — Kiro** | Dependency-free DOM stand-in and manual scheduler |
+| `.github/workflows/ci.yml`, `pages.yml` | **MODIFIED — Kiro** | New syntax checks and test files run in CI and before Pages deploy |
+| `.kiro/steering/evidence-reconstruction.md` | **NEW — Kiro** | Steering rule (see below) |
+| `.kiro/hooks/reconstruction-tests-on-save.json` | **NEW — Kiro** | Bounded test hook (see below) |
+| `docs/evidence/screenshots/*.png` | **NEW** | 14 automated browser captures (see limitations) |
+
+### Prompt for this session
+
+> Continue GhostBridge from the latest main branch. Execute GitHub Issue #6: Interactive Evidence Reconstruction. Read AGENTS.md, KIRO.md, docs/WINNING_DEMO_STRATEGY.md, docs/DEMO_SCRIPT.md, and the complete .kiro/specs/evidence-reconstruction/ specification. Use Kiro IDE Autopilot and spec-driven development to build the premium, interactive 2.5D incident reconstruction directly into the working GhostBridge dashboard. Implement timeline playback, evidence-linked visualization, accessible controls, desktop/mobile responsiveness, and comprehensive tests. Preserve all existing functionality and SHA-256 ledger integrity. Use local execution and the available Kiro promotional credits. Create branch feat/evidence-reconstruction, implement, test, capture genuine Kiro evidence, push and open a PR. Stop before merging. Do not submit Devpost.
+
+### What was built
+
+A **Reconstruct case** button on each correlated case opens a read-only reconstruction. It shows a stylized 2.5D entryway (reader, door, desk, light pool), a causal link labelled with the measured gap, a to-scale ruler, Play / Pause / Previous / Next / Restart, a 0.5×–4× speed control, a timeline slider, an evidence sequence list, a "Why this matches" panel, and an evidence inspector showing event ID, UTC time, source device, hold duration, ledger row, detection rule, and the full SHA-256 row and previous hashes.
+
+For the demonstration data it shows `relay:R001` (22:00:00Z) considered and excluded because it precedes the denial by 30 s, `access:A001` (22:00:30Z) as the anchor, `relay:R003` (22:05:00Z, held 130 s) as the match 270 s later, and the derived high-priority case. None of those values appear in the source: the renderer reads them from the ledger (a test scans the source for fixture literals, and another feeds different data and checks nothing leaks).
+
+### Design decisions that differ from the draft design
+
+- **Case is re-derived, not trusted.** `buildReconstruction` verifies the SHA-256 chain, then calls `correlate()` and requires the supplied case to match the derived one (ID, event IDs, hashes). A forged, stale, or tampered case produces an explicit error state and no scene.
+- **Playback split into `playback.mjs`** so timing logic is testable without a browser.
+- **Thresholds are imported** from `correlator.mjs`, never copied.
+- **Camera icon omitted.** The spec called it optional; including it risked implying camera imagery. The UI states it is not camera footage and not a live connection.
+- **Reconstruction closes** on scenario run, Legacy Bridge Demo, replay, reset, or when its case leaves the verified ledger, so it can never outlive its evidence.
+- **Reduced motion:** transitions and the pulse animation are disabled. Auto-play remains available only on explicit user request and can always be paused.
+
+### Kiro steering and hook (what is and is not claimed)
+
+- **Steering rule — used.** `.kiro/steering/evidence-reconstruction.md` (file-match inclusion) records the invariants for this feature: verify before drawing, no hardcoded fixture values, reuse correlator thresholds, never mutate or persist, no surveillance claims. I followed it while building, and two tests enforce it (the source scan and the threshold-import check).
+- **Hook — configured, not observed.** `.kiro/hooks/reconstruction-tests-on-save.json` was created with Kiro's `createHook` tool. The tool reported it becomes active at the next session start. **I did not see it fire**, so it is not claimed as working automation. The command it runs was executed manually and passed.
+
+### Test results
+
+| Check | Result |
+|---|---|
+| `python -m unittest discover -s tests` | 159 tests, OK (unchanged; no Python files changed) |
+| `tests/browser.test.mjs` | 12 pass |
+| `tests/filter.test.mjs` | 17 pass |
+| `tests/correlator.test.mjs` | 46 pass |
+| `tests/reconstruction.test.mjs` | **39 pass (new)** |
+| `tests/reconstruction-view.test.mjs` | **23 pass (new)** |
+| `tests/playback.test.mjs` | **20 pass (new)** |
+| `node --check` on 8 modules wired into CI | 8 OK |
+
+Totals: 159 Python + 157 Node + 8 syntax checks = **324** (previously 159 + 75 + 5 = 239; the new work adds 82 Node tests and 3 syntax checks).
+
+Baseline was confirmed green on clean `main` before any edit.
+
+**Mutation sanity check.** I deliberately broke six guards and confirmed the tests fail: skipping the integrity check (3 tests failed), skipping the case/hash comparison (2), a reader that never shows "denied" (2), an always-visible case chip (2), a never-disabled Next button (1). One mutant survived: removing the row-hash comparison, because `correlate()` derives those hashes from the same rows, so that branch is currently unreachable. It is kept as defense in depth and the corresponding "Source hashes match" and "Hash chain verified" checks are computed from data instead of hardcoded.
+
+### Browser QA
+
+89 scripted checks, all passing, run in headless Google Chrome driven over the DevTools protocol against (a) the browser-only build served from a non-localhost address and (b) the real Python + SQLite server on a throwaway database. They covered: the 5 events / 3 incidents / 1 case result; the step-by-step story and the 270 s link; keyboard operation (Enter, ArrowRight, visible focus ring); real-timer auto-play and pause; focus return on close; replay adding 0 duplicates; severity filters (3 / 2 / 1); verify and tamper detection; persisted ledger contains no case or reconstruction data; Night Watch 5/3/0, Normal Shift 4/0/0, Access Denied 1/1/0 unchanged; reset; 390 px layout (no horizontal overflow, controls ≥ 44 px, accessible names); `prefers-reduced-motion`; a tampered stored ledger being refused with no button and no scene; Python `/api/cases` ID equals the browser-derived ID; inspector hashes equal the SQLite ledger hashes; SQLite persistence across reload; and zero page exceptions or console errors.
+
+**Problems the QA found and I fixed:** (1) my first screenshots were captured mid-transition, so the link and progress bar were missing; capture now waits for transitions to settle. (2) At 390 px the case chip was overlaid on the small scene and hid the 270 s label; the HUD now flows above the scene on narrow screens. (3) The Next button wrapped alone onto its own row on mobile; the three step buttons now share one row.
+
+### Screenshots (`docs/evidence/screenshots/`)
+
+`desktop-01…05` (case panel, start, denied, held-open with link, case derived), `mobile-01/02` (390 px), `local-01…05` and `local-python-final` (real Python + SQLite server), `refusal-tampered-ledger`.
+
+### Limitations — please read
+
+- **These screenshots are automated headless-Chrome captures, not Kiro IDE screenshots.** I cannot capture the Kiro IDE window. A genuine screen capture or recording of the Kiro session, and the Kiro usage dashboard, must be supplied by the owner.
+- **Kiro credit consumption was not measured.** I have no access to the usage dashboard from this session, so no credit figure is reported. Check https://kiro.dev/account/usage.
+- **Browser coverage is one browser.** Only Chrome was exercised. Firefox, Safari, and real mobile devices were not tested; the 390 px result is Chrome device emulation.
+- **Accessibility is partly verified.** Keyboard operation, focus visibility, accessible names, target sizes, and reduced motion were checked. Colour contrast was not measured, and no screen reader was used. This is not a WCAG conformance claim.
+- **Clicks in the QA run used `element.click()`**, with real key events only for the keyboard checks.
+- **The scene is stylized and synthetic.** It is not camera footage and implies no hardware connection or surveillance.
+- **The hook has not been observed running** (above).
+- **CI on the PR had not run when this was written**; the PR status shows the result.
+- This feature is a build for the product demonstration. The cinematic film, mobile app concepts and multi-site console in the demo script are separate and not built here.

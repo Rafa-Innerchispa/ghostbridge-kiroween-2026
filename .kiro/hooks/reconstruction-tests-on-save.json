@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Run reconstruction tests on save",
+      "trigger": "PostFileSave",
+      "description": "When a reconstruction or playback module (or its test) is saved, run only the three bounded reconstruction test files. Never starts servers, loops or network access.",
+      "matcher": "(docs[\\\\/](reconstruction|reconstruction-view|playback)\\.mjs|tests[\\\\/](reconstruction|reconstruction-view|playback)\\.test\\.mjs)$",
+      "action": {
+        "type": "command",
+        "command": "node --test tests/reconstruction.test.mjs tests/reconstruction-view.test.mjs tests/playback.test.mjs",
+        "timeout": 60
+      }
+    }
+  ]
+}
