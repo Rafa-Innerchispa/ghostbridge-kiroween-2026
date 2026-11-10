@@ -45,6 +45,8 @@ relay_parser = subparsers.add_parser(
 )
 relay_parser.add_argument("fixture", metavar="FIXTURE.csv",
                           help="Path to the CSV fixture file")
+relay_parser.add_argument("--database", default=argparse.SUPPRESS,
+                          help="SQLite path (supports --database after the subcommand)")
 
 # --------------------------------------------------------------------------- #
 # Entry point
@@ -85,7 +87,6 @@ if args.command == "ingest-relay":
                     print(f"  ~ {event['id']} already in ledger (skipped)")
             except ValueError as exc:
                 print(f"error: event {event.get('id')!r}: {exc}", file=sys.stderr)
-                store.close()
                 sys.exit(1)
     finally:
         integrity = store.verify()
