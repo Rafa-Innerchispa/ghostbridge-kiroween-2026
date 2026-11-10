@@ -10,14 +10,14 @@ data, or credentials are present.
 | `relay_night_shift.csv` | 4 | Two held-open door events (both ≥120s → incidents) plus closures |
 | `relay_normal_shift.csv` | 2 | One brief open (45s, no incident) plus closure |
 
-### Replay commands (run from repo root)
+### Replay commands (run from repo root, Windows PowerShell or Linux/macOS shell)\n\nThe SQLite file `ghostbridge.sqlite3` is gitignored. Both imports use the same local database.
 
 ```sh
 # Ingest night-shift relay events into a temporary database:
-python -m ghostbridge ingest-relay fixtures/relay_night_shift.csv --database /tmp/gb_relay_test.sqlite3
+python -m ghostbridge ingest-relay fixtures/relay_night_shift.csv --database ghostbridge.sqlite3
 
 # Ingest normal-shift relay events:
-python -m ghostbridge ingest-relay fixtures/relay_normal_shift.csv --database /tmp/gb_relay_test.sqlite3
+python -m ghostbridge ingest-relay fixtures/relay_normal_shift.csv --database ghostbridge.sqlite3
 ```
 
 ## Access-controller webhook payloads
