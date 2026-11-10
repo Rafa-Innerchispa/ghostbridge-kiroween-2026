@@ -30,6 +30,9 @@ class Handler(SimpleHTTPRequestHandler):
             if self.path == "/api/verify":
                 return self.reply(200, self.engine.store.verify())
             if self.path == "/api/cases":
+                integrity = self.engine.store.verify()
+                if not integrity["valid"]:
+                    return self.reply(409, {"error": "Evidence ledger integrity failed; cannot derive cases"})
                 ledger = self.engine.store.rows()
                 return self.reply(200, {"cases": correlate(ledger)})
         if self.path.startswith("/api/"):
