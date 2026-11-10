@@ -10,3 +10,23 @@
 .severity-filter button:focus-visible{outline:3px solid var(--purple);outline-offset:3px}
 .empty-filter{color:var(--orange);opacity:.85}
 @media(max-width:600px){.severity-filter{gap:6px}.severity-filter button{padding:6px 10px}}
+
+/* --- Correlated cases panel (Kiro / feat/cross-source-cases) --- */
+.metrics{grid-template-columns:repeat(5,1fr)}
+.cases-section{margin-top:22px}
+.cases-note{margin:-12px 0 18px;line-height:1.7}
+.case-card{display:block;width:100%;text-align:left;padding:15px;margin:0 0 10px;background:#1a1f2e;border:1px solid #3a4066;border-radius:8px;cursor:pointer;transition:border-color .2s}
+.case-card:hover{border-color:var(--purple)}
+.case-card:focus-visible{outline:3px solid var(--purple);outline-offset:3px}
+.case-hdr{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.case-icon{font-size:14px;color:var(--purple)}
+.case-card .severity{font-size:9px;text-transform:uppercase;color:#ff9eb5;letter-spacing:1px}
+.case-card strong{font-size:13px}
+.case-card p{font-size:12px;color:var(--muted);line-height:1.6;margin:8px 0 6px}
+.case-card small{font:10px monospace;color:var(--purple)}
+.case-hashes{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.case-hashes code{font-size:9px;background:#0d1217;border:1px solid var(--line);padding:3px 6px;border-radius:4px;color:var(--purple)}
+.legacy-btn{border-color:#3a4066;color:var(--purple)}
+.legacy-btn:hover{border-color:var(--purple);background:#1a1f2e}
+@media(max-width:900px){.metrics{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.metrics{grid-template-columns:1fr 1fr}.case-hashes{gap:4px}.legacy-btn{min-width:140px}}
