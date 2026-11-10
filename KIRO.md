@@ -23,7 +23,7 @@
 
 Owner confirmed successful one-use **4,000-credit Kiroween coupon redemption** on 2026-11-09. Private coupon URL and account identifiers are never stored. Verify remaining account allocation separately at https://kiro.dev/account/usage. Promotional credits expire 2026-12-31 23:59 Pacific. Do not spend credits just to consume them.
 
-## NOW: Release and presentation, NOT more feature coding
+## Current creative-film improvement: one bounded genuine Kiro feature, Issue #6\n\nThe owner requested a high-impact cinematic sales presentation and approved **one additional real Kiro product feature** to improve Design, Impact and Kiro technological implementation scores. Work through [Issue #6](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/issues/6) and `.kiro/specs/evidence-reconstruction/`. The product vision film is tracked independently in [Issue #7](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/issues/7). The film can show future UX concepts; no need to build every roadmap capability into this hackathon.\n\n**Kiro next action:** pull latest main, implement only `feat/evidence-reconstruction` in a genuine Kiro IDE session with one PR, record tests/evidence and stop before merge. The exact copy-paste instruction is in Issue #6.\n\n## Previously planned release and presentation
 
 1. Confirm GitHub Pages deployment of the post-merge `main` commit is successful.
 2. Run real anonymous live site QA at https://rafa-innerchispa.github.io/ghostbridge-kiroween-2026/ on desktop and mobile (390px). Verify Legacy Bridge Demo exactly 5 synthetic events, 3 individual incidents, 1 correlated case, with source hashes; replay adds 0 events and case count remains 1; Reset returns all counts to zero.
