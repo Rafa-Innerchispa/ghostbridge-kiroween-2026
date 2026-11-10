@@ -5,7 +5,7 @@ GhostBridge turns **synthetic** signals from different generations of building
 systems into explainable incidents and inspectable evidence. A local-first
 Frankenstein-category project for Kiroween 2026 by InnerChispa LLC.
 
-**Status (November 9, 2026):** GhostBridge now includes a **genuine Kiro IDE-authored** severity filter ([PR #2](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/2)), legacy CSV and access webhook adapters ([PR #4](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/4)), and a deterministic cross-source case correlator with browser UI ([PR #5](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/5)). All three PRs have been reviewed and merged. Independent review fixes are attributed separately in [KIRO_EVIDENCE.md](docs/KIRO_EVIDENCE.md). **159 Python + 75 Node tests and 5 JS syntax checks passed on PR #5**, all in GitHub CI. Earlier offline Chromium QA (32/32) predates the new correlator and **does not verify its UI**. Live anonymous browser/mobile QA and the under-3-minute video are still outstanding. **Kiroween submission NOT sent**; no actual device connectivity or production InnerOS integration is claimed.
+**Status (November 10, 2026):** GhostBridge's **four reviewed Kiro development PRs are merged**: [#2 severity filtering](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/2), [#4 CSV/access adapters](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/4), [#5 correlated cases](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/5), and [#8 Interactive Evidence Reconstruction](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/8). PR #8 adds a **ledger-driven 2.5D case replay**, Play/Pause/Step/Speed controls, exclusion reasoning, and a full SHA-256 inspector. Independent review found no blocker and merged it as `bc747644e36913fb2ce9a6dff66b65d394945fe7`. The last PR head and merge CI passed **159 Python + 157 Node tests + 8 syntax checks = 324 checks**, zero failures. Kiro reports 89 scripted Chrome checks and 14 headless-Chrome screenshots, not an independent live-site assessment. A one-off local Python error remains unexplained, but did not recur in CI. **Further feature coding and video generation are paused pending final public-site QA**; the previous visual concepts and preliminary video cuts are retained. The final video and official Devpost entry are pending.
 
 Source: https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026
 
@@ -23,9 +23,15 @@ node --check docs/filters.mjs
 node --check docs/correlator.mjs
 node --check docs/fixture_replay.mjs
 node --check docs/fixtures.js
+node --check docs/reconstruction.mjs
+node --check docs/reconstruction-view.mjs
+node --check docs/playback.mjs
 node --test tests/browser.test.mjs
 node --test tests/filter.test.mjs
 node --test tests/correlator.test.mjs
+node --test tests/reconstruction.test.mjs
+node --test tests/reconstruction-view.test.mjs
+node --test tests/playback.test.mjs
 ```
 
 The local server binds only to `127.0.0.1`. SQLite stores the evidence chain in
@@ -72,6 +78,7 @@ a separate live anonymous-browser check remains outstanding.
 - Two independent synthetic **software adapters**: relay CSV imported using the Python CLI and access-controller JSON via a loopback-only HTTP webhook. Both normalize events into the existing SQLite evidence ledger.
 - **Cross-source case correlator:** access denied then held-open door within 300 seconds; stable SHA-256 case ID, linked source event IDs and existing evidence hashes, and a read-only Python `/api/cases` route.
 - Browser-only **Legacy Bridge Demo** with embedded offline fixtures, responsive correlated-case cards, full evidence export and local-only computation. No live device inputs or cloud AI.
+- **Interactive Evidence Reconstruction** (Kiro PR #8): read-only 2.5D incident sequence built from verified ledger rows, linked source hashes, causal checks, excluded events and accessible playback controls.
 - CI and Pages workflows prepared; no dependencies on InnerOS or other agents.
 
 ## What is not implemented
