@@ -333,3 +333,27 @@ node --check docs/fixtures.js         → OK
 - The Legacy Bridge Demo button is browser-only (offline fixture replay); it does not call `/api/adapters/access` or any live endpoint.
 - Cases are re-derived on every `/api/cases` call; not cached (acceptable for a lab with synthetic data volumes).
 - Real hardware, InnerOS, or production connections are not present.
+
+
+---
+
+## Phase 2B — independent post-Kiro code review (not Kiro-authored)
+
+**Review date:** 2026-11-09.  
+**Kiro's original Phase 2B commit:** `ab1fa7dfe002751e717a332eb5aaf422413ef381` on `feat/cross-source-cases`.  
+**Reviewed PR:** [#5](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/5).  
+**Merged commit:** `a8ad15483233eaa45900277c92ace234766bbd3c`.
+
+The first Phase 2B correlator, Python /api/cases endpoint, JS parity implementation, browser fixture parsers, demo UI and original 43 Node tests were authored by **Kiro IDE Autopilot**. A subsequent **ChatGPT-assisted independent GitHub code review** identified and corrected the following issues, which **must not be attributed to Kiro**:
+
+1. **Legacy replay button:** replaying after the new demo incorrectly invoked a nonexistent `scenario('legacy')`. It now replays the same fixture flow.
+2. **Localhost mode:** the UI was mutating in-memory JS rows without storing them in Python SQLite, while `/api/cases` read the unmodified backend. The review corrected persistence through the loopback API, including the actual access JSON webhook; partial-error state is reloaded.
+3. **Async case view:** render-generation token prevents stale asynchronous case results after Reset/replay.
+4. **Integrity:** Python `GET /api/cases` now refuses to project cases when the ledger fails SHA-256 verification (HTTP 409). The browser UI likewise hides correlated cases from a failed-verification ledger and displays an error.
+5. **CSV strictness:** JS browser replay now rejects extra/missing physical fields and non-decimal duration syntax, matching the existing stricter Python acceptance rules more closely.
+6. **Independent tests:** three reviewer-authored Node tests cover malformed browser CSV inputs and one Python test verifies that corrupted ledgers produce HTTP 409.
+7. **CI and Pages deployment gates:** both workflows now run the new Node correlator suite, syntax-check all five relevant JS modules, and run the full Python suite, not only the original browser/filter tests.
+
+**Authoritative passing GitHub CI result on reviewed PR head** `266283ac5558cdade2c2efecacb2acc3cf9b2f4c`: **159 Python + 12 original Node + 17 severity-filter Node + 46 correlator Node + 5 JavaScript syntax checks = 239 checks, zero failures**, as verified from GitHub Actions job logs. The user-provided original Kiro session test report reflected the pre-review head (158 Python / 43 correlator Node).
+
+**Limitations:** All data sources remain synthetic. GitHub CI does not prove a live GitHub Pages load or browser/mobile interaction for the new case dashboard; a separate interactive QA session is needed before video and final Devpost submission. No production InnerOS, customer access controller, live camera or physical relay is connected.
