@@ -113,16 +113,20 @@ async function runLegacyBridgeDemo(){
     // Parse synthetic sources in-browser, then ingest through the correct store.
     const relayEvents=parseRelayCsv(RELAY_NIGHT_CSV);
     const accessEvent=parseAccessWebhook(ACCESS_DENIED_JSON);
-    const all=[accessEvent,...relayEvents];
     let added=0;
-    for(const e of all){
-      if(local){
+    if(local){
+      // Exercise the actual Python access webhook adapter in localhost mode.
+      const accessResult=await api('adapters/access',ACCESS_DENIED_JSON);
+      if(accessResult.created)added++;
+      for(const e of relayEvents){
         const result=await api('events',e);
         if(result.created)added++;
-      }else if(await append(rows,e))added++;
+      }
+      rows=(await api('state')).ledger;
+    }else{
+      for(const e of [accessEvent,...relayEvents])if(await append(rows,e))added++;
+      save();
     }
-    if(local)rows=(await api('state')).ledger;
-    else save();
     const result=await verify(rows);
     $('integrity-label').textContent=result.valid?'Verified':'FAILED';
     if(!result.valid)throw new Error('Evidence chain integrity verification failed');
@@ -131,8 +135,11 @@ async function runLegacyBridgeDemo(){
     const transport=local?'local Python/SQLite API':'browser-only fixture replay';
     status(`Legacy Bridge Demo complete: ${added} new events ingested via synthetic adapter parsers (${transport}). ${cases.length} correlated case${cases.length!==1?'s':''} derived. No live hardware or surveillance.`);
     render();
-  }catch(e){status('Legacy Bridge Demo error: '+e.message,true);}
-  finally{busy=false;document.querySelectorAll('button').forEach(b=>b.disabled=false);}
+  }catch(e){
+    if(local){try{rows=(await api('state')).ledger;}catch{}}
+    status('Legacy Bridge Demo error: '+e.message,true);
+    render();
+  }finally{busy=false;document.querySelectorAll('button').forEach(b=>b.disabled=false);}
 }
 
 for(const name of ['night','normal','denied'])$(name).onclick=()=>run(name);
