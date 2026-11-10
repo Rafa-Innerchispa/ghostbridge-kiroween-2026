@@ -1,6 +1,6 @@
 # GhostBridge | Kiro execution handoff and release status
 
-**Updated:** 2026-11-09. **Phases 1, 2A, and 2B are completed, reviewed and merged. Do not reimplement them.**
+**Updated:** 2026-11-10. **All planned coding phases, including evidence reconstruction, are integrated in main. Do not start new Kiro development or spend more promotional credits unless a real test reveals a blocker.**
 
 ## Verified implementation
 
@@ -8,7 +8,8 @@
 - **Phase 1 (Kiro IDE Autopilot):** Accessible All / High / Medium incident filter, 17 regression tests. [PR #2 merged](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/2).
 - **Phase 2A (Kiro IDE Autopilot):** Legacy relay CSV adapter, JSON access webhook, CLI, fixtures, 78 new tests. [PR #4 merged](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/4). Reviewer later fixed CLI option parsing, CSV edge cases, Windows examples, and added six tests.
 - **Phase 2B (Kiro IDE Autopilot):** Deterministic correlated cases (access denied followed by held-open door within 300s), Python read-only `/api/cases`, equivalent JS correlator, offline browser fixtures, dashboard correlated-cases panel. [PR #5 merged](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/5) as `a8ad15483233eaa45900277c92ace234766bbd3c`. Independent ChatGPT review added local-mode persistence/replay fixes, case integrity gating, malformed CSV tests, and CI/Pages gate improvements.
-- **Current test result:** GitHub Actions on reviewed PR #5 head passed **159 Python tests + 75 Node tests + 5 JS syntax checks = 239 successful checks**. See [Kiro and reviewer evidence](docs/KIRO_EVIDENCE.md). A passing CI suite is not substitute for a public-browser QA session.
+- **Phase 3 (Kiro IDE Autopilot):** Interactive Evidence Reconstruction, visually rich SVG/2.5D replay, source hash inspector, playback controls, styling and 82 new JS tests, [PR #8 merged](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/8) as `bc747644e36913fb2ce9a6dff66b65d394945fe7`. New Kiro steering present; Kiro on-save hook configured but activation has not been observed. Kiro reported one transient local Python error, with no recurrence in CI.
+- **Current test result:** GitHub CI on PR #8 and the merge: **159 Python + 157 Node tests + 8 JavaScript syntax checks = 324 checks passed**. Separately Kiro reports 89 scripted Chrome checks and 14 browser screenshots. The final public HTTPS visit and independent visual QA remain open.
 
 ## Representative live simulation, not hardware
 
@@ -23,7 +24,15 @@
 
 Owner confirmed successful one-use **4,000-credit Kiroween coupon redemption** on 2026-11-09. Private coupon URL and account identifiers are never stored. Verify remaining account allocation separately at https://kiro.dev/account/usage. Promotional credits expire 2026-12-31 23:59 Pacific. Do not spend credits just to consume them.
 
-## Current creative-film improvement: one bounded genuine Kiro feature, Issue #6\n\nThe owner requested a high-impact cinematic sales presentation and approved **one additional real Kiro product feature** to improve Design, Impact and Kiro technological implementation scores. Work through [Issue #6](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/issues/6) and `.kiro/specs/evidence-reconstruction/`. The product vision film is tracked independently in [Issue #7](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/issues/7). The film can show future UX concepts; no need to build every roadmap capability into this hackathon.\n\n**Kiro next action:** pull latest main, implement only `feat/evidence-reconstruction` in a genuine Kiro IDE session with one PR, record tests/evidence and stop before merge. The exact copy-paste instruction is in Issue #6.\n\n## Previously planned release and presentation
+## NOW: hold coding, verify the released product
+
+- [Issue #6](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/issues/6) implementation has been completed and merged. Do not repeat it.
+- **Do not spend additional Kiro credits** on feature expansion, video creation or task retries. Existing video drafts and concept images are reserved until final product QA.
+- Confirm deployment of the merged feature and test the real site on desktop/mobile. Validate source hashes, access denied → held-open cause, replay, controls and evidence export.
+- A real Kiro IDE session screenshot and evidence of on-save hook firing are still optional evidence tasks; do not hold up the main release for a noncritical hook.
+- Final narrated video, Devpost assets and submission remain separate and require approval.
+
+## Previously planned release and presentation
 
 1. Confirm GitHub Pages deployment of the post-merge `main` commit is successful.
 2. Run real anonymous live site QA at https://rafa-innerchispa.github.io/ghostbridge-kiroween-2026/ on desktop and mobile (390px). Verify Legacy Bridge Demo exactly 5 synthetic events, 3 individual incidents, 1 correlated case, with source hashes; replay adds 0 events and case count remains 1; Reset returns all counts to zero.
