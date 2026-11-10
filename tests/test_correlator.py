@@ -520,3 +520,28 @@ class TestApiCases(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+# Independent reviewer regression; not part of original Kiro-authored tests.
+class TestCorrelatedCaseIntegrityGuard(unittest.TestCase):
+    def test_api_refuses_correlated_cases_when_hash_chain_is_corrupt(self):
+        store = Store(":memory:")
+        engine = Engine(store)
+        ingest_fixture(engine)
+        store.db.execute("UPDATE ledger SET hash=? WHERE seq=1", ("f" * 64,))
+        store.db.commit()
+        self.assertFalse(store.verify()["valid"])
+        server = make_server(engine, 0)
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        try:
+            with self.assertRaises(HTTPError) as ctx:
+                urlopen(f"http://127.0.0.1:{server.server_port}/api/cases", timeout=3)
+            self.assertEqual(ctx.exception.code, 409)
+            body = json.loads(ctx.exception.read())
+            self.assertIn("integrity", body["error"])
+        finally:
+            server.shutdown()
+            server.server_close()
+            thread.join()
+            store.close()
