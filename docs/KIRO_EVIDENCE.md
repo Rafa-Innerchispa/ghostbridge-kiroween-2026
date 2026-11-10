@@ -240,3 +240,22 @@ node --check docs/filters.mjs          → OK
 - `ingest-relay` is a one-shot CLI tool; no file watcher or daemon.
 - RELAY_MAP and READER_MAP cover the two synthetic devices in the spec; real hardware mappings are out of scope.
 - PR B (cross-source correlator) is a separate branch and PR, not included here.
+
+
+---
+
+## Phase 2 — independent PR A review, not authored by Kiro
+
+**Date:** 2026-11-09  
+**Pull request:** [#4](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/4)  
+**Merged commit:** `9bd5cfb417cc82094d5baff493c8c6fe90e551c7`
+
+After the original Kiro IDE commit `5b6d313`, a separate ChatGPT-assisted independent review identified and corrected two integration bugs in the documented `ingest-relay` CLI path: `--database` was not accepted after the subcommand as documented, and a conflicting ID could double-close SQLite before the final integrity verification.
+
+The reviewer also tightened CSV header/row/duration validation, added **six reviewer-authored regression tests**, and made fixture import examples cross-platform for the owner's Windows Kiro IDE. Those reviewer changes **are not Kiro-authored**. The original adapter design, endpoints, fixtures, and 78 adapter tests remain attributable to Kiro IDE.
+
+GitHub Actions on the corrected PR head `928e6ed2e45161818f53406ea10601a4dbaf1b44` passed **113 Python + 29 Node tests plus 2 syntax checks**. A successful CI run does not itself establish a live hardware integration.
+
+The owner reported a successful one-use 4,000-credit Kiroween coupon redemption on 2026-11-09. The actual account usage balance is not exposed here. Neither the private redemption link nor any credentials were stored in this repo.
+
+**Next genuine Kiro task:** Phase 2B cross-source correlator in a fresh branch. No PR B implementation is claimed yet.
