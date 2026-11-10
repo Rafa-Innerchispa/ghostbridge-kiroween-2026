@@ -156,3 +156,37 @@
 }
 @media(prefers-reduced-motion:reduce){.recon-scene *{transition:none!important;animation:none!important}.recon-progress,.recon-marker{transition:none!important}}
 .reconstruction[data-reduced-motion="true"] .recon-scene *{transition:none!important;animation:none!important}
+
+
+/* GhostBridge Signal Forge: direct user interaction, not a recorded animation.
+ * Authored by ChatGPT direct execution, 2026-11-10; not Kiro IDE code. */
+.forge-launch{border-color:#779c4e;background:linear-gradient(135deg,#26341f,#1a2924);color:var(--green)}
+.forge-launch:hover{background:#30472a;box-shadow:0 0 24px #a0e3611a}
+.forge-panel{margin:20px 0 22px;border:1px solid #607944;border-radius:16px;background:radial-gradient(ellipse at top right,#526c2620,transparent 62%),linear-gradient(145deg,#151e1d,#0d1215);padding:26px 28px;box-shadow:0 16px 50px #0004}
+.forge-panel[hidden]{display:none}
+.forge-head{display:flex;justify-content:space-between;align-items:start;gap:20px}
+.forge-head h3{font:500 clamp(25px,2.8vw,38px)/1.15 'Space Grotesk',sans-serif;margin:8px 0 14px}
+.forge-head .fine{max-width:700px;font-size:13px}
+.forge-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:24px 0 16px}
+.forge-control{padding:18px;border:1px solid #354642;background:#10191b;border-radius:11px;display:grid;gap:16px}
+.forge-control span{display:flex;gap:8px;align-items:center;justify-content:space-between;font-size:13px;font-weight:600}
+.forge-control strong{font:600 24px 'Space Grotesk';color:var(--green);white-space:nowrap}
+.forge-control input{width:100%;accent-color:var(--green);cursor:pointer;height:28px}
+.forge-control input:focus-visible,.forge-camera input:focus-visible{outline:3px solid var(--purple);outline-offset:4px}
+.forge-control small{font-size:10px;color:var(--muted)}
+.forge-camera{display:flex;grid-column:1 / -1;align-items:center;gap:12px;padding:12px 16px;border:1px solid #344246;border-radius:8px;background:#141e21;font-size:12px}
+.forge-camera input{width:18px;height:18px;accent-color:var(--green)}
+.forge-presets{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0 18px}
+.forge-presets button{min-height:44px;border-color:#47534a;flex:0 1 235px;display:grid;gap:3px;justify-items:start;text-align:left}
+.forge-presets small{font-size:10px;color:var(--muted)}
+.forge-preview{padding:16px;border-radius:10px;border-left:3px solid var(--green);background:#1c2e1c;font-size:12px;line-height:1.8}
+.forge-preview.is-fail{border-color:var(--orange);background:#302219}
+.forge-action{display:flex;align-items:center;gap:18px;margin:22px 0 14px}
+.forge-action .primary{display:grid;gap:3px;min-height:60px;flex:none}
+.forge-action .primary small{font-size:10px;font-weight:500;opacity:.8}
+.forge-action .fine{margin:0;max-width:520px}
+.forge-result{padding:16px;background:#111b1e;border:1px solid #324247;border-radius:8px;font-size:13px;line-height:1.7;white-space:pre-line}
+.forge-result.is-match{border-color:#87a85b;color:#d0f2a4}
+.forge-result.is-no-match{border-color:#b78355;color:#ffd9b9}
+@media(max-width:680px){.forge-panel{padding:17px}.forge-head h3{font-size:26px}.forge-controls{grid-template-columns:1fr}.forge-action{flex-direction:column;align-items:stretch}.forge-action .primary{width:100%}.forge-presets button{flex:1 1 125px;padding:13px 9px}.forge-control{padding:13px}.forge-control strong{font-size:21px}}
+@media(prefers-reduced-motion:reduce){.forge-launch{transition:none!important;box-shadow:none!important}}
