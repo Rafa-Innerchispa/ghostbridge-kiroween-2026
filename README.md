@@ -5,7 +5,7 @@ GhostBridge turns **synthetic** signals from different generations of building
 systems into explainable incidents and inspectable evidence. A local-first
 Frankenstein-category project for Kiroween 2026 by InnerChispa LLC.
 
-**Status (November 7, 2026):** initial GhostBridge MVP created October 30; the authentic Kiro IDE Autopilot incident-severity filter was implemented November 6, reviewed and merged as [PR #2](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/2). The automated suite runs **29 Python tests and 29 JavaScript tests** (12 original and 17 Kiro-authored); GitHub CI and Pages deployment succeeded. A separate offline Chromium QA run against the exact published Pages artifact [passed 32 interaction checks](docs/BROWSER_QA_2026-11-07.md). This is **not** a live remote browser check. Devpost registration and the project draft exist, but the final hackathon entry **has not been sent**. MIT and root `.kiro/` are public.
+**Status (November 9, 2026):** GhostBridge now includes a **genuine Kiro IDE-authored** severity filter ([PR #2](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/2)), legacy CSV and access webhook adapters ([PR #4](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/4)), and a deterministic cross-source case correlator with browser UI ([PR #5](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/5)). All three PRs have been reviewed and merged. Independent review fixes are attributed separately in [KIRO_EVIDENCE.md](docs/KIRO_EVIDENCE.md). **159 Python + 75 Node tests and 5 JS syntax checks passed on PR #5**, all in GitHub CI. Earlier offline Chromium QA (32/32) predates the new correlator and **does not verify its UI**. Live anonymous browser/mobile QA and the under-3-minute video are still outstanding. **Kiroween submission NOT sent**; no actual device connectivity or production InnerOS integration is claimed.
 
 Source: https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026
 
@@ -20,8 +20,12 @@ python -m ghostbridge
 python -m unittest discover -s tests -v
 node --check docs/app.js
 node --check docs/filters.mjs
+node --check docs/correlator.mjs
+node --check docs/fixture_replay.mjs
+node --check docs/fixtures.js
 node --test tests/browser.test.mjs
 node --test tests/filter.test.mjs
+node --test tests/correlator.test.mjs
 ```
 
 The local server binds only to `127.0.0.1`. SQLite stores the evidence chain in
@@ -38,6 +42,7 @@ The dashboard detects the loopback API and uses SQLite when served by this comma
 6. **Export evidence JSON**: download the complete ledger and verification result.
 7. Reset and run **Normal Shift**: four events, zero incidents.
 8. **Access Denied** demonstrates the access-controller rule separately.
+9. After Reset, select **Legacy Bridge Demo**: parse synthetic relay CSV and access-controller JSON and produce one cross-source case linking `access:A001` and `relay:R003`, 270 seconds apart. Verify original evidence and replay with zero duplicates.
 
 Scenarios append to the current shift. Reset before comparing independent counts.
 The pipeline uses short visual pacing to make processing legible; it is not cloud
@@ -64,12 +69,14 @@ a separate live anonymous-browser check remains outstanding.
 - Persistence, reset, JSON export and disposable tamper check.
 - Responsive source cards, incident desk, evidence timeline and processing stages.
 - **Kiro IDE-authored** incident severity filtering (All / High / Medium), accessible controls, 17 regression tests, and [authentic session provenance](docs/KIRO_EVIDENCE.md).
+- Two independent synthetic **software adapters**: relay CSV imported using the Python CLI and access-controller JSON via a loopback-only HTTP webhook. Both normalize events into the existing SQLite evidence ledger.
+- **Cross-source case correlator:** access denied then held-open door within 300 seconds; stable SHA-256 case ID, linked source event IDs and existing evidence hashes, and a read-only Python `/api/cases` route.
+- Browser-only **Legacy Bridge Demo** with embedded offline fixtures, responsive correlated-case cards, full evidence export and local-only computation. No live device inputs or cloud AI.
 - CI and Pages workflows prepared; no dependencies on InnerOS or other agents.
 
 ## What is not implemented
 
-ONVIF, Wiegand, relay and access-controller labels are **adapter targets**, not real
-hardware connections. No video inference, production integration, physical actuation,
+ONVIF, Wiegand and specific physical-relay/access-controller integrations are **future hardware targets**. The implemented CSV and JSON adapters work with local **synthetic data**, not physical devices. No video inference, production integration, physical actuation,
 legal evidence certification, external signature, blockchain or AI model is claimed.
 Device status is the latest synthetic signal, not a real uptime measurement.
 
@@ -79,9 +86,9 @@ Never treat this local chain as externally certified immutable evidence.
 
 ## Kiro and competition
 
-Initial GhostBridge code and the first `.kiro/` requirements and steering were prepared by **Codex/ChatGPT**, and must not be attributed to Kiro. On November 6, 2026, **Kiro IDE Autopilot** authored a separate, verifiable severity-filter improvement and 17 regression tests. See [PR #2](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/2), [Kiro evidence](docs/KIRO_EVIDENCE.md), and [browser QA](docs/BROWSER_QA_2026-11-07.md). The owner reported approximately 4.69 Kiro credits used in the session. A promotional 4,000-credit request was reported but the grant is not confirmed.
+Initial GhostBridge code and original `.kiro/` planning were prepared by **Codex/ChatGPT**, not Kiro. Real Kiro IDE Autopilot contributions were: incident filter ([PR #2](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/2)), legacy adapters ([PR #4](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/4)) and multi-source correlator/UI ([PR #5](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/5)). Independent ChatGPT code review fixes and reviewer tests are explicitly distinguished in [evidence](docs/KIRO_EVIDENCE.md). The owner confirmed the promotional Kiro coupon redemption; remaining balance is not externally verified.
 
-Official rules: https://kiroween.devpost.com/rules. Deadline: December 4, 2026 at 14:00 PST (17:00 Ecuador). Public MIT source, root `.kiro/` directory and working app exist. **Final video and final Devpost entry are still pending**. Startup bonus requires founder confirmation and verified public links. We will not submit without explicit owner approval.
+Official rules: https://kiroween.devpost.com/rules. Deadline: December 4, 2026 at 14:00 Pacific / 17:00 Ecuador. Public MIT source, root `.kiro/`, working synthetic app and automated tests exist. **Live browser QA, final video and final Devpost entry are still pending.** Owner approval is required before hackathon submission.
 
 See [architecture](ARCHITECTURE.md), [handoff](docs/CODEX_HANDOFF.md) and
 [demo script](docs/DEMO_SCRIPT.md). MIT licensed.
