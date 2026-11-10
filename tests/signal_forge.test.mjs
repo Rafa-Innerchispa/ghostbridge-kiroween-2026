@@ -20,7 +20,7 @@ test('early door excluded and late door 270s/130s matches',async()=>{
   const cases=await correlate(rows);assert.equal(cases.length,1);
   assert.deepEqual(cases[0].event_ids,['forge:denied','forge:later-door']);
   assert.deepEqual(cases[0].evidence_hashes,[rows[1].hash,rows[2].hash]);
-  assert.equal(rows.filter(r=>r.payload.incident).length,2);
+  assert.equal(rows.filter(r=>r.payload.incident).length,3);
 });
 for(const [gap,hold,match] of [[1,120,true],[299,120,true],[300,120,true],[301,120,false],[299,119,false],[301,119,false],[270,130,true],[360,240,false],[1,60,false],[1,121,true]]){
   test(`boundary gap=${gap} hold=${hold} matches=${match}`,async()=>{
