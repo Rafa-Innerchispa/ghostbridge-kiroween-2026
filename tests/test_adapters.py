@@ -730,7 +730,7 @@ class TestAdapterReviewRegressions(unittest.TestCase):
             csv_path.write_text(MINIMAL_CSV, encoding="utf-8")
             first = self._run_cli("ingest-relay", csv_path, "--database", db_path)
             self.assertEqual(first.returncode, 0, first.stderr)
-            csv_path.write_text(MINIMAL_CSV.replace(",180\\n", ",200\\n"), encoding="utf-8")
+            csv_path.write_text(MINIMAL_CSV.replace(",180\n", ",200\n"), encoding="utf-8")
             conflict = self._run_cli("ingest-relay", csv_path, "--database", db_path)
             self.assertEqual(conflict.returncode, 1)
             self.assertIn("already exists", conflict.stderr)
