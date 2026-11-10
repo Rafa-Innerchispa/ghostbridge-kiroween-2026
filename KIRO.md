@@ -1,44 +1,36 @@
-# GhostBridge | Kiro execution handoff
+# GhostBridge | Kiro execution handoff and release status
 
-**Updated:** 2026-11-09. **Current priority: Phase 2 PR B, cross-source correlation.**
+**Updated:** 2026-11-09. **Phases 1, 2A, and 2B are completed, reviewed and merged. Do not reimplement them.**
 
-## Completed and verified
+## Verified implementation
 
-- Initial GhostBridge MVP and the initial `.kiro` plans were authored using Codex/ChatGPT, **not** Kiro.
-- **Phase 1 (Kiro):** All / High / Medium filters and 17 regression tests. [PR #2 merged](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/2).
-- **Phase 2A (Kiro):** local legacy relay CSV adapter and loopback-only JSON access webhook. Kiro authored the adapters, fixtures, 78 tests and integration in [PR #4](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/4). **Merged** as `9bd5cfb417cc82094d5baff493c8c6fe90e551c7`.
-- **Independent ChatGPT review of PR #4 (not Kiro):** corrected CSV CLI argument position / duplicate SQLite closing, hardened malformed CSV handling, created six reviewer-authored regressions and fixed cross-platform command examples. Current PR A merge checks passed **113 Python + 29 Node tests + 2 JS syntax checks**. See [evidence](docs/KIRO_EVIDENCE.md).
-- Existing offline Chromium QA for the *earlier* severity filter passed 32 checks, with acknowledged test-harness limitations; this does not validate the still-unbuilt correlation UI.
+- **Baseline (Codex/ChatGPT):** Original GhostBridge deterministic synthetic-signal lab, Python/SQLite and browser versions, SHA-256 evidence, initial steering/spec documents. Not authored by Kiro.
+- **Phase 1 (Kiro IDE Autopilot):** Accessible All / High / Medium incident filter, 17 regression tests. [PR #2 merged](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/2).
+- **Phase 2A (Kiro IDE Autopilot):** Legacy relay CSV adapter, JSON access webhook, CLI, fixtures, 78 new tests. [PR #4 merged](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/4). Reviewer later fixed CLI option parsing, CSV edge cases, Windows examples, and added six tests.
+- **Phase 2B (Kiro IDE Autopilot):** Deterministic correlated cases (access denied followed by held-open door within 300s), Python read-only `/api/cases`, equivalent JS correlator, offline browser fixtures, dashboard correlated-cases panel. [PR #5 merged](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/5) as `a8ad15483233eaa45900277c92ace234766bbd3c`. Independent ChatGPT review added local-mode persistence/replay fixes, case integrity gating, malformed CSV tests, and CI/Pages gate improvements.
+- **Current test result:** GitHub Actions on reviewed PR #5 head passed **159 Python tests + 75 Node tests + 5 JS syntax checks = 239 successful checks**. See [Kiro and reviewer evidence](docs/KIRO_EVIDENCE.md). A passing CI suite is not substitute for a public-browser QA session.
+
+## Representative live simulation, not hardware
+
+- Synthetic access rejection: `access:A001` at 22:00:30Z.
+- Synthetic relay held-open: `relay:R003` at 22:05:00Z, 270 seconds later, held 130 seconds.
+- Exactly one derived high-severity case with stable ID and source record hashes.
+- The earlier `relay:R001` occurs before the denial and must not be paired.
+- Replayed fixtures must add zero duplicates; original incident counts, SHA-256 chain, and export unchanged.
+- Python localhost runs through a loopback-only API; GitHub Pages uses entirely offline synthetic browser fixtures. Neither connects to customer hardware or production InnerOS.
 
 ## Kiro credits
 
-On 2026-11-09 the owner **confirmed that the one-use Kiroween promotional-credit redemption displayed "Kiroupon successfully redeemed!"** on the intended personal Kiro account. The actual 4,000-credit ledger balance should be checked in https://kiro.dev/account/usage; it is not independently readable from this repository. **Never share, log or commit the private coupon URL.** Credit validity ends 2026-12-31 23:59 Pacific. No purchases or other paid agents.
+Owner confirmed successful one-use **4,000-credit Kiroween coupon redemption** on 2026-11-09. Private coupon URL and account identifiers are never stored. Verify remaining account allocation separately at https://kiro.dev/account/usage. Promotional credits expire 2026-12-31 23:59 Pacific. Do not spend credits just to consume them.
 
-## ACTIVE: Phase 2B — correlated multi-source cases
+## NOW: Release and presentation, NOT more feature coding
 
-Read first:
-- `AGENTS.md`
-- [GitHub Issue #3](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/issues/3)
-- `.kiro/specs/legacy-bridge-correlation/requirements.md`
-- `.kiro/specs/legacy-bridge-correlation/design.md`
-- `.kiro/specs/legacy-bridge-correlation/tasks.md`
-- `fixtures/README.md`
-- `ghostbridge/adapters/relay_csv.py` and `ghostbridge/adapters/access_webhook.py`
-- `ghostbridge/core.py`, `ghostbridge/engine.py`, `ghostbridge/storage.py`, `ghostbridge/server.py`
-- `docs/engine.mjs`, `docs/app.js`, `docs/filters.mjs`.
+1. Confirm GitHub Pages deployment of the post-merge `main` commit is successful.
+2. Run real anonymous live site QA at https://rafa-innerchispa.github.io/ghostbridge-kiroween-2026/ on desktop and mobile (390px). Verify Legacy Bridge Demo exactly 5 synthetic events, 3 individual incidents, 1 correlated case, with source hashes; replay adds 0 events and case count remains 1; Reset returns all counts to zero.
+3. Verify localhost Python/SQLite separately: CSV relay import plus access JSON webhook, `GET /api/cases`, corrupted-ledger HTTP 409 behavior, persistence and JSON export.
+4. Capture genuine Kiro IDE screen/recording and actual visible demo. Do not recreate images falsely.
+5. Produce a narrated English video **under three minutes**, plus suitable screenshots and project cover. Rewrite `docs/DEMO_SCRIPT.md` to include the actual correlated-case result and genuine Kiro contributions.
+6. Update Devpost **only on owner authorization**. Final hackathon submission remains unsubmitted until explicit owner approval and relevant form declarations.
+7. Post-freeze: production-grade device adapters or InnerOS read-only bridge are separate projects, not built for Kiroween unless explicitly approved.
 
-### Paste this into the signed-in Kiro IDE session (on a fresh main)
-
-> Continue GhostBridge Kiroween 2026. **Phase 2A PR #4 is already merged**, and the promotional-credit code has been redeemed. Pull the latest `main`. Read AGENTS.md, KIRO.md, GitHub issue #3, and the full `.kiro/specs/legacy-bridge-correlation/` requirements, design and tasks. Implement **Phase 2B ONLY**, using the real Kiro IDE spec-driven workflow. Create `feat/cross-source-cases` off updated `main`. Build a deterministic derived multi-source case: an `access.denied` followed within 300 seconds by a `door.open` held at least 120 seconds, using normalized source events. The correlated case must have stable ID, severity, explanation, original event IDs, record hashes and rule provenance. Handle out-of-order ingest, time boundaries and duplicates; derive cases from the verified ledger without mutating SHA-256 events, hashes, exports or existing fixtures. Add read-only `GET /api/cases` on loopback Python, a visible correlated-cases panel and a **clearly labeled offline fixture-replay** flow on the browser-only GitHub Pages demo. The static site must parse synthetic CSV/JSON adapters in-browser and must not claim to run a live HTTP webhook or connect real cameras. Add comprehensive Python/JS parity and security/regression tests. Validate original scenarios, all existing tests, integrity/export and 390px mobile UI. Document real Kiro prompts, steps, code, screenshots, tests, changes and limits in `docs/KIRO_EVIDENCE.md`. Open a PR with CI green and show the code changes. **Stop before merging** and report PR link, real tests and credit usage. No cloud model fallback, paid subscriptions, production InnerOS, real physical devices or customer data. Do not publish a Devpost submission.
-
-### Exact demonstration acceptance check
-
-- Ingest `fixtures/access_webhook_denied.json` and `fixtures/relay_night_shift.csv` via their **real** parsers into one local ledger.
-- The fixture access rejection is at 22:00:30Z and the qualifying subsequent held-open relay event is at 22:05:00Z (270 seconds later), within the 300-second rule. The earlier 22:00:00Z relay event is **not** after the denial.
-- Show **one** correlated case referencing `access:A001` and `relay:R003`, their actual ledger hashes and an explanation. The original individual incidents and full evidence chain remain separate.
-- Verify that replays produce no duplicates, cases remain deterministic after restart, and normal fixtures yield no cases.
-- After PR B review and merge, repeat browser QA and update Devpost only with tested capabilities.
-
-## Delivery guardrails
-
-Do not repeat PR A or reopen PR #2 or #4. Do not change unrelated hackathon repos. Kiro is a development agent, not a runtime dependency. No real hardware or InnerOS production integration is claimed. Final Kiroween submission is **not sent** and requires owner approval plus the real under-3-minute video. Deadline: December 4, 2026 at 14:00 Pacific / 17:00 Ecuador.
+**Official Kiroween submission deadline:** December 4, 2026, 14:00 Pacific / 17:00 Ecuador. Build remains synthetic and local-first; no paid inference, customer credentials, real cameras, or physical actuation.
