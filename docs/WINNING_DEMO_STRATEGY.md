@@ -1,79 +1,83 @@
-# GhostBridge — Kiroween 2026 competitive demo strategy
+# GhostBridge | Win-oriented product film strategy
 
-**Status:** Proposed production/development plan, NOT completed features or recorded media. Prepared 2026-11-09 after comparing the project against the official five judging criteria (Potential Impact, Technological Implementation, Design, Innovation/Idea, Presentation). The goal is a **compelling, truthful end-to-end demonstration**, not cosmetic animation.
+**Creative brief — 2026-11-09 | InnerChispa LLC | Kiroween 2026**
+**Objective:** SELL THE PRODUCT AND THE FINISHED-PRODUCT VISION. The film should generate desire, credibility, memorability and a clear buyer use case. It is not a software-test report or a founder talking-head introduction.
 
-**Working title:** **GHOSTBRIDGE — The Building That Couldn't Talk**
-**Tagline:** *Five signals. Two incompatible sources. One story.*
+## Our narrative principle for every future product video
 
-## Why the existing demo may struggle to win
+**Show what the product does today, then make its finished-product potential visually tangible.** Cinematic product renders, simulated end-to-end workflows, proposed mobile screens, envisioned integrations, architectural animation, and staged real-world scenarios are welcome. We can show a polished user journey before every component has shipped. This is standard product marketing, not an assertion that all features are already in production.
 
-The code is credible: merged Kiro contributions (PR #2/#4/#5), Python/JS parity, two normalized adapter formats, synthetic multi-source case and 239 passing checks on the reviewed PR #5 head. But the public product still looks primarily like a technical lab with mock inputs. A polished film alone would improve Presentation but not prove Impact or a complete product experience. A judging video must show the actual running application, the Kiro contributions, and an understandable buyer outcome.
+Clarity without overexplaining: use one elegant transition/caption such as **"THE PLATFORM TODAY"** and **"WHERE IT'S GOING"**, or **"WORKING PROTOTYPE"** / **"PRODUCT VISION"**. Do not clutter scenes with repeated warnings, apologetic disclaimers, or backend limitations. In the Devpost technical description, distinguish implemented capabilities from planned roadmap, concisely and confidently.
 
-Do not promise a win. We can maximize credibility and the distinctiveness of this entry.
+Sell outcomes: building managers understand patterns earlier, guards have contextualized incidents, owners receive faster evidence, and older infrastructure gains a common operational layer. Explain value in the language of the customer, then show proof.
 
-## One clear buyer problem
+## Campaign creative
 
-A property security supervisor receives separate events: access denied, relay-contact door open, and potentially camera health. Each system logs its own facts. Staff discover a causal pattern too late. GhostBridge creates a **derived case** with the two original event IDs, UTC timestamps, 270s separation, 130s held-open duration and original SHA-256 evidence hashes. The prototype is synthetic; physical integration is a separately scoped proof of concept.
+**Campaign title:** GHOSTBRIDGE: WHEN BUILDINGS START TALKING
+**Secondary line:** OLD SIGNALS. NEW INSTINCTS.
+**Key line:** *"A denied badge. An open door. A disconnected camera. Individually, just signals. Together, a story."*
 
-## P0 | Build *Evidence Reconstruction* (genuine product feature, not a fake video overlay)
+**Format:** 2:45-2:55 cinematic branded film, English, 16:9/1080p or 4K master; high-quality cutdown for social media later.
 
-Create a separate optional **Case Reconstruction** experience in the real app, backed exclusively by **verified ledger rows**. Use lightweight responsive SVG/CSS or Canvas, existing vanilla JS, no subscriptions or stock video dependencies.
+**Film language:** security thriller × architectural visualization × premium enterprise software. No obligatory founder on camera. Narration + close-up props + architectural scene + elegant interface overlays + short real app recording + strong ending. Sound: original/licensed tension bed, restrained electronic pulses, subtle relay click, alert, and confident sonic logo. Visuals should feel specific to real property operations, not generic sci-fi explosions.
 
-- **One-screen illustrated 2.5D floor plan** of a generic synthetic entryway with source lanes (access-reader, relay contact, optional camera offline); animate only actual recorded events. Treat a visual camera as a labeled source **icon**, not invented CCTV footage.
-- **Timestamped, controllable reconstruction timeline** (play/pause/step, reduced-motion option). A denial appears at 22:00:30Z. A nonmatching earlier door-open at 22:00:00Z is correctly excluded. The matching 22:05:00Z door-open held 130 seconds creates one case. Explicitly show the 270-second correlation and 300-second window. Time compression, if used, must be clearly labeled.
-- **Evidence drawer**: selecting any node reveals real case/event IDs and the corresponding original ledger hash. Must highlight *why* the correlation was made and why another candidate was rejected.
-- **Outcome**: five synthetic events, three standalone incidents, one derived high-severity correlated case. No additional fake events or inferred camera frames.
-- Always display **SIMULATED / OFFLINE FIXTURE REPLAY** on the public site. The live Python edition must use its normal API and verified SQLite ledger.
-- Existing export, filter, replay, reset, old scenarios, case IDs, SHA-256 fixtures and accessibility must remain stable.
-- Responsive at desktop 1440 px and mobile 390 px; keyboard accessible, visible focus, optional sound muted by default, respect `prefers-reduced-motion`.
-- Tests: verify rendered reconstruction matches the verified ledger (not hardcoded labels), positive/negative cases, replay/reset, hash links, reduced motion, no network requests or private data, and CI/Pages successful. Record actual screenshots and a real browser QA run.
+## Narrative levels
 
-### Optional P1 | Authentic isolated hardware bench (ONLY if it can be tested)
+### 1. The relatable reality: the problem (staged concept cinema)
+Night in a high-rise lobby or private community entrance. Badge reader rejects entry. A door remains open. A distant camera goes offline. The operator sees fragmented UIs and misses the connection. This is a **staged scenario** to show the customer's problem, not customer-recorded security footage.
 
-Use an available **Raspberry Pi with a 3.3V dry-contact magnetic/reed sensor** as an isolated demo source, with GhostBridge running locally on the Pi or an isolated local machine. Generate true door open/close observations and timestamps using a **separate adapter**. A denied-access event may remain explicitly **synthetic** from the existing JSON fixture. Do NOT connect mains voltage, production gates, customer readers, DVR/NVRs, or modify InnerOS.
+### 2. The product today: the proof (actual operating GhostBridge)
+A 20-35 second capture of the running browser demo, with **Legacy Bridge Demo**, deterministic normalization of relay CSV + access JSON, verified ledger, one correlated case, source IDs, 270-second sequence and hashes; show real program interaction and actual passing Kiro changes. This is the current proof point.
 
-To demonstrate the real ≥120s held-open rule, measure a real hold or show a properly labeled accelerated replay of an actually recorded >=120s bench event. Do not silently change thresholds or claim two real devices when one is simulated.
+### 3. The product vision: sell what the finished product enables (premium concepts)
+Architectural 2.5D or 3D digital twin: the physical door/corridor lights up along with the case. A supervisor sees the source evidence, incident priority and recommended action on a phone. Multi-property console aggregates sites. Future compatible hardware feeds may include camera health, real control access and local IoT devices. A mobile operator can acknowledge, escalate, notify on-call staff, and eventually authorize lock/unlock **where access policy permits**. These are **envisioned integrations and workflow concepts** and should be shown persuasively as the *product vision*, not withheld until every adapter and app is shipped.
 
-Keep this on a separate PR and defer if parts, safety, or testing are blockers. It is an enhancement, not a requirement for truthful video completion.
+### 4. Kiro: the build story
+Show real Kiro IDE spec-driven sessions and actual code/PR evidence alongside elegant graphical abstractions of specs -> local adapters -> correlation -> test pipeline. Explore one substantive Kiro workflow enhancement (steering/hook) only if genuinely implemented. Avoid a 30-second terminal transcript. Present how Kiro accelerates complex implementation.
 
-## Kiro use that genuinely raises technical judging quality
+### 5. End with an outcome
+A single actionable incident story, an operator in control, and a scalable local-first architecture. **"You don't need to replace the building. You need to understand it."** Logo + website/demo + GitHub.
 
-The existing authentic Kiro IDE work includes specification-driven implementation. In the NEW feature, additionally use **one useful steering rule** to enforce synthetic/production separation and evidence immutability, and **one bounded automated hook** to run focused tests on changes or before handoff, only if Kiro officially supports the workflow in the owner's IDE version. Record actual config, Kiro session and observable execution. Do not install random MCP servers or fabricate a Kiro Crew app to chase points.
+## Minute-by-minute film plan (2:52)
 
-Keep Kiro work bounded and cost-controlled. Original baseline remains attributed to Codex; original Kiro PRs and reviewer fixes retain distinct provenance.
+| Time | Narrative | Visual treatment | Production layer |
+|---|---|---|---|
+| 00:00-00:18 | Tension and fragmented security signals | Cinematic corridor, reader RED, door held open, camera tile drops, timecode overlays | Staged / rendered |
+| 00:18-00:38 | Why operators miss the whole story | Three separate source windows implode into a unified architectural layout | Concept render |
+| 00:38-01:08 | Here is our real engine | Record real GhostBridge: Reset, Legacy Bridge Demo, five events, three standalone incidents, one correlated case | **Real app capture** |
+| 01:08-01:33 | Reconstruct the incident | 2.5D map overlays the real event timestamps, excludes earlier nonmatch, highlights 270s relationship and existing source hashes | Product UI if built, otherwise **vision visualization** |
+| 01:33-02:06 | The finished product's operational experience | Future supervisor mobile alert, case details, response workflows, multi-property monitoring | **Product vision / concepts** |
+| 02:06-02:29 | Kiro made our technical bridge possible | Genuine Kiro IDE, three merged PRs, tests, spec artifacts; elegant 3D data lines | Real evidence + design overlay |
+| 02:29-02:52 | Business value and memorable closing | Building at night becomes a coherent local-first operational picture, GhostBridge logotype and final call | Cinematic closing |
 
-## Video: ~2:45 English, cinematic visual storytelling
+One unobtrusive scene transition signals **"PRODUCT VISION"** for conceptual features. The spoken narration sells their value without repeated caveats. The written Devpost entry carries the exact development status.
 
-**No long talking-head introduction. Narration over the real product, staged local footage, and screen recordings.**
+## Presentation quality checklist
 
-| Time | Picture / truthful source | Voice-over core message |
-|---|---|---|
-| 0:00–0:12 | Dramatic, clearly labeled **STAGED REENACTMENT**: empty corridor, badge-reader light turns red, door ajar, separate event logs | “A rejected access. A door left open. Two systems. Neither sees the whole story.” |
-| 0:12–0:28 | Split-screen recreation of the isolated logs, then genuine browser screen | “In older buildings, a supervisor has to piece it all together.” |
-| 0:28–0:55 | **Real screen recording** of GhostBridge: reset, Legacy Bridge Demo, five signals, three incidents, one case | “GhostBridge normalizes incompatible legacy formats and reconstructs a single explained case.” |
-| 0:55–1:30 | **Real Evidence Reconstruction feature**, with actual events, source IDs, 270s linkage, timestamp and chain hashes | “The first door event happened before the denial, so it is excluded. The later held-open door matches. The evidence never changes.” |
-| 1:30–1:52 | Verify chain, export JSON, idempotent replay, quick mobile view | “Operators can inspect and verify the full chain without sending client data to the cloud.” |
-| 1:52–2:19 | **Authentic Kiro IDE/PR/session footage**, specs, steering/hook execution if actually implemented, GitHub green checks | “We used Kiro to build the filter, adapters, correlation and reconstruction, with independent review and reproducible tests.” |
-| 2:19–2:40 | Optional **actual bench hardware** if implemented, or a clear realistic operator-workflow summary if not | “Here is how existing infrastructure can gain a shared evidence layer without wholesale replacement.” |
-| 2:40–2:52 | Final result, logo, repo/live-demo address, synthetic-only limitations | “GhostBridge: Old signals. New instincts.” |
+- Actor/presenter on camera is OPTIONAL; voiceover can carry the film. Use concise English lines and subtitles.
+- Authentic enterprise UI overlays with spatial depth, no generic all-caps AI hype.
+- Animated floor plan/digital twin and mobile UI use consistent design tokens (GhostBridge dark charcoal, amber/cyan evidence, crisp type).
+- Use user-specific existing product identity; no unauthorized footage of client buildings, persons, NVR feeds or badges.
+- Mix purpose-shot clips, generated/rendered visualizations and live app capture. Label concept sequences once, elegantly, without burying the pitch.
+- Narration avoids false absolute guarantees (e.g., "prevents every intrusion" or "court-proof evidence") and focuses on benefits.
+- Show Kiro usage as a central contribution because it is an official judging criterion, not a background sponsor logo.
+- Keep runtime inference local-first; multimedia production can use render tools while preserving story ownership and assets.
+- Give viewers one crystal-clear action to understand: denied access + 130s open door = linked high-priority case backed by two sources.
+- End on customer result, not a command line.
 
-**Editing style:** professional documentary/tech-thriller, clean typography, restrained sound design, picture-in-picture real UI and camera footage, slow/fast cuts matched to understanding. Use OBS + DaVinci Resolve/Kdenlive + Blender SVG/2.5D as local/free choices. The film **cannot replace** the real working web demo and must not falsely pass AI-generated reenactments off as customer footage.
+## Product enhancement that improves BOTH actual app and film
 
-## Product proof checklist
+Consider a small Kiro-authored **Interactive Incident Reconstruction** experience: verified-ledger-driven SVG/2.5D floor plan, timestamps, play/step/pause, source/evidence inspection, responsive design. It can produce beautiful real UI footage, increase design score and prove skillful use of Kiro. This is a recommended feature, not a prerequisite to showing the product vision.
 
-- [ ] True browser runtime (not a mock) shows the new reconstruction using current verified ledger.
-- [ ] Generic graphic never depicts nonexistent devices, people, camera feeds, or customer locations as real.
-- [ ] All event references, hashes and counts agree with the exported ledger.
-- [ ] Legacy Bridge Demo replays without duplication and original scenarios still work.
-- [ ] GitHub CI, GitHub Pages, local Python tests and desktop/mobile interaction QA verified.
-- [ ] A genuine Kiro IDE screen capture shows use of spec plus one new relevant Kiro feature (if implemented).
-- [ ] Actual footage/visuals properly label reenactment, synthetic input or hardware bench.
-- [ ] Video includes real working end-to-end demonstration, finished in under 3 minutes.
-- [ ] Project remains local-first, no production endpoints or extra inference dependencies.
-- [ ] Devpost is edited/submitted only with explicit owner permission.
+Owner can separately authorize a genuine low-voltage hardware test-bench with Raspberry Pi/reed sensor to enhance credibility if feasible. No customer devices or production InnerOS need to be touched.
 
-## Concrete next task
+## Practical production pipeline
 
-Implement **Evidence Reconstruction** in a fresh Kiro IDE branch `feat/evidence-reconstruction`. Begin with a concise new spec in `.kiro/specs/evidence-reconstruction/`, then the real UI, tests, and a reviewable PR. Stop before merge. An isolated hardware bench remains optional, independent and never blocks the real app demo.
+1. Lock cinematic script and a 10-12-shot animatic with key frames.
+2. Produce architecture and future mobile UI visualizations. Use local Blender/3D/SVG, OBS, DaVinci Resolve/Kdenlive by default; use external media-generation tools only if local production cannot achieve the required quality.
+3. In parallel, implement and QA optional Incident Reconstruction in the real browser app using Kiro, with separate PR.
+4. Capture the **real current** demo and the **real Kiro IDE** interaction; integrate into the film's story.
+5. Record professional voice-over, sound design, dynamic motion graphics, captions, color pass, and encode a 2:52 finished film.
+6. Verify duration and commercial readability, then complete Devpost with the real build status and roadmap.
 
-Official Kiroween deadline is 2026-12-04 at 14:00 Pacific / 17:00 Ecuador. Development should finish well before submission to preserve enough time for genuine filming, QA and form completion.
+**Official judging framework:** Potential Impact, Technological Implementation (Kiro), Design, Innovation/Idea and Presentation. Official submission deadline: 2026-12-04 22:00 UTC (17:00 Ecuador). Project entry not yet submitted.
