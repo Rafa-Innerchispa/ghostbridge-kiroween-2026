@@ -11,7 +11,7 @@
 - [x] Add tests for 270s fixture, 300s boundaries, earlier nonmatching relay R001, missing/invalid case evidence, reset, replay, no cross-source cases, source hash resolution and integrity. *(82 new Node tests.)*
 - [x] Run all existing and new Python/Node tests, ensure CI/Pages gates include new tests/syntax modules; perform visual desktop and 390px mobile QA with screenshots. *(89 scripted Chrome checks; screenshots are automated captures, see limitations.)*
 - [x] Document genuine Kiro IDE session steps, usage of steering/hook only if truly used, changed files, PR and tests. Preserve attribution of existing code and later reviewer edits. *(Steering used; hook configured but not observed firing.)*
-- [ ] Commit/push/open PR; report URL, exact test counts, any failing checks, media still needed, and credit usage. **Stop before merge**. *(Credit usage cannot be read from the session; owner must check the usage dashboard.)*
+- [x] Commit/push/open PR; report URL, exact test counts, any failing checks, media still needed, and credit usage. **Stop before merge**. *(PR #8, commit `5b59027`, CI green. Not merged. Credit usage cannot be read from the session; owner must check the usage dashboard.)*
 
 ## Still needed from the owner
 

@@ -451,5 +451,6 @@ Baseline was confirmed green on clean `main` before any edit.
 - **Clicks in the QA run used `element.click()`**, with real key events only for the keyboard checks.
 - **The scene is stylized and synthetic.** It is not camera footage and implies no hardware connection or surveillance.
 - **The hook has not been observed running** (above).
-- **CI on the PR had not run when this was written**; the PR status shows the result.
+- **CI result:** PR [#8](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/8), feature commit `5b59027`. GitHub Actions `test` passed on the Linux runner (Python 159 OK; Node 12, 17, 46, 39, 23 and 20 passing, 0 failing), and GitGuardian passed.
+- **One unexplained transient Python error.** During local final verification a single run reported `FAILED (errors=1)`. The traceback was not captured and it did not recur in 17 later runs (clean and under CPU load), nor in CI. No Python file is changed in this PR, but the cause is unknown.
 - This feature is a build for the product demonstration. The cinematic film, mobile app concepts and multi-site console in the demo script are separate and not built here.
