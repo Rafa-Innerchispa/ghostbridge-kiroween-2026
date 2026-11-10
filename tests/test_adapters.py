@@ -21,6 +21,8 @@ Covers:
   - No mutation of the existing night-ledger fixture
 """
 import json
+import subprocess
+import sys
 import os
 import tempfile
 import threading
@@ -672,3 +674,65 @@ class TestAdapterPersistence(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+# Reviewer-added regression tests for PR A; not authored in the original Kiro session.
+class TestAdapterReviewRegressions(unittest.TestCase):
+    def test_duplicate_header_rejected(self):
+        raw = ("event_id,event_id,at,relay,state,duration_seconds\n"
+               "R1,R2,2026-11-08T12:01:00Z,north-door,OPEN,180\n")
+        with self.assertRaises(ValueError):
+            parse_relay_csv(raw)
+
+    def test_extra_data_cell_rejected_as_value_error(self):
+        raw = ("event_id,at,relay,state,duration_seconds\n"
+               "R1,2026-11-08T12:01:00Z,north-door,OPEN,180,EXTRA\n")
+        with self.assertRaises(ValueError):
+            parse_relay_csv(raw)
+
+    def test_missing_physical_data_cell_rejected(self):
+        raw = ("event_id,at,relay,state,duration_seconds\n"
+               "R1,2026-11-08T12:01:00Z,north-door,CLOSED\n")
+        with self.assertRaises(ValueError):
+            parse_relay_csv(raw)
+
+    def test_non_decimal_duration_rejected(self):
+        raw = ("event_id,at,relay,state,duration_seconds\n"
+               "R1,2026-11-08T12:01:00Z,north-door,OPEN,1_0\n")
+        with self.assertRaises(ValueError):
+            parse_relay_csv(raw)
+
+    def _run_cli(self, *args):
+        return subprocess.run(
+            [sys.executable, "-m", "ghostbridge", *map(str, args)],
+            cwd=Path(__file__).resolve().parents[1],
+            capture_output=True, text=True, timeout=25,
+        )
+
+    def test_documented_cli_option_order_and_idempotent_replay(self):
+        with tempfile.TemporaryDirectory() as td:
+            csv_path = Path(td) / "signal.csv"
+            db_path = Path(td) / "signals.sqlite3"
+            csv_path.write_text(MINIMAL_CSV, encoding="utf-8")
+            # Documented order: --database after subcommand and CSV path.
+            first = self._run_cli("ingest-relay", csv_path, "--database", db_path)
+            self.assertEqual(first.returncode, 0, first.stderr)
+            self.assertIn("Ingested 1 new event(s)", first.stdout)
+            # Legacy order remains accepted, and the same event is idempotent.
+            again = self._run_cli("--database", db_path, "ingest-relay", csv_path)
+            self.assertEqual(again.returncode, 0, again.stderr)
+            self.assertIn("1 skipped", again.stdout)
+
+    def test_conflicting_cli_event_exits_cleanly_without_closed_database_error(self):
+        with tempfile.TemporaryDirectory() as td:
+            csv_path = Path(td) / "signal.csv"
+            db_path = Path(td) / "signals.sqlite3"
+            csv_path.write_text(MINIMAL_CSV, encoding="utf-8")
+            first = self._run_cli("ingest-relay", csv_path, "--database", db_path)
+            self.assertEqual(first.returncode, 0, first.stderr)
+            csv_path.write_text(MINIMAL_CSV.replace(",180\\n", ",200\\n"), encoding="utf-8")
+            conflict = self._run_cli("ingest-relay", csv_path, "--database", db_path)
+            self.assertEqual(conflict.returncode, 1)
+            self.assertIn("already exists", conflict.stderr)
+            self.assertNotIn("ProgrammingError", conflict.stderr)
+            self.assertNotIn("Traceback", conflict.stderr)
