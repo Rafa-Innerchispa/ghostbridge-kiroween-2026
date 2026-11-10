@@ -4,7 +4,7 @@ import {correlate} from './correlator.mjs';
 import {parseRelayCsv,parseAccessWebhook} from './fixture_replay.mjs';
 import {RELAY_NIGHT_CSV,ACCESS_DENIED_JSON} from './fixtures.js';
 const $=id=>document.getElementById(id),key='ghostbridge-ledger-v1';
-let rows=[],busy=false,last=null,local=false;
+let rows=[],busy=false,last=null,local=false,caseRenderToken=0;
 
 // UI-only severity filter state — ephemeral, never written to ledger or storage.
 let activeSeverity='all';
@@ -29,17 +29,26 @@ function updateSeverityButtons(){
 
 async function renderCases(){
   const panel=$('cases-panel');if(!panel)return;
-  let cases=[];
+  const token=++caseRenderToken;
+  let cases=[],error=null;
   try{
     if(local){
-      const data=await fetch('/api/cases').then(r=>r.json());
+      // The localhost endpoint verifies the ledger before deriving cases.
+      const data=await api('cases');
       cases=data.cases||[];
     }else{
+      const integrity=await verify(rows);
+      if(!integrity.valid)throw new Error('Ledger integrity verification failed');
       cases=await correlate(rows);
     }
-  }catch(e){cases=[];}
-
+  }catch(e){error=e.message||String(e);}
+  // A previous async render must not overwrite a more recent Reset/replay.
+  if(token!==caseRenderToken)return;
   const count=$('cases-count');if(count)count.textContent=cases.length;
+  if(error){
+    panel.replaceChildren(text('p','Correlated cases unavailable: '+error,'empty empty-filter'));
+    return;
+  }
   if(!cases.length){
     panel.replaceChildren(text('p',rows.length?'No correlated cases in this ledger. A denied access followed within 5 minutes by a held-open door (≥120 s) generates a case.':'Run the Legacy Bridge demo or a scenario to see correlated cases.','empty'));
     return;
@@ -96,32 +105,38 @@ async function run(name,replay=false){if(busy)return;busy=true;document.querySel
  }catch(e){status(e.message,true);}finally{busy=false;document.querySelectorAll('button').forEach(b=>b.disabled=false);for(let i=0;i<4;i++)$('p'+i).classList.remove('active');render();}
 }
 
-// Legacy Bridge Demo — offline fixture replay (browser only; no live server)
+// Legacy Bridge Demo — synthetic fixtures; local server persists through /api/events.
 async function runLegacyBridgeDemo(){
   if(busy)return;busy=true;document.querySelectorAll('button').forEach(b=>b.disabled=true);
   status('Legacy Bridge Demo: parsing synthetic CSV and JSON fixtures locally…');
   try{
-    // Parse fixtures using the same adapter logic as the Python server.
+    // Parse synthetic sources in-browser, then ingest through the correct store.
     const relayEvents=parseRelayCsv(RELAY_NIGHT_CSV);
     const accessEvent=parseAccessWebhook(ACCESS_DENIED_JSON);
     const all=[accessEvent,...relayEvents];
     let added=0;
     for(const e of all){
-      if(await append(rows,e))added++;
+      if(local){
+        const result=await api('events',e);
+        if(result.created)added++;
+      }else if(await append(rows,e))added++;
     }
-    save();
+    if(local)rows=(await api('state')).ledger;
+    else save();
     const result=await verify(rows);
     $('integrity-label').textContent=result.valid?'Verified':'FAILED';
+    if(!result.valid)throw new Error('Evidence chain integrity verification failed');
     last='legacy';
-    const cases=await correlate(rows);
-    status(`Legacy Bridge Demo complete: ${added} new events ingested via real adapter parsers. ${cases.length} correlated case${cases.length!==1?'s':''} derived. No live server or hardware — offline fixture replay only.`);
+    const cases=local?(await api('cases')).cases:await correlate(rows);
+    const transport=local?'local Python/SQLite API':'browser-only fixture replay';
+    status(`Legacy Bridge Demo complete: ${added} new events ingested via synthetic adapter parsers (${transport}). ${cases.length} correlated case${cases.length!==1?'s':''} derived. No live hardware or surveillance.`);
     render();
   }catch(e){status('Legacy Bridge Demo error: '+e.message,true);}
   finally{busy=false;document.querySelectorAll('button').forEach(b=>b.disabled=false);}
 }
 
 for(const name of ['night','normal','denied'])$(name).onclick=()=>run(name);
-$('replay').onclick=()=>run(last,true);
+$('replay').onclick=()=>last==='legacy'?runLegacyBridgeDemo():run(last,true);
 const lbBtn=$('legacy-bridge');if(lbBtn)lbBtn.onclick=runLegacyBridgeDemo;
 $('verify').onclick=async()=>{const r=await verify(rows);$('integrity-label').textContent=r.valid?'Verified':'FAILED';$('inspection').textContent=JSON.stringify(r,null,2);status(r.valid?`Verified ${r.checked} ledger records against their chain. See the head hash below.`:'Integrity check failed. Export this ledger for investigation.',!r.valid);};
 $('tamper').onclick=async()=>{if(!rows.length){status('Run a scenario before testing tamper detection.');return;}const copy=structuredClone(rows);copy[0].payload.event.data.tampered=true;const r=await verify(copy);$('inspection').textContent=JSON.stringify(r,null,2);status(!r.valid?'Tampering detected in a disposable copy. Your original evidence was not changed.':'Unexpected result: tamper test did not fail.',r.valid);};
