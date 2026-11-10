@@ -19,6 +19,12 @@ jobs:
       - run: node --check docs/correlator.mjs
       - run: node --check docs/fixture_replay.mjs
       - run: node --check docs/fixtures.js
+      - run: node --check docs/reconstruction.mjs
+      - run: node --check docs/reconstruction-view.mjs
+      - run: node --check docs/playback.mjs
       - run: node --test tests/browser.test.mjs
       - run: node --test tests/filter.test.mjs
       - run: node --test tests/correlator.test.mjs
+      - run: node --test tests/reconstruction.test.mjs
+      - run: node --test tests/reconstruction-view.test.mjs
+      - run: node --test tests/playback.test.mjs

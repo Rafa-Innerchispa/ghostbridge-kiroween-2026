@@ -3,8 +3,44 @@ import {filterBySeverity} from './filters.mjs';
 import {correlate} from './correlator.mjs';
 import {parseRelayCsv,parseAccessWebhook} from './fixture_replay.mjs';
 import {RELAY_NIGHT_CSV,ACCESS_DENIED_JSON} from './fixtures.js';
+import {buildReconstruction} from './reconstruction.mjs';
+import {mountReconstruction,mountReconstructionError} from './reconstruction-view.mjs';
 const $=id=>document.getElementById(id),key='ghostbridge-ledger-v1';
 let rows=[],busy=false,last=null,local=false,caseRenderToken=0;
+
+// Interactive reconstruction: UI-only, read-only projection. Never stored or exported.
+let recon=null,reconToken=0;
+function closeReconstruction(restoreFocus=false){
+  reconToken++;
+  const host=$('reconstruction'),trigger=recon&&recon.trigger;
+  if(recon&&recon.view)recon.view.destroy();
+  recon=null;
+  if(host){host.replaceChildren();host.hidden=true;}
+  if(restoreFocus&&trigger&&trigger.isConnected)trigger.focus();
+}
+async function openReconstruction(c,trigger){
+  const host=$('reconstruction');if(!host||busy)return;
+  closeReconstruction();
+  const token=++reconToken;
+  host.hidden=false;
+  const onClose=()=>closeReconstruction(true);
+  try{
+    const model=await buildReconstruction(rows,c);
+    if(token!==reconToken)return; // ledger changed or closed while verifying
+    const reduced=typeof matchMedia==='function'&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const view=mountReconstruction(host,model,{reducedMotion:reduced,onClose});
+    recon={view,caseId:c.id,trigger};
+    view.focus();
+    host.scrollIntoView({block:'start',behavior:reduced?'auto':'smooth'});
+    status(`Reconstructing ${c.id} from ${model.integrity.checked} verified ledger records. Use Play, Next, or the timeline.`);
+  }catch(e){
+    if(token!==reconToken)return;
+    const view=mountReconstructionError(host,e,{onClose});
+    recon={view,caseId:c.id,trigger};
+    view.focus();
+    status('Reconstruction unavailable: '+(e.message||e),true);
+  }
+}
 
 // UI-only severity filter state — ephemeral, never written to ledger or storage.
 let activeSeverity='all';
@@ -45,6 +81,11 @@ async function renderCases(){
   // A previous async render must not overwrite a more recent Reset/replay.
   if(token!==caseRenderToken)return;
   const count=$('cases-count');if(count)count.textContent=cases.length;
+  // A reconstruction must never outlive the evidence it was built from.
+  if(recon&&(error||!cases.some(c=>c.id===recon.caseId))){
+    closeReconstruction();
+    status('Reconstruction closed because its case is no longer in the verified ledger.');
+  }
   if(error){
     panel.replaceChildren(text('p','Correlated cases unavailable: '+error,'empty empty-filter'));
     return;
@@ -54,7 +95,8 @@ async function renderCases(){
     return;
   }
   panel.replaceChildren(...cases.map(c=>{
-    const b=text('button','','finding case-card');
+    const item=document.createElement('div');item.className='case-item';
+    const b=text('button','','finding case-card');b.type='button';
     const hdr=document.createElement('div');hdr.className='case-hdr';
     hdr.append(text('span','⚡','case-icon'),text('span',c.severity,'severity'),text('strong',c.title));
     b.append(hdr,text('p',c.explanation),text('small',c.rule+' · '+c.event_ids.join(' + ')));
@@ -62,7 +104,11 @@ async function renderCases(){
     for(const h of c.evidence_hashes)hashes.append(text('code',h.slice(0,16)+'…'));
     b.append(hashes);
     b.onclick=()=>{$('inspection').textContent=JSON.stringify(c,null,2);$('inspection').scrollIntoView({block:'nearest',behavior:'smooth'});};
-    return b;
+    const open=text('button','◎ Reconstruct case','recon-open');open.type='button';
+    open.setAttribute('aria-label','Reconstruct case '+c.id+' from the verified ledger');
+    open.onclick=()=>openReconstruction(c,open);
+    item.append(b,open);
+    return item;
   }));
 }
 
@@ -92,7 +138,7 @@ function render(){
  renderCases();
 }
 
-async function run(name,replay=false){if(busy)return;busy=true;document.querySelectorAll('button').forEach(b=>b.disabled=true);let added=0;
+async function run(name,replay=false){if(busy)return;closeReconstruction();busy=true;document.querySelectorAll('button').forEach(b=>b.disabled=true);let added=0;
  try{
  for(const e of scenario(name)){
   for(let i=0;i<4;i++){$('p'+i).classList.add('active');status(`${e.id}: ${['capturing synthetic signal','validating event contract','evaluating deterministic rules','linking SHA-256 evidence'][i]}`);await new Promise(r=>setTimeout(r,100));}
@@ -107,7 +153,7 @@ async function run(name,replay=false){if(busy)return;busy=true;document.querySel
 
 // Legacy Bridge Demo — synthetic fixtures; local server persists through /api/events.
 async function runLegacyBridgeDemo(){
-  if(busy)return;busy=true;document.querySelectorAll('button').forEach(b=>b.disabled=true);
+  if(busy)return;closeReconstruction();busy=true;document.querySelectorAll('button').forEach(b=>b.disabled=true);
   status('Legacy Bridge Demo: parsing synthetic CSV and JSON fixtures locally…');
   try{
     // Parse synthetic sources in-browser, then ingest through the correct store.
@@ -147,7 +193,7 @@ $('replay').onclick=()=>last==='legacy'?runLegacyBridgeDemo():run(last,true);
 const lbBtn=$('legacy-bridge');if(lbBtn)lbBtn.onclick=runLegacyBridgeDemo;
 $('verify').onclick=async()=>{const r=await verify(rows);$('integrity-label').textContent=r.valid?'Verified':'FAILED';$('inspection').textContent=JSON.stringify(r,null,2);status(r.valid?`Verified ${r.checked} ledger records against their chain. See the head hash below.`:'Integrity check failed. Export this ledger for investigation.',!r.valid);};
 $('tamper').onclick=async()=>{if(!rows.length){status('Run a scenario before testing tamper detection.');return;}const copy=structuredClone(rows);copy[0].payload.event.data.tampered=true;const r=await verify(copy);$('inspection').textContent=JSON.stringify(r,null,2);status(!r.valid?'Tampering detected in a disposable copy. Your original evidence was not changed.':'Unexpected result: tamper test did not fail.',r.valid);};
-$('reset').onclick=async()=>{try{if(local)await api('reset',{});rows=[];last=null;activeSeverity='all';save();render();$('integrity-label').textContent='Unchecked';$('inspection').textContent='Lab reset. Select a scenario.';status('Synthetic lab cleared. Choose a new scenario.');}catch(e){status(e.message,true);}};
+$('reset').onclick=async()=>{try{closeReconstruction();if(local)await api('reset',{});rows=[];last=null;activeSeverity='all';save();render();$('integrity-label').textContent='Unchecked';$('inspection').textContent='Lab reset. Select a scenario.';status('Synthetic lab cleared. Choose a new scenario.');}catch(e){status(e.message,true);}};
 $('export').onclick=async()=>{const blob=new Blob([JSON.stringify({schema:'ghostbridge-evidence-v1',mode:local?'LOCAL_SYNTHETIC':'BROWSER_SYNTHETIC',exported_at:new Date().toISOString(),integrity:await verify(rows),ledger:rows},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='ghostbridge-evidence.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);status('Evidence JSON exported. Includes events, explanations, hashes and current verification.');};
 
 for(const v of ['all','high','medium']){const btn=$('filter-'+v);if(btn)btn.onclick=()=>{activeSeverity=v;render();};}
