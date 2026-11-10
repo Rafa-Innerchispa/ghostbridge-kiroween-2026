@@ -259,3 +259,77 @@ GitHub Actions on the corrected PR head `928e6ed2e45161818f53406ea10601a4dbaf1b4
 The owner reported a successful one-use 4,000-credit Kiroween coupon redemption on 2026-11-09. The actual account usage balance is not exposed here. Neither the private redemption link nor any credentials were stored in this repo.
 
 **Next genuine Kiro task:** Phase 2B cross-source correlator in a fresh branch. No PR B implementation is claimed yet.
+
+
+---
+
+## Phase 2B — PR B: cross-source case correlator
+
+**Date:** 2026-11-09
+**Branch:** `feat/cross-source-cases`
+**Kiro product:** Kiro IDE (agentic session, Autopilot mode)
+**Issue:** [#3 — Phase 2B correlation](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/issues/3)
+
+### Provenance statement
+
+Spec, design notes, and planning documents were prepared with Codex/ChatGPT.  
+The following was authored **by Kiro** in this Phase 2B session:
+
+| File | Status | Description |
+|---|---|---|
+| `ghostbridge/correlator.py` | **NEW — Kiro** | Deterministic Python correlator engine |
+| `ghostbridge/server.py` | **MODIFIED — Kiro** | Added `GET /api/cases` read-only endpoint |
+| `ghostbridge/__main__.py` | **MODIFIED — Kiro** | Fixed ASCII encoding for Windows (→ → ->) |
+| `docs/correlator.mjs` | **NEW — Kiro** | JS parity correlator (identical rule, case ID derivation) |
+| `docs/fixture_replay.mjs` | **NEW — Kiro** | Browser-only CSV/JSON adapter parsers |
+| `docs/fixtures.js` | **NEW — Kiro** | Embedded fixture constants for offline replay |
+| `docs/app.js` | **MODIFIED — Kiro** | `renderCases()`, Legacy Bridge Demo button, local mode fetch |
+| `docs/index.html` | **MODIFIED — Kiro** | Cases panel, cases metric, Legacy Bridge Demo button |
+| `docs/styles.css` | **MODIFIED — Kiro** | Case card styles, legacy-btn, 5-column metrics |
+| `tests/test_correlator.py` | **NEW — Kiro** | 45 Python correlator + API tests |
+| `tests/correlator.test.mjs` | **NEW — Kiro** | 43 Node correlator + fixture_replay tests |
+
+### Correlation rule implemented
+
+**Rule `denied-then-held-open`:** An `access.denied` event followed within 300 seconds by a `door.open` event held ≥120 seconds generates one `high`-severity correlated case.
+
+- Operates on UTC timestamps, not ledger sequence order (handles out-of-order ingest).
+- Each (denied, door) pair produces at most one case; earliest qualifying door wins.
+- Case ID: `"case:" + SHA-256("denied_id|door_id")[:16]` — identical between Python and JS.
+- Cases are derived projections — never inserted into the ledger or SHA-256 chain.
+
+### Canonical demo
+
+Ingest `fixtures/access_webhook_denied.json` (access:A001, 22:00:30Z) and `fixtures/relay_night_shift.csv`. The qualifying pair is `access:A001` → `relay:R003` (22:05:00Z, 270 seconds later, 130-second hold). One case produced.
+
+### Test results
+
+```
+python -m unittest discover -s tests  → Ran 158 tests — OK
+  107 original tests (all passing)
+  45 new test_correlator.py tests
+  6 pre-existing TestAdapterReviewRegressions (ASCII fix applied)
+node --test tests/browser.test.mjs    →  12 pass, 0 fail
+node --test tests/filter.test.mjs     →  17 pass, 0 fail
+node --test tests/correlator.test.mjs →  43 pass, 0 fail
+node --check docs/app.js              → OK
+node --check docs/correlator.mjs      → OK
+node --check docs/fixture_replay.mjs  → OK
+node --check docs/fixtures.js         → OK
+```
+
+### Invariants verified
+
+- `ghostbridge/core.py`, `storage.py`, `engine.py`, `simulator.py` — **not modified**.
+- `tests/night-ledger.json` — **not modified**; SHA-256 fixture passes in both Python and Node.
+- `/api/events`, `/api/state`, `/api/verify`, `/api/scenario`, `/api/reset`, `/api/adapters/access` — unchanged.
+- Cases are never inserted into the SQLite ledger; `store.rows()` count unaffected.
+- JSON export always contains the full unfiltered ledger; cases are absent from export.
+- `GET /api/cases` is read-only; `POST /api/cases` returns 404.
+
+### Limitations
+
+- No headless browser screenshot in this session; manual QA on GitHub Pages is required.
+- The Legacy Bridge Demo button is browser-only (offline fixture replay); it does not call `/api/adapters/access` or any live endpoint.
+- Cases are re-derived on every `/api/cases` call; not cached (acceptable for a lab with synthetic data volumes).
+- Real hardware, InnerOS, or production connections are not present.

@@ -6,6 +6,7 @@ from pathlib import Path
 from .core import canonical
 from .simulator import scenario
 from .adapters.access_webhook import parse_access_webhook
+from .correlator import correlate
 
 class Handler(SimpleHTTPRequestHandler):
     def __init__(self, *args, engine, lock, **kwargs):
@@ -28,6 +29,9 @@ class Handler(SimpleHTTPRequestHandler):
                 return self.reply(200, self.engine.snapshot())
             if self.path == "/api/verify":
                 return self.reply(200, self.engine.store.verify())
+            if self.path == "/api/cases":
+                ledger = self.engine.store.rows()
+                return self.reply(200, {"cases": correlate(ledger)})
         if self.path.startswith("/api/"):
             return self.reply(404, {"error": "Unknown route"})
         super().do_GET()

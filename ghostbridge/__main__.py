@@ -76,7 +76,7 @@ if args.command == "ingest-relay":
                 result = engine.ingest(event)
                 if result["created"]:
                     created += 1
-                    label = f"  + {event['id']} → {event['type']}"
+                    label = f"  + {event['id']} -> {event['type']}"
                     if event["data"]:
                         label += f" ({event['data']['duration_seconds']}s)"
                     if result["incident"]:
