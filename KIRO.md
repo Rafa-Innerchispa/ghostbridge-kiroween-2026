@@ -1,6 +1,6 @@
 # GhostBridge | Kiro execution handoff and release status
 
-**Updated:** 2026-11-10. **All planned coding phases, including evidence reconstruction, are integrated in main. Do not start new Kiro development or spend more promotional credits unless a real test reveals a blocker.**
+**Updated:** 2026-11-10. Core GhostBridge phases #2/#4/#5/#8 are integrated. **Owner has now authorized a NEW genuine Kiro credit-funded phase: build native Kiro Crew App / GhostBridge Incident Desk, Issue #12.** Previous development freeze does not apply to this authorized isolated Crew app. Do not alter existing deployed frontend or open Signal Forge PR #10 without a dedicated review.
 
 ## Verified implementation
 
@@ -24,7 +24,13 @@
 
 Owner confirmed successful one-use **4,000-credit Kiroween coupon redemption** on 2026-11-09. Private coupon URL and account identifiers are never stored. Verify remaining account allocation separately at https://kiro.dev/account/usage. Promotional credits expire 2026-12-31 23:59 Pacific. Do not spend credits just to consume them.
 
-## NOW: hold coding, verify the released product
+## NOW: Owner-approved Kiro Crew App development (separate from released frontend)
+
+**Build task:** [GitHub Issue #12](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/issues/12) and [master execution order](docs/KIRO_CREW_EXECUTION_ORDER.md). Read all `.kiro/specs/ghostbridge-crew-app/` requirements/design/tasks. Use **actual Kiro IDE/CLI and promotional credits** to author an installable native **GhostBridge Incident Desk for Kiro Crew** under `integrations/kirocrew/ghostbridge-incident-desk/`. Must use Crew SDK/Gateway, real agent, verified synthetic case, and one observed Crew automation with actual dashboard screenshots and test evidence. Work on `feat/kiro-crew-incident-desk`, stop before merge. Coordinate gateway/runtime installation with [InnerOS Kiro Bridge Issue #272](https://github.com/Rafa-Innerchispa/innerops-agentic-platform/issues/272) and Antigravity task `ops_9e95bcce2051`.
+
+**Attribution:** These instructions/specs were written by ChatGPT; do not call them Kiro-produced code. Future app implementation is Kiro-authored only after a real session pushes commits. Do not run unbounded `--trust-all-tools`, reveal auth tokens, use production customer data or purchase new credits without consent.
+
+## Previously agreed: hold other feature coding, verify the released product
 
 - [Issue #6](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/issues/6) implementation has been completed and merged. Do not repeat it.
 - **Do not spend additional Kiro credits** on feature expansion, video creation or task retries. Existing video drafts and concept images are reserved until final product QA.
