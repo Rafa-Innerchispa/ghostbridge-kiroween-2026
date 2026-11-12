@@ -454,3 +454,102 @@ Baseline was confirmed green on clean `main` before any edit.
 - **CI result:** PR [#8](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/8), feature commit `5b59027`. GitHub Actions `test` passed on the Linux runner (Python 159 OK; Node 12, 17, 46, 39, 23 and 20 passing, 0 failing), and GitGuardian passed.
 - **One unexplained transient Python error.** During local final verification a single run reported `FAILED (errors=1)`. The traceback was not captured and it did not recur in 17 later runs (clean and under CPU load), nor in CI. No Python file is changed in this PR, but the cause is unknown.
 - This feature is a build for the product demonstration. The cinematic film, mobile app concepts and multi-site console in the demo script are separate and not built here.
+
+
+---
+
+## Phase 4: Immersive Control Room ([Issue #11](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/issues/11))
+
+**Date:** 2026-11-11
+**Branch:** `feat/kiro-immersive-control-room`, stacked on `feat/signal-forge-interactive` (PR #10, still a draft)
+**Kiro product:** Kiro IDE, Autopilot mode, spec-driven workflow
+**Spec:** `.kiro/specs/immersive-control-room/` (requirements in EARS form, design, tasks). The master brief (`docs/KIRO_IMMERSIVE_CONTROL_ROOM_MASTER_BRIEF.md`) was written by ChatGPT; it was read, challenged where the code disagreed (see "Design changes"), and implemented here.
+
+### Attribution
+
+| Authored by | What |
+|---|---|
+| Codex / ChatGPT (not Kiro) | The baseline lab, `engine.mjs`, adapters, and **Signal Forge (PR #10: `signal_forge.mjs`, its composer markup, its `runForge` code and tests)**. Not edited. At runtime the Control Room moves the composer's DOM node into a drawer beside the building; its ids and handlers are untouched. |
+| Kiro (earlier PRs) | Severity filter (#2), adapters (#4), correlator (#5), Evidence Reconstruction (#8). Reused as is. |
+| **Kiro (this phase)** | Everything listed in the file table below. |
+
+PR #10 was **validated, not edited**: 56 real-browser checks, no Forge defect found (`docs/evidence/control-room/m0-signal-forge/REPORT.md`).
+
+### What was built
+
+- **Living building (first viewport).** A stylized residential entrance in five SVG depth layers with a pointer parallax, four source markers (door, reader, camera, presence), and four keyboard-operable source buttons. Every device state is derived from the ledger by `deriveScene()`; nothing is a canned animation.
+- **Physics of the rule.** A door is "open" when it opens and "held open" only once the hold threshold has been reached; the case link is drawn at that moment, not when the door opens. Cause is visible: badge red, time advances, door amber, link draws, case chip.
+- **Signal Forge inside the building.** The existing composer is moved (not re-implemented) into a drawer beside the facade, with live rule gauges (window 300 s, hold 120 s, read from the correlator) and two boundary challenges: A = 299 s / 120 s (a case), B = 301 s / 119 s (no case, with the exact failed condition by "1 s"). On a phone the building is pinned to the top while the controls scroll.
+- **Operator modes.** Building, Timeline, Evidence, Response. State (selected source, time cursor) survives mode changes. The Timeline scrubs the building through recorded time; Evidence shows full SHA-256 hashes, chain verification and the existing Evidence Reconstruction; Response answers six operator questions and shows the **Disconnected alarms to one explained incident** reveal. Recommendations are advisory text; nothing controls a device.
+- **PRODUCT VISION.** One labelled chapter with four concept screens (mobile alert, floor-by-floor twin, multi-property portfolio, evidence-based escalation with a human approval gate). The only contact is `info@innerchispa.us` (owner-provided); no phone, address or price.
+- **Showcase Mode.** About 58 s, 8 beats, Play / Pause / Restart / Exit, `?present=1`. Each beat drives the **real ledger**: reset, append the real forge events one at a time, verify, correlate, reconstruct. Captions are filled from the live ledger.
+
+### Files
+
+| File | Status |
+|---|---|
+| `docs/control_room.mjs` | **NEW** pure model: scene, pair explanation, timeline, before/after, board, recommendations |
+| `docs/control_room_scene.mjs` | **NEW** SVG scene |
+| `docs/control_room_view.mjs` | **NEW** view and controller |
+| `docs/showcase.mjs`, `docs/showcase_view.mjs` | **NEW** timer state machine, and overlay with real-ledger actions |
+| `docs/control_room.css` | **NEW** scene, console, vision, showcase, responsive, reduced motion |
+| `docs/index.html`, `docs/app.js`, `docs/styles.css` | **MODIFIED** hero replaced; a bridge object; `@import` of Google Fonts replaced by local `@font-face` |
+| `docs/fonts/*`, inline favicon | **NEW** vendored OFL fonts (the page made two third-party requests and one 404 on every load before) |
+| `ghostbridge/server.py` | **MODIFIED, separate commit**: drain unread request bodies (see "Defects found") |
+| `tests/*` | **NEW** 7 Node suites, 1 Python suite (fixture + drain), browser QA harness and scripts |
+| `.kiro/specs/immersive-control-room/*`, `.kiro/steering/control-room.md`, `.kiro/hooks/*`, `.kiro/agents/*` | **NEW** |
+
+### Kiro features actually used
+
+- **Spec-driven development.** `requirements.md` (EARS, R1 to R9), `design.md`, `tasks.md`, ticked only after each validation ran. The spec was revised by what the code taught: WebGL was rejected with reasons; the "no hidden scripting" rule shaped the Showcase to call the real ledger.
+- **Steering.** `.kiro/steering/control-room.md` (file-match). It drove concrete decisions: no `innerHTML`, no third-party requests (which is why the fonts were vendored), contact limited to one address, advisory-only recommendations. Three tests enforce it.
+- **Hooks (observed).** A `PreToolUse` hook (`guard-destructive`) blocks force-push, pushes to `main`, `reset --hard`, PR merges, process kills by name, recursive deletes outside the project/temp, system changes and secret reads. **It fired during this session**: it blocked a legitimate command (`Exit 2`, reason shown) because the rule for secret files mistook `process.env` for a `.env` file. That is both the first observed execution and a real defect in my rule; I fixed it (the file name may not follow a word character), made the rule catch both orders (`type .env` was previously missed), and added regression tests. The guard has 72 tests.
+- **Custom agents.** `ui-director` and `qa-auditor` were created with Kiro's agent creator and written to `.kiro/agents/`. They were **not invoked**: Kiro loads agent files at startup and no restart happened in this session. No contribution is claimed for them.
+- **Sub-agent.** The `custom-agent-creator` sub-agent was used for the two agent files above.
+- **MCP / Powers.** None installed or used: no browser or design tool was available in this workspace, so real-browser QA was done with a small dependency-free Chrome DevTools harness written for this repo.
+- **Property-based tests.** Seeded generators (400 random configurations plus 231 exhaustive boundary points) check the engine, the explanation, the scene and the reconstruction against an independent oracle, and monotonicity, determinism, idempotency, arrival-order independence and tamper detection.
+- **Mutation checking.** Six deliberate breaks of the Control Room model (`<` for `<=` in the window, `>` for `>=` in the hold, ignoring evidence hashes, drawing a near-miss as a case, and two more) were made to confirm the tests catch them. One initially survived: with a single denial the code fell back to a path that hid the difference, which was a real gap in multi-denial coverage. Tests were added and all six now fail when the code is broken.
+
+### Design changes made after reading the code
+
+1. **SVG, not WebGL.** The brief allowed Three.js "if justified". It is not: the story needs depth, light and cause, not a free camera. About 120 nodes, no dependency, no fallback to maintain.
+2. **Forge as a drawer inside the stage.** The first version left the composer below the fold; running it scrolled the building out of view. Screenshots showed the problem; the composer now sits beside the building.
+3. **Hold-threshold physics.** The first Showcase run showed the link appearing the instant the door event arrived, leaving beat 4 with nothing to show, and it was physically wrong (the rule needs 120 s of hold). The scene now models the threshold.
+4. **`explainPair` fallback.** With no qualifying pair it explained the earliest denial; it now explains the closest pair, which is the one an operator wonders about.
+5. **Third-party fonts removed.** `fonts.googleapis.com` and `fonts.gstatic.com` were requested on every visit, which contradicted the local-first claim.
+
+### Defects found and fixed along the way
+
+- **`ghostbridge/server.py` (pre-existing, baseline code).** 413, 415 and 403 replies were sent without reading the request body; closing a socket with unread data makes TCP send RST and the client could lose the reply. It made `test_server.test_large` and `test_adapters.test_oversized_body_returns_413` fail in **5 of 12** full runs on Windows (this was the unexplained `FAILED (errors=1)` reported in the previous phase). Root-caused with raw-socket tests that fail 4 of 4 against the old server and pass 8 of 8 against the fix. Separate commit; the full Python suite is green in **20 of 20** runs afterwards.
+- **Chrome and Edge 157 reload a new tab once, about 1.5 s after the first navigation** (measured on a plain text file with a fresh profile). My first full QA run lost clicks to it. Not a GhostBridge defect; the harness now waits for the document to be stable.
+- **Harness leak.** `proc.kill()` left Chrome children alive (115 orphans earlier). The whole process tree is killed now.
+
+### Test results
+
+Measured on this machine at the end of the work (Windows, Node 24, Python 3.12, Chrome 157):
+
+| Check | Result |
+|---|---|
+| Python `unittest discover` | **169 tests**, green in **10 of 10** full runs (was 159; +4 forge parity, +6 server drain) |
+| Node, 13 suites | **318 pass, 0 fail** (browser 12, filter 17, correlator 46, reconstruction 39, reconstruction-view 23, playback 20, signal_forge 17, **control_room 27, showcase 19, property 9, forge-parity 2, control_room_wiring 15, guard 72**) |
+| `node --check` on every `docs/*.mjs|js` | 15 of 15 |
+| Python/JavaScript parity | 100 configurations: identical SHA-256 row hashes, case ids and evidence hashes |
+| Property tests | 400 seeded random + 231 exhaustive boundary configurations; plus monotonicity, determinism, idempotency, arrival order, tamper |
+| **Real-browser QA, Control Room** | **141 of 141 checks**, 12 scenarios, **0 harness retries** (`docs/evidence/control-room/m5/REPORT.md`) |
+| Real-browser QA, Signal Forge intake | 56 of 56 checks (`docs/evidence/control-room/m0-signal-forge/REPORT.md`) |
+
+Total automated checks: 169 + 318 + 15 = **502** (previous baseline on `main`: 324). The Chrome QA scripts (`tests/browser-qa/`) are run by hand and are not part of CI, which has no browser.
+
+The browser QA covered, in Chrome: the first viewport at 1440x900 and 1280x720; both challenges with the exact failed conditions; scene, strip, chip and link states; source inspector hashes against the ledger; mode switching with preserved state and keyboard (roving tabindex, arrows, Home, End); timeline scrubbing; evidence hashes and chain verification; reconstruction from the Control Room; before/after reveal and the six-question board; product vision; a **full timed Showcase run** (beat order observed against ledger writes, wall time 45 to 65 s, final ledger of 3 real events and 1 case, chain verified); pause, resume, restart, Escape; 390 px (no overflow, pinned building while forging, 40 px targets); reduced motion; local Python + SQLite (case id equals `/api/cases`, persistence across reload, Showcase writing through the Python API); every older feature (Night 5/3/0, Normal 4/0/0, Denied 1/1/0, Legacy 5/3/1, filters, replay, tamper, JSON export, reset, "Watch an incident unfold"); accessibility names, roles, live regions and sampled text contrast; zero third-party requests, zero 404s, zero console errors.
+
+Screenshots (automated, inspected): `docs/evidence/control-room/m5/` and `.../m0-signal-forge/`.
+
+### Limitations
+
+- **Screenshots are automated Chrome captures, not Kiro IDE screenshots.** A real capture of the Kiro session and the usage dashboard must come from the owner.
+- **Kiro credit use could not be observed** from inside the session, so no figure is given.
+- **One browser engine.** Chrome 157 (and Edge 157 for one probe). 390 px is device emulation, not a real phone. Safari and Firefox were not tested.
+- **Accessibility is partly verified:** names, roles, tab order, focus rings, target sizes, reduced motion and sampled text contrast were checked; no screen reader was used and this is not a WCAG claim.
+- **The scene is stylized and synthetic**: not camera footage, no live hardware, no device control.
+- **The custom agents are untested** (not invoked) and the Python-side `ui-director` / `qa-auditor` boundaries are enforced only by their prompts.
+- **PR #10 is a draft.** This stack must be retargeted to `main` after #10 merges; the branch was not deployed.
