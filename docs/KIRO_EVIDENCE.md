@@ -462,6 +462,8 @@ Baseline was confirmed green on clean `main` before any edit.
 
 **Date:** 2026-11-11
 **Branch:** `feat/kiro-immersive-control-room`, stacked on `feat/signal-forge-interactive` (PR #10, still a draft)
+**Pull request:** [PR #14](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/14), **draft**, base `feat/signal-forge-interactive`. It depends on [PR #10](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/10) (Signal Forge, also a draft). Neither PR is merged, and #14 stays a draft until #10 is reviewed and integrated, after which #14 must be retargeted to `main`.
+**CI on PR #14 (GitHub Actions):** `test` (x2) and GitGuardian passed. The log shows Python `Ran 169 tests`, 13 Node suites with 318 pass and 0 fail, and the new suites executed.
 **Kiro product:** Kiro IDE, Autopilot mode, spec-driven workflow
 **Spec:** `.kiro/specs/immersive-control-room/` (requirements in EARS form, design, tasks). The master brief (`docs/KIRO_IMMERSIVE_CONTROL_ROOM_MASTER_BRIEF.md`) was written by ChatGPT; it was read, challenged where the code disagreed (see "Design changes"), and implemented here.
 

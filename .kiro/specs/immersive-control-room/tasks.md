@@ -33,7 +33,7 @@ Each milestone ends with a validation. A box is ticked only after that validatio
 - [x] Property tests (400 seeded random + 231 exhaustive boundary configs) and a 100-configuration Python/JS hash parity fixture.
 - [x] CI and Pages gates include every new file; a test now fails if any module or test file is missing from CI.
 - [x] Full regression (Python 169 x 10 runs, Node 318, syntax 15/15) and real-browser QA: 141 of 141 checks with inspected screenshots (`docs/evidence/control-room/m5/REPORT.md`).
-- [ ] `docs/KIRO_EVIDENCE.md`, push, stacked PR onto `feat/signal-forge-interactive`. Do not merge or deploy.
+- [x] `docs/KIRO_EVIDENCE.md`, push, stacked PR onto `feat/signal-forge-interactive`. Do not merge or deploy.
 
 ## Found along the way
 - A pre-existing Windows-flaky server defect (413/415/403 sent without reading the body, causing TCP RST) was root-caused and fixed in its own commit with raw-socket regression tests. It is the only Python source change.
