@@ -1,0 +1,5037 @@
+{
+ "schema": "ghostbridge-forge-parity-v1",
+ "seed": 20261111,
+ "count": 100,
+ "cases": [
+  {
+   "config": {
+    "delaySeconds": 1,
+    "holdSeconds": 60,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:31Z",
+     "data": {
+      "duration_seconds": 60
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "9cb024f53a24ca1492ca5041d7d22b045039ea3b3168266a02c5f5ec9aa89303"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 1,
+    "holdSeconds": 118,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:31Z",
+     "data": {
+      "duration_seconds": 118
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "744b527e49fdfce9436e94a3462cabfe9f3798aa6f26806436f659aac6fa9f4a"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 1,
+    "holdSeconds": 119,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:31Z",
+     "data": {
+      "duration_seconds": 119
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:00:36Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "7ed723778f4261ffa38254aeca4010d29623c0cc9c93cde08ea07ce5323e942d",
+    "b803fca38d95948572b1050d13fdf963e0343bc4b366da3ac2b1bbdb90bb59c4"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 1,
+    "holdSeconds": 120,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:31Z",
+     "data": {
+      "duration_seconds": 120
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "6e07bf507316303042c854ea1d2dcfabc26527a5aa98651c11cc9509337982ea"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "6e07bf507316303042c854ea1d2dcfabc26527a5aa98651c11cc9509337982ea"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 120 seconds (forge:later-door) just 1 second later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 1,
+    "holdSeconds": 121,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:31Z",
+     "data": {
+      "duration_seconds": 121
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:00:36Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "073280bce307b677afda409ac2abe73bf165e1c17a495a35453ba0ccef0d7e5a",
+    "c6fa9c9d9c537e3f8b4dc2cb3187f44faf5f896314b788103ef9abf94fd2160a"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "073280bce307b677afda409ac2abe73bf165e1c17a495a35453ba0ccef0d7e5a"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 121 seconds (forge:later-door) just 1 second later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 1,
+    "holdSeconds": 130,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:31Z",
+     "data": {
+      "duration_seconds": 130
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "0eb998020dbc8d2b502c29c87e6b808f09286fa4fae8538ece775883b5eebdfe"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "0eb998020dbc8d2b502c29c87e6b808f09286fa4fae8538ece775883b5eebdfe"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 130 seconds (forge:later-door) just 1 second later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 1,
+    "holdSeconds": 240,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:31Z",
+     "data": {
+      "duration_seconds": 240
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "56f84f2f484a6e5ca508748f061deb3958ddc987a68a5d53368327ede7cf39b7"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "56f84f2f484a6e5ca508748f061deb3958ddc987a68a5d53368327ede7cf39b7"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 240 seconds (forge:later-door) just 1 second later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 2,
+    "holdSeconds": 60,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:32Z",
+     "data": {
+      "duration_seconds": 60
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:00:37Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "ebcd16d82a9e5c0186a3f3a08411d9d5775faea9873945daec3f140772d1e07c",
+    "382764cc081c9c8050076bf61cb647ef13765153b0930ca8d5c38f99e5da0f5a"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 2,
+    "holdSeconds": 118,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:32Z",
+     "data": {
+      "duration_seconds": 118
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:00:37Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "f44bf8563f11e0a9d1288bf5cd83db9a74e33984a207042085af619e04bbbac0",
+    "c9b9bb4b5e4cc424dd39bc71f08245d60e71013f106ad1ac2f329aee38d78431"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 2,
+    "holdSeconds": 119,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:32Z",
+     "data": {
+      "duration_seconds": 119
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "c4a8231829b58c1579c57b30461b1150c0ad55a0c426246f07e61c11de8e8d18"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 2,
+    "holdSeconds": 120,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:32Z",
+     "data": {
+      "duration_seconds": 120
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:00:37Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "6a4cf5dac6607ed22ed2ae7068fd943cd1ae91feb18d10969f9f789376c9d4db",
+    "85a7a76851bf1c04c831534cd3cc1f2fb4ed27578f228ae1b0cc4b3b0fdfe87a"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "6a4cf5dac6607ed22ed2ae7068fd943cd1ae91feb18d10969f9f789376c9d4db"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 120 seconds (forge:later-door) just 2 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 2,
+    "holdSeconds": 121,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:32Z",
+     "data": {
+      "duration_seconds": 121
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "7bee76e73f5cdcad78872c037b6862d6952bfb61ed8ef58096051c8983f9b2f8"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "7bee76e73f5cdcad78872c037b6862d6952bfb61ed8ef58096051c8983f9b2f8"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 121 seconds (forge:later-door) just 2 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 2,
+    "holdSeconds": 130,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:32Z",
+     "data": {
+      "duration_seconds": 130
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:00:37Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "10959d99e76f6647a3a520f529e1dd1c9e3faa78e4b27205143654ee6eedb586",
+    "1399c43a2264ab0b6b74173ba9f71b625deebdf89c4019abc3bf83514624841d"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "10959d99e76f6647a3a520f529e1dd1c9e3faa78e4b27205143654ee6eedb586"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 130 seconds (forge:later-door) just 2 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 2,
+    "holdSeconds": 240,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:32Z",
+     "data": {
+      "duration_seconds": 240
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:00:37Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "3febd3f9fa79a390f3f92dda09a03b32478f3324e715eb10cf9bc312f34c708b",
+    "b72907342537998b585006bfc01b0980cb49561679ebbe16f9d559fb07766231"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "3febd3f9fa79a390f3f92dda09a03b32478f3324e715eb10cf9bc312f34c708b"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 240 seconds (forge:later-door) just 2 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 150,
+    "holdSeconds": 60,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:03:00Z",
+     "data": {
+      "duration_seconds": 60
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:03:05Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "94a0e23011830df95b40754e6d2c611f27520a0be380c6bf8b8f8b27d88cb87d",
+    "4d6eb4199b8c914cdfd5ff2347923e2964a64aec5a91b7240705074db4fdcff0"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 150,
+    "holdSeconds": 118,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:03:00Z",
+     "data": {
+      "duration_seconds": 118
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:03:05Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "43fb89cb8c01c71ad0311fc96859850202c0a64b947be9b70b4be15553a01aec",
+    "0aed57da08d5b87dbb45747307520fed7fc0a3bcc1007305be4a82fbb100ff24"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 150,
+    "holdSeconds": 119,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:03:00Z",
+     "data": {
+      "duration_seconds": 119
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "2f68370978f243e232791a4b1e6360d7a3343f7cb3801a1ef9434b7eac00b25e"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 150,
+    "holdSeconds": 120,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:03:00Z",
+     "data": {
+      "duration_seconds": 120
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:03:05Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "e1430de4a840ba157dead5f5ede338b53284bfae283694f826bdc3e4e94d88b1",
+    "9922b0b56b545a7a485804225c083619d421392847822a93f3d880ca2d9767cc"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "e1430de4a840ba157dead5f5ede338b53284bfae283694f826bdc3e4e94d88b1"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 120 seconds (forge:later-door) just 150 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 150,
+    "holdSeconds": 121,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:03:00Z",
+     "data": {
+      "duration_seconds": 121
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "79f6d1d6f5a4566fa68aa1cacbd030a64e6627a8f6c3b28154fcce87e3d658af"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "79f6d1d6f5a4566fa68aa1cacbd030a64e6627a8f6c3b28154fcce87e3d658af"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 121 seconds (forge:later-door) just 150 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 150,
+    "holdSeconds": 130,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:03:00Z",
+     "data": {
+      "duration_seconds": 130
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:03:05Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "5282972e2afa56b15ee543f8eeb894af3d98deb7ec26cfae647f93960136e10e",
+    "b64ab1fee247f40669a5640a676c0cc7cf50ed0f931524fc5d1c605703abe877"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "5282972e2afa56b15ee543f8eeb894af3d98deb7ec26cfae647f93960136e10e"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 130 seconds (forge:later-door) just 150 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 150,
+    "holdSeconds": 240,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:03:00Z",
+     "data": {
+      "duration_seconds": 240
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:03:05Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "965f9c9991cac3a4daa620fd92cf20cf3b337ad1c7b5a057a5f337d00cdcbc85",
+    "adc6d5eb562f2dfbec68555fe59d02ef31ad81eec85f6975a776b84c5281970d"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "965f9c9991cac3a4daa620fd92cf20cf3b337ad1c7b5a057a5f337d00cdcbc85"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 240 seconds (forge:later-door) just 150 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 270,
+    "holdSeconds": 60,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:00Z",
+     "data": {
+      "duration_seconds": 60
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:05:05Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "e46657b91104d942db925d7009547597548d65028f16ce3011b13703b963eb1d",
+    "881f388d96c9324e80f8f0caa8f2c7f27bb1a7ff020e1e3d9261d3a002ab5890"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 270,
+    "holdSeconds": 118,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:00Z",
+     "data": {
+      "duration_seconds": 118
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:05:05Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "0e7bbfc0a207e7faa93b308c51652d0e60e4a8a37df63760b2af36c49a7ad438",
+    "a3bbc967236251d1c0db300e3f67846b6f1bab19c007b8bac6bcddfbadd203dc"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 270,
+    "holdSeconds": 119,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:00Z",
+     "data": {
+      "duration_seconds": 119
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "af5694ae39e25f9392b21c377a4fe731f99c7623dd388eafab7972e527feb354"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 270,
+    "holdSeconds": 120,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:00Z",
+     "data": {
+      "duration_seconds": 120
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:05:05Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "2a17cfe10bb66ea95ef0ccb9aa420fc5ce10aa12a4bef841d3783992f6d4b4f4",
+    "c218afc0d1291f9b17b1bc8c9016dd77d3636b99ed187d052c9ea2a874254730"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "2a17cfe10bb66ea95ef0ccb9aa420fc5ce10aa12a4bef841d3783992f6d4b4f4"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 120 seconds (forge:later-door) just 270 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 270,
+    "holdSeconds": 121,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:00Z",
+     "data": {
+      "duration_seconds": 121
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "fab71a9bc32d5681fa886f229c67dc9023f701840e7e505c39f4ef9fd9bd8026"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "fab71a9bc32d5681fa886f229c67dc9023f701840e7e505c39f4ef9fd9bd8026"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 121 seconds (forge:later-door) just 270 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 270,
+    "holdSeconds": 130,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:00Z",
+     "data": {
+      "duration_seconds": 130
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:05:05Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "d6417fed4e085412138560c25611b757364e187467b20c10639e4522a8b5c1cf",
+    "4a4480ae8f84e768f7b3f66423af7538f23f6e708d228bda7e40acf1346a9df3"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "d6417fed4e085412138560c25611b757364e187467b20c10639e4522a8b5c1cf"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 130 seconds (forge:later-door) just 270 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 270,
+    "holdSeconds": 240,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:00Z",
+     "data": {
+      "duration_seconds": 240
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:05:05Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "bd537507da5883d1c84a07a37c552cbd7e81ef54b6eb8e064e32ca28697b69c2",
+    "fff17c10a9b515bd61e386aa4793a35b08b04e5f4f79475841aeed4d54ebcbfa"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "bd537507da5883d1c84a07a37c552cbd7e81ef54b6eb8e064e32ca28697b69c2"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 240 seconds (forge:later-door) just 270 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 298,
+    "holdSeconds": 60,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:28Z",
+     "data": {
+      "duration_seconds": 60
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:05:33Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "e24fc6ce09827e2f3275ac947f30506273af667a370a16000001fe6ccaacebca",
+    "81c654aac04144a8ca96fdde680ee333aef9f02e5e85cded429d3695af994fb1"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 298,
+    "holdSeconds": 118,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:28Z",
+     "data": {
+      "duration_seconds": 118
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:05:33Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "8242062cc22afe961509dbad76a3fab7c43cc7def2e068c1ecb4ec9fe33890b0",
+    "ff600235b4a9405e09cca5e4b3cebf3a50283082c216658085e5f9b169bae4f3"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 298,
+    "holdSeconds": 119,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:28Z",
+     "data": {
+      "duration_seconds": 119
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "6b46949577b9ef15820d3957223d68dddf24c24da4646b55492bec30a01d11e7"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 298,
+    "holdSeconds": 120,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:28Z",
+     "data": {
+      "duration_seconds": 120
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:05:33Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "d76945f12db32cb83d5a51c637e4980068e5c53a09cfb5c4126cf17bcf907116",
+    "52274b8b947c98a53cc0df48fde398565ca6b1c89b295f332b2fd117a61ebdb8"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "d76945f12db32cb83d5a51c637e4980068e5c53a09cfb5c4126cf17bcf907116"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 120 seconds (forge:later-door) just 298 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 298,
+    "holdSeconds": 121,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:28Z",
+     "data": {
+      "duration_seconds": 121
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "86bc4d842c23f24536c11489802d4e36742e29ed8a3fc82fca97fe7c3170ba27"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "86bc4d842c23f24536c11489802d4e36742e29ed8a3fc82fca97fe7c3170ba27"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 121 seconds (forge:later-door) just 298 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 298,
+    "holdSeconds": 130,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:28Z",
+     "data": {
+      "duration_seconds": 130
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:05:33Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "aad8c6655f210289359d71e9514127e64a2920edd5a29e3822987fc6073a4aa8",
+    "9dbd80dcb2893d60e2b4c867b58601e989f4bedcf98f3e80da0550e9af328f26"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "aad8c6655f210289359d71e9514127e64a2920edd5a29e3822987fc6073a4aa8"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 130 seconds (forge:later-door) just 298 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 298,
+    "holdSeconds": 240,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:28Z",
+     "data": {
+      "duration_seconds": 240
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:05:33Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "08ccff01070707c93490cd99ad7ce8de9307eb49556e5981432b5977fb4bb759",
+    "7e7c519ab6908f7486035df88957661c595fc251faf0cbaa4ab1e6e1272d1a62"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "08ccff01070707c93490cd99ad7ce8de9307eb49556e5981432b5977fb4bb759"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 240 seconds (forge:later-door) just 298 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 299,
+    "holdSeconds": 60,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:29Z",
+     "data": {
+      "duration_seconds": 60
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "b47577ebbb94f6f8e8e4440a3f413aef222008898e54086a6c11263cd6696e70"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 299,
+    "holdSeconds": 118,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:29Z",
+     "data": {
+      "duration_seconds": 118
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "dfcd0143d6de7adcc64515a5d279bb276138f0b32a2ac5375baaa0e0a07251d3"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 299,
+    "holdSeconds": 119,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:29Z",
+     "data": {
+      "duration_seconds": 119
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:05:34Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "fbd18d74039083b4e2dee7e72a6ff3a9b415b8bc829a31197c91470039adc74d",
+    "2206d3e47ab895ab097dcdd21331e90a5096a3ff87b48a926e57ab6df486556a"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 299,
+    "holdSeconds": 120,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:29Z",
+     "data": {
+      "duration_seconds": 120
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "d87cf9061363941a91d105425d5fec828d8ecf5083a35da362eecdcb0761537c"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "d87cf9061363941a91d105425d5fec828d8ecf5083a35da362eecdcb0761537c"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 120 seconds (forge:later-door) just 299 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 299,
+    "holdSeconds": 121,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:29Z",
+     "data": {
+      "duration_seconds": 121
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:05:34Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "a0d8f721318655336c02b44aed655c7b90afe05bb0cb7361aed2775696b45757",
+    "324b3e501174ae3377ad3601c85fcb2fc1038e9f7832f30ce4f9868594486e73"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "a0d8f721318655336c02b44aed655c7b90afe05bb0cb7361aed2775696b45757"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 121 seconds (forge:later-door) just 299 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 299,
+    "holdSeconds": 130,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:29Z",
+     "data": {
+      "duration_seconds": 130
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "a0fab1b5b931e530c41f6e612cdaba82958ce6026207832ca4e2ea88c1a5799e"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "a0fab1b5b931e530c41f6e612cdaba82958ce6026207832ca4e2ea88c1a5799e"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 130 seconds (forge:later-door) just 299 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 299,
+    "holdSeconds": 240,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:29Z",
+     "data": {
+      "duration_seconds": 240
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "21599ab3c36fbd373b07333d6d357cbddd1c3be8e7542d65513a81f8220318fe"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "21599ab3c36fbd373b07333d6d357cbddd1c3be8e7542d65513a81f8220318fe"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 240 seconds (forge:later-door) just 299 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 300,
+    "holdSeconds": 60,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:30Z",
+     "data": {
+      "duration_seconds": 60
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:05:35Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "7dfe92bc2984de3fb40162f0095f54890d6d7c2d3055cab35653a757555c7c85",
+    "79660225da8b1a91707d072c6820c02e8aa56841d8b511f2b83d89ca8f41b0e3"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 300,
+    "holdSeconds": 118,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:30Z",
+     "data": {
+      "duration_seconds": 118
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:05:35Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "99270cc4442888154a3be8bd140ddecfd051b7a398b9068cc49b046f40ff9470",
+    "ec6d3fb2c70e434db11cd76bfab489547bdb4c79104701615f81dd1ab3c82e74"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 300,
+    "holdSeconds": 119,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:30Z",
+     "data": {
+      "duration_seconds": 119
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "43a505d94d9e5d9eb2641b243e3874dec3e4e1d8fe5b3d1fd45f82e47a6220a4"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 300,
+    "holdSeconds": 120,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:30Z",
+     "data": {
+      "duration_seconds": 120
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:05:35Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "59e9ba6150edc700735523b869dc1d2aa69d94503d21929d4520a1bf16bc5a87",
+    "3bdbcf6eb2873a83b62207a88e8a3782428de7b10ef726ce9f1bbfec77c83600"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "59e9ba6150edc700735523b869dc1d2aa69d94503d21929d4520a1bf16bc5a87"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 120 seconds (forge:later-door) just 300 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 300,
+    "holdSeconds": 121,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:30Z",
+     "data": {
+      "duration_seconds": 121
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "12af0cc546a0b5ef2b44ba0a36b7308e969e60f91b527ac15fb1980dc9d4771e"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "12af0cc546a0b5ef2b44ba0a36b7308e969e60f91b527ac15fb1980dc9d4771e"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 121 seconds (forge:later-door) just 300 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 300,
+    "holdSeconds": 130,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:30Z",
+     "data": {
+      "duration_seconds": 130
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:05:35Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "2056f794b8801d2bca85306f5197f29ecd78b00286795650b9ea5a684731f11d",
+    "4271821f3f721d34a5e10b1adce765b1c87f4e83247f903a4cf44fba80bc01a3"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "2056f794b8801d2bca85306f5197f29ecd78b00286795650b9ea5a684731f11d"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 130 seconds (forge:later-door) just 300 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 300,
+    "holdSeconds": 240,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:30Z",
+     "data": {
+      "duration_seconds": 240
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:05:35Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "3ed6049303215ff0b2d0349b5ff8bc495e8bd200335b9fab26f9f384c9810447",
+    "b0bfe276844ff289125424ac39b53b9b76af6efd13313aee701fc029d9df2de9"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "3ed6049303215ff0b2d0349b5ff8bc495e8bd200335b9fab26f9f384c9810447"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 240 seconds (forge:later-door) just 300 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 301,
+    "holdSeconds": 60,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:31Z",
+     "data": {
+      "duration_seconds": 60
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "4cc13a1fbee55d3f436902b393a347a3f86571248c5bc6f340fb800ddd19f87a"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 301,
+    "holdSeconds": 118,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:31Z",
+     "data": {
+      "duration_seconds": 118
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "a321f727cb72c0f4cfb0018133d0e71d0bb7983a6e893da994ded88ec06a2978"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 301,
+    "holdSeconds": 119,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:31Z",
+     "data": {
+      "duration_seconds": 119
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:05:36Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "8fc823803e0e964078e0511e23edd5537865484624a8d2153b49303cc90e6df9",
+    "d3a0d77a2535029eab456556c469430ba99414f57a1661808d8025903f754fd4"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 301,
+    "holdSeconds": 120,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:31Z",
+     "data": {
+      "duration_seconds": 120
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "95e4f13bb8e9a7bc7f2adc29ebbc504d03c0919ad011bf6480160ac36dd618ef"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 301,
+    "holdSeconds": 121,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:31Z",
+     "data": {
+      "duration_seconds": 121
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:05:36Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "362ebf1eb6e6d7c0139550171c38b70e9ae934ad1b06815ef8ffadf0640094e0",
+    "7d68853a83704b34288b4469a059c7d78495ee7769ebf64c25faca565e86f952"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 301,
+    "holdSeconds": 130,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:31Z",
+     "data": {
+      "duration_seconds": 130
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "752ee6105b9b71aabf726ff315737ee1f4a49716366deb388c0017d60c9fb35d"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 301,
+    "holdSeconds": 240,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:31Z",
+     "data": {
+      "duration_seconds": 240
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "a31b4dc5ec84b13dbef587715e1ff0b029ed09c7c220f6e7d57545efc4bfd790"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 302,
+    "holdSeconds": 60,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:32Z",
+     "data": {
+      "duration_seconds": 60
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:05:37Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "f38e187f30fca01df32c5cda3cb38e42889a659fff4d5c679bb68a6a99816e7d",
+    "759435e7f1eded00cb8e050d8d0a60bcfdf82f7b1dadc73dea0a69eea08ea987"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 302,
+    "holdSeconds": 118,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:32Z",
+     "data": {
+      "duration_seconds": 118
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:05:37Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "57598edca84f14578d0216da81ef86e2cb06992c07057778c6addd6c29c6e54c",
+    "8e9423d56d2d9a2c775d7cdc1cb3e3deea7ca2aa59b0d587ac77f09fce24ec3b"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 302,
+    "holdSeconds": 119,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:32Z",
+     "data": {
+      "duration_seconds": 119
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "13568f9fbcb5d7dee7360e747785cd34c244ccd905d233fbc9f1970d353ac576"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 302,
+    "holdSeconds": 120,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:32Z",
+     "data": {
+      "duration_seconds": 120
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:05:37Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "98dce7ff1083a72c0e43311a03fbfd5e53239d891d5e3067a5ff25fc41b076de",
+    "af52563d8fbe7d75c011f028f39d510bf82be8e60d37821b6e1c15173f241fc5"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 302,
+    "holdSeconds": 121,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:32Z",
+     "data": {
+      "duration_seconds": 121
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "5385ddfbfe322b39fe4f78d267d23b7c906a6308c8224aa6d2dff1563eeaa871"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 302,
+    "holdSeconds": 130,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:32Z",
+     "data": {
+      "duration_seconds": 130
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:05:37Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "3e59f0424da9887e39c67ff409692af0fe218bf01c19538f70e35cf542aa6f6b",
+    "faa7063fa498f94013355790945560fc73467df205400fdcf26bcf9cd35234bd"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 302,
+    "holdSeconds": 240,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:32Z",
+     "data": {
+      "duration_seconds": 240
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:05:37Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "7da2d17dc454906d02d9a16579623cc13dac03721cb83e68df45d73ee7a5273e",
+    "c8951f05663f2ac82dfbc55e434b44dd159c45f458e2a4c70bc34aa591c0f887"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 360,
+    "holdSeconds": 60,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:06:30Z",
+     "data": {
+      "duration_seconds": 60
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:06:35Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "405682934dc3b809d4c5a8a34168b25bc434586e430833e4a6b9707a73fc2c06",
+    "548da7123d5dbfe72e0d24dd2d4131e80d1f2812245bf3bce52c97894ef89461"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 360,
+    "holdSeconds": 118,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:06:30Z",
+     "data": {
+      "duration_seconds": 118
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:06:35Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "1203bd6946238ce0dfd35014784950dc2ae1d9fe3f28a19c0c3984970691ee51",
+    "7d9a0f4d188fee32133bfe519a0368fe63bc85aa5be72d458b0b0998b83383bd"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 360,
+    "holdSeconds": 119,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:06:30Z",
+     "data": {
+      "duration_seconds": 119
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "b1c67090019adefd04b46437c1e2670567e08ea3043833ed7fe688f63fe676fc"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 360,
+    "holdSeconds": 120,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:06:30Z",
+     "data": {
+      "duration_seconds": 120
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:06:35Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "c18381306cd62ff583021b88d22c9ba783fa06c0f5521b59e84223a5564e0a07",
+    "f970d26fd833916d33e022eb12a230510ef8f88a3f074ee434213360086c17ef"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 360,
+    "holdSeconds": 121,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:06:30Z",
+     "data": {
+      "duration_seconds": 121
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "511aa8d893763521cde5c119f4795810f468e57b76eb50adafffb290af349ff1"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 360,
+    "holdSeconds": 130,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:06:30Z",
+     "data": {
+      "duration_seconds": 130
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:06:35Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "653de6a4da924baa5f72d2f65d381b4c735e253a9a263467782fd6e5fc2ea9e4",
+    "7a00e178373ec9c48e8ca1ba3ccf08682ba35fde5b48c2777a4bbbc2e585096b"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 360,
+    "holdSeconds": 240,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:06:30Z",
+     "data": {
+      "duration_seconds": 240
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:06:35Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "9d841d6a6cce10341c2cd0cce4dedd3297dd3e3b269ee62418567ec5bf0202b1",
+    "1dfd65d8213f6be89c92b313d901ed80c5a4ed9b21e19f7b60e3318c6ad6e57a"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 204,
+    "holdSeconds": 226,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:03:54Z",
+     "data": {
+      "duration_seconds": 226
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "c7ac63b56a01d3ba9d464436bc28a392b4f82cb8f71145cbe5a1a6f723251918"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "c7ac63b56a01d3ba9d464436bc28a392b4f82cb8f71145cbe5a1a6f723251918"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 226 seconds (forge:later-door) just 204 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 241,
+    "holdSeconds": 69,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:04:31Z",
+     "data": {
+      "duration_seconds": 69
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:04:36Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "74b1fdbb9e116ff10ac6840ff8bdbdc5699669a1d9ee82ce50b20a176358ced3",
+    "9bd809124ebab3221fdbfd1cb51453cb5ecef604029e4a4239f5f9cea373265c"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 78,
+    "holdSeconds": 160,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:01:48Z",
+     "data": {
+      "duration_seconds": 160
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "97580cb4fbfd0393bd698594077763aee81b21f88030d11bc460d8bbcfd71553"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "97580cb4fbfd0393bd698594077763aee81b21f88030d11bc460d8bbcfd71553"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 160 seconds (forge:later-door) just 78 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 311,
+    "holdSeconds": 214,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:41Z",
+     "data": {
+      "duration_seconds": 214
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:05:46Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "ce9ef137bf1b8567ab0cb6b73ef19c063c61f5fa53ebe02ca425cc1f27dfdaf5",
+    "10aad8254bb591b350a351a0e4df0d0e9eb690ac58d2480c4d12192ceca238f5"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 79,
+    "holdSeconds": 130,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:01:49Z",
+     "data": {
+      "duration_seconds": 130
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:01:54Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "81682f31bb74018803eb68702bea1dddf9f1941243f4bd6c4dd70436e2278668",
+    "ba24a8b3b06d60faee8e0057a49f406d7aaa095aac900a555bd3196479de74ab"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "81682f31bb74018803eb68702bea1dddf9f1941243f4bd6c4dd70436e2278668"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 130 seconds (forge:later-door) just 79 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 88,
+    "holdSeconds": 185,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:01:58Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "91c882e15f08e71288dc1c8c50822a1ffb3426be78528f1e3f3ade96cd0d300f"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "91c882e15f08e71288dc1c8c50822a1ffb3426be78528f1e3f3ade96cd0d300f"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 185 seconds (forge:later-door) just 88 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 283,
+    "holdSeconds": 228,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:13Z",
+     "data": {
+      "duration_seconds": 228
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:05:18Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "1fc3ee7d5eb74161c132da1d83afc4e24547769ae5f1d4f4035ba2c725476e7d",
+    "e7ac918a87f74e52a6aa0d937ec16f48bf151307496194b0e0c089e2d60f48aa"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "1fc3ee7d5eb74161c132da1d83afc4e24547769ae5f1d4f4035ba2c725476e7d"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 228 seconds (forge:later-door) just 283 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 105,
+    "holdSeconds": 182,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:02:15Z",
+     "data": {
+      "duration_seconds": 182
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "67740592612fe7448f5852466377cda89a38044c4078922cb1e82a9f7c7bfeb6"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "67740592612fe7448f5852466377cda89a38044c4078922cb1e82a9f7c7bfeb6"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 182 seconds (forge:later-door) just 105 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 336,
+    "holdSeconds": 199,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:06:06Z",
+     "data": {
+      "duration_seconds": 199
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "e859765760bd9cbcb07eadb5797e06dfac2bf7d95ed41bf54545421698ee8d4d"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 136,
+    "holdSeconds": 200,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:02:46Z",
+     "data": {
+      "duration_seconds": 200
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:02:51Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "5a31cb7c42c39cd675e8ef01d38a16360b5a2d79b7843e650d2af5918562b88e",
+    "001b7991822a0e131940ad11469b1c3dec334f31fcce638d57ec1cc0e1ac6cd9"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "5a31cb7c42c39cd675e8ef01d38a16360b5a2d79b7843e650d2af5918562b88e"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 200 seconds (forge:later-door) just 136 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 169,
+    "holdSeconds": 235,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:03:19Z",
+     "data": {
+      "duration_seconds": 235
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:03:24Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "9cba233f9294ae4faac3eb0ab6bd21291c5b99746ece5ce12647b78f7e6ac390",
+    "0664e3f97ac8d6afd53521d3c01f6330cc92882cd6ce3dcd8e16dad07ef7e5fb"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "9cba233f9294ae4faac3eb0ab6bd21291c5b99746ece5ce12647b78f7e6ac390"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 235 seconds (forge:later-door) just 169 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 251,
+    "holdSeconds": 227,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:04:41Z",
+     "data": {
+      "duration_seconds": 227
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "f0f9b94bc05217d06e07ffd399331992db85a68ff0e451772d69b2767adfebbe"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "f0f9b94bc05217d06e07ffd399331992db85a68ff0e451772d69b2767adfebbe"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 227 seconds (forge:later-door) just 251 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 89,
+    "holdSeconds": 66,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:01:59Z",
+     "data": {
+      "duration_seconds": 66
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "f0d82436d1bdd51d08fa4de129b5e5afc067a0c4fb2e998289f2ed002f6a961e"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 353,
+    "holdSeconds": 203,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:06:23Z",
+     "data": {
+      "duration_seconds": 203
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "ad3d1d4bf8cc1b2697a9f17e7f52ed8f4ba1222f6aed78454c79960b6b691349"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 76,
+    "holdSeconds": 189,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:01:46Z",
+     "data": {
+      "duration_seconds": 189
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "396ff0dd6b81a4dcc6b07799db4bbb68564137a3fcd31dac9762b5ba3f614f37"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "396ff0dd6b81a4dcc6b07799db4bbb68564137a3fcd31dac9762b5ba3f614f37"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 189 seconds (forge:later-door) just 76 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 161,
+    "holdSeconds": 88,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:03:11Z",
+     "data": {
+      "duration_seconds": 88
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:03:16Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "d9b756dfc717871c4bb9198e9a856113ab8308e35a6979e0ea6c0553ef6412ec",
+    "a1750f4227662cd106f4dedfa4fdbcf896993a8526bc93660ed9e6630ea80d26"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 82,
+    "holdSeconds": 209,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:01:52Z",
+     "data": {
+      "duration_seconds": 209
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:01:57Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "287a63e3ab058ea15083b87c2da05da25fa5928d539ddb328a7dfa8a1afb874d",
+    "acd30b39c3774d7158e326dd5551ff2f6f60ad9085012fdfa363401db4c822f1"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "287a63e3ab058ea15083b87c2da05da25fa5928d539ddb328a7dfa8a1afb874d"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 209 seconds (forge:later-door) just 82 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 314,
+    "holdSeconds": 107,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:05:44Z",
+     "data": {
+      "duration_seconds": 107
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "f3d6869ca459e2601466ea409051cb829d2df8fca342898c935a6914d8e9800a"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 39,
+    "holdSeconds": 77,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:01:09Z",
+     "data": {
+      "duration_seconds": 77
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:01:14Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "3affe09c4173c9a15c85e3d154fc3aef4a0dd7b92124e35fc12832b3c18bdaac",
+    "9bbfbb3830f175a7dfe73c2319d1eec507f23558a19e045094377258dcd22e8a"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 353,
+    "holdSeconds": 93,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:06:23Z",
+     "data": {
+      "duration_seconds": 93
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "c69891dd686f81b3b3ff57a35b7c20551cb3f42cc2bf4c46aa89709fce4c04e3"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 145,
+    "holdSeconds": 227,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:02:55Z",
+     "data": {
+      "duration_seconds": 227
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "3b957efccafeb172ffba749e66a775fe6431d2186664afcd34423eea3632d318"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "3b957efccafeb172ffba749e66a775fe6431d2186664afcd34423eea3632d318"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 227 seconds (forge:later-door) just 145 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 169,
+    "holdSeconds": 231,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:03:19Z",
+     "data": {
+      "duration_seconds": 231
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "bfc8058969628b7dc9fe4e30e9c46bd5c20dbcb23d59a51f2183c6af448549ee"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "bfc8058969628b7dc9fe4e30e9c46bd5c20dbcb23d59a51f2183c6af448549ee"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 231 seconds (forge:later-door) just 169 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 9,
+    "holdSeconds": 60,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:39Z",
+     "data": {
+      "duration_seconds": 60
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "4b5690904ec4f6422c7466324825be3e92f806cb3df3ede5a3d49b011371549a"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 227,
+    "holdSeconds": 115,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:04:17Z",
+     "data": {
+      "duration_seconds": 115
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:04:22Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "41bea127ab13e078ce3e8a1285a8c2d4d51fe5bcabc3dddfa87be31294961ac8",
+    "40a75e9f85ded840ea7d601e0102fccca0e40e0d143377f179d049507a2f2291"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 209,
+    "holdSeconds": 212,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:03:59Z",
+     "data": {
+      "duration_seconds": 212
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "0b74d66e3373eebf5eb2308f9e7d5e466e214d1b18206abc220f9a8d0fc374b1"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "0b74d66e3373eebf5eb2308f9e7d5e466e214d1b18206abc220f9a8d0fc374b1"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 212 seconds (forge:later-door) just 209 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 172,
+    "holdSeconds": 139,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:03:22Z",
+     "data": {
+      "duration_seconds": 139
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:03:27Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "9e86a20b8627a1dce42c1cdc252e527b587bfd4eea9ada4e7973e1ab465a99a7",
+    "bf165522c36f676f63d0f2e60ddfc777d2b5afbf41ddcaccd911ef3255e9db3a"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "9e86a20b8627a1dce42c1cdc252e527b587bfd4eea9ada4e7973e1ab465a99a7"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 139 seconds (forge:later-door) just 172 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 257,
+    "holdSeconds": 100,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:04:47Z",
+     "data": {
+      "duration_seconds": 100
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:04:52Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "3c95c47533d4a9b4b2ea33e09ca00d1df8884c39528db898df9d32634e3a60d6",
+    "1375c838cd133d2ae8acd3651ffbb9e8ea4bcc1648cdce6128fe3c50341d6b93"
+   ],
+   "cases": []
+  },
+  {
+   "config": {
+    "delaySeconds": 97,
+    "holdSeconds": 218,
+    "cameraOffline": true
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:02:07Z",
+     "data": {
+      "duration_seconds": 218
+     }
+    },
+    {
+     "id": "forge:camera-offline",
+     "device": "camera-01",
+     "type": "camera.offline",
+     "at": "2026-11-08T22:02:12Z",
+     "data": {}
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "ce047b88944d20e1174cbd5a35b508a9960e1860678a3cfa7f34c4bc4aed6f2e",
+    "2ea0784c492a79245428abf76d5ae137d1f2571456b1e6e6da90a78426200fa6"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "ce047b88944d20e1174cbd5a35b508a9960e1860678a3cfa7f34c4bc4aed6f2e"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 218 seconds (forge:later-door) just 97 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 11,
+    "holdSeconds": 159,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:41Z",
+     "data": {
+      "duration_seconds": 159
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "49f71a61947d91cddba87e1eba8d6dc073c89b7c56a1008b1855695ad131ebe5"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "49f71a61947d91cddba87e1eba8d6dc073c89b7c56a1008b1855695ad131ebe5"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 159 seconds (forge:later-door) just 11 seconds later, within the 300-second correlation window."
+    }
+   ]
+  },
+  {
+   "config": {
+    "delaySeconds": 204,
+    "holdSeconds": 230,
+    "cameraOffline": false
+   },
+   "events": [
+    {
+     "id": "forge:earlier-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:00:00Z",
+     "data": {
+      "duration_seconds": 185
+     }
+    },
+    {
+     "id": "forge:denied",
+     "device": "reader-01",
+     "type": "access.denied",
+     "at": "2026-11-08T22:00:30Z",
+     "data": {}
+    },
+    {
+     "id": "forge:later-door",
+     "device": "door-01",
+     "type": "door.open",
+     "at": "2026-11-08T22:03:54Z",
+     "data": {
+      "duration_seconds": 230
+     }
+    }
+   ],
+   "row_hashes": [
+    "4a6a5805ffb0251d0e47c3abcc3cc4ca80964d303f3255194cf1444d16d53d4a",
+    "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+    "c959b039c1903ec0d429c52eda4a4cf7d364d399734f39f0d403be14140c082a"
+   ],
+   "cases": [
+    {
+     "id": "case:cfd83deb8d3af576",
+     "event_ids": [
+      "forge:denied",
+      "forge:later-door"
+     ],
+     "evidence_hashes": [
+      "edca35aab6fea0e76aad3715a708daf75cdac2a8298d5ff0eebc3525209e23d9",
+      "c959b039c1903ec0d429c52eda4a4cf7d364d399734f39f0d403be14140c082a"
+     ],
+     "explanation": "An access attempt was rejected (forge:denied) and the entrance stayed open for 230 seconds (forge:later-door) just 204 seconds later, within the 300-second correlation window."
+    }
+   ]
+  }
+ ]
+}

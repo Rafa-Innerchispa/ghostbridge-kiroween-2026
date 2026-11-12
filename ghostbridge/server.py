@@ -39,7 +39,34 @@ class Handler(SimpleHTTPRequestHandler):
             return self.reply(404, {"error": "Unknown route"})
         super().do_GET()
 
+    # Largest unread request body we will discard after an early error reply (413/415/403).
+    MAX_DRAIN = 1 << 20
+
+    def _drain_unread_body(self):
+        # Closing a socket that still holds unread request data makes TCP send RST, and the client can then lose
+        # the error response it was owed. Discard a bounded amount of the body, briefly, before the connection closes.
+        if getattr(self, "_body_consumed", False):
+            return
+        try:
+            remaining = min(int(self.headers.get("Content-Length", "0") or 0), self.MAX_DRAIN)
+            if remaining <= 0:
+                return
+            self.connection.settimeout(1.0)
+            while remaining > 0:
+                chunk = self.rfile.read(min(remaining, 65536))
+                if not chunk:
+                    break
+                remaining -= len(chunk)
+        except (OSError, ValueError):
+            pass
+
     def do_POST(self):
+        try:
+            self._handle_post()
+        finally:
+            self._drain_unread_body()
+
+    def _handle_post(self):
         # Block cross-origin browser writes and DNS-rebinding hostnames. No CORS.
         if self.headers.get("Host") not in (f"127.0.0.1:{self.server.server_port}", f"localhost:{self.server.server_port}"):
             return self.reply(403, {"error": "Loopback host required"})
@@ -52,7 +79,9 @@ class Handler(SimpleHTTPRequestHandler):
                 return self.reply(413, {"error": "JSON body required; maximum 16 KiB"})
             if self.headers.get("Content-Type", "").split(";")[0] != "application/json":
                 return self.reply(415, {"error": "Use application/json"})
-            payload = json.loads(self.rfile.read(length))
+            raw = self.rfile.read(length)
+            self._body_consumed = True
+            payload = json.loads(raw)
             if not isinstance(payload, dict):
                 raise ValueError("Body must be an object")
             with self.lock:
