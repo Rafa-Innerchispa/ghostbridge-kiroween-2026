@@ -1,6 +1,11 @@
 # Kiro hooks
 
-## `reconstruction-tests-on-save.json` (configured; execution not yet observed)
+> **Update (agentic-validation phase, 2026-11-12):** the hook below has now been observed firing. It runs
+> `node .kiro/hooks/run-reconstruction-tests.mjs`, a bounded runner that executes those three test files and appends a
+> JSON line (time, exit code, counts) to `.kiro/hooks/logs/` (git-ignored). Evidence:
+> `docs/evidence/agentic-validation/REPORT.md`, section 4. The section below is the original, now superseded note.
+
+## `reconstruction-tests-on-save.json` (originally configured with no observed execution; see update above)
 
 Created in the `feat/evidence-reconstruction` Kiro session with Kiro's `createHook` tool.
 On saving a reconstruction or playback module (or its test) it runs only:
