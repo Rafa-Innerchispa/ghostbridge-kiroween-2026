@@ -555,3 +555,18 @@ Screenshots (automated, inspected): `docs/evidence/control-room/m5/` and `.../m0
 - **The scene is stylized and synthetic**: not camera footage, no live hardware, no device control.
 - **The custom agents are untested** (not invoked) and the Python-side `ui-director` / `qa-auditor` boundaries are enforced only by their prompts.
 - **PR #10 is a draft.** This stack must be retargeted to `main` after #10 merges; the branch was not deployed.
+
+
+---
+
+## Phase 5: Agentic validation (2026-11-12)
+
+**Branch:** `feat/kiro-agentic-validation`, stacked on `feat/kiro-immersive-control-room` (PR #14, draft). PR #10 and PR #14 untouched.
+Full evidence and the IMPLEMENTED / EXECUTED / VERIFIED / NOT PROVEN table: [`docs/evidence/agentic-validation/REPORT.md`](evidence/agentic-validation/REPORT.md).
+
+- **Custom agents, actually invoked.** `ui-director` (2 runs) and `qa-auditor` (2 separate runs) ran through Kiro's sub-agent mechanism; the session log records `sub_agent_start` with the agent name and sub-session ids (`evidence/agentic-validation/sub-executions.json`). The loop worked: the auditor found a real keyboard defect (focus lost when opening Signal Forge, a regression from my Phase 4 integration), the director fixed it, a fresh auditor run verified it (m0 55/56 then 56/56; new forge-focus audit 40/40).
+- **Hooks.** `guard-destructive` ran on every shell call (completed, plus three observed blocks). `reconstruction-tests-on-save` was observed firing for the first time and now leaves a log line through a bounded runner.
+- **MCP.** A read-only stdio server (`ghostbridge/mcp_server.py`, four tools, 17 tests, standalone client transcript). **Kiro-to-MCP use is not proven:** Kiro denies agent writes under `.kiro/settings/`, so the owner must copy `.kiro/mcp/ghostbridge-evidence.mcp.json`.
+- **Powers.** None installed; the official ones are external services needing credentials. Not used, not claimed.
+- **Credits.** Not measurable from the session.
+- **Totals:** Python 186, Node 329 in 15 files, `node --check` 14/14 (Phase 4: 169 / 318 / 15).

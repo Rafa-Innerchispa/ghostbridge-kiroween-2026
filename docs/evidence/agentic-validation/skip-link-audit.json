@@ -1,0 +1,490 @@
+{
+ "summary": {
+  "pass": 32,
+  "fail": 0,
+  "total": 32
+ },
+ "results": [
+  {
+   "name": "d1440 (a) first Tab lands on the skip link",
+   "ok": true,
+   "detail": "{\"tag\":\"A\",\"id\":\"\",\"cls\":\"skip-link\",\"text\":\"Skip to Control Room\",\"href\":\"#control-room\",\"rect\":{\"x\":12,\"y\":12,\"w\":182,\"h\":44},\"outline\":\"solid 3px rgb(186, 174, 235)\",\"color\":\"rgb(197, 247, 106)\",\"bg\":\"rgb(11, 14, 16)\",\"transition\":\"0s all\",\"scrollY\":0}"
+  },
+  {
+   "name": "d1440 (a) skip link is on screen when focused",
+   "ok": true,
+   "detail": "{\"x\":12,\"y\":12,\"w\":182,\"h\":44}"
+  },
+  {
+   "name": "d1440 (a) focus ring visible (outline style/width)",
+   "ok": true,
+   "detail": "solid 3px rgb(186, 174, 235)"
+  },
+  {
+   "name": "d1440 (d) skip-link text contrast >= 4.5:1",
+   "ok": true,
+   "detail": "{\"fg\":\"rgb(197, 247, 106)\",\"bg\":\"rgb(11, 14, 16)\",\"bgAlpha\":1,\"ratio\":15.57,\"outlineColor\":\"rgb(186, 174, 235)\",\"outlineVsPage\":9.54,\"pageBg\":\"rgb(11, 14, 16)\"}"
+  },
+  {
+   "name": "d1440 (e) reduced motion: no transition/animation/smooth-scroll on skip link or page",
+   "ok": true,
+   "detail": "{\"mq\":true,\"transition\":\"0s / none\",\"animation\":\"none 0s\",\"htmlScrollBehavior\":\"auto\",\"bodyScrollBehavior\":\"auto\",\"targetScrollBehavior\":\"auto\"}"
+  },
+  {
+   "name": "d1440 (b) Enter moves focus to #control-room",
+   "ok": true,
+   "detail": "{\"tag\":\"SECTION\",\"id\":\"control-room\",\"cls\":\"cr\",\"text\":\"Stylized residential entrance, driven by\",\"href\":null,\"rect\":{\"x\":0,\"y\":25,\"w\":1440,\"h\":1414},\"outline\":\"none 3px rgb(241, 244, 235)\",\"color\":\"rgb(241, 244, 235)\",\"bg\":\"rgb(7, 9, 11)\",\"transition\":\"0s none\",\"scrollY\":67}"
+  },
+  {
+   "name": "d1440 (b) hash updated",
+   "ok": true,
+   "detail": "#control-room"
+  },
+  {
+   "name": "d1440 (b) target section reachable (top within viewport)",
+   "ok": true,
+   "detail": "scrollY 0 -> 67, #control-room top=25"
+  },
+  {
+   "name": "d1440 (c) #filter-all >= 40x40",
+   "ok": true,
+   "detail": "{\"id\":\"filter-all\",\"w\":43.2,\"h\":40,\"display\":\"flex\",\"visible\":true,\"disabled\":false}"
+  },
+  {
+   "name": "d1440 (c) #filter-high >= 40x40",
+   "ok": true,
+   "detail": "{\"id\":\"filter-high\",\"w\":53.8,\"h\":40,\"display\":\"flex\",\"visible\":true,\"disabled\":false}"
+  },
+  {
+   "name": "d1440 (c) #filter-medium >= 40x40",
+   "ok": true,
+   "detail": "{\"id\":\"filter-medium\",\"w\":73,\"h\":40,\"display\":\"flex\",\"visible\":true,\"disabled\":false}"
+  },
+  {
+   "name": "d1440 (c) #verify >= 40x40",
+   "ok": true,
+   "detail": "{\"id\":\"verify\",\"w\":104,\"h\":40,\"display\":\"block\",\"visible\":true,\"disabled\":false}"
+  },
+  {
+   "name": "d1440 (c) #export >= 40x40",
+   "ok": true,
+   "detail": "{\"id\":\"export\",\"w\":160.5,\"h\":40,\"display\":\"block\",\"visible\":true,\"disabled\":false}"
+  },
+  {
+   "name": "d1440 (c) #tamper >= 40x40",
+   "ok": true,
+   "detail": "{\"id\":\"tamper\",\"w\":148.5,\"h\":40,\"display\":\"block\",\"visible\":true,\"disabled\":false}"
+  },
+  {
+   "name": "d1440 (c) no horizontal overflow",
+   "ok": true,
+   "detail": "{\"scrollWidth\":1440,\"innerWidth\":1440,\"bodyScrollWidth\":1440}"
+  },
+  {
+   "name": "d1440 no console errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "m390 (a) first Tab lands on the skip link",
+   "ok": true,
+   "detail": "{\"tag\":\"A\",\"id\":\"\",\"cls\":\"skip-link\",\"text\":\"Skip to Control Room\",\"href\":\"#control-room\",\"rect\":{\"x\":12,\"y\":12,\"w\":182,\"h\":44},\"outline\":\"solid 3px rgb(186, 174, 235)\",\"color\":\"rgb(197, 247, 106)\",\"bg\":\"rgb(11, 14, 16)\",\"transition\":\"0s all\",\"scrollY\":0}"
+  },
+  {
+   "name": "m390 (a) skip link is on screen when focused",
+   "ok": true,
+   "detail": "{\"x\":12,\"y\":12,\"w\":182,\"h\":44}"
+  },
+  {
+   "name": "m390 (a) focus ring visible (outline style/width)",
+   "ok": true,
+   "detail": "solid 3px rgb(186, 174, 235)"
+  },
+  {
+   "name": "m390 (d) skip-link text contrast >= 4.5:1",
+   "ok": true,
+   "detail": "{\"fg\":\"rgb(197, 247, 106)\",\"bg\":\"rgb(11, 14, 16)\",\"bgAlpha\":1,\"ratio\":15.57,\"outlineColor\":\"rgb(186, 174, 235)\",\"outlineVsPage\":9.54,\"pageBg\":\"rgb(11, 14, 16)\"}"
+  },
+  {
+   "name": "m390 (e) reduced motion: no transition/animation/smooth-scroll on skip link or page",
+   "ok": true,
+   "detail": "{\"mq\":true,\"transition\":\"0s / none\",\"animation\":\"none 0s\",\"htmlScrollBehavior\":\"auto\",\"bodyScrollBehavior\":\"auto\",\"targetScrollBehavior\":\"auto\"}"
+  },
+  {
+   "name": "m390 (b) Enter moves focus to #control-room",
+   "ok": true,
+   "detail": "{\"tag\":\"SECTION\",\"id\":\"control-room\",\"cls\":\"cr\",\"text\":\"Stylized residential entrance, driven by\",\"href\":null,\"rect\":{\"x\":0,\"y\":25,\"w\":390,\"h\":2024},\"outline\":\"none 3px rgb(241, 244, 235)\",\"color\":\"rgb(241, 244, 235)\",\"bg\":\"rgb(7, 9, 11)\",\"transition\":\"0s none\",\"scrollY\":84}"
+  },
+  {
+   "name": "m390 (b) hash updated",
+   "ok": true,
+   "detail": "#control-room"
+  },
+  {
+   "name": "m390 (b) target section reachable (top within viewport)",
+   "ok": true,
+   "detail": "scrollY 0 -> 84, #control-room top=25"
+  },
+  {
+   "name": "m390 (c) #filter-all >= 40x40",
+   "ok": true,
+   "detail": "{\"id\":\"filter-all\",\"w\":40,\"h\":40,\"display\":\"flex\",\"visible\":true,\"disabled\":false}"
+  },
+  {
+   "name": "m390 (c) #filter-high >= 40x40",
+   "ok": true,
+   "detail": "{\"id\":\"filter-high\",\"w\":45.8,\"h\":40,\"display\":\"flex\",\"visible\":true,\"disabled\":false}"
+  },
+  {
+   "name": "m390 (c) #filter-medium >= 40x40",
+   "ok": true,
+   "detail": "{\"id\":\"filter-medium\",\"w\":65,\"h\":40,\"display\":\"flex\",\"visible\":true,\"disabled\":false}"
+  },
+  {
+   "name": "m390 (c) #verify >= 40x40",
+   "ok": true,
+   "detail": "{\"id\":\"verify\",\"w\":104,\"h\":40,\"display\":\"block\",\"visible\":true,\"disabled\":false}"
+  },
+  {
+   "name": "m390 (c) #export >= 40x40",
+   "ok": true,
+   "detail": "{\"id\":\"export\",\"w\":160.5,\"h\":40,\"display\":\"block\",\"visible\":true,\"disabled\":false}"
+  },
+  {
+   "name": "m390 (c) #tamper >= 40x40",
+   "ok": true,
+   "detail": "{\"id\":\"tamper\",\"w\":148.5,\"h\":40,\"display\":\"block\",\"visible\":true,\"disabled\":false}"
+  },
+  {
+   "name": "m390 (c) no horizontal overflow",
+   "ok": true,
+   "detail": "{\"scrollWidth\":390,\"innerWidth\":390,\"bodyScrollWidth\":390}"
+  },
+  {
+   "name": "m390 no console errors",
+   "ok": true,
+   "detail": ""
+  }
+ ],
+ "detail": {
+  "d1440": {
+   "before": "BODY#",
+   "tab1": {
+    "tag": "A",
+    "id": "",
+    "cls": "skip-link",
+    "text": "Skip to Control Room",
+    "href": "#control-room",
+    "rect": {
+     "x": 12,
+     "y": 12,
+     "w": 182,
+     "h": 44
+    },
+    "outline": "solid 3px rgb(186, 174, 235)",
+    "color": "rgb(197, 247, 106)",
+    "bg": "rgb(11, 14, 16)",
+    "transition": "0s all",
+    "scrollY": 0
+   },
+   "shot": "<repo>/docs/evidence/agentic-validation/skiplink-focused-1440.png",
+   "contrast": {
+    "fg": "rgb(197, 247, 106)",
+    "bg": "rgb(11, 14, 16)",
+    "bgAlpha": 1,
+    "ratio": 15.57,
+    "outlineColor": "rgb(186, 174, 235)",
+    "outlineVsPage": 9.54,
+    "pageBg": "rgb(11, 14, 16)"
+   },
+   "reduced": {
+    "mq": true,
+    "transition": "0s / none",
+    "animation": "none 0s",
+    "htmlScrollBehavior": "auto",
+    "bodyScrollBehavior": "auto",
+    "targetScrollBehavior": "auto"
+   },
+   "scrollBefore": 0,
+   "afterEnter": {
+    "tag": "SECTION",
+    "id": "control-room",
+    "cls": "cr",
+    "text": "Stylized residential entrance, driven by",
+    "href": null,
+    "rect": {
+     "x": 0,
+     "y": 25,
+     "w": 1440,
+     "h": 1414
+    },
+    "outline": "none 3px rgb(241, 244, 235)",
+    "color": "rgb(241, 244, 235)",
+    "bg": "rgb(7, 9, 11)",
+    "transition": "0s none",
+    "scrollY": 67
+   },
+   "hash": "#control-room",
+   "scrollAfter": 67,
+   "crTop": 25,
+   "afterOutline": "none 3px rgb(241, 244, 235)",
+   "targets": [
+    {
+     "id": "filter-all",
+     "w": 43.2,
+     "h": 40,
+     "display": "flex",
+     "visible": true,
+     "disabled": false
+    },
+    {
+     "id": "filter-high",
+     "w": 53.8,
+     "h": 40,
+     "display": "flex",
+     "visible": true,
+     "disabled": false
+    },
+    {
+     "id": "filter-medium",
+     "w": 73,
+     "h": 40,
+     "display": "flex",
+     "visible": true,
+     "disabled": false
+    },
+    {
+     "id": "verify",
+     "w": 104,
+     "h": 40,
+     "display": "block",
+     "visible": true,
+     "disabled": false
+    },
+    {
+     "id": "export",
+     "w": 160.5,
+     "h": 40,
+     "display": "block",
+     "visible": true,
+     "disabled": false
+    },
+    {
+     "id": "tamper",
+     "w": 148.5,
+     "h": 40,
+     "display": "block",
+     "visible": true,
+     "disabled": false
+    }
+   ],
+   "overflow": {
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "bodyScrollWidth": 1440
+   },
+   "errors": []
+  },
+  "m390": {
+   "before": "BODY#",
+   "tab1": {
+    "tag": "A",
+    "id": "",
+    "cls": "skip-link",
+    "text": "Skip to Control Room",
+    "href": "#control-room",
+    "rect": {
+     "x": 12,
+     "y": 12,
+     "w": 182,
+     "h": 44
+    },
+    "outline": "solid 3px rgb(186, 174, 235)",
+    "color": "rgb(197, 247, 106)",
+    "bg": "rgb(11, 14, 16)",
+    "transition": "0s all",
+    "scrollY": 0
+   },
+   "shot": "<repo>/docs/evidence/agentic-validation/skiplink-focused-390.png",
+   "contrast": {
+    "fg": "rgb(197, 247, 106)",
+    "bg": "rgb(11, 14, 16)",
+    "bgAlpha": 1,
+    "ratio": 15.57,
+    "outlineColor": "rgb(186, 174, 235)",
+    "outlineVsPage": 9.54,
+    "pageBg": "rgb(11, 14, 16)"
+   },
+   "reduced": {
+    "mq": true,
+    "transition": "0s / none",
+    "animation": "none 0s",
+    "htmlScrollBehavior": "auto",
+    "bodyScrollBehavior": "auto",
+    "targetScrollBehavior": "auto"
+   },
+   "scrollBefore": 0,
+   "afterEnter": {
+    "tag": "SECTION",
+    "id": "control-room",
+    "cls": "cr",
+    "text": "Stylized residential entrance, driven by",
+    "href": null,
+    "rect": {
+     "x": 0,
+     "y": 25,
+     "w": 390,
+     "h": 2024
+    },
+    "outline": "none 3px rgb(241, 244, 235)",
+    "color": "rgb(241, 244, 235)",
+    "bg": "rgb(7, 9, 11)",
+    "transition": "0s none",
+    "scrollY": 84
+   },
+   "hash": "#control-room",
+   "scrollAfter": 84,
+   "crTop": 25,
+   "afterOutline": "none 3px rgb(241, 244, 235)",
+   "targets": [
+    {
+     "id": "filter-all",
+     "w": 40,
+     "h": 40,
+     "display": "flex",
+     "visible": true,
+     "disabled": false
+    },
+    {
+     "id": "filter-high",
+     "w": 45.8,
+     "h": 40,
+     "display": "flex",
+     "visible": true,
+     "disabled": false
+    },
+    {
+     "id": "filter-medium",
+     "w": 65,
+     "h": 40,
+     "display": "flex",
+     "visible": true,
+     "disabled": false
+    },
+    {
+     "id": "verify",
+     "w": 104,
+     "h": 40,
+     "display": "block",
+     "visible": true,
+     "disabled": false
+    },
+    {
+     "id": "export",
+     "w": 160.5,
+     "h": 40,
+     "display": "block",
+     "visible": true,
+     "disabled": false
+    },
+    {
+     "id": "tamper",
+     "w": 148.5,
+     "h": 40,
+     "display": "block",
+     "visible": true,
+     "disabled": false
+    }
+   ],
+   "overflow": {
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "bodyScrollWidth": 390
+   },
+   "errors": []
+  },
+  "requests": [
+   "200 /index.html",
+   "200 /fonts/space-grotesk-latin.woff2",
+   "200 /fonts/dm-sans-latin.woff2",
+   "200 /styles.css",
+   "200 /control_room.css",
+   "200 /app.js",
+   "200 /engine.mjs",
+   "200 /filters.mjs",
+   "200 /correlator.mjs",
+   "200 /fixture_replay.mjs",
+   "200 /fixtures.js",
+   "200 /reconstruction.mjs",
+   "200 /signal_forge.mjs",
+   "200 /reconstruction-view.mjs",
+   "200 /showcase_view.mjs",
+   "200 /control_room.mjs",
+   "200 /control_room_view.mjs",
+   "200 /playback.mjs",
+   "200 /showcase.mjs",
+   "200 /control_room_scene.mjs",
+   "200 /index.html",
+   "200 /fonts/space-grotesk-latin.woff2",
+   "200 /styles.css",
+   "200 /fonts/dm-sans-latin.woff2",
+   "200 /control_room.css",
+   "200 /app.js",
+   "200 /engine.mjs",
+   "200 /filters.mjs",
+   "200 /correlator.mjs",
+   "200 /fixture_replay.mjs",
+   "200 /fixtures.js",
+   "200 /reconstruction.mjs",
+   "200 /signal_forge.mjs",
+   "200 /reconstruction-view.mjs",
+   "200 /control_room_view.mjs",
+   "200 /showcase_view.mjs",
+   "200 /control_room.mjs",
+   "200 /playback.mjs",
+   "200 /showcase.mjs",
+   "200 /control_room_scene.mjs",
+   "200 /index.html",
+   "200 /fonts/space-grotesk-latin.woff2",
+   "200 /fonts/dm-sans-latin.woff2",
+   "200 /styles.css",
+   "200 /control_room.css",
+   "200 /app.js",
+   "200 /engine.mjs",
+   "200 /filters.mjs",
+   "200 /correlator.mjs",
+   "200 /fixture_replay.mjs",
+   "200 /fixtures.js",
+   "200 /signal_forge.mjs",
+   "200 /reconstruction.mjs",
+   "200 /reconstruction-view.mjs",
+   "200 /control_room_view.mjs",
+   "200 /showcase_view.mjs",
+   "200 /control_room.mjs",
+   "200 /playback.mjs",
+   "200 /control_room_scene.mjs",
+   "200 /showcase.mjs",
+   "200 /index.html",
+   "200 /fonts/space-grotesk-latin.woff2",
+   "200 /styles.css",
+   "200 /fonts/dm-sans-latin.woff2",
+   "200 /control_room.css",
+   "200 /app.js",
+   "200 /engine.mjs",
+   "200 /filters.mjs",
+   "200 /correlator.mjs",
+   "200 /fixture_replay.mjs",
+   "200 /reconstruction.mjs",
+   "200 /signal_forge.mjs",
+   "200 /reconstruction-view.mjs",
+   "200 /fixtures.js",
+   "200 /control_room_view.mjs",
+   "200 /showcase_view.mjs",
+   "200 /control_room.mjs",
+   "200 /playback.mjs",
+   "200 /control_room_scene.mjs",
+   "200 /showcase.mjs"
+  ],
+  "thirdParty": "server only sees same-origin; cross-origin requests not observed by this script"
+ }
+}
