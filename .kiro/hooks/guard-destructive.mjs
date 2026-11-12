@@ -10,6 +10,9 @@
  * Everything routine (edit files, run tests, commit, push a feature branch, open a PR) stays allowed.
  */
 
+const SECRET = String.raw`(?:(?<![A-Za-z0-9_])\.env\b|id_rsa|id_ed25519|\.pem\b|credentials\.json|\.kiro[\\/]settings[\\/]mcp\.json)`;
+const VERB = String.raw`(?:\bcat\b|\btype\b|Get-Content|Copy-Item|Invoke-WebRequest|\bcurl\b|Out-File|>)`;
+
 const RULES = [
   [/\bgit\s+push\b[^\n]*(--force\b|--force-with-lease\b|\s-f\b)/i, 'force-push is blocked'],
   [/\bgit\s+push\b[^\n]*\s(origin\s+)?(HEAD:)?(refs\/heads\/)?(main|master)\b/i, 'pushing directly to main/master is blocked; push a feature branch and open a PR'],
@@ -31,7 +34,9 @@ const RULES = [
   [/\b(taskkill\b[^\n]*\/IM|Stop-Process\b[^\n]*-Name\b)/i, 'killing processes by image name would hit unrelated apps; kill by PID or by unique command line'],
   [/\bGet-Process\b[^\n|]*\|\s*Stop-Process/i, 'killing processes by name would hit unrelated apps; kill by PID or by unique command line'],
   [/\b(netsh\s+advfirewall|New-NetFirewallRule|Set-NetFirewall|Add-MpPreference|Set-MpPreference)\b/i, 'firewall/antivirus changes are blocked'],
-  [/(\.env\b|id_rsa|id_ed25519|\.pem\b|credentials\.json|\.kiro[\\/]settings[\\/]mcp\.json)[^\n]*(cat|type|Get-Content|Copy-Item|Invoke-WebRequest|curl|Out-File|>)/i, 'reading or exfiltrating secret-like files is blocked'],
+  // `.env` must be a file name (not the tail of `process.env`): it may not follow a word character.
+  // Either order: "<verb> ... <secret file>" or "<secret file> ... <verb>".
+  [new RegExp(`${VERB}[^\\n]*${SECRET}|${SECRET}[^\\n]*${VERB}`, 'i'), 'reading or exfiltrating secret-like files is blocked'],
 ];
 
 // Recursive deletes are allowed only inside the project, the OS temp folder, or QA scratch dirs.

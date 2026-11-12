@@ -70,7 +70,8 @@ export class Browser {
     const exe = process.env.CHROME_PATH || CHROME_CANDIDATES.find(existsSync);
     if (!exe) throw new Error('No Chrome/Edge found. Set CHROME_PATH.');
     const profile = mkdtempSync(path.join(tmpdir(), 'gbqa-'));
-    const proc = spawn(exe, ['--headless=new', '--remote-debugging-port=0', `--user-data-dir=${profile}`, '--no-first-run', '--disable-gpu', '--hide-scrollbars', '--disable-backgrounding-occluded-windows', '--disable-renderer-backgrounding', '--disable-background-timer-throttling', '--force-device-scale-factor=1', '--disable-features=CalculateNativeWinOcclusion,TranslateUI', '--disable-ipc-flooding-protection', '--disable-dev-shm-usage', '--mute-audio', 'about:blank'], {stdio: 'ignore'});
+    if (process.env.QA_MIN) { /* bisect knob: minimal flags */ }
+    const proc = spawn(exe, process.env.QA_MIN ? ['--headless=new', '--remote-debugging-port=0', `--user-data-dir=${profile}`, '--no-first-run', 'about:blank'] : ['--headless=new', '--remote-debugging-port=0', `--user-data-dir=${profile}`, '--no-first-run', '--disable-gpu', '--hide-scrollbars', '--disable-backgrounding-occluded-windows', '--disable-renderer-backgrounding', '--disable-background-timer-throttling', '--force-device-scale-factor=1', '--disable-features=CalculateNativeWinOcclusion,TranslateUI', '--disable-ipc-flooding-protection', '--disable-dev-shm-usage', '--mute-audio', 'about:blank'], {stdio: 'ignore'});
     let port = null;
     for (let i = 0; i < 80 && !port; i++) {
       const f = path.join(profile, 'DevToolsActivePort');
@@ -85,8 +86,10 @@ export class Browser {
     await Promise.race([new Promise(r => ws.addEventListener('open', r, {once: true})), new Promise((_, rej) => setTimeout(() => rej(new Error('DevTools port: WebSocket open timeout')), 10000))]);
     const b = new Browser(proc, ws, profile);
     await b.send('Page.enable'); await b.send('Runtime.enable'); await b.send('Network.enable'); await b.send('Performance.enable'); await b.send('Inspector.enable').catch(() => {});
-    await b.send('Emulation.setFocusEmulationEnabled', {enabled: true}).catch(() => {});
-    await b.send('Page.bringToFront').catch(() => {});
+    if (!process.env.QA_NOFOCUS) {
+      await b.send('Emulation.setFocusEmulationEnabled', {enabled: true}).catch(() => {});
+      await b.send('Page.bringToFront').catch(() => {});
+    }
     return b;
   }
 
@@ -131,9 +134,19 @@ export class Browser {
     await this.send('Page.navigate', {url});
     await this.waitFor(readyExpr, 'page ready ' + url, 15000);
     this.lastLoadMs = Date.now() - t0;
-    await sleep(500);
+    // Measured on Chrome 157 and Edge 157 (headless=new, fresh profile): the browser reloads a newly opened tab once,
+    // about 1.5 s after the first navigation, even for a plain text file. A test that clicks in that window loses its
+    // click (and its state) to the reload. So wait until the document has been stable for 2.2 s before returning.
+    let origin = await this.eval('performance.timeOrigin').catch(() => null), stableSince = Date.now();
+    while (Date.now() - stableSince < 2200 && Date.now() - t0 < 25000) {
+      await sleep(250);
+      const now = await this.eval('performance.timeOrigin').catch(() => null);
+      if (now !== origin) { origin = now; stableSince = Date.now(); this.reloads = (this.reloads || 0) + 1; }
+    }
+    await this.waitFor(readyExpr, 'page ready after settle ' + url, 15000);
   }
-  click(sel) { return this.eval(`(()=>{const e=document.querySelector(${JSON.stringify(sel)});if(!e)throw new Error('no element '+${JSON.stringify(sel)});e.click();return true})()`); }
+  // SVG elements have no .click(); dispatch a real bubbling MouseEvent for them (what a user's click produces).
+  click(sel) { return this.eval(`(()=>{const e=document.querySelector(${JSON.stringify(sel)});if(!e)throw new Error('no element '+${JSON.stringify(sel)});if(typeof e.click==='function')e.click();else e.dispatchEvent(new MouseEvent('click',{bubbles:true,cancelable:true,view:window}));return true})()`); }
   text(sel) { return this.eval(`document.querySelector(${JSON.stringify(sel)})?.textContent ?? null`); }
   prop(sel, p) { return this.eval(`document.querySelector(${JSON.stringify(sel)})?.${p} ?? null`); }
   attr(sel, a) { return this.eval(`document.querySelector(${JSON.stringify(sel)})?.getAttribute(${JSON.stringify(a)}) ?? null`); }
