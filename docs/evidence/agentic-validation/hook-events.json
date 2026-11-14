@@ -1,0 +1,60 @@
+{
+ "note": "Extracted from the local Kiro session log (messages.jsonl) by a script; paths sanitized. Kiro records that a hook ran and its status; it does not record command output, so command output evidence comes from the runner log.",
+ "phaseStartUtc": "2026-11-12T06:34:46.072Z",
+ "total": 63,
+ "byHookAndContext": {
+  "guard-destructive-commands.json#hook-0 [main] completed": 60,
+  "reconstruction-tests-on-save.json#hook-0 [main] completed": 3
+ },
+ "reconstructionHookExecutions": [
+  {
+   "at": "2026-11-12T08:25:20.932Z",
+   "hook": "reconstruction-tests-on-save.json#hook-0",
+   "name": "Run reconstruction tests on save",
+   "action": "runCommand",
+   "status": "completed",
+   "sub": "main"
+  },
+  {
+   "at": "2026-11-12T08:37:28.299Z",
+   "hook": "reconstruction-tests-on-save.json#hook-0",
+   "name": "Run reconstruction tests on save",
+   "action": "runCommand",
+   "status": "completed",
+   "sub": "main"
+  },
+  {
+   "at": "2026-11-12T08:49:46.056Z",
+   "hook": "reconstruction-tests-on-save.json#hook-0",
+   "name": "Run reconstruction tests on save",
+   "action": "runCommand",
+   "status": "completed",
+   "sub": "main"
+  }
+ ],
+ "preToolUseBlocksObserved": [
+  {
+   "at": "2026-11-12T08:25:19.896Z",
+   "tool": "execute_pwsh",
+   "command": "Write-Output \"safe-test: git push --force origin main\"",
+   "reasonReportedByHook": "force-push is blocked",
+   "source": "hook response text received in this session; Kiro does not write intercepted calls as tool results to the log"
+  },
+  {
+   "at": "2026-11-12T08:35:43.897Z",
+   "tool": "execute_pwsh",
+   "command": "Add-Content .gitignore \".kiro/hooks/logs/\"; Remove-Item .kiro\\hooks\\logs -Recurse -Force -ErrorAction SilentlyContinue; $j=Get-Content .kiro\\hooks\\reconstructio",
+   "reasonReportedByHook": "recursive delete outside the project or the temp folder is blocked",
+   "source": "hook response text received in this session; Kiro does not write intercepted calls as tool results to the log"
+  },
+  {
+   "at": "2026-11-12T08:41:42.664Z",
+   "tool": "execute_pwsh",
+   "command": "Get-ChildItem $env:USERPROFILE\\.kiro\\powers -Recurse -Depth 3 | Select-Object FullName,Length | Format-Table -AutoSize -Wrap | Out-String -Width 220; Get-Conten",
+   "reasonReportedByHook": "reading or exfiltrating secret-like files is blocked",
+   "source": "hook response text received in this session; Kiro does not write intercepted calls as tool results to the log"
+  }
+ ],
+ "firstHookAt": "2026-11-12T06:34:55.282Z",
+ "lastHookAt": "2026-11-12T08:50:03.699Z"
+}

@@ -53,6 +53,8 @@ jobs:
       - run: node --test tests/forge-parity.test.mjs
       - run: node --test tests/control_room_wiring.test.mjs
       - run: node --test tests/guard.test.mjs
+      - run: node --test tests/a11y_targets.test.mjs
+      - run: node --test tests/hooks.test.mjs
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

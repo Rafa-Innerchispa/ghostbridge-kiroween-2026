@@ -1,0 +1,215 @@
+{
+ "d1440": {
+  "low": [],
+  "small": [
+   {
+    "el": "A",
+    "w": 76,
+    "h": 17,
+    "tag": "A"
+   },
+   {
+    "el": "A",
+    "w": 79,
+    "h": 17,
+    "tag": "A"
+   },
+   {
+    "el": "A",
+    "w": 53,
+    "h": 17,
+    "tag": "A"
+   },
+   {
+    "el": "A",
+    "w": 70,
+    "h": 17,
+    "tag": "A"
+   },
+   {
+    "el": "A",
+    "w": 51,
+    "h": 17,
+    "tag": "A"
+   },
+   {
+    "el": "filter-all",
+    "w": 43,
+    "h": 30,
+    "tag": "BUTTON"
+   },
+   {
+    "el": "filter-high",
+    "w": 54,
+    "h": 30,
+    "tag": "BUTTON"
+   },
+   {
+    "el": "filter-medium",
+    "w": 73,
+    "h": 30,
+    "tag": "BUTTON"
+   },
+   {
+    "el": "verify",
+    "w": 104,
+    "h": 39,
+    "tag": "BUTTON"
+   },
+   {
+    "el": "export",
+    "w": 160,
+    "h": 39,
+    "tag": "BUTTON"
+   },
+   {
+    "el": "tamper",
+    "w": 149,
+    "h": 39,
+    "tag": "BUTTON"
+   },
+   {
+    "el": "A",
+    "w": 80,
+    "h": 14,
+    "tag": "A"
+   }
+  ],
+  "unnamed": [],
+  "focusables": 36,
+  "lang": "en",
+  "hasMain": true,
+  "skip": false
+ },
+ "d1440_tab": [],
+ "d1440_tabcount": 39,
+ "d1440_offscreenFocus": [
+  "cr-tab-building",
+  "cr-panel-building",
+  "cr-chal-a",
+  "cr-chal-b",
+  "primary link-button",
+  "link-button",
+  "night",
+  "normal",
+  "denied",
+  "legacy-bridge",
+  "signal-forge",
+  "reset",
+  "filter-all",
+  "filter-high",
+  "filter-medium",
+  "verify",
+  "export",
+  "tamper",
+  "A",
+  "brand",
+  "A",
+  "A",
+  "A",
+  "A"
+ ],
+ "m390": {
+  "low": [],
+  "small": [
+   {
+    "el": "A",
+    "w": 66,
+    "h": 14,
+    "tag": "A"
+   },
+   {
+    "el": "A",
+    "w": 44,
+    "h": 14,
+    "tag": "A"
+   },
+   {
+    "el": "A",
+    "w": 59,
+    "h": 14,
+    "tag": "A"
+   },
+   {
+    "el": "A",
+    "w": 42,
+    "h": 14,
+    "tag": "A"
+   },
+   {
+    "el": "filter-all",
+    "w": 35,
+    "h": 28,
+    "tag": "BUTTON"
+   },
+   {
+    "el": "filter-high",
+    "w": 46,
+    "h": 28,
+    "tag": "BUTTON"
+   },
+   {
+    "el": "filter-medium",
+    "w": 65,
+    "h": 28,
+    "tag": "BUTTON"
+   },
+   {
+    "el": "verify",
+    "w": 104,
+    "h": 39,
+    "tag": "BUTTON"
+   },
+   {
+    "el": "export",
+    "w": 160,
+    "h": 39,
+    "tag": "BUTTON"
+   },
+   {
+    "el": "tamper",
+    "w": 149,
+    "h": 38,
+    "tag": "BUTTON"
+   },
+   {
+    "el": "A",
+    "w": 340,
+    "h": 13,
+    "tag": "A"
+   }
+  ],
+  "unnamed": [],
+  "focusables": 35,
+  "lang": "en",
+  "hasMain": true,
+  "skip": false
+ },
+ "m390_tab": [],
+ "m390_tabcount": 39,
+ "m390_offscreenFocus": [
+  "cr-node",
+  "cr-node",
+  "cr-node",
+  "cr-node",
+  "cr-tab-building",
+  "cr-panel-building",
+  "cr-chal-a",
+  "cr-chal-b",
+  "primary link-button",
+  "link-button",
+  "night",
+  "normal",
+  "denied",
+  "legacy-bridge",
+  "signal-forge",
+  "reset",
+  "filter-all",
+  "filter-high",
+  "filter-medium",
+  "verify",
+  "export",
+  "tamper",
+  "A"
+ ]
+}

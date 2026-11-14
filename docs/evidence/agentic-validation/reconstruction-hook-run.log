@@ -1,0 +1,1 @@
+{"at":"2026-11-12T08:49:46.018Z","hook":"reconstruction-tests-on-save","command":"node --test tests/reconstruction.test.mjs tests/reconstruction-view.test.mjs tests/playback.test.mjs","exit":0,"signal":null,"error":null,"timedOut":false,"tests":82,"pass":82,"fail":0,"ms":311}
