@@ -87,3 +87,7 @@ Total automated checks counted: 186 + 329 + 14 = 529 (Phase 4: 502), excluding t
 ## 7. Limitations
 
 Chrome 157 only; 390 px is emulation; no screen reader; contrast is sampled. Credits not measurable. Agent tool restrictions not proven. Sub-agent runs share the session's model setting ("Auto"), so the model used per agent is not recorded. The screenshots are automated Chrome captures, not Kiro IDE captures.
+
+## 8. Correction (2026-11-12, Phase 6 eligibility audit)
+
+The first version of this PR added `.kiro/hooks/logs/` to `.gitignore`. The Kiroween 2026 overview page (https://kiroween.devpost.com/) says not to add `/.kiro` or its subfolders to `.gitignore` because it may disqualify a submission. The line was removed, the runner now logs to `<system temp>/ghostbridge-hooks/reconstruction-hook.log`, and `tests/hooks.test.mjs` fails if `.gitignore` ever ignores `.kiro` again. The committed evidence log is unchanged. The full Rules tab returned HTTP 403 to our fetch, so the rule was verified from the overview page only.

@@ -4,4 +4,3 @@ __pycache__/
 .env*
 artifacts/
 .devpost-hackathon-state.json
-.kiro/hooks/logs/

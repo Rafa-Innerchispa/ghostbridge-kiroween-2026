@@ -2,7 +2,7 @@
 
 > **Update (agentic-validation phase, 2026-11-12):** the hook below has now been observed firing. It runs
 > `node .kiro/hooks/run-reconstruction-tests.mjs`, a bounded runner that executes those three test files and appends a
-> JSON line (time, exit code, counts) to `.kiro/hooks/logs/` (git-ignored). Evidence:
+> JSON line (time, exit code, counts) to `<system temp>/ghostbridge-hooks/reconstruction-hook.log` (outside the repository: the Kiroween rules forbid git-ignoring `.kiro` or its subfolders). Evidence:
 > `docs/evidence/agentic-validation/REPORT.md`, section 4. The section below is the original, now superseded note.
 
 ## `reconstruction-tests-on-save.json` (originally configured with no observed execution; see update above)

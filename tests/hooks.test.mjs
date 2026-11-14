@@ -72,3 +72,11 @@ test('reconstruction runner runs the three suites, passes, and appends one JSON 
     assert.match(rec.command, /^node --test tests\/reconstruction\.test\.mjs tests\/reconstruction-view\.test\.mjs tests\/playback\.test\.mjs$/);
   } finally { rmSync(dir, {recursive: true, force: true}); }
 });
+
+test('Kiroween eligibility: .gitignore never ignores .kiro or any of its subfolders, and the runner logs outside the repo', () => {
+  const lines = readFileSync(path.join(ROOT, '.gitignore'), 'utf8').split(/\r?\n/).map(l => l.trim()).filter(l => l && !l.startsWith('#'));
+  for (const l of lines) assert.ok(!/(^|[\\/*!])\.kiro(\b|$)/.test(l.replace(/^!/, '')) || l.startsWith('!'), `.gitignore must not ignore .kiro: ${l}`);
+  const runner = readFileSync(path.join(HOOKS, 'run-reconstruction-tests.mjs'), 'utf8');
+  assert.match(runner, /os\.tmpdir\(\)/);
+  assert.ok(!/path\.join\(ROOT, '\.kiro', 'hooks', 'logs'/.test(runner));
+});
