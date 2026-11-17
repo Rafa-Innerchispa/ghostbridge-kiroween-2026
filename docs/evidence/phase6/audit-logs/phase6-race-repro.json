@@ -1,0 +1,149 @@
+[
+ {
+  "i": 0,
+  "rate": 1,
+  "early": false,
+  "anomalies": [],
+  "keyboard": {
+   "afterEnter": 0,
+   "afterSpace": 1
+  },
+  "picks": [
+   {
+    "cur": 0,
+    "cap": "Beat 1 of 8Quiet build"
+   },
+   {
+    "cur": 1,
+    "cap": "Beat 2 of 8Access deni"
+   },
+   {
+    "cur": 2,
+    "cap": "Beat 3 of 8Door opensR"
+   },
+   {
+    "cur": 3,
+    "cap": "Beat 4 of 8Door stays "
+   },
+   {
+    "cur": 4,
+    "cap": "Beat 5 of 8Rule condit"
+   },
+   {
+    "cur": 5,
+    "cap": "Beat 6 of 8Case appear"
+   },
+   {
+    "cur": 6,
+    "cap": "Beat 7 of 8Evidence ch"
+   },
+   {
+    "cur": 7,
+    "cap": "Beat 8 of 8Recommended"
+   }
+  ],
+  "log": [
+   {
+    "k": "focus",
+    "t": 15,
+    "v": "forge-gap @ app.js:269:32) <- control_room_view.mjs:330:74)"
+   },
+   {
+    "k": "focus",
+    "t": 16,
+    "v": "forge-gap @ app.js:216:32) <- app.js:276:29)"
+   },
+   {
+    "k": "focus",
+    "t": 35,
+    "v": "forge-gap @ control_room_view.mjs:325:92)"
+   },
+   {
+    "k": "beats-rebuilt",
+    "t": 155,
+    "v": 8
+   },
+   {
+    "k": "caption",
+    "t": 156,
+    "v": "Choose a beat to see the bui"
+   },
+   {
+    "k": "beats-rebuilt",
+    "t": 166,
+    "v": 8
+   },
+   {
+    "k": "caption",
+    "t": 166,
+    "v": "Choose a beat to see the bui"
+   },
+   {
+    "k": "cases-count",
+    "t": 166,
+    "v": "1"
+   },
+   {
+    "k": "focus",
+    "t": 1056,
+    "v": "cr-tm-next @ <anonymous>:1:39"
+   },
+   {
+    "k": "caption",
+    "t": 1084,
+    "v": "Beat 1 of 8Quiet buildingBef"
+   },
+   {
+    "k": "caption",
+    "t": 1412,
+    "v": "Beat 2 of 8Access deniedReco"
+   },
+   {
+    "k": "caption",
+    "t": 1600,
+    "v": "Beat 1 of 8Quiet buildingBef"
+   },
+   {
+    "k": "caption",
+    "t": 1809,
+    "v": "Beat 2 of 8Access deniedReco"
+   },
+   {
+    "k": "caption",
+    "t": 2006,
+    "v": "Beat 3 of 8Door opensRecorde"
+   },
+   {
+    "k": "caption",
+    "t": 2194,
+    "v": "Beat 4 of 8Door stays openDe"
+   },
+   {
+    "k": "caption",
+    "t": 2398,
+    "v": "Beat 5 of 8Rule conditionsDe"
+   },
+   {
+    "k": "caption",
+    "t": 2593,
+    "v": "Beat 6 of 8Case appearsDeriv"
+   },
+   {
+    "k": "caption",
+    "t": 2788,
+    "v": "Beat 7 of 8Evidence chainDer"
+   },
+   {
+    "k": "focus",
+    "t": 2982,
+    "v": "cr-tm-beat is-active @ time_machine_view.mjs:53:63) <- time_machine_view.mjs:104:51)"
+   },
+   {
+    "k": "caption",
+    "t": 2988,
+    "v": "Beat 8 of 8Recommended respo"
+   }
+  ],
+  "rebuildsAfterTimelineOpen": 2
+ }
+]

@@ -1,0 +1,1550 @@
+{
+ "summary": {
+  "pass": 39,
+  "fail": 0,
+  "total": 39
+ },
+ "results": [
+  {
+   "name": "d1440 measured 37 visible controls (37 standalone, 0 inline-exempt)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "d1440 every standalone control is >= 40x40px",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "d1440 nav link #control-room is shown on screen and >= 40px high",
+   "ok": true,
+   "detail": "{\"href\":\"#control-room\",\"text\":\"Control Room\",\"w\":76.2,\"h\":40,\"shown\":true}"
+  },
+  {
+   "name": "d1440 nav link #workspace is shown on screen and >= 40px high",
+   "ok": true,
+   "detail": "{\"href\":\"#workspace\",\"text\":\"Signal lab\",\"w\":52.5,\"h\":40,\"shown\":true}"
+  },
+  {
+   "name": "d1440 nav link #vision is shown on screen and >= 40px high",
+   "ok": true,
+   "detail": "{\"href\":\"#vision\",\"text\":\"Product vision\",\"w\":79.4,\"h\":40,\"shown\":true}"
+  },
+  {
+   "name": "d1440 footer link is >= 40px high",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "d1440 no horizontal overflow",
+   "ok": true,
+   "detail": "{\"scrollWidth\":1440,\"innerWidth\":1440,\"bodyScrollWidth\":1440}"
+  },
+  {
+   "name": "d1440 reduced motion emulated and html scroll-behavior is not smooth",
+   "ok": true,
+   "detail": "{\"mq\":true,\"scrollBehavior\":\"auto\"}"
+  },
+  {
+   "name": "d1440 reduced motion: click #control-room jumps instantly (immediate scrollY 67 == final 67, moved > 0)",
+   "ok": true,
+   "detail": "{\"href\":\"#control-room\",\"immediate\":67,\"final\":67,\"targetTop\":92}"
+  },
+  {
+   "name": "d1440 reduced motion: click #vision jumps instantly (immediate scrollY 1481 == final 1481, moved > 0)",
+   "ok": true,
+   "detail": "{\"href\":\"#vision\",\"immediate\":1481,\"final\":1481,\"targetTop\":1506}"
+  },
+  {
+   "name": "d1440 reduced motion: click #workspace jumps instantly (immediate scrollY 2975 == final 2975, moved > 0)",
+   "ok": true,
+   "detail": "{\"href\":\"#workspace\",\"immediate\":2975,\"final\":2975,\"targetTop\":3000}"
+  },
+  {
+   "name": "d1440 reduced motion: click #how jumps instantly (immediate scrollY 4338 == final 4338, moved > 0)",
+   "ok": true,
+   "detail": "{\"href\":\"#how\",\"immediate\":4338,\"final\":4338,\"targetTop\":4704}"
+  },
+  {
+   "name": "d1440 no console errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "d1280 measured 37 visible controls (37 standalone, 0 inline-exempt)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "d1280 every standalone control is >= 40x40px",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "d1280 nav link #control-room is shown on screen and >= 40px high",
+   "ok": true,
+   "detail": "{\"href\":\"#control-room\",\"text\":\"Control Room\",\"w\":76.2,\"h\":40,\"shown\":true}"
+  },
+  {
+   "name": "d1280 nav link #workspace is shown on screen and >= 40px high",
+   "ok": true,
+   "detail": "{\"href\":\"#workspace\",\"text\":\"Signal lab\",\"w\":52.5,\"h\":40,\"shown\":true}"
+  },
+  {
+   "name": "d1280 nav link #vision is shown on screen and >= 40px high",
+   "ok": true,
+   "detail": "{\"href\":\"#vision\",\"text\":\"Product vision\",\"w\":79.4,\"h\":40,\"shown\":true}"
+  },
+  {
+   "name": "d1280 footer link is >= 40px high",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "d1280 no horizontal overflow",
+   "ok": true,
+   "detail": "{\"scrollWidth\":1280,\"innerWidth\":1280,\"bodyScrollWidth\":1280}"
+  },
+  {
+   "name": "d1280 reduced motion emulated and html scroll-behavior is not smooth",
+   "ok": true,
+   "detail": "{\"mq\":true,\"scrollBehavior\":\"auto\"}"
+  },
+  {
+   "name": "d1280 reduced motion: click #control-room jumps instantly (immediate scrollY 67 == final 67, moved > 0)",
+   "ok": true,
+   "detail": "{\"href\":\"#control-room\",\"immediate\":67,\"final\":67,\"targetTop\":92}"
+  },
+  {
+   "name": "d1280 reduced motion: click #vision jumps instantly (immediate scrollY 1341 == final 1341, moved > 0)",
+   "ok": true,
+   "detail": "{\"href\":\"#vision\",\"immediate\":1341,\"final\":1341,\"targetTop\":1366}"
+  },
+  {
+   "name": "d1280 reduced motion: click #workspace jumps instantly (immediate scrollY 2833 == final 2833, moved > 0)",
+   "ok": true,
+   "detail": "{\"href\":\"#workspace\",\"immediate\":2833,\"final\":2833,\"targetTop\":2858}"
+  },
+  {
+   "name": "d1280 reduced motion: click #how jumps instantly (immediate scrollY 4393 == final 4393, moved > 0)",
+   "ok": true,
+   "detail": "{\"href\":\"#how\",\"immediate\":4393,\"final\":4393,\"targetTop\":4578}"
+  },
+  {
+   "name": "d1280 no console errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "m390 measured 37 visible controls (37 standalone, 0 inline-exempt)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "m390 every standalone control is >= 40x40px",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "m390 nav link #control-room is shown on screen and >= 40px high",
+   "ok": true,
+   "detail": "{\"href\":\"#control-room\",\"text\":\"Control Room\",\"w\":63.5,\"h\":40,\"shown\":true}"
+  },
+  {
+   "name": "m390 nav link #workspace is shown on screen and >= 40px high",
+   "ok": true,
+   "detail": "{\"href\":\"#workspace\",\"text\":\"Signal lab\",\"w\":43.8,\"h\":40,\"shown\":true}"
+  },
+  {
+   "name": "m390 nav link #vision is shown on screen and >= 40px high",
+   "ok": true,
+   "detail": "{\"href\":\"#vision\",\"text\":\"Product vision\",\"w\":66.2,\"h\":40,\"shown\":true}"
+  },
+  {
+   "name": "m390 footer link is >= 40px high",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "m390 no horizontal overflow",
+   "ok": true,
+   "detail": "{\"scrollWidth\":390,\"innerWidth\":390,\"bodyScrollWidth\":390}"
+  },
+  {
+   "name": "m390 reduced motion emulated and html scroll-behavior is not smooth",
+   "ok": true,
+   "detail": "{\"mq\":true,\"scrollBehavior\":\"auto\"}"
+  },
+  {
+   "name": "m390 reduced motion: click #control-room jumps instantly (immediate scrollY 110 == final 110, moved > 0)",
+   "ok": true,
+   "detail": "{\"href\":\"#control-room\",\"immediate\":110,\"final\":110,\"targetTop\":135}"
+  },
+  {
+   "name": "m390 reduced motion: click #vision jumps instantly (immediate scrollY 2134 == final 2134, moved > 0)",
+   "ok": true,
+   "detail": "{\"href\":\"#vision\",\"immediate\":2134,\"final\":2134,\"targetTop\":2159}"
+  },
+  {
+   "name": "m390 reduced motion: click #workspace jumps instantly (immediate scrollY 4690 == final 4690, moved > 0)",
+   "ok": true,
+   "detail": "{\"href\":\"#workspace\",\"immediate\":4690,\"final\":4690,\"targetTop\":4715}"
+  },
+  {
+   "name": "m390 reduced motion: click #how jumps instantly (immediate scrollY 7339 == final 7339, moved > 0)",
+   "ok": true,
+   "detail": "{\"href\":\"#how\",\"immediate\":7339,\"final\":7339,\"targetTop\":7364}"
+  },
+  {
+   "name": "m390 no console errors",
+   "ok": true,
+   "detail": ""
+  }
+ ],
+ "detail": {
+  "d1440": {
+   "controls": [
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "skip-link",
+     "type": "",
+     "text": "Skip to Control Room",
+     "w": 182,
+     "h": 44,
+     "inline": false
+    },
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "brand",
+     "type": "",
+     "text": "G✦ghostbridgeKIROWEEN / 2026",
+     "w": 308.5,
+     "h": 43,
+     "inline": false
+    },
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "",
+     "type": "",
+     "text": "Control Room",
+     "w": 76.2,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "",
+     "type": "",
+     "text": "Product vision",
+     "w": 79.4,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "",
+     "type": "",
+     "text": "Signal lab",
+     "w": 52.5,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "",
+     "type": "",
+     "text": "How it works",
+     "w": 70.4,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "",
+     "type": "",
+     "text": "Source ↗",
+     "w": 50.8,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "cr-forge",
+     "cls": "primary",
+     "type": "button",
+     "text": "Forge an incident Choose the t",
+     "w": 330,
+     "h": 61,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "cr-unfold",
+     "cls": "",
+     "type": "button",
+     "text": "Watch an incident unfold Runs ",
+     "w": 195.1,
+     "h": 61,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "cr-showcase",
+     "cls": "cr-ghost",
+     "type": "button",
+     "text": "▶ Showcase Mode About one minu",
+     "w": 154,
+     "h": 62,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "",
+     "cls": "cr-node",
+     "type": "button",
+     "text": "North entranceClosedAwaiting s",
+     "w": 360,
+     "h": 82,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "",
+     "cls": "cr-node",
+     "type": "button",
+     "text": "Archive readerIdleAwaiting sig",
+     "w": 360,
+     "h": 82,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "",
+     "cls": "cr-node",
+     "type": "button",
+     "text": "Loading bay cameraNo signal ye",
+     "w": 360,
+     "h": 82,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "",
+     "cls": "cr-node",
+     "type": "button",
+     "text": "Archive corridorQuietAwaiting ",
+     "w": 360,
+     "h": 82,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "cr-tab-building",
+     "cls": "is-active",
+     "type": "button",
+     "text": "BuildingWhat it says",
+     "w": 95.1,
+     "h": 59,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "cr-tab-timeline",
+     "cls": "",
+     "type": "button",
+     "text": "TimelineWhen it happened",
+     "w": 121.6,
+     "h": 59,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "cr-tab-evidence",
+     "cls": "",
+     "type": "button",
+     "text": "EvidenceWhat proves it",
+     "w": 103.5,
+     "h": 59,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "cr-tab-response",
+     "cls": "",
+     "type": "button",
+     "text": "ResponseWhat to do next",
+     "w": 110.6,
+     "h": 59,
+     "inline": false
+    },
+    {
+     "tag": "DIV",
+     "id": "cr-panel-building",
+     "cls": "cr-panel",
+     "type": "",
+     "text": "The building is quiet. Nothing",
+     "w": 789.6,
+     "h": 260,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "cr-chal-a",
+     "cls": "cr-chal",
+     "type": "button",
+     "text": "Challenge A299 s · 120 sInside",
+     "w": 488.4,
+     "h": 83,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "cr-chal-b",
+     "cls": "cr-chal",
+     "type": "button",
+     "text": "Challenge B301 s · 119 sOne se",
+     "w": 488.4,
+     "h": 83,
+     "inline": false
+    },
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "primary link-button",
+     "type": "",
+     "text": "Explore a pilot",
+     "w": 131,
+     "h": 49,
+     "inline": false
+    },
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "link-button",
+     "type": "",
+     "text": "Request a building assessment",
+     "w": 236,
+     "h": 49,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "night",
+     "cls": "primary",
+     "type": "submit",
+     "text": "▶ Night Watch 5 events / 3 inc",
+     "w": 199,
+     "h": 83,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "normal",
+     "cls": "",
+     "type": "submit",
+     "text": "○ Normal Shift 4 events / no i",
+     "w": 199,
+     "h": 83,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "denied",
+     "cls": "",
+     "type": "submit",
+     "text": "⊘ Access Denied 1 event / 1 in",
+     "w": 199,
+     "h": 83,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "legacy-bridge",
+     "cls": "legacy-btn",
+     "type": "submit",
+     "text": "⛓ Legacy Bridge Demo Offline f",
+     "w": 199,
+     "h": 83,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "signal-forge",
+     "cls": "forge-launch",
+     "type": "submit",
+     "text": "⚡ Signal Forge Change the evid",
+     "w": 199,
+     "h": 83,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "replay",
+     "cls": "",
+     "type": "submit",
+     "text": "↻ Replay last Test idempotency",
+     "w": 199,
+     "h": 83,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "reset",
+     "cls": "quiet",
+     "type": "submit",
+     "text": "Reset lab",
+     "w": 90,
+     "h": 83,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "filter-all",
+     "cls": "filter-active",
+     "type": "button",
+     "text": "All",
+     "w": 43.2,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "filter-high",
+     "cls": "",
+     "type": "button",
+     "text": "High",
+     "w": 53.8,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "filter-medium",
+     "cls": "",
+     "type": "button",
+     "text": "Medium",
+     "w": 73,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "verify",
+     "cls": "",
+     "type": "submit",
+     "text": "✓ Verify chain",
+     "w": 104,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "export",
+     "cls": "",
+     "type": "submit",
+     "text": "↓ Export evidence JSON",
+     "w": 160.5,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "tamper",
+     "cls": "",
+     "type": "submit",
+     "text": "Test tamper detection",
+     "w": 148.5,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "",
+     "type": "",
+     "text": "Back to the lab ↑",
+     "w": 80.4,
+     "h": 40,
+     "inline": false
+    }
+   ],
+   "exemptInline": [],
+   "nav": [
+    {
+     "href": "#control-room",
+     "text": "Control Room",
+     "w": 76.2,
+     "h": 40,
+     "shown": true
+    },
+    {
+     "href": "#vision",
+     "text": "Product vision",
+     "w": 79.4,
+     "h": 40,
+     "shown": true
+    },
+    {
+     "href": "#workspace",
+     "text": "Signal lab",
+     "w": 52.5,
+     "h": 40,
+     "shown": true
+    },
+    {
+     "href": "#how",
+     "text": "How it works",
+     "w": 70.4,
+     "h": 40,
+     "shown": true
+    },
+    {
+     "href": "https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026",
+     "text": "Source ↗",
+     "w": 50.8,
+     "h": 40,
+     "shown": true
+    }
+   ],
+   "overflow": {
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "bodyScrollWidth": 1440
+   },
+   "reduced": {
+    "mq": true,
+    "scrollBehavior": "auto"
+   },
+   "scroll": [
+    {
+     "href": "#control-room",
+     "immediate": 67,
+     "final": 67,
+     "targetTop": 92
+    },
+    {
+     "href": "#vision",
+     "immediate": 1481,
+     "final": 1481,
+     "targetTop": 1506
+    },
+    {
+     "href": "#workspace",
+     "immediate": 2975,
+     "final": 2975,
+     "targetTop": 3000
+    },
+    {
+     "href": "#how",
+     "immediate": 4338,
+     "final": 4338,
+     "targetTop": 4704
+    }
+   ],
+   "errors": []
+  },
+  "d1280": {
+   "controls": [
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "skip-link",
+     "type": "",
+     "text": "Skip to Control Room",
+     "w": 182,
+     "h": 44,
+     "inline": false
+    },
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "brand",
+     "type": "",
+     "text": "G✦ghostbridgeKIROWEEN / 2026",
+     "w": 308.5,
+     "h": 43,
+     "inline": false
+    },
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "",
+     "type": "",
+     "text": "Control Room",
+     "w": 76.2,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "",
+     "type": "",
+     "text": "Product vision",
+     "w": 79.4,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "",
+     "type": "",
+     "text": "Signal lab",
+     "w": 52.5,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "",
+     "type": "",
+     "text": "How it works",
+     "w": 70.4,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "",
+     "type": "",
+     "text": "Source ↗",
+     "w": 50.8,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "cr-forge",
+     "cls": "primary",
+     "type": "button",
+     "text": "Forge an incident Choose the t",
+     "w": 330,
+     "h": 61,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "cr-unfold",
+     "cls": "",
+     "type": "button",
+     "text": "Watch an incident unfold Runs ",
+     "w": 195.1,
+     "h": 61,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "cr-showcase",
+     "cls": "cr-ghost",
+     "type": "button",
+     "text": "▶ Showcase Mode About one minu",
+     "w": 154,
+     "h": 62,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "",
+     "cls": "cr-node",
+     "type": "button",
+     "text": "North entranceClosedAwaiting s",
+     "w": 320,
+     "h": 82,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "",
+     "cls": "cr-node",
+     "type": "button",
+     "text": "Archive readerIdleAwaiting sig",
+     "w": 320,
+     "h": 82,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "",
+     "cls": "cr-node",
+     "type": "button",
+     "text": "Loading bay cameraNo signal ye",
+     "w": 320,
+     "h": 82,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "",
+     "cls": "cr-node",
+     "type": "button",
+     "text": "Archive corridorQuietAwaiting ",
+     "w": 320,
+     "h": 82,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "cr-tab-building",
+     "cls": "is-active",
+     "type": "button",
+     "text": "BuildingWhat it says",
+     "w": 95.1,
+     "h": 59,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "cr-tab-timeline",
+     "cls": "",
+     "type": "button",
+     "text": "TimelineWhen it happened",
+     "w": 121.6,
+     "h": 59,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "cr-tab-evidence",
+     "cls": "",
+     "type": "button",
+     "text": "EvidenceWhat proves it",
+     "w": 103.5,
+     "h": 59,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "cr-tab-response",
+     "cls": "",
+     "type": "button",
+     "text": "ResponseWhat to do next",
+     "w": 110.6,
+     "h": 59,
+     "inline": false
+    },
+    {
+     "tag": "DIV",
+     "id": "cr-panel-building",
+     "cls": "cr-panel",
+     "type": "",
+     "text": "The building is quiet. Nothing",
+     "w": 699,
+     "h": 260,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "cr-chal-a",
+     "cls": "cr-chal",
+     "type": "button",
+     "text": "Challenge A299 s · 120 sInside",
+     "w": 428,
+     "h": 83,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "cr-chal-b",
+     "cls": "cr-chal",
+     "type": "button",
+     "text": "Challenge B301 s · 119 sOne se",
+     "w": 428,
+     "h": 83,
+     "inline": false
+    },
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "primary link-button",
+     "type": "",
+     "text": "Explore a pilot",
+     "w": 131,
+     "h": 49,
+     "inline": false
+    },
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "link-button",
+     "type": "",
+     "text": "Request a building assessment",
+     "w": 236,
+     "h": 49,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "night",
+     "cls": "primary",
+     "type": "submit",
+     "text": "▶ Night Watch 5 events / 3 inc",
+     "w": 172.3,
+     "h": 100,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "normal",
+     "cls": "",
+     "type": "submit",
+     "text": "○ Normal Shift 4 events / no i",
+     "w": 172.3,
+     "h": 100,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "denied",
+     "cls": "",
+     "type": "submit",
+     "text": "⊘ Access Denied 1 event / 1 in",
+     "w": 172.3,
+     "h": 100,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "legacy-bridge",
+     "cls": "legacy-btn",
+     "type": "submit",
+     "text": "⛓ Legacy Bridge Demo Offline f",
+     "w": 172.3,
+     "h": 100,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "signal-forge",
+     "cls": "forge-launch",
+     "type": "submit",
+     "text": "⚡ Signal Forge Change the evid",
+     "w": 172.3,
+     "h": 100,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "replay",
+     "cls": "",
+     "type": "submit",
+     "text": "↻ Replay last Test idempotency",
+     "w": 172.3,
+     "h": 100,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "reset",
+     "cls": "quiet",
+     "type": "submit",
+     "text": "Reset lab",
+     "w": 90,
+     "h": 100,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "filter-all",
+     "cls": "filter-active",
+     "type": "button",
+     "text": "All",
+     "w": 43.2,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "filter-high",
+     "cls": "",
+     "type": "button",
+     "text": "High",
+     "w": 53.8,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "filter-medium",
+     "cls": "",
+     "type": "button",
+     "text": "Medium",
+     "w": 73,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "verify",
+     "cls": "",
+     "type": "submit",
+     "text": "✓ Verify chain",
+     "w": 104,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "export",
+     "cls": "",
+     "type": "submit",
+     "text": "↓ Export evidence JSON",
+     "w": 160.5,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "tamper",
+     "cls": "",
+     "type": "submit",
+     "text": "Test tamper detection",
+     "w": 148.5,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "",
+     "type": "",
+     "text": "Back to the lab ↑",
+     "w": 80.4,
+     "h": 40,
+     "inline": false
+    }
+   ],
+   "exemptInline": [],
+   "nav": [
+    {
+     "href": "#control-room",
+     "text": "Control Room",
+     "w": 76.2,
+     "h": 40,
+     "shown": true
+    },
+    {
+     "href": "#vision",
+     "text": "Product vision",
+     "w": 79.4,
+     "h": 40,
+     "shown": true
+    },
+    {
+     "href": "#workspace",
+     "text": "Signal lab",
+     "w": 52.5,
+     "h": 40,
+     "shown": true
+    },
+    {
+     "href": "#how",
+     "text": "How it works",
+     "w": 70.4,
+     "h": 40,
+     "shown": true
+    },
+    {
+     "href": "https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026",
+     "text": "Source ↗",
+     "w": 50.8,
+     "h": 40,
+     "shown": true
+    }
+   ],
+   "overflow": {
+    "scrollWidth": 1280,
+    "innerWidth": 1280,
+    "bodyScrollWidth": 1280
+   },
+   "reduced": {
+    "mq": true,
+    "scrollBehavior": "auto"
+   },
+   "scroll": [
+    {
+     "href": "#control-room",
+     "immediate": 67,
+     "final": 67,
+     "targetTop": 92
+    },
+    {
+     "href": "#vision",
+     "immediate": 1341,
+     "final": 1341,
+     "targetTop": 1366
+    },
+    {
+     "href": "#workspace",
+     "immediate": 2833,
+     "final": 2833,
+     "targetTop": 2858
+    },
+    {
+     "href": "#how",
+     "immediate": 4393,
+     "final": 4393,
+     "targetTop": 4578
+    }
+   ],
+   "errors": []
+  },
+  "m390": {
+   "controls": [
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "skip-link",
+     "type": "",
+     "text": "Skip to Control Room",
+     "w": 182,
+     "h": 44,
+     "inline": false
+    },
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "brand",
+     "type": "",
+     "text": "G✦ghostbridgeKIROWEEN / 2026",
+     "w": 154.3,
+     "h": 43,
+     "inline": false
+    },
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "",
+     "type": "",
+     "text": "Control Room",
+     "w": 63.5,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "",
+     "type": "",
+     "text": "Product vision",
+     "w": 66.2,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "",
+     "type": "",
+     "text": "Signal lab",
+     "w": 43.8,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "",
+     "type": "",
+     "text": "How it works",
+     "w": 58.7,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "",
+     "type": "",
+     "text": "Source ↗",
+     "w": 42.4,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "cr-forge",
+     "cls": "primary",
+     "type": "button",
+     "text": "Forge an incident Choose the t",
+     "w": 350,
+     "h": 61,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "cr-unfold",
+     "cls": "",
+     "type": "button",
+     "text": "Watch an incident unfold Runs ",
+     "w": 350,
+     "h": 61,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "cr-showcase",
+     "cls": "cr-ghost",
+     "type": "button",
+     "text": "▶ Showcase Mode About one minu",
+     "w": 350,
+     "h": 62,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "",
+     "cls": "cr-node",
+     "type": "button",
+     "text": "North entranceClosedAwaiting s",
+     "w": 195,
+     "h": 79,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "",
+     "cls": "cr-node",
+     "type": "button",
+     "text": "Archive readerIdleAwaiting sig",
+     "w": 195,
+     "h": 79,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "",
+     "cls": "cr-node",
+     "type": "button",
+     "text": "Loading bay cameraNo signal ye",
+     "w": 195,
+     "h": 78,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "",
+     "cls": "cr-node",
+     "type": "button",
+     "text": "Archive corridorQuietAwaiting ",
+     "w": 195,
+     "h": 78,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "cr-tab-building",
+     "cls": "is-active",
+     "type": "button",
+     "text": "BuildingWhat it says",
+     "w": 178,
+     "h": 57,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "cr-tab-timeline",
+     "cls": "",
+     "type": "button",
+     "text": "TimelineWhen it happened",
+     "w": 178,
+     "h": 57,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "cr-tab-evidence",
+     "cls": "",
+     "type": "button",
+     "text": "EvidenceWhat proves it",
+     "w": 178,
+     "h": 57,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "cr-tab-response",
+     "cls": "",
+     "type": "button",
+     "text": "ResponseWhat to do next",
+     "w": 178,
+     "h": 57,
+     "inline": false
+    },
+    {
+     "tag": "DIV",
+     "id": "cr-panel-building",
+     "cls": "cr-panel",
+     "type": "",
+     "text": "The building is quiet. Nothing",
+     "w": 362,
+     "h": 260,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "cr-chal-a",
+     "cls": "cr-chal",
+     "type": "button",
+     "text": "Challenge A299 s · 120 sInside",
+     "w": 324,
+     "h": 83,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "cr-chal-b",
+     "cls": "cr-chal",
+     "type": "button",
+     "text": "Challenge B301 s · 119 sOne se",
+     "w": 324,
+     "h": 83,
+     "inline": false
+    },
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "primary link-button",
+     "type": "",
+     "text": "Explore a pilot",
+     "w": 131,
+     "h": 49,
+     "inline": false
+    },
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "link-button",
+     "type": "",
+     "text": "Request a building assessment",
+     "w": 236,
+     "h": 49,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "night",
+     "cls": "primary",
+     "type": "submit",
+     "text": "▶ Night Watch 5 events / 3 inc",
+     "w": 172,
+     "h": 70,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "normal",
+     "cls": "",
+     "type": "submit",
+     "text": "○ Normal Shift 4 events / no i",
+     "w": 172,
+     "h": 70,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "denied",
+     "cls": "",
+     "type": "submit",
+     "text": "⊘ Access Denied 1 event / 1 in",
+     "w": 172,
+     "h": 100,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "legacy-bridge",
+     "cls": "legacy-btn",
+     "type": "submit",
+     "text": "⛓ Legacy Bridge Demo Offline f",
+     "w": 172,
+     "h": 100,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "signal-forge",
+     "cls": "forge-launch",
+     "type": "submit",
+     "text": "⚡ Signal Forge Change the evid",
+     "w": 172,
+     "h": 83,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "replay",
+     "cls": "",
+     "type": "submit",
+     "text": "↻ Replay last Test idempotency",
+     "w": 172,
+     "h": 83,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "reset",
+     "cls": "quiet",
+     "type": "submit",
+     "text": "Reset lab",
+     "w": 90,
+     "h": 66,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "filter-all",
+     "cls": "filter-active",
+     "type": "button",
+     "text": "All",
+     "w": 40,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "filter-high",
+     "cls": "",
+     "type": "button",
+     "text": "High",
+     "w": 45.8,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "filter-medium",
+     "cls": "",
+     "type": "button",
+     "text": "Medium",
+     "w": 65,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "verify",
+     "cls": "",
+     "type": "submit",
+     "text": "✓ Verify chain",
+     "w": 104,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "export",
+     "cls": "",
+     "type": "submit",
+     "text": "↓ Export evidence JSON",
+     "w": 160.5,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "BUTTON",
+     "id": "tamper",
+     "cls": "",
+     "type": "submit",
+     "text": "Test tamper detection",
+     "w": 148.5,
+     "h": 40,
+     "inline": false
+    },
+    {
+     "tag": "A",
+     "id": "",
+     "cls": "",
+     "type": "",
+     "text": "Back to the lab ↑",
+     "w": 340,
+     "h": 40,
+     "inline": false
+    }
+   ],
+   "exemptInline": [],
+   "nav": [
+    {
+     "href": "#control-room",
+     "text": "Control Room",
+     "w": 63.5,
+     "h": 40,
+     "shown": true
+    },
+    {
+     "href": "#vision",
+     "text": "Product vision",
+     "w": 66.2,
+     "h": 40,
+     "shown": true
+    },
+    {
+     "href": "#workspace",
+     "text": "Signal lab",
+     "w": 43.8,
+     "h": 40,
+     "shown": true
+    },
+    {
+     "href": "#how",
+     "text": "How it works",
+     "w": 58.7,
+     "h": 40,
+     "shown": true
+    },
+    {
+     "href": "https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026",
+     "text": "Source ↗",
+     "w": 42.4,
+     "h": 40,
+     "shown": true
+    }
+   ],
+   "overflow": {
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "bodyScrollWidth": 390
+   },
+   "reduced": {
+    "mq": true,
+    "scrollBehavior": "auto"
+   },
+   "scroll": [
+    {
+     "href": "#control-room",
+     "immediate": 110,
+     "final": 110,
+     "targetTop": 135
+    },
+    {
+     "href": "#vision",
+     "immediate": 2134,
+     "final": 2134,
+     "targetTop": 2159
+    },
+    {
+     "href": "#workspace",
+     "immediate": 4690,
+     "final": 4690,
+     "targetTop": 4715
+    },
+    {
+     "href": "#how",
+     "immediate": 7339,
+     "final": 7339,
+     "targetTop": 7364
+    }
+   ],
+   "errors": []
+  }
+ }
+}
