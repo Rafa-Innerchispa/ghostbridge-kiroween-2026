@@ -1,0 +1,23 @@
+﻿import path from 'node:path';
+import {writeFileSync, mkdirSync} from 'node:fs';
+import {ROOT, serveDocs, withBrowser, recorder, sleep} from './lib.mjs';
+const OUT = path.join(ROOT, 'docs', 'evidence', 'phase6', 'audit-logs');
+const srv = await serveDocs(); const rec = recorder('window'); const res = [];
+const G = id => `document.getElementById(${JSON.stringify(id)})`;
+for (let i = 0; i < 4; i++) await withBrowser(rec, 'win-' + i, async b => {
+  await b.viewport(1440, 900);
+  await b.goto(srv.origin, "!!document.querySelector('#cr-scene svg')");
+  await b.waitFor(`${G('mode')}.textContent.includes('Browser lab')`, 'mode');
+  await b.click('#cr-tab-timeline');
+  await b.send('Emulation.setCPUThrottlingRate', {rate: 4});
+  await b.click('#cr-chal-a');
+  await b.waitFor(`${G('events-count')}.textContent==='3' && document.querySelectorAll('.cr-tm-beat').length===8`, 'rows in, beats built', 30000);
+  const casesAtPick = await b.eval(`${G('cases-count')}.textContent`);
+  await b.eval(`document.querySelectorAll('.cr-tm-beat')[2].click()`);
+  const mid = await b.eval(`[...document.querySelectorAll('.cr-tm-beat')].findIndex(e=>e.getAttribute('aria-current')==='step')`);
+  await b.waitFor(`${G('cases-count')}.textContent==='1'`, 'cases', 30000); await sleep(300);
+  const after = await b.eval(`({idx:[...document.querySelectorAll('.cr-tm-beat')].findIndex(e=>e.getAttribute('aria-current')==='step'),cap:${G('cr-tm-caption')}.textContent.slice(0,40)})`);
+  await b.send('Emulation.setCPUThrottlingRate', {rate: 1});
+  res.push({i, casesAtPick, selectedRightAfterClick: mid, afterCasesArrived: after});
+});
+mkdirSync(OUT, {recursive: true}); writeFileSync(path.join(OUT, 'phase6-sig-window.json'), JSON.stringify(res, null, 1)); console.log(JSON.stringify(res)); process.exit(0);

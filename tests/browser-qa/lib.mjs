@@ -102,7 +102,12 @@ export class Browser {
       if (m.method === 'Runtime.exceptionThrown') this.errors.push('exception: ' + (m.params.exceptionDetails.exception?.description || m.params.exceptionDetails.text));
       else if (m.method === 'Runtime.consoleAPICalled' && ['error', 'assert'].includes(m.params.type)) this.errors.push('console.' + m.params.type + ': ' + m.params.args.map(a => a.value ?? a.description).join(' '));
       else if (m.method === 'Inspector.targetCrashed') this.errors.push('RENDERER CRASHED');
-      else if (m.method === 'Page.frameNavigated' && !m.params.frame.parentId) (this.navigations ||= []).push(m.params.frame.url);
+      else if (m.method === 'Page.frameNavigated' && !m.params.frame.parentId) {
+        (this.navigations ||= []).push(m.params.frame.url);
+        // A main-frame navigation the test did not ask for (qa-auditor re-audit: Chrome 157 replaced a plain page 2.6 to 8.9 s after
+        // navigation, later than the 2.2 s settle in goto). The app itself never navigates (no location/history calls in docs/).
+        if (!this.inGoto) (this.unexpectedNavigations ||= []).push({url: m.params.frame.url, at: Date.now()});
+      }
       else if (m.method === 'Network.loadingFailed' && !m.params.canceled) this.failedRequests.push(m.params.errorText + ' ' + (m.params.requestId));
       else if (m.method === 'Network.responseReceived' && m.params.response.status >= 400) this.badResponses.push(m.params.response.status + ' ' + m.params.response.url);
     });
@@ -131,6 +136,10 @@ export class Browser {
   async reducedMotion(on) { await this.send('Emulation.setEmulatedMedia', {features: [{name: 'prefers-reduced-motion', value: on ? 'reduce' : 'no-preference'}]}); }
   async goto(url, readyExpr = "document.readyState==='complete'") {
     const t0 = Date.now();
+    this.inGoto = true;
+    try { await this._goto(url, readyExpr, t0); } finally { this.inGoto = false; }
+  }
+  async _goto(url, readyExpr, t0) {
     await this.send('Page.navigate', {url});
     await this.waitFor(readyExpr, 'page ready ' + url, 15000);
     this.lastLoadMs = Date.now() - t0;
@@ -187,7 +196,7 @@ export class Browser {
   }
 }
 
-const INFRA = /CDP timeout|navigated or closed|timeout waiting for|DevTools port|RENDERER CRASHED|WebSocket|eval failed: .*(context|Cannot find context)/i;
+const INFRA = /UNEXPECTED_NAVIGATION|CDP timeout|navigated or closed|timeout waiting for|DevTools port|RENDERER CRASHED|WebSocket|eval failed: .*(context|Cannot find context)/i;
 
 /**
  * Run one independent QA scenario on a FRESH browser. Assertion failures (check(..., false)) are
@@ -198,7 +207,15 @@ export async function withBrowser(rec, name, fn, {retries = 2} = {}) {
   for (let attempt = 0; attempt <= retries; attempt++) {
     const mark = rec.results.length;
     let b;
-    try { b = await Browser.launch(); await fn(b); await b.close(); rec.scenarios.push({name, ok: true, attempts: attempt + 1}); return; }
+    try {
+      b = await Browser.launch(); await fn(b);
+      // If checks failed in an attempt during which the browser replaced the page on its own, the failures cannot be trusted:
+      // discard them and retry, and say so in the report. A clean attempt is kept even if such a reload happened.
+      const failedHere = rec.results.slice(mark).some(r => !r.ok);
+      const stray = b.unexpectedNavigations || [];
+      if (failedHere && stray.length && attempt < retries) throw new Error(`UNEXPECTED_NAVIGATION: the browser replaced the page ${stray.length} time(s) during the scenario`);
+      await b.close(); rec.scenarios.push({name, ok: true, attempts: attempt + 1, strayNavigations: stray.length}); return;
+    }
     catch (err) {
       const msg = String(err.stack || err.message || err);
       if (b) await b.close();
