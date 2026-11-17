@@ -57,3 +57,52 @@ test('regression: Control Room observer moves focus to #forge-gap once the drawe
   assert.match(obs, /\$\('signal-forge'\)/);
   assert.match(css, /\.cr\[data-forge="true"\] \.cr-drawer\{display:block/);
 });
+
+// ---- Phase 6: reduced motion and nav/footer target size (static source checks) ----
+import {readdirSync} from 'node:fs';
+const docsFiles = readdirSync(new URL('docs/', root)).filter(f => /\.(js|mjs)$/.test(f));
+const stylesCss = read('docs/styles.css');
+test('every smooth scroll in docs/*.js and docs/*.mjs is guarded by a reduced-motion check', () => {
+  let seen = 0;
+  for (const f of docsFiles) {
+    read('docs/' + f).split('\n').forEach((line, i) => {
+      if (!/['"]smooth['"]/.test(line)) return;
+      seen++;
+      assert.ok(/reducedMotion|reduced\b|prefers-reduced-motion/.test(line),
+        `docs/${f}:${i + 1} uses 'smooth' without a reduced-motion guard`);
+    });
+    assert.ok(!/behavior\s*:\s*['"]smooth['"]/.test(read('docs/' + f)), `docs/${f} has a literal behavior:'smooth'`);
+  }
+  assert.ok(seen > 0, 'expected at least one guarded smooth scroll to be found');
+});
+test('app.js shared scroll helper honors prefers-reduced-motion', () => {
+  const src = read('docs/app.js');
+  assert.match(src, /const scrollBehavior=\(\)=>[^\n]*matchMedia\('\(prefers-reduced-motion: reduce\)'\)\.matches\?'auto':'smooth'/);
+  assert.ok(!/scrollIntoView\([^)]*behavior:\s*'smooth'/.test(src));
+});
+test('CSS scroll-behavior:smooth only appears inside @media (prefers-reduced-motion: no-preference)', () => {
+  for (const [name, text] of [['styles.css', stylesCss], ['control_room.css', read('docs/control_room.css')]]) {
+    const flat = text.replace(/\s+/g, '');
+    for (const m of flat.matchAll(/scroll-behavior:smooth/g)) {
+      const before = flat.slice(0, m.index);
+      const open = before.lastIndexOf('@media(prefers-reduced-motion:no-preference){');
+      assert.ok(open >= 0, name + ': smooth scroll-behavior without a no-preference media block');
+      const between = before.slice(open + '@media(prefers-reduced-motion:no-preference){'.length);
+      // the block must still be open: braces opened inside it are balanced by closes so far
+      const opens = (between.match(/\{/g) || []).length, closes = (between.match(/\}/g) || []).length;
+      assert.ok(closes <= opens, name + ': smooth scroll-behavior is outside the no-preference block');
+    }
+  }
+  assert.match(stylesCss, /@media\(prefers-reduced-motion:reduce\)\{html\{scroll-behavior:auto\}/);
+});
+test('nav, brand and footer links declare a >=40px hit area, and mobile does not hide a nav link', () => {
+  const rule = [...stylesCss.matchAll(/([^{}]+)\{([^}]*)\}/g)].find(([, sel]) =>
+    sel.includes('nav a') && sel.includes('footer a') && !sel.includes('@media'));
+  assert.ok(rule, 'no rule covering nav a and footer a');
+  assert.match(rule[2], /display:inline-flex/);
+  assert.ok(Number(rule[2].match(/min-height:(\d+)px/)[1]) >= 40);
+  const minW = rule[2].match(/min-width:(\d+)px/);
+  assert.ok(minW && Number(minW[1]) >= 40, 'nav/footer links need min-width >= 40px');
+  assert.ok(!/nav a:first-child\{display:none\}/.test(stylesCss), 'Control Room nav link must not be hidden on mobile');
+  assert.match(stylesCss, /@media\(max-width:600px\)\{[^@]*nav\{flex-wrap:wrap/);
+});
