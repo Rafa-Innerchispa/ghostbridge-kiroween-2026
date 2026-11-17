@@ -80,7 +80,9 @@ class ToolTests(unittest.TestCase):
         self.assertFalse(err)
         self.assertEqual(out["row_hashes"], clean["row_hashes"])
         self.assertEqual(out["integrity"], clean["integrity"])
-        self.assertEqual(out["tamper_demo"]["verification_after_tamper"], {"valid": False, "checked": 1, "failed_at": 2})
+        after = out["tamper_demo"]["verification_after_tamper"]
+        self.assertEqual({k: after[k] for k in ("valid", "checked", "failed_at")}, {"valid": False, "checked": 1, "failed_at": 2})
+        self.assertIn("stored hash does not match", after["reason"])
         for bad in (0, 6, "2", True, 2.5):
             _, err = call("run_scenario", {"name": "night", "tamper_seq": bad})
             self.assertTrue(err, bad)
