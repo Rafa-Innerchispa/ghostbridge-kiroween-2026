@@ -22,10 +22,12 @@
 <div class="cr-panel" role="tabpanel" id="cr-panel-timeline" aria-labelledby="cr-tab-timeline" tabindex="0" hidden><p class="fine">Drag the slider or pick a marker to see the building at that moment. Positions are to scale and come only from recorded events.</p>
 <div class="cr-tl"><div class="cr-tl-line"></div><div class="cr-tl-track" id="cr-tl-track"></div></div><div class="cr-tl-edges"><span id="cr-tl-edge-a"></span><span id="cr-tl-edge-b"></span></div>
 <div class="cr-scrub-row"><label for="cr-scrub">Time</label><input type="range" id="cr-scrub" min="0" max="0" step="1" value="0" disabled><output id="cr-scrub-out" for="cr-scrub"></output><button type="button" id="cr-live" disabled>Back to live</button></div>
+<section class="cr-tm" id="cr-tm" role="region" aria-label="Incident Time Machine"></section>
 <ol class="cr-tl-list" id="cr-tl-list"></ol></div>
 <div class="cr-panel" role="tabpanel" id="cr-panel-evidence" aria-labelledby="cr-tab-evidence" tabindex="0" hidden><p class="fine">Every source event keeps its own SHA-256 hash, chained to the one before it. This is a local chain, not an external signature.</p>
 <div class="cr-actions"><button type="button" id="cr-ev-recon" disabled>&#9678; Open reconstruction</button><button type="button" id="cr-ev-verify">&#10003; Verify chain</button><button type="button" id="cr-ev-export">&#8595; Export evidence JSON</button></div><p class="cr-note" id="cr-ev-note" role="status" aria-live="polite"></p>
-<ol class="cr-ev-list" id="cr-ev-list"></ol></div>
+<ol class="cr-ev-list" id="cr-ev-list"></ol>
+<section class="cr-tl-lab" id="cr-tl-lab" role="region" aria-label="Evidence Trust Lab"></section></div>
 <div class="cr-panel" role="tabpanel" id="cr-panel-response" aria-labelledby="cr-tab-response" tabindex="0" hidden>
 <section class="cr-ba" id="cr-ba" data-joined="false" aria-label="Before and after"><div class="cr-ba-col"><h4>Before &middot; disconnected alarms <span id="cr-ba-count">0</span></h4><ul class="cr-alarms" id="cr-ba-alarms"></ul></div><div class="cr-ba-mid"><button type="button" id="cr-ba-toggle" aria-pressed="false" class="primary">Connect the signals</button></div><div class="cr-ba-col cr-ba-out"><h4>After &middot; GhostBridge</h4><div class="cr-outcome" id="cr-ba-outcome" data-kind="none"></div></div></section>
 <h3 class="cr-h3">Case board</h3><dl class="cr-board" id="cr-board"></dl>

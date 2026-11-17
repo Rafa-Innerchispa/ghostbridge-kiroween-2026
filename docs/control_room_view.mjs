@@ -13,6 +13,8 @@ import {
 } from './control_room.mjs';
 import {buildScene, applyScene, sceneSummary} from './control_room_scene.mjs';
 import {evaluateForge, FORGE_BOUNDS} from './signal_forge.mjs';
+import {mountTimeMachine} from './time_machine_view.mjs';
+import {mountTrustLab} from './trust_lab_view.mjs';
 
 export const MODES = Object.freeze(['building', 'timeline', 'evidence', 'response']);
 const KIND_WORD = {anchor: 'Anchor: access denied', match: 'Matched: door held open', near: 'Near miss: rule not met', excluded: 'Not linked', event: 'Recorded event'};
@@ -36,6 +38,7 @@ export function mountControlRoom({doc = document, bridge, reducedMotion = false}
 
   const state = {mode: 'building', selected: null, cursor: null, joined: false};
   const sig = {rows: null, caption: ''};
+  let timeMachine = null, trustLab = null;   // mounted below; they read the same rows and move the same cursor
   let sweepToken = 0;
 
   // ---------- scene ----------
@@ -281,6 +284,8 @@ export function mountControlRoom({doc = document, bridge, reducedMotion = false}
     $('cr-ev-recon').disabled = cases.length === 0;
     root.setAttribute('data-has-case', String(cases.length > 0));
     $('cr-stage').setAttribute('data-idle', String(scene.idle));
+    if (timeMachine) timeMachine.refresh();
+    if (trustLab) trustLab.refresh();
   }
 
   // ---------- controls ----------
@@ -362,9 +367,14 @@ export function mountControlRoom({doc = document, bridge, reducedMotion = false}
   }
   $('cr-unfold').addEventListener('click', unfold);
 
+  // ---------- Incident Time Machine and Evidence Trust Lab (models: time_machine.mjs, trust_lab.mjs) ----------
+  const tmHost = $('cr-tm'), labHost = $('cr-tl-lab');
+  if (tmHost) timeMachine = mountTimeMachine({doc, host: tmHost, getRows: () => bridge.getRows(), getCases: () => bridge.getCases(), getCursor: () => state.cursor, setCursor, reducedMotion});
+  if (labHost) trustLab = mountTrustLab({doc, host: labHost, getRows: () => bridge.getRows()});
+
   setMode('building'); setJoined(false); refresh();
   return {
-    refresh, setMode, select, setCursor, setJoined, openForge, unfold, MODES,
+    refresh, setMode, timeMachine, trustLab, select, setCursor, setJoined, openForge, unfold, MODES,
     get state() { return {...state}; },
     focusStage() { root.scrollIntoView({block: 'start', behavior: reducedMotion ? 'auto' : 'smooth'}); },
     cancelSweep() { sweepToken++; },
