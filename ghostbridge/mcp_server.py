@@ -78,12 +78,19 @@ def verify_rows(rows: object) -> dict:
         raise ToolError(f"rows must be a list of at most {MAX_LEDGER_ROWS} ledger rows")
     previous = "0" * 64
     for seq, row in enumerate(rows, 1):
+        fail = {"valid": False, "checked": seq - 1, "failed_at": seq}
         try:
-            if row["seq"] != seq or row["previous"] != previous or row["hash"] != digest(previous, row["payload"]):
-                return {"valid": False, "checked": seq - 1, "failed_at": seq}
+            # Report WHY a row fails. A strict check stays strict; the reason tells a client when its own encoding (for example
+            # seq sent as a string) is the cause rather than tampering.
+            if isinstance(row.get("seq"), bool) or not isinstance(row.get("seq"), int) or row["seq"] != seq:
+                return {**fail, "reason": f"seq is {row.get('seq')!r} ({type(row.get('seq')).__name__}); expected integer {seq}"}
+            if row["previous"] != previous:
+                return {**fail, "reason": "previous hash does not match the hash of the row before it"}
+            if row["hash"] != digest(previous, row["payload"]):
+                return {**fail, "reason": "stored hash does not match the SHA-256 recomputed from this row's payload"}
             previous = row["hash"]
-        except (KeyError, TypeError, ValueError):
-            return {"valid": False, "checked": seq - 1, "failed_at": seq, "error": "malformed row"}
+        except (AttributeError, KeyError, TypeError, ValueError):
+            return {**fail, "error": "malformed row", "reason": "row is missing seq, previous, hash or payload"}
     return {"valid": True, "checked": len(rows), "head": previous}
 
 
@@ -186,7 +193,16 @@ TOOLS = {
         "description": "Verify a SHA-256 hash chain of ledger rows (seq, payload, previous, hash), as produced by run_scenario or the GhostBridge export. Returns valid or the first failing position. At most 500 rows.",
         "inputSchema": {
             "type": "object",
-            "properties": {"rows": {"type": "array", "maxItems": MAX_LEDGER_ROWS, "items": {"type": "object"}}},
+            "properties": {"rows": {"type": "array", "maxItems": MAX_LEDGER_ROWS, "items": {
+                "type": "object",
+                "properties": {
+                    "seq": {"type": "integer", "minimum": 1},
+                    "previous": {"type": "string", "minLength": 64, "maxLength": 64},
+                    "hash": {"type": "string", "minLength": 64, "maxLength": 64},
+                    "payload": {"type": "object", "description": "{event, incident}; include incident: null when there is none"},
+                },
+                "required": ["seq", "previous", "hash", "payload"],
+            }}},
             "required": ["rows"],
             "additionalProperties": False,
         },

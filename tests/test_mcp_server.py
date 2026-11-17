@@ -150,6 +150,21 @@ class ToolTests(unittest.TestCase):
         self.assertEqual((out["valid"], out["checked"], out["failed_at"]), (False, 3, 4))
         out, _ = call("verify_ledger", {"rows": [{"nope": 1}]})
         self.assertFalse(out["valid"])
+        self.assertIn("reason", out)
+        # A client that sends seq as a string is told so, and the check stays strict (not accepted).
+        as_text = json.loads(json.dumps(rows))
+        for r in as_text:
+            r["seq"] = str(r["seq"])
+        out, _ = call("verify_ledger", {"rows": as_text})
+        self.assertEqual((out["valid"], out["failed_at"]), (False, 1))
+        self.assertIn("expected integer 1", out["reason"])
+        out, _ = call("verify_ledger", {"rows": bad})
+        self.assertIn("stored hash does not match", out["reason"])
+        # Dropping "incident": null changes the canonical payload, so the row no longer matches its hash.
+        dropped = json.loads(json.dumps(rows))
+        dropped[3]["payload"].pop("incident")
+        out, _ = call("verify_ledger", {"rows": dropped})
+        self.assertEqual(out["failed_at"], 4)
         out, _ = call("verify_ledger", {"rows": []})
         self.assertEqual((out["valid"], out["checked"]), (True, 0))
 
