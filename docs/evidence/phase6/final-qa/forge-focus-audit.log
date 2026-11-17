@@ -1,0 +1,42 @@
+PASS d1440 F1 programmatic click on #signal-forge -> focus on #forge-gap
+PASS d1440 F2 input event on #forge-hold keeps focus on #forge-hold (no theft)
+PASS d1440 F2b camera toggle keeps focus on #forge-camera (no theft)
+PASS d1440 F2c #forge-pass moves focus to #forge-gap only via the app.js preset behaviour
+PASS d1440 F2d #forge-fail same preset behaviour
+PASS d1440 F3 Close hides panel and returns focus to #signal-forge
+PASS d1440 F3b reopen after Close focuses #forge-gap again
+PASS d1440 F3c second Close still lands on #signal-forge, not #forge-gap
+PASS d1440 no console errors during forge focus flow
+PASS d1440 F1b real mouse click on #signal-forge -> focus on #forge-gap
+PASS d1440 F1c keyboard Enter on #signal-forge -> focus on #forge-gap
+PASS d1440 F1c #forge-gap focus ring visible (:focus-visible and outline/box-shadow present)
+PASS d1440 F1c #forge-gap is inside the viewport after opening
+PASS d1440 F5 Tab from #forge-gap moves on (no trap)
+PASS d1440 F4 first Tab lands on the skip link
+PASS d1440 F6 Challenge A -> 3 events, 1 case
+PASS d1440 F6 Challenge B -> 3 events, 0 cases
+PASS d1440 F6 Close still works after challenges
+PASS d1440 no console errors during challenges
+PASS d1440 F6 Challenge B from a fresh page -> 3 events, 0 cases
+PASS m390 F1 programmatic click on #signal-forge -> focus on #forge-gap
+PASS m390 F2 input event on #forge-hold keeps focus on #forge-hold (no theft)
+PASS m390 F2b camera toggle keeps focus on #forge-camera (no theft)
+PASS m390 F2c #forge-pass moves focus to #forge-gap only via the app.js preset behaviour
+PASS m390 F2d #forge-fail same preset behaviour
+PASS m390 F3 Close hides panel and returns focus to #signal-forge
+PASS m390 F3b reopen after Close focuses #forge-gap again
+PASS m390 F3c second Close still lands on #signal-forge, not #forge-gap
+PASS m390 no console errors during forge focus flow
+PASS m390 F1b real mouse click on #signal-forge -> focus on #forge-gap
+PASS m390 F1c keyboard Enter on #signal-forge -> focus on #forge-gap
+PASS m390 F1c #forge-gap focus ring visible (:focus-visible and outline/box-shadow present)
+PASS m390 F1c #forge-gap is inside the viewport after opening
+PASS m390 F5 Tab from #forge-gap moves on (no trap)
+PASS m390 F4 first Tab lands on the skip link
+PASS m390 F6 Challenge A -> 3 events, 1 case
+PASS m390 F6 Challenge B -> 3 events, 0 cases
+PASS m390 F6 Close still works after challenges
+PASS m390 no console errors during challenges
+PASS m390 F6 Challenge B from a fresh page -> 3 events, 0 cases
+
+forge focus audit: 40 passed, 0 failed, 40 total

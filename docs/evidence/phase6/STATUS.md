@@ -19,7 +19,23 @@ Status words: IMPLEMENTED / EXECUTED / VERIFIED / NOT PROVEN.
 ## Custom agent invocations in this phase
 ui-director run A (accessibility), ui-director run B (views), qa-auditor Phase 6 audit, qa-auditor re-audit. Their reports: `qa-auditor-phase6.md`, `qa-auditor-phase6-reaudit.md`. Defects they found that were real: M1 (unlabelled derived times), M2 (wrong attribution headers), AU2.-1 (Restore enabled without an experiment, caused by `app.js`), the stray root file created by ui-director run B (removed).
 
+## Final measured results (2026-11-17, Kiro main session, on the committed product code)
+| Suite | Result |
+|---|---|
+| Python `unittest discover` | 186 OK (local and CI) |
+| Node, 19 test files | 379 pass, 0 fail (local and CI, PR #16) |
+| `node --check`, 17 `docs/*.mjs` + `app.js` | 18 of 18 |
+| Phase 6 experience (Chrome) | 159/159, 0 harness retries |
+| Phase 6 independent audit (qa-auditor's script) | 37/37 |
+| a11y targets after / skip link / Forge focus | 39/39, 32/32, 40/40 |
+| m0 Signal Forge / m5 Control Room (regression) | 56/56, 141/141, 0 retries |
+Logs: `final-qa/`. The older-phase evidence under `docs/evidence/control-room/` and `agentic-validation/` was restored, not overwritten.
+
+## MCP from Kiro
+Installed, connected and invoked from Kiro (7 calls). `list_scenarios`, `forge_boundary` 299/120 and 301/119, and `run_scenario` with a tamper demo returned the expected results. `verify_ledger` returned an unexpected failure at row 1 for a ledger that verifies locally; open, see `mcp-from-kiro.md`.
+
 ## Open items (not fixed in this phase)
+- `verify_ledger` through Kiro: re-test after a Kiro restart loads the typed schema and failure reasons.
 - AU5.1 checks only the focused slider after opening the Forge on mobile; the auditor asked to also check Run and Close.
 - The Time Machine rebuilds twice after a run (case ids arrive about 360 ms after the rows); a beat chosen in that gap resets. Not observed in tests.
 - L1: `phase6-experience.qa.mjs` and `a11y-targets-after.qa.mjs` both write `docs/evidence/phase6/REPORT.md`.

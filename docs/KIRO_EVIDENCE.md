@@ -570,3 +570,17 @@ Full evidence and the IMPLEMENTED / EXECUTED / VERIFIED / NOT PROVEN table: [`do
 - **Powers.** None installed; the official ones are external services needing credentials. Not used, not claimed.
 - **Credits.** Not measurable from the session.
 - **Totals:** Python 186, Node 329 in 15 files, `node --check` 14/14 (Phase 4: 169 / 318 / 15).
+
+
+---
+
+## Phase 6: Resurrection experience (2026-11-12 to 2026-11-17)
+
+**PR:** [#16](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/16) (draft, stacked on #15). Full status: [`docs/evidence/phase6/STATUS.md`](evidence/phase6/STATUS.md).
+
+- **Incident Time Machine and Evidence Trust Lab.** Pure models by the Kiro main session; views by the `ui-director` custom agent; audited twice by `qa-auditor`.
+- **Real defects found by qa-auditor and fixed:** derived times shown as recorded, wrong authorship headers, and a Restore button left enabled because `app.js` re-enables every button after a run.
+- **MCP from Kiro:** connected and invoked (7 calls); `verify_ledger` has one open discrepancy ([`mcp-from-kiro.md`](evidence/phase6/mcp-from-kiro.md)).
+- **Eligibility:** `.kiro/hooks/logs/` removed from `.gitignore` on PR #15 (`2dffd0c`).
+- **Totals:** Python 186, Node 379 in 19 files, `node --check` 18/18; Chrome QA 159, 37, 39, 32, 40, 56 and 141 checks, all passing.
+- **Not done:** Kiro Power, Kiro Crew app, public deploy, video, Devpost entry.
