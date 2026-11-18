@@ -232,3 +232,28 @@ test('source: no innerHTML, no network, no storage, no hardcoded rule numbers or
   assert.ok(!/\b(299|300|301|119|120)\b/.test(src), 'rule numbers come from the model');
   assert.ok(!/\b20\d\d-\d\d-\d\d/.test(src), 'no literal timestamps');
 });
+
+test('a beat chosen before the case ids arrive is kept when only the cases change; a new ledger starts over (qa-auditor re-audit)', async () => {
+  const {rows, cases} = await forge(299, 120);
+  const t = mount({rows, cases: []});          // the rows are in, the correlator has not answered yet
+  t.view.select(2);                             // beat 3, "Door opens"
+  assert.equal(t.view.state.index, 2);
+  t.env.cases = cases; t.view.refresh();        // the case ids arrive about 360 ms later
+  assert.equal(t.view.state.index, 2, 'the chosen beat survives the late case ids');
+  assert.equal(beatButtons(t.host)[2].getAttribute('aria-current'), 'step');
+  assert.equal(t.cursor, buildTimeMachine(rows, cases).steps[2].cursor, 'the building still shows that beat');
+  const other = await forge(150, 200);
+  t.env.rows = other.rows; t.env.cases = other.cases; t.view.refresh();
+  assert.equal(t.view.state.index, null, 'a different ledger drops the selection');
+});
+
+test('app.js re-enabling every button is undone on the next refresh (Previous stays off on beat 1)', async () => {
+  const {rows, cases} = await forge(299, 120);
+  const t = mount({rows, cases});
+  t.view.select(0);
+  const prev = t.host.byId('cr-tm-prev');
+  assert.equal(prev.disabled, true);
+  prev.disabled = false; prev.removeAttribute('disabled');   // what app.js does after a run
+  t.view.refresh();
+  assert.equal(prev.disabled, true);
+});

@@ -159,8 +159,20 @@ export function mountTimeMachine({doc, host, getRows, getCases, getCursor, setCu
   /** Called by the Control Room on every refresh: rebuild when the ledger changed; drop the active beat when the cursor moved elsewhere. */
   function refresh() {
     const rows = getRows(), cases = getCases();
-    const next = `${rows.length}:${rows.map(r => r.hash).join(',')}|${cases.map(c => c.id).join(',')}`;
-    if (next !== sig) { sig = next; stop(); idx = null; build(); paintBeats(); paintCaption(); return; }
+    const rowSig = `${rows.length}:${rows.map(r => r.hash).join(',')}`;
+    const next = `${rowSig}|${cases.map(c => c.id).join(',')}`;
+    if (next !== sig) {
+      // The correlator's cases arrive a moment after the rows (qa-auditor re-audit: about 360 ms). When only the cases changed, keep the
+      // beat the user chose (same step id) instead of dropping it; a different ledger always starts over. Added by Kiro's main session.
+      const sameRows = sig !== null && sig.split('|')[0] === rowSig;
+      const keepId = sameRows && idx !== null ? tm.steps[idx]?.id : null;
+      sig = next; stop(); idx = null; build();
+      if (keepId) {
+        const k = tm.steps.findIndex(s => s.id === keepId);
+        if (k >= 0) { idx = k; if (getCursor() !== tm.steps[k].cursor) setCursor(tm.steps[k].cursor); }
+      }
+      paintBeats(); paintCaption(); return;
+    }
     if (idx !== null && getCursor() !== tm.steps[idx].cursor) { idx = null; stop(); paintBeats(); paintCaption(); return; }
     // app.js re-enables every button on the page after a run; re-assert Previous/Next/Play/Pause states (qa-auditor AU2.-1, same cause).
     paintBeats();
