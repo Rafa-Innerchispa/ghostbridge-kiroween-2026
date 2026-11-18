@@ -8,7 +8,7 @@ ask the real GhostBridge engine questions about **synthetic** data:
 | `list_scenarios` | The synthetic scenarios (night, normal, denied), synthetic devices and the rule limits (300 s window, 120 s hold). |
 | `run_scenario` | Runs a scenario through the Python engine in an in-memory ledger; returns incidents, correlated cases, SHA-256 row hashes and integrity. `tamper_seq` alters one event in a copy to show tamper detection. |
 | `forge_boundary` | "Does a denied access followed by a door held open form a case?" for a chosen delay and hold. 299/120 forms a case; 301/119 does not, with the exact failed conditions. |
-| `verify_ledger` | Verifies a SHA-256 hash chain of up to 500 supplied rows and names the first failing position. |
+| `verify_ledger` | Verifies a SHA-256 hash chain of up to 500 supplied rows and names the first failing position with a reason. Prefer `rows_json` (the ledger as JSON text): hashes cover exact bytes, and some clients drop empty objects such as `"data": {}` when passing structured arguments. |
 
 Safety: no socket, no file access, no subprocess, no environment access, no device commands; all ledgers are in memory and
 discarded. Tests (`tests/test_mcp_server.py`) enforce this on the source.

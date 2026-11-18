@@ -170,6 +170,41 @@ class ToolTests(unittest.TestCase):
         out, _ = call("verify_ledger", {"rows": []})
         self.assertEqual((out["valid"], out["checked"]), (True, 0))
 
+    def test_verify_ledger_accepts_exact_json_text_and_explains_dropped_empty_objects(self):
+        store, snap = m._ledger(m.scenario("denied") + m.scenario("normal")[:2])
+        try:
+            rows = snap["ledger"]
+        finally:
+            store.close()
+        text = json.dumps(rows)
+        out, err = call("verify_ledger", {"rows_json": text})
+        self.assertFalse(err)
+        self.assertEqual((out["valid"], out["checked"]), (True, 3))
+        # What a client that drops empty objects sends: event.data {} disappears, so the bytes and the hash change.
+        dropped = json.loads(text)
+        for r in dropped:
+            if r["payload"]["event"]["data"] == {}:
+                del r["payload"]["event"]["data"]
+        out, _ = call("verify_ledger", {"rows": dropped})
+        self.assertEqual((out["valid"], out["failed_at"]), (False, 1), "strict: a changed payload never verifies")
+        self.assertIn("rows_json", out["hint"])
+        self.assertIn("data", out["hint"])
+        # Tampering is still caught through rows_json.
+        tampered = json.loads(text)
+        tampered[1]["payload"]["event"]["at"] = "2026-10-30T23:00:00Z"
+        out, _ = call("verify_ledger", {"rows_json": json.dumps(tampered)})
+        self.assertEqual((out["valid"], out["failed_at"]), (False, 2))
+        self.assertNotIn("hint", out, "a real tamper gets no 'dropped field' hint")
+
+    def test_verify_ledger_requires_exactly_one_input_and_rejects_bad_text(self):
+        for args in ({}, {"rows": [], "rows_json": "[]"}, {"rows_json": "{not json"}, {"rows_json": 5},
+                     {"rows_json": "x" * (m.MAX_ROWS_JSON_CHARS + 1)}):
+            _, err = call("verify_ledger", args)
+            self.assertTrue(err, str(args)[:60])
+        out, err = call("verify_ledger", {"rows_json": "[]"})
+        self.assertFalse(err)
+        self.assertEqual((out["valid"], out["checked"]), (True, 0))
+
     def test_verify_ledger_is_bounded(self):
         _, err = call("verify_ledger", {"rows": [{}] * (m.MAX_LEDGER_ROWS + 1)})
         self.assertTrue(err)

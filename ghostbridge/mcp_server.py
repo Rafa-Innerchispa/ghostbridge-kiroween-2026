@@ -152,8 +152,39 @@ def tool_forge_boundary(args: dict) -> dict:
         store.close()
 
 
+MAX_ROWS_JSON_CHARS = 1_000_000
+
+
 def tool_verify_ledger(args: dict) -> dict:
-    return verify_rows(args.get("rows"))
+    """Verify rows given as a JSON array (`rows`) or as JSON text (`rows_json`), exactly one of them.
+
+    `rows_json` exists because a hash covers the exact canonical bytes of each payload: some MCP clients drop empty objects such as
+    `"data": {}` while passing structured arguments, which changes the bytes and correctly fails verification. Text is passed unchanged.
+    """
+    has_rows, has_text = "rows" in args, "rows_json" in args
+    if has_rows == has_text:
+        raise ToolError("give exactly one of rows (a JSON array) or rows_json (the same array as JSON text)")
+    if has_text:
+        text = args["rows_json"]
+        if not isinstance(text, str) or len(text) > MAX_ROWS_JSON_CHARS:
+            raise ToolError(f"rows_json must be a string of at most {MAX_ROWS_JSON_CHARS} characters")
+        try:
+            rows = json.loads(text)
+        except json.JSONDecodeError as exc:
+            raise ToolError(f"rows_json is not valid JSON: {exc.msg} at character {exc.pos}") from exc
+    else:
+        rows = args["rows"]
+    result = verify_rows(rows)
+    if not result["valid"] and "failed_at" in result and isinstance(rows, list) and 0 < result["failed_at"] <= len(rows):
+        row = rows[result["failed_at"] - 1]
+        event = row.get("payload", {}).get("event") if isinstance(row, dict) and isinstance(row.get("payload"), dict) else None
+        missing = [k for k in ("data",) if isinstance(event, dict) and k not in event]
+        if isinstance(row, dict) and isinstance(row.get("payload"), dict) and "incident" not in row["payload"]:
+            missing.append("incident")
+        if missing:
+            result["hint"] = (f"the failing row has no {' or '.join(missing)} field; ledger rows always carry event.data and payload.incident "
+                              "(possibly {} or null). If your client drops empty or null values, send the ledger as rows_json text.")
+    return result
 
 
 TOOLS = {
@@ -190,7 +221,7 @@ TOOLS = {
     },
     "verify_ledger": {
         "fn": tool_verify_ledger,
-        "description": "Verify a SHA-256 hash chain of ledger rows (seq, payload, previous, hash), as produced by run_scenario or the GhostBridge export. Returns valid or the first failing position. At most 500 rows.",
+        "description": "Verify a SHA-256 hash chain of ledger rows (seq, payload, previous, hash), as produced by the GhostBridge export. Give exactly one of rows (array) or rows_json (the array as JSON text; preferred, because hashes cover exact bytes and some clients drop empty objects). Returns valid, or the first failing position with a reason. At most 500 rows.",
         "inputSchema": {
             "type": "object",
             "properties": {"rows": {"type": "array", "maxItems": MAX_LEDGER_ROWS, "items": {
@@ -202,8 +233,9 @@ TOOLS = {
                     "payload": {"type": "object", "description": "{event, incident}; include incident: null when there is none"},
                 },
                 "required": ["seq", "previous", "hash", "payload"],
-            }}},
-            "required": ["rows"],
+            }},
+                "rows_json": {"type": "string", "maxLength": MAX_ROWS_JSON_CHARS,
+                              "description": "The same rows as JSON text. Use this when your client may drop empty objects or null values; the bytes must match exactly."}},
             "additionalProperties": False,
         },
     },
