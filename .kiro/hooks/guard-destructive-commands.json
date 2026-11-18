@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Guard against destructive commands",
+      "trigger": "PreToolUse",
+      "description": "Seat belt for unattended runs. Blocks force-push, pushes to main, hard resets, PR merges, process kills by name, recursive deletes outside the project/temp, system and registry changes, and secret exfiltration. Routine work stays allowed.",
+      "matcher": "execute_pwsh|control_pwsh_process",
+      "action": {
+        "type": "command",
+        "command": "node .kiro/hooks/guard-destructive.mjs",
+        "timeout": 10
+      }
+    }
+  ]
+}

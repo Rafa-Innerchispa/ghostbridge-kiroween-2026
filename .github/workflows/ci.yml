@@ -23,6 +23,12 @@ jobs:
       - run: node --check docs/reconstruction-view.mjs
       - run: node --check docs/playback.mjs
       - run: node --check docs/signal_forge.mjs
+      - run: node --check docs/engine.mjs
+      - run: node --check docs/control_room.mjs
+      - run: node --check docs/control_room_scene.mjs
+      - run: node --check docs/control_room_view.mjs
+      - run: node --check docs/showcase.mjs
+      - run: node --check docs/showcase_view.mjs
       - run: node --test tests/browser.test.mjs
       - run: node --test tests/filter.test.mjs
       - run: node --test tests/correlator.test.mjs
@@ -30,3 +36,9 @@ jobs:
       - run: node --test tests/reconstruction-view.test.mjs
       - run: node --test tests/playback.test.mjs
       - run: node --test tests/signal_forge.test.mjs
+      - run: node --test tests/control_room.test.mjs
+      - run: node --test tests/showcase.test.mjs
+      - run: node --test tests/property.test.mjs
+      - run: node --test tests/forge-parity.test.mjs
+      - run: node --test tests/control_room_wiring.test.mjs
+      - run: node --test tests/guard.test.mjs

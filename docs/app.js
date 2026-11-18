@@ -6,8 +6,13 @@ import {RELAY_NIGHT_CSV,ACCESS_DENIED_JSON} from './fixtures.js';
 import {buildReconstruction} from './reconstruction.mjs';
 import {FORGE_DEFAULTS,makeForgeEvents,evaluateForge} from './signal_forge.mjs';
 import {mountReconstruction,mountReconstructionError} from './reconstruction-view.mjs';
+import {mountControlRoom} from './control_room_view.mjs';
+import {mountShowcase} from './showcase_view.mjs';
+import {validCases} from './control_room.mjs';
 const $=id=>document.getElementById(id),key='ghostbridge-ledger-v1';
 let rows=[],busy=false,last=null,local=false,caseRenderToken=0,lastForge=null;
+// Control Room (UI only): latest derived cases, and the mounted view. Never persisted or exported.
+let cr=null,lastCases=[];
 
 // Interactive reconstruction: UI-only, read-only projection. Never stored or exported.
 let recon=null,reconToken=0;
@@ -81,6 +86,7 @@ async function renderCases(){
   }catch(e){error=e.message||String(e);}
   // A previous async render must not overwrite a more recent Reset/replay.
   if(token!==caseRenderToken)return;
+  lastCases=error?[]:cases;if(cr)cr.refresh();
   const count=$('cases-count');if(count)count.textContent=cases.length;
   // A reconstruction must never outlive the evidence it was built from.
   if(recon&&(error||!cases.some(c=>c.id===recon.caseId))){
@@ -137,6 +143,7 @@ function render(){
  $('timeline').replaceChildren(...rows.map(r=>{const e=r.payload.event,n=document.createElement('tr');for(const v of [e.at.slice(11,19),devices[e.device]?.name??e.device,e.type,r.hash.slice(0,16)+'…'])n.append(text('td',v));return n;}));
  $('replay').disabled=busy||!last;
  renderCases();
+ if(cr)cr.refresh();
 }
 
 async function run(name,replay=false){if(busy)return;closeReconstruction();busy=true;document.querySelectorAll('button').forEach(b=>b.disabled=true);let added=0;
@@ -186,7 +193,7 @@ async function runLegacyBridgeDemo(){
     if(local){try{rows=(await api('state')).ledger;}catch{}}
     status('Legacy Bridge Demo error: '+e.message,true);
     render();
-  }finally{busy=false;document.querySelectorAll('button').forEach(b=>b.disabled=false);}
+  }finally{busy=false;document.querySelectorAll('button').forEach(b=>b.disabled=false);if(cr)cr.refresh();}
 }
 
 
@@ -285,4 +292,57 @@ async function init(){
  if(!Array.isArray(rows)||!(await verify(rows)).valid)throw Error('Saved evidence is malformed or has failed integrity. Reset the lab or export for investigation.');
  render();if(rows.length)$('integrity-label').textContent='Verified';
  }catch(e){status(e.message,true);if(!Array.isArray(rows))rows=[];try{render();}catch{rows=[];render();}}
-}init();
+}
+
+// ---- Control Room bridge: the only way the Control Room touches the ledger. Same append/verify/correlate path as manual use. ----
+async function ingestEvents(events){
+ let added=0;
+ for(const e of events){
+  if(local){const r=await api('events',e);if(r.created)added++;}
+  else if(await append(rows,e))added++;
+ }
+ if(local)rows=(await api('state')).ledger;else save();
+ const v=await verify(rows);
+ $('integrity-label').textContent=v.valid?'Verified':'FAILED';
+ if(!v.valid)status('Source evidence SHA-256 chain verification failed',true);
+ render();
+ return added;
+}
+function waitForCase(ms=4000){
+ return new Promise(resolve=>{
+  const t0=Date.now();
+  (function poll(){
+   const c=validCases(rows,lastCases)[0];
+   if(c){resolve(c);return;}
+   if(Date.now()-t0>ms){resolve(null);return;}
+   setTimeout(poll,60);
+  })();
+ });
+}
+const bridge={
+ getRows:()=>rows,
+ getCases:()=>lastCases,
+ isLocal:()=>local,
+ status,
+ ingest:ingestEvents,
+ resetLab:()=>$('reset').onclick(),
+ runLegacy:()=>runLegacyBridgeDemo(),
+ verify:()=>verify(rows),
+ waitForCase,
+ openReconstruction:(c,trigger)=>openReconstruction(c,trigger),
+ closeReconstruction:restoreFocus=>closeReconstruction(!!restoreFocus),
+ reconPlayback:()=>(recon&&recon.view&&recon.view.playback)||null,
+};
+function startControlRoom(){
+ try{
+  const reduced=typeof matchMedia==='function'&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const slot=$('cr-recon-slot'),host=$('reconstruction');
+  if(slot&&host)slot.append(host); // keep the reconstruction beside the scene it explains
+  cr=mountControlRoom({doc:document,bridge,reducedMotion:reduced});
+  if(!cr)return;
+  const sc=mountShowcase({doc:document,bridge,cr,reducedMotion:reduced});
+  const q=new URLSearchParams(location.search);
+  if(sc&&q.get('present')==='1')sc.open({autoplay:q.get('autoplay')==='1'});
+ }catch(e){status('Control Room unavailable: '+e.message,true);}
+}
+init().then(startControlRoom);
