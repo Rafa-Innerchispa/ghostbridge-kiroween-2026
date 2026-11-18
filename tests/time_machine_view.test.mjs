@@ -257,3 +257,20 @@ test('app.js re-enabling every button is undone on the next refresh (Previous st
   t.view.refresh();
   assert.equal(prev.disabled, true);
 });
+
+test('late case ids do not override a cursor the user moved meanwhile, and a running Play keeps running', async () => {
+  const {rows, cases} = await forge(299, 120);
+  const t = mount({rows, cases: []});
+  t.view.select(2);
+  t.env.cursor = 12345;                         // the user scrubbed the timeline elsewhere before the cases arrived
+  t.env.cases = cases; t.view.refresh();
+  assert.equal(t.view.state.index, null, 'the beat is not restored over the user\u2019s own cursor');
+  assert.equal(t.cursor, 12345, 'and the cursor is left where the user put it');
+
+  const u = mount({rows, cases: []});
+  u.view.select(0); u.view.play();
+  assert.equal(u.view.state.playing, true);
+  u.env.cases = cases; u.view.refresh();
+  assert.equal(u.view.state.playing, true, 'Play continues after the late case ids');
+  assert.equal(u.sched.size, 1, 'exactly one timer is pending');
+});

@@ -165,11 +165,18 @@ export function mountTimeMachine({doc, host, getRows, getCases, getCursor, setCu
       // The correlator's cases arrive a moment after the rows (qa-auditor re-audit: about 360 ms). When only the cases changed, keep the
       // beat the user chose (same step id) instead of dropping it; a different ledger always starts over. Added by Kiro's main session.
       const sameRows = sig !== null && sig.split('|')[0] === rowSig;
-      const keepId = sameRows && idx !== null ? tm.steps[idx]?.id : null;
+      // Keep it only while the building still shows that beat: if the user moved the cursor elsewhere in the meantime, respect that
+      // (qa-auditor closing review). A running Play continues instead of stopping.
+      const keepId = sameRows && idx !== null && getCursor() === tm.steps[idx]?.cursor ? tm.steps[idx].id : null;
+      const wasPlaying = playing && keepId !== null;
       sig = next; stop(); idx = null; build();
       if (keepId) {
         const k = tm.steps.findIndex(s => s.id === keepId);
-        if (k >= 0) { idx = k; if (getCursor() !== tm.steps[k].cursor) setCursor(tm.steps[k].cursor); }
+        if (k >= 0) {
+          idx = k;
+          if (getCursor() !== tm.steps[k].cursor) setCursor(tm.steps[k].cursor);
+          if (wasPlaying && !reducedMotion && k < tm.steps.length - 1) { playing = true; timer = schedule(tick, intervalMs); }
+        }
       }
       paintBeats(); paintCaption(); return;
     }
