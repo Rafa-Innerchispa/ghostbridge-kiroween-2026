@@ -78,12 +78,19 @@ def verify_rows(rows: object) -> dict:
         raise ToolError(f"rows must be a list of at most {MAX_LEDGER_ROWS} ledger rows")
     previous = "0" * 64
     for seq, row in enumerate(rows, 1):
+        fail = {"valid": False, "checked": seq - 1, "failed_at": seq}
         try:
-            if row["seq"] != seq or row["previous"] != previous or row["hash"] != digest(previous, row["payload"]):
-                return {"valid": False, "checked": seq - 1, "failed_at": seq}
+            # Report WHY a row fails. A strict check stays strict; the reason tells a client when its own encoding (for example
+            # seq sent as a string) is the cause rather than tampering.
+            if isinstance(row.get("seq"), bool) or not isinstance(row.get("seq"), int) or row["seq"] != seq:
+                return {**fail, "reason": f"seq is {row.get('seq')!r} ({type(row.get('seq')).__name__}); expected integer {seq}"}
+            if row["previous"] != previous:
+                return {**fail, "reason": "previous hash does not match the hash of the row before it"}
+            if row["hash"] != digest(previous, row["payload"]):
+                return {**fail, "reason": "stored hash does not match the SHA-256 recomputed from this row's payload"}
             previous = row["hash"]
-        except (KeyError, TypeError, ValueError):
-            return {"valid": False, "checked": seq - 1, "failed_at": seq, "error": "malformed row"}
+        except (AttributeError, KeyError, TypeError, ValueError):
+            return {**fail, "error": "malformed row", "reason": "row is missing seq, previous, hash or payload"}
     return {"valid": True, "checked": len(rows), "head": previous}
 
 
@@ -145,8 +152,60 @@ def tool_forge_boundary(args: dict) -> dict:
         store.close()
 
 
+MAX_ROWS_JSON_CHARS = 1_000_000
+MAX_NESTING = 32   # a real ledger row is about 5 levels deep (row > payload > event > data); the platform's own recursion limit differs
+
+
+def _too_deep(value, limit: int = MAX_NESTING) -> bool:
+    """Iterative depth check, so the answer is the same on every platform and never itself recurses."""
+    stack = [(value, 1)]
+    while stack:
+        node, depth = stack.pop()
+        if isinstance(node, (dict, list)):
+            if depth > limit:
+                return True
+            children = node.values() if isinstance(node, dict) else node
+            stack.extend((c, depth + 1) for c in children)
+    return False
+
+
 def tool_verify_ledger(args: dict) -> dict:
-    return verify_rows(args.get("rows"))
+    """Verify rows given as a JSON array (`rows`) or as JSON text (`rows_json`), exactly one of them.
+
+    `rows_json` exists because a hash covers the exact canonical bytes of each payload: some MCP clients drop empty objects such as
+    `"data": {}` while passing structured arguments, which changes the bytes and correctly fails verification. Text is passed unchanged.
+    """
+    has_rows, has_text = "rows" in args, "rows_json" in args
+    if has_rows == has_text:
+        raise ToolError("give exactly one of rows (a JSON array) or rows_json (the same array as JSON text)")
+    if has_text:
+        text = args["rows_json"]
+        if not isinstance(text, str) or len(text) > MAX_ROWS_JSON_CHARS:
+            raise ToolError(f"rows_json must be a string of at most {MAX_ROWS_JSON_CHARS} characters")
+        try:
+            rows = json.loads(text)
+        except json.JSONDecodeError as exc:
+            raise ToolError(f"rows_json is not valid JSON: {exc.msg} at character {exc.pos}") from exc
+        except RecursionError as exc:   # qa-auditor closing review: deeply nested text must be a tool error, not an internal error
+            raise ToolError("rows_json is nested too deeply to be a ledger") from exc
+    else:
+        rows = args["rows"]
+    if _too_deep(rows):
+        raise ToolError(f"the ledger is nested too deeply (more than {MAX_NESTING} levels) to be GhostBridge rows")
+    try:
+        result = verify_rows(rows)
+    except RecursionError as exc:      # a payload nested deeply enough to exhaust canonical JSON encoding
+        raise ToolError("a ledger row is nested too deeply to verify") from exc
+    if not result["valid"] and "failed_at" in result and isinstance(rows, list) and 0 < result["failed_at"] <= len(rows):
+        row = rows[result["failed_at"] - 1]
+        event = row.get("payload", {}).get("event") if isinstance(row, dict) and isinstance(row.get("payload"), dict) else None
+        missing = [k for k in ("data",) if isinstance(event, dict) and k not in event]
+        if isinstance(row, dict) and isinstance(row.get("payload"), dict) and "incident" not in row["payload"]:
+            missing.append("incident")
+        if missing:
+            result["hint"] = (f"the failing row has no {' or '.join(missing)} field; ledger rows always carry event.data and payload.incident "
+                              "(possibly {} or null). If your client drops empty or null values, send the ledger as rows_json text.")
+    return result
 
 
 TOOLS = {
@@ -183,11 +242,21 @@ TOOLS = {
     },
     "verify_ledger": {
         "fn": tool_verify_ledger,
-        "description": "Verify a SHA-256 hash chain of ledger rows (seq, payload, previous, hash), as produced by run_scenario or the GhostBridge export. Returns valid or the first failing position. At most 500 rows.",
+        "description": "Verify a SHA-256 hash chain of ledger rows (seq, payload, previous, hash), as produced by the GhostBridge export. Give exactly one of rows (array) or rows_json (the array as JSON text; preferred, because hashes cover exact bytes and some clients drop empty objects). Returns valid, or the first failing position with a reason. At most 500 rows.",
         "inputSchema": {
             "type": "object",
-            "properties": {"rows": {"type": "array", "maxItems": MAX_LEDGER_ROWS, "items": {"type": "object"}}},
-            "required": ["rows"],
+            "properties": {"rows": {"type": "array", "maxItems": MAX_LEDGER_ROWS, "items": {
+                "type": "object",
+                "properties": {
+                    "seq": {"type": "integer", "minimum": 1},
+                    "previous": {"type": "string", "minLength": 64, "maxLength": 64},
+                    "hash": {"type": "string", "minLength": 64, "maxLength": 64},
+                    "payload": {"type": "object", "description": "{event, incident}; include incident: null when there is none"},
+                },
+                "required": ["seq", "previous", "hash", "payload"],
+            }},
+                "rows_json": {"type": "string", "maxLength": MAX_ROWS_JSON_CHARS,
+                              "description": "The same rows as JSON text. Use this when your client may drop empty objects or null values; the bytes must match exactly."}},
             "additionalProperties": False,
         },
     },

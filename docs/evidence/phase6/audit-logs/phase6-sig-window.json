@@ -1,0 +1,29 @@
+[
+ {
+  "i": 0,
+  "casesAtPick": "1",
+  "selectedRightAfterClick": 2,
+  "afterCasesArrived": {
+   "idx": 2,
+   "cap": "Beat 3 of 8Door opensRecorded UTC time 2"
+  }
+ },
+ {
+  "i": 2,
+  "casesAtPick": "1",
+  "selectedRightAfterClick": 2,
+  "afterCasesArrived": {
+   "idx": 2,
+   "cap": "Beat 3 of 8Door opensRecorded UTC time 2"
+  }
+ },
+ {
+  "i": 3,
+  "casesAtPick": "1",
+  "selectedRightAfterClick": 2,
+  "afterCasesArrived": {
+   "idx": 2,
+   "cap": "Beat 3 of 8Door opensRecorded UTC time 2"
+  }
+ }
+]

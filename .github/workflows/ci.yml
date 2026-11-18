@@ -29,6 +29,10 @@ jobs:
       - run: node --check docs/control_room_view.mjs
       - run: node --check docs/showcase.mjs
       - run: node --check docs/showcase_view.mjs
+      - run: node --check docs/time_machine.mjs
+      - run: node --check docs/trust_lab.mjs
+      - run: node --check docs/time_machine_view.mjs
+      - run: node --check docs/trust_lab_view.mjs
       - run: node --test tests/browser.test.mjs
       - run: node --test tests/filter.test.mjs
       - run: node --test tests/correlator.test.mjs
@@ -44,3 +48,7 @@ jobs:
       - run: node --test tests/guard.test.mjs
       - run: node --test tests/a11y_targets.test.mjs
       - run: node --test tests/hooks.test.mjs
+      - run: node --test tests/time_machine.test.mjs
+      - run: node --test tests/trust_lab.test.mjs
+      - run: node --test tests/time_machine_view.test.mjs
+      - run: node --test tests/trust_lab_view.test.mjs

@@ -9,6 +9,7 @@ import {mountReconstruction,mountReconstructionError} from './reconstruction-vie
 import {mountControlRoom} from './control_room_view.mjs';
 import {mountShowcase} from './showcase_view.mjs';
 import {validCases} from './control_room.mjs';
+const scrollBehavior=()=>typeof matchMedia==='function'&&matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth';
 const $=id=>document.getElementById(id),key='ghostbridge-ledger-v1';
 let rows=[],busy=false,last=null,local=false,caseRenderToken=0,lastForge=null;
 // Control Room (UI only): latest derived cases, and the mounted view. Never persisted or exported.
@@ -110,7 +111,7 @@ async function renderCases(){
     const hashes=document.createElement('div');hashes.className='case-hashes';
     for(const h of c.evidence_hashes)hashes.append(text('code',h.slice(0,16)+'…'));
     b.append(hashes);
-    b.onclick=()=>{$('inspection').textContent=JSON.stringify(c,null,2);$('inspection').scrollIntoView({block:'nearest',behavior:'smooth'});};
+    b.onclick=()=>{$('inspection').textContent=JSON.stringify(c,null,2);$('inspection').scrollIntoView({block:'nearest',behavior:scrollBehavior()});};
     const open=text('button','◎ Reconstruct case','recon-open');open.type='button';
     open.setAttribute('aria-label','Reconstruct case '+c.id+' from the verified ledger');
     open.onclick=()=>openReconstruction(c,open);
@@ -135,7 +136,7 @@ function render(){
  }else if(!visibleFindings.length){
   incidentNodes=[text('p',`No ${activeSeverity}-severity incidents in this shift. Switch to All or another severity to see recorded findings.`,'empty empty-filter')];
  }else{
-  incidentNodes=visibleFindings.map(r=>{const f=r.payload.incident,b=text('button','','finding');b.append(text('span',f.severity,'severity'),text('strong',f.title),text('p',f.explanation),text('small',f.rule+' → '+f.event_id));b.onclick=()=>{$('inspection').textContent=JSON.stringify(r,null,2);$('inspection').scrollIntoView({block:'nearest',behavior:'smooth'});};return b;});
+  incidentNodes=visibleFindings.map(r=>{const f=r.payload.incident,b=text('button','','finding');b.append(text('span',f.severity,'severity'),text('strong',f.title),text('p',f.explanation),text('small',f.rule+' → '+f.event_id));b.onclick=()=>{$('inspection').textContent=JSON.stringify(r,null,2);$('inspection').scrollIntoView({block:'nearest',behavior:scrollBehavior()});};return b;});
  }
  $('incidents').replaceChildren(...incidentNodes);
 
@@ -266,7 +267,7 @@ async function runForge(replay=false){
 $('signal-forge').onclick=()=>{
  const panel=$('forge-panel');panel.hidden=false;
  previewForge();$('forge-gap').focus();
- panel.scrollIntoView({block:'start',behavior:'smooth'});
+ panel.scrollIntoView({block:'start',behavior:scrollBehavior()});
 };
 $('forge-close').onclick=()=>{$('forge-panel').hidden=true;$('signal-forge').focus();};
 $('forge-gap').addEventListener('input',previewForge);

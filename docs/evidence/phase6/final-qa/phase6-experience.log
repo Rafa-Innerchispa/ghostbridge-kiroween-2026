@@ -1,0 +1,161 @@
+PASS S1.0 ledger read from localStorage has the denial and the door
+PASS S1.1 labelled region "Incident Time Machine" lives inside the Timeline panel
+PASS S1.2 eight beats, none current and the scene untouched before a choice (no autoplay)
+PASS S1.3 live region for the caption is aria-live polite
+PASS S1.4.1 beat 1 is the only aria-current beat
+PASS S1.5.1 beat 1 reads as reached (no "did not happen")
+PASS S1.6.1 beat 1 caption names its beat number and label
+PASS S1.7.1 beat 1 UTC time is shown exactly when the beat has one
+PASS S1.4.2 beat 2 is the only aria-current beat
+PASS S1.5.2 beat 2 reads as reached (no "did not happen")
+PASS S1.6.2 beat 2 caption names its beat number and label
+PASS S1.7.2 beat 2 UTC time is shown exactly when the beat has one
+PASS S1.4.3 beat 3 is the only aria-current beat
+PASS S1.5.3 beat 3 reads as reached (no "did not happen")
+PASS S1.6.3 beat 3 caption names its beat number and label
+PASS S1.7.3 beat 3 UTC time is shown exactly when the beat has one
+PASS S1.4.4 beat 4 is the only aria-current beat
+PASS S1.5.4 beat 4 reads as reached (no "did not happen")
+PASS S1.6.4 beat 4 caption names its beat number and label
+PASS S1.7.4 beat 4 UTC time is shown exactly when the beat has one
+PASS S1.4.5 beat 5 is the only aria-current beat
+PASS S1.5.5 beat 5 reads as reached (no "did not happen")
+PASS S1.6.5 beat 5 caption names its beat number and label
+PASS S1.7.5 beat 5 UTC time is shown exactly when the beat has one
+PASS S1.4.6 beat 6 is the only aria-current beat
+PASS S1.5.6 beat 6 reads as reached (no "did not happen")
+PASS S1.6.6 beat 6 caption names its beat number and label
+PASS S1.7.6 beat 6 UTC time is shown exactly when the beat has one
+PASS S1.4.7 beat 7 is the only aria-current beat
+PASS S1.5.7 beat 7 reads as reached (no "did not happen")
+PASS S1.6.7 beat 7 caption names its beat number and label
+PASS S1.7.7 beat 7 UTC time is shown exactly when the beat has one
+PASS S1.4.8 beat 8 is the only aria-current beat
+PASS S1.5.8 beat 8 reads as reached (no "did not happen")
+PASS S1.6.8 beat 8 caption names its beat number and label
+PASS S1.7.8 beat 8 UTC time is shown exactly when the beat has one
+PASS S1.8 beat 2: reader denied and no link (the earlier forge door.open is still open at that moment, per the ledger)
+PASS S1.9 beat 3: door open and NO link yet
+PASS S1.10 beat 4: door held
+PASS S1.11 beat 6: the case link appears and the chip shows the case
+PASS S1.12 beat 1: quiet building (reader idle, door closed, no link)
+PASS S1.13 case id read from the case chip is non-empty and appears in the beat 6 caption
+PASS S1.14 beat 2 caption carries the denial event id, ledger row and the full hash from localStorage
+PASS S1.15 beat 3 caption carries the door event id and its hash
+PASS S1.16 beat 7 caption cites both ledger hashes (denial and door)
+PASS S1.17 hashes are shortened in view and expandable to the full value
+PASS S1.18 each shortened hash carries the full hash in its title
+PASS S1.19 beat 8 gives advisory text from the model (no device control claim)
+PASS S1.20 choosing a beat uses the existing cursor: scrubber shows a time and Back to live is enabled
+PASS S1.21 Back to live returns to the live building and releases the active beat
+PASS S1.22 moving the scrubber releases the active beat
+PASS S1.23 Next, Next, Previous lands on beats 1, 2, 1
+PASS S1.24 Play moves focus-safe: Play disabled, Pause enabled while playing
+PASS S1.25 after 1.2 s Play has NOT advanced yet (interval is about 2.2 s)
+PASS S1.26 after about 2.9 s Play advanced exactly one beat
+PASS S1.27 Pause holds the beat (no further advance after 2.8 s)
+PASS S1.28 Play stops on the last beat and Play is available again
+PASS S1.29 existing timeline list, scrubber and markers are still present
+PASS S1: no console errors or exceptions
+PASS S2.1 the model note for the near miss is shown
+PASS S2.2.1 beat 1 never shows a case link or case chip
+PASS S2.4.1 beat 1 is not marked as missed
+PASS S2.2.2 beat 2 never shows a case link or case chip
+PASS S2.4.2 beat 2 is not marked as missed
+PASS S2.2.3 beat 3 never shows a case link or case chip
+PASS S2.4.3 beat 3 is not marked as missed
+PASS S2.2.4 beat 4 never shows a case link or case chip
+PASS S2.3.4 beat 4 says "did not happen" in the beat and the caption (words, not colour)
+PASS S2.2.5 beat 5 never shows a case link or case chip
+PASS S2.3.5 beat 5 says "did not happen" in the beat and the caption (words, not colour)
+PASS S2.2.6 beat 6 never shows a case link or case chip
+PASS S2.3.6 beat 6 says "did not happen" in the beat and the caption (words, not colour)
+PASS S2.2.7 beat 7 never shows a case link or case chip
+PASS S2.3.7 beat 7 says "did not happen" in the beat and the caption (words, not colour)
+PASS S2.2.8 beat 8 never shows a case link or case chip
+PASS S2.4.8 beat 8 is not marked as missed
+PASS S2.5 missed beats have a hollow marker (transparent fill, visible border) and dashed outline; reached beats do not
+PASS S2.6 the "no case" beat explains why from the model
+PASS S2.7 rule-conditions beat names both failed conditions with their margins
+PASS S2: no console errors or exceptions
+PASS S3.0 integrity label says Verified before any experiment
+PASS S3.1 labelled region "Evidence Trust Lab" is inside the Evidence panel and starts collapsed
+PASS S3.2 the honesty line is visible even while collapsed
+PASS S3.3 one block per ledger row, each Verified with icon and text
+PASS S3.4 side by side: "Original ledger: verified N of N rows" and "Altered copy: fails at row 2"
+PASS S3.5 the two results sit side by side at 1440
+PASS S3.6 plain-language reason, the change (field, before, after) are shown
+PASS S3.7 failing row shows stored vs recomputed hash, shortened, different, full value in title
+PASS S3.8 altered copy statuses: row 1 verified, row 2 altered, later rows unverifiable
+PASS S3.9 the result is announced in an aria-live region
+PASS S3.10 localStorage ledger is byte-identical after the tamper
+PASS S3.11 the existing integrity indicator still says Verified
+PASS S3.12 the real chain above still shows every block Verified
+PASS S3.13 Restore clears the experiment and returns to the clean chain
+PASS S3.14 Restore keeps the ledger byte-identical
+PASS S3.15 every applicable field on every row fails at that row; ledger and integrity label unchanged (11 experiments)
+PASS S3.16 fields that do not apply are disabled AND explained in words
+PASS S3.17 localStorage still holds only the ledger key (the lab stores nothing)
+PASS S3: no console errors or exceptions
+PASS S4.1 Enter on Next selects beat 1
+PASS S4.2 Space on Next selects beat 2
+PASS S4.3 the focused control has a visible focus ring
+PASS S4.4 Tab moves to the next beat button
+PASS S4.5 a focused beat shows a focus ring
+PASS S4.6 Enter on a beat selects it and the building shows a held door
+PASS S4.7 Play by keyboard keeps focus on a live control (Pause)
+PASS S4.8 Pause by keyboard stops playback and focus returns to Play
+PASS S4.9 Previous by keyboard steps back one beat
+PASS S4.10 reaching the last beat by keyboard does not strand focus on a disabled button
+PASS S4.11 Enter on the lab summary opens it
+PASS S4.12 Tab reaches the row select
+PASS S4.13 ArrowDown changes the row to 2
+PASS S4.14 Tab reaches the field select
+PASS S4.15 Tab reaches Tamper a copy
+PASS S4.16 Tamper a copy shows a focus ring
+PASS S4.17 Enter on Tamper reports the failure at the chosen row
+PASS S4.18 ledger byte-identical after the keyboard experiment
+PASS S4.19 Tab reaches Restore
+PASS S4.20 Enter on Restore clears the experiment and focus stays on a live control
+PASS S4: no console errors or exceptions
+PASS S5.0 reduced motion is emulated
+PASS S5.1 Play and Pause are off and the page says why in words
+PASS S5.2 pressing Play does not advance anything (3 s later no beat is current)
+PASS S5.3 Next advances exactly one beat and nothing advances by itself
+PASS S5.4 the next explicit Next advances to beat 2
+PASS S5.5 the static equivalent still shows the full caption, case and hashes
+PASS S5.6 no transitions on the new components under reduced motion
+PASS S5: no console errors or exceptions
+PASS S6.1440.1 timeline panel with Time Machine: no horizontal overflow
+PASS S6.1440.2 every Time Machine control is at least 40x40 px
+PASS S6.1440.3 beats, controls and caption stay inside the viewport
+PASS S6.1440.4 no beat button clips its own text
+PASS S6.1440.5 evidence panel with the Trust Lab (valid): no horizontal overflow
+PASS S6.1440.6 Trust Lab with a tampered copy: no horizontal overflow
+PASS S6.1440.7 every Trust Lab control is at least 40x40 px
+PASS S6.1440.8 the two results are side by side at 1440
+PASS S6.1280.1 timeline panel with Time Machine: no horizontal overflow
+PASS S6.1280.2 every Time Machine control is at least 40x40 px
+PASS S6.1280.3 beats, controls and caption stay inside the viewport
+PASS S6.1280.4 no beat button clips its own text
+PASS S6.1280.5 evidence panel with the Trust Lab (valid): no horizontal overflow
+PASS S6.1280.6 Trust Lab with a tampered copy: no horizontal overflow
+PASS S6.1280.7 every Trust Lab control is at least 40x40 px
+PASS S6.1280.8 the two results are side by side at 1280
+PASS S6.390.1 timeline panel with Time Machine: no horizontal overflow
+PASS S6.390.2 every Time Machine control is at least 40x40 px
+PASS S6.390.3 beats, controls and caption stay inside the viewport
+PASS S6.390.4 no beat button clips its own text
+PASS S6.390.5 evidence panel with the Trust Lab (valid): no horizontal overflow
+PASS S6.390.6 Trust Lab with a tampered copy: no horizontal overflow
+PASS S6.390.7 every Trust Lab control is at least 40x40 px
+PASS S6.390.8 the two results are stacked at 390
+PASS S6.9 ZERO third-party requests
+PASS S6.10 no failed or 4xx requests, including the new modules
+PASS S6.11 the two new modules were actually served
+PASS S6: no console errors or exceptions
+PASS S7.1 empty ledger: no beats, the model note is shown instead
+PASS S7.2 empty ledger: the lab says so and disables every control
+PASS S7: no console errors or exceptions
+
+Phase 6 experience: 159 passed, 0 failed, 159 total

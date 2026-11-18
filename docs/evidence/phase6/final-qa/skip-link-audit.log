@@ -1,0 +1,34 @@
+PASS d1440 (a) first Tab lands on the skip link
+PASS d1440 (a) skip link is on screen when focused
+PASS d1440 (a) focus ring visible (outline style/width)
+PASS d1440 (d) skip-link text contrast >= 4.5:1
+PASS d1440 (e) reduced motion: no transition/animation/smooth-scroll on skip link or page
+PASS d1440 (b) Enter moves focus to #control-room
+PASS d1440 (b) hash updated
+PASS d1440 (b) target section reachable (top within viewport)
+PASS d1440 (c) #filter-all >= 40x40
+PASS d1440 (c) #filter-high >= 40x40
+PASS d1440 (c) #filter-medium >= 40x40
+PASS d1440 (c) #verify >= 40x40
+PASS d1440 (c) #export >= 40x40
+PASS d1440 (c) #tamper >= 40x40
+PASS d1440 (c) no horizontal overflow
+PASS d1440 no console errors
+PASS m390 (a) first Tab lands on the skip link
+PASS m390 (a) skip link is on screen when focused
+PASS m390 (a) focus ring visible (outline style/width)
+PASS m390 (d) skip-link text contrast >= 4.5:1
+PASS m390 (e) reduced motion: no transition/animation/smooth-scroll on skip link or page
+PASS m390 (b) Enter moves focus to #control-room
+PASS m390 (b) hash updated
+PASS m390 (b) target section reachable (top within viewport)
+PASS m390 (c) #filter-all >= 40x40
+PASS m390 (c) #filter-high >= 40x40
+PASS m390 (c) #filter-medium >= 40x40
+PASS m390 (c) #verify >= 40x40
+PASS m390 (c) #export >= 40x40
+PASS m390 (c) #tamper >= 40x40
+PASS m390 (c) no horizontal overflow
+PASS m390 no console errors
+
+skip-link audit: 32 passed, 0 failed, 32 total

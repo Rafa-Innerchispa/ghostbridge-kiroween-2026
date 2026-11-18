@@ -80,7 +80,9 @@ class ToolTests(unittest.TestCase):
         self.assertFalse(err)
         self.assertEqual(out["row_hashes"], clean["row_hashes"])
         self.assertEqual(out["integrity"], clean["integrity"])
-        self.assertEqual(out["tamper_demo"]["verification_after_tamper"], {"valid": False, "checked": 1, "failed_at": 2})
+        after = out["tamper_demo"]["verification_after_tamper"]
+        self.assertEqual({k: after[k] for k in ("valid", "checked", "failed_at")}, {"valid": False, "checked": 1, "failed_at": 2})
+        self.assertIn("stored hash does not match", after["reason"])
         for bad in (0, 6, "2", True, 2.5):
             _, err = call("run_scenario", {"name": "night", "tamper_seq": bad})
             self.assertTrue(err, bad)
@@ -150,8 +152,76 @@ class ToolTests(unittest.TestCase):
         self.assertEqual((out["valid"], out["checked"], out["failed_at"]), (False, 3, 4))
         out, _ = call("verify_ledger", {"rows": [{"nope": 1}]})
         self.assertFalse(out["valid"])
+        self.assertIn("reason", out)
+        # A client that sends seq as a string is told so, and the check stays strict (not accepted).
+        as_text = json.loads(json.dumps(rows))
+        for r in as_text:
+            r["seq"] = str(r["seq"])
+        out, _ = call("verify_ledger", {"rows": as_text})
+        self.assertEqual((out["valid"], out["failed_at"]), (False, 1))
+        self.assertIn("expected integer 1", out["reason"])
+        out, _ = call("verify_ledger", {"rows": bad})
+        self.assertIn("stored hash does not match", out["reason"])
+        # Dropping "incident": null changes the canonical payload, so the row no longer matches its hash.
+        dropped = json.loads(json.dumps(rows))
+        dropped[3]["payload"].pop("incident")
+        out, _ = call("verify_ledger", {"rows": dropped})
+        self.assertEqual(out["failed_at"], 4)
         out, _ = call("verify_ledger", {"rows": []})
         self.assertEqual((out["valid"], out["checked"]), (True, 0))
+
+    def test_verify_ledger_accepts_exact_json_text_and_explains_dropped_empty_objects(self):
+        store, snap = m._ledger(m.scenario("denied") + m.scenario("normal")[:2])
+        try:
+            rows = snap["ledger"]
+        finally:
+            store.close()
+        text = json.dumps(rows)
+        out, err = call("verify_ledger", {"rows_json": text})
+        self.assertFalse(err)
+        self.assertEqual((out["valid"], out["checked"]), (True, 3))
+        # What a client that drops empty objects sends: event.data {} disappears, so the bytes and the hash change.
+        dropped = json.loads(text)
+        for r in dropped:
+            if r["payload"]["event"]["data"] == {}:
+                del r["payload"]["event"]["data"]
+        out, _ = call("verify_ledger", {"rows": dropped})
+        self.assertEqual((out["valid"], out["failed_at"]), (False, 1), "strict: a changed payload never verifies")
+        self.assertIn("rows_json", out["hint"])
+        self.assertIn("data", out["hint"])
+        # Tampering is still caught through rows_json.
+        tampered = json.loads(text)
+        tampered[1]["payload"]["event"]["at"] = "2026-10-30T23:00:00Z"
+        out, _ = call("verify_ledger", {"rows_json": json.dumps(tampered)})
+        self.assertEqual((out["valid"], out["failed_at"]), (False, 2))
+        self.assertNotIn("hint", out, "a real tamper gets no 'dropped field' hint")
+
+    def test_verify_ledger_requires_exactly_one_input_and_rejects_bad_text(self):
+        for args in ({}, {"rows": [], "rows_json": "[]"}, {"rows_json": "{not json"}, {"rows_json": 5},
+                     {"rows_json": "x" * (m.MAX_ROWS_JSON_CHARS + 1)}):
+            _, err = call("verify_ledger", args)
+            self.assertTrue(err, str(args)[:60])
+        out, err = call("verify_ledger", {"rows_json": "[]"})
+        self.assertFalse(err)
+        self.assertEqual((out["valid"], out["checked"]), (True, 0))
+        # qa-auditor closing review: deep nesting is a clean tool error, both as text and inside a row's payload.
+        out, err = call("verify_ledger", {"rows_json": "[" * 400_000 + "]" * 400_000})
+        self.assertTrue(err)
+        self.assertIn("nested too deeply", out["error"])
+        # 40 levels: past the server's explicit limit (32) but far below any platform recursion limit, so the result cannot depend on
+        # the OS (the first version used 5000 levels, which raised on Windows and encoded fine on Linux CI).
+        deep = cur = {}
+        for _ in range(40):
+            cur["x"] = {}; cur = cur["x"]
+        out, err = call("verify_ledger", {"rows": [{"seq": 1, "previous": "0" * 64, "hash": "0" * 64, "payload": deep}]})
+        self.assertTrue(err)
+        self.assertIn("nested too deeply", out["error"])
+        # A real ledger is well inside the limit.
+        store, snap = m._ledger(m.scenario("night"))
+        try:
+            self.assertFalse(m._too_deep(snap["ledger"]))
+        finally:
+            store.close()
 
     def test_verify_ledger_is_bounded(self):
         _, err = call("verify_ledger", {"rows": [{}] * (m.MAX_LEDGER_ROWS + 1)})

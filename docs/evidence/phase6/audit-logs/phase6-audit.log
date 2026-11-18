@@ -1,0 +1,17 @@
+FAIL AU1.A.0 ledger rows exist in localStorage  -> rows=0 keys=
+FAIL AU1.A.1 ledger rows link to the previous hash (undefined)  -> no prev field
+FAIL AU1.A.2 eight beats
+FAIL AU1 challenge A captions trace to ledger completed without a driver error  -> Error: eval failed: TypeError: Cannot read properties of undefined (reading 'click') |     at <anonymous>:1:144 |   in: [...document.querySelector('[role=region][aria-label="Incident Time Machine"]').querySelectorAll('ol[aria-label="Incident beats"] button')][0].click()
+FAIL AU1.B.0 ledger rows exist in localStorage  -> rows=0 keys=
+FAIL AU1.B.1 ledger rows link to the previous hash (undefined)  -> no prev field
+FAIL AU1.B.2 eight beats
+FAIL AU1 challenge B captions trace to ledger completed without a driver error  -> Error: eval failed: TypeError: Cannot read properties of undefined (reading 'click') |     at <anonymous>:1:144 |   in: [...document.querySelector('[role=region][aria-label="Incident Time Machine"]').querySelectorAll('ol[aria-label="Incident beats"] button')][0].click()
+FAIL AU2 trust lab leaves the real ledger and indicator alone completed without a driver error  -> Error: eval failed: TypeError: Cannot read properties of null (reading 'open') |     at <anonymous>:1:98 |   in: document.querySelector('[role=region][aria-label="Evidence Trust Lab"]').querySelector('details').open
+PASS AU3.0 prefers-reduced-motion: reduce is in effect
+FAIL AU3 reduced motion completed without a driver error  -> Error: eval failed: TypeError: Cannot read properties of undefined (reading 'disabled') |     at <anonymous>:1:160 |   in: ({play:[...document.querySelector('[role=region][aria-label="Incident Time Machine"]').querySelectorAll("button")].find(e=>/^\s*play\s*$/i.test(e.textContent)).
+FAIL AU4 control: Play works when motion is allowed completed without a driver error  -> Error: eval failed: TypeError: Cannot read properties of undefined (reading 'disabled') |     at <anonymous>:1:153 |   in: [...document.querySelector('[role=region][aria-label="Incident Time Machine"]').querySelectorAll("button")].find(e=>/^\s*play\s*$/i.test(e.textContent)).disable
+  retrying scenario AU5 forge panel occlusion at 390 (AU5 forge panel occlusion at 390: attempt 1 lost to infrastructure (Error: timeout waiting for: page ready http://127.0.0.2:54344/))
+  retrying scenario AU5 forge panel occlusion at 390 (AU5 forge panel occlusion at 390: attempt 2 lost to infrastructure (Error: timeout waiting for: page ready http://127.0.0.2:54344/))
+FAIL AU5 forge panel occlusion at 390 completed without a driver error  -> Error: timeout waiting for: page ready http://127.0.0.2:54344/ |     at Browser.waitFor (<repo>/tests/browser-qa/lib.mjs:128:11) |     at async Browser.goto (<repo>/tests/browser-qa/lib.mjs:135:5)
+
+Phase 6 independent audit: 0 passed, 6 failed, 6 total
