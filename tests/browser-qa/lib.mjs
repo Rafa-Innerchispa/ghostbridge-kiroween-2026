@@ -71,7 +71,14 @@ export class Browser {
     if (!exe) throw new Error('No Chrome/Edge found. Set CHROME_PATH.');
     const profile = mkdtempSync(path.join(tmpdir(), 'gbqa-'));
     if (process.env.QA_MIN) { /* bisect knob: minimal flags */ }
-    const proc = spawn(exe, process.env.QA_MIN ? ['--headless=new', '--remote-debugging-port=0', `--user-data-dir=${profile}`, '--no-first-run', 'about:blank'] : ['--headless=new', '--remote-debugging-port=0', `--user-data-dir=${profile}`, '--no-first-run', '--disable-gpu', '--hide-scrollbars', '--disable-backgrounding-occluded-windows', '--disable-renderer-backgrounding', '--disable-background-timer-throttling', '--force-device-scale-factor=1', '--disable-features=CalculateNativeWinOcclusion,TranslateUI', '--disable-ipc-flooding-protection', '--disable-dev-shm-usage', '--mute-audio', 'about:blank'], {stdio: 'ignore'});
+    const extra = (process.env.QA_EXTRA_FLAGS || '').split(' ').filter(Boolean);
+    const proc = spawn(exe, process.env.QA_MIN ? ['--headless=new', '--remote-debugging-port=0', `--user-data-dir=${profile}`, '--no-first-run', 'about:blank'] : ['--headless=new', '--remote-debugging-port=0', `--user-data-dir=${profile}`, '--no-first-run', '--disable-gpu', '--hide-scrollbars', '--disable-backgrounding-occluded-windows', '--disable-renderer-backgrounding', '--disable-background-timer-throttling', '--force-device-scale-factor=1', '--disable-features=CalculateNativeWinOcclusion,TranslateUI', '--disable-ipc-flooding-protection', '--disable-dev-shm-usage', '--mute-audio',
+      // Measured 2026-11-18 (Chrome 157.0.8103.79, fresh profile): without these flags Chrome replaced the freshly opened tab on its
+      // own in 4 of 4 trials (the "Inspected target navigated or closed" failures seen since Phase 4); with them, 0 of 4. Background
+      // component updates and networking are what trigger it. None of these flags changes how the page itself runs.
+      '--disable-component-update', '--disable-background-networking', '--disable-sync', '--no-default-browser-check',
+      '--disable-client-side-phishing-detection', '--disable-default-apps', '--disable-domain-reliability', '--metrics-recording-only',
+      ...extra, 'about:blank'], {stdio: 'ignore'});
     let port = null;
     for (let i = 0; i < 80 && !port; i++) {
       const f = path.join(profile, 'DevToolsActivePort');

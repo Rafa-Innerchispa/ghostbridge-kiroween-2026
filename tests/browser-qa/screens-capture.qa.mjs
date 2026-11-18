@@ -22,7 +22,9 @@ for (const [tag, w, h, mobile] of [['1440', 1440, 900, false], ['1024', 1024, 76
     const shot = (name, sel) => b.shot(path.join(OUT, `${tag}-${name}.png`), sel, 500);
     await top(b); await shot('01-hero');
     await b.click('#cr-chal-a'); await settled(b);
-    await top(b); await shot('02-case-299-120');
+    // On a phone the scene sits below the hero copy, so show the scene itself (qa-auditor Phase 7 finding).
+    if (mobile) await at(b, '#cr-scene'); else await top(b);
+    await shot('02-case-299-120');
     for (const [mode, n] of [['building', '03'], ['timeline', '04'], ['evidence', '05'], ['response', '06']]) {
       await b.click(`#cr-tab-${mode}`); await sleep(500);
       if (mode === 'timeline') await b.eval(`document.querySelectorAll('.cr-tm-beat')[5]?.click()`);
@@ -35,7 +37,8 @@ for (const [tag, w, h, mobile] of [['1440', 1440, 900, false], ['1024', 1024, 76
     await b.click('#cr-tl-lab-tamper'); await b.waitFor(`!!${G('cr-tl-lab-altered-h')}`, 'tamper');
     await at(b, '#cr-tl-lab-out'); await shot('07-trust-lab-tampered');
     await b.click('#cr-chal-b'); await settled(b);
-    await top(b); await shot('08-near-miss-301-119');
+    if (mobile) await at(b, '#cr-scene'); else await top(b);
+    await shot('08-near-miss-301-119');
     for (const [sel, name] of [['#vision', '09-vision'], ['footer', '10-footer']]) { if (await at(b, sel)) await shot(name); }
     const n = await b.eval(`[...document.querySelectorAll('main section[id], body > section[id], section[id]')].map(s=>s.id).join(',')`);
     console.log(`SECTIONS ${tag}: ${n}`);
