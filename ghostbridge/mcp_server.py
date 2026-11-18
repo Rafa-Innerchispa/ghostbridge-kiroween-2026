@@ -153,6 +153,20 @@ def tool_forge_boundary(args: dict) -> dict:
 
 
 MAX_ROWS_JSON_CHARS = 1_000_000
+MAX_NESTING = 32   # a real ledger row is about 5 levels deep (row > payload > event > data); the platform's own recursion limit differs
+
+
+def _too_deep(value, limit: int = MAX_NESTING) -> bool:
+    """Iterative depth check, so the answer is the same on every platform and never itself recurses."""
+    stack = [(value, 1)]
+    while stack:
+        node, depth = stack.pop()
+        if isinstance(node, (dict, list)):
+            if depth > limit:
+                return True
+            children = node.values() if isinstance(node, dict) else node
+            stack.extend((c, depth + 1) for c in children)
+    return False
 
 
 def tool_verify_ledger(args: dict) -> dict:
@@ -176,6 +190,8 @@ def tool_verify_ledger(args: dict) -> dict:
             raise ToolError("rows_json is nested too deeply to be a ledger") from exc
     else:
         rows = args["rows"]
+    if _too_deep(rows):
+        raise ToolError(f"the ledger is nested too deeply (more than {MAX_NESTING} levels) to be GhostBridge rows")
     try:
         result = verify_rows(rows)
     except RecursionError as exc:      # a payload nested deeply enough to exhaust canonical JSON encoding

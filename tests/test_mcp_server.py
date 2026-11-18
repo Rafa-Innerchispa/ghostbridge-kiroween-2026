@@ -208,12 +208,20 @@ class ToolTests(unittest.TestCase):
         out, err = call("verify_ledger", {"rows_json": "[" * 400_000 + "]" * 400_000})
         self.assertTrue(err)
         self.assertIn("nested too deeply", out["error"])
+        # 40 levels: past the server's explicit limit (32) but far below any platform recursion limit, so the result cannot depend on
+        # the OS (the first version used 5000 levels, which raised on Windows and encoded fine on Linux CI).
         deep = cur = {}
-        for _ in range(5000):
+        for _ in range(40):
             cur["x"] = {}; cur = cur["x"]
         out, err = call("verify_ledger", {"rows": [{"seq": 1, "previous": "0" * 64, "hash": "0" * 64, "payload": deep}]})
         self.assertTrue(err)
         self.assertIn("nested too deeply", out["error"])
+        # A real ledger is well inside the limit.
+        store, snap = m._ledger(m.scenario("night"))
+        try:
+            self.assertFalse(m._too_deep(snap["ledger"]))
+        finally:
+            store.close()
 
     def test_verify_ledger_is_bounded(self):
         _, err = call("verify_ledger", {"rows": [{}] * (m.MAX_LEDGER_ROWS + 1)})
