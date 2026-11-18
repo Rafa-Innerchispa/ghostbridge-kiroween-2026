@@ -117,7 +117,13 @@ try {
         const cur = await b.eval(`${beats}.map(e=>e.getAttribute('aria-current')).join(',')`);
         if ((cur.match(/step/g) || []).length !== 1) bad.push(`beat ${i + 1}: aria-current ${cur}`);
         // Correction by Kiro main session: the original regex also matched the negation "No correlated case is created". Exclude negated sentences.
-        if (letter === 'B' && f.t.split(/(?<=[.!?])\s+/).some(s => !/\b(no|not|never)\b/i.test(s) && /case link|correlated case (was|is) (created|opened)/i.test(s))) bad.push(`beat ${i + 1}: claims a case in a near miss`);
+        // Tightened after the re-audit: a sentence is excused only when the negation governs the case claim itself ("No correlated case
+        // is created", "case ... not created"), not merely because "no" appears somewhere else in it. A case id in a near-miss caption is always bad.
+        const claims = s => /case link|correlated case (was|is) (created|opened)|case appears|one (linked|explained) (case|incident)/i.test(s)
+          && !/\bno (correlated |linked )?case\b|\bcase (was|is) not\b|\bnot (create|form|open)/i.test(s);
+        // textContent glues block elements together ("...Did not happenNo correlated case..."): split at those seams as well.
+        const sentences = f.t.replace(/([a-z])([A-Z])/g, '$1. $2').split(/(?<=[.!?])\s+/);
+        if (letter === 'B' && (sentences.some(claims) || /\bcase:[0-9a-f]{8,}/i.test(f.t))) bad.push(`beat ${i + 1}: claims a case in a near miss`);
       }
       check(`AU1.${letter}.3 every id, row number, hash, time and seconds value in all 8 captions traces to the ledger`, bad.length === 0, bad.slice(0, 5).join(' ; '));
       check(`AU1.${letter}.4 captions cite at least two ledger events overall`, anyEvents >= 2, anyEvents);
@@ -256,6 +262,13 @@ try {
     await b.goto(srv.origin, `!!document.querySelector('#cr-scene svg')`); await b.click('#signal-forge'); await sleep(1500);
     const gap = await b.eval(`(()=>{const e=document.getElementById('forge-gap');const r=e.getBoundingClientRect();const hit=document.elementFromPoint(r.left+r.width/2,r.top+r.height/2);return {focused:document.activeElement===e,top:Math.round(r.top),bottom:Math.round(r.bottom),inView:r.top>=0&&r.bottom<=innerHeight,hitIsGap:hit===e||e.contains(hit)||(hit&&hit.closest&&hit.closest('label')===e.closest('label'))}})()`);
     check('AU5.1 after opening the Forge on mobile, the focused first slider is in view and not covered', gap.focused && gap.inView && gap.hitIsGap, JSON.stringify(gap));
+    // Strengthened by Kiro main session after the re-audit called AU5.1 "partly a weakening": the Run and Close buttons must also be
+    // reachable. Scroll each one into view the way the browser does when it receives keyboard focus, then require that the point at its
+    // centre is the button itself, not the pinned scene.
+    for (const id of ['forge-run', 'forge-close']) {
+      const r = await b.eval(`(()=>{const e=document.getElementById(${JSON.stringify(id)});e.focus();e.scrollIntoView({block:'nearest'});const r=e.getBoundingClientRect();const hit=document.elementFromPoint(r.left+r.width/2,r.top+r.height/2);return {focused:document.activeElement===e,inView:r.top>=0&&r.bottom<=innerHeight,h:Math.round(r.height),hit:hit?(hit.id||hit.tagName):null,hitIsButton:!!hit&&(hit===e||e.contains(hit))}})()`);
+      check(`AU5.${id === 'forge-run' ? 2 : 3} on mobile, #${id} can be focused, is in view, not covered and at least 40 px tall`, r.focused && r.inView && r.hitIsButton && r.h >= 40, JSON.stringify(r));
+    }
     await b.shot(path.join(OUT, 'audit-forge-390-viewport.png'), null, 300);
   });
 } finally {

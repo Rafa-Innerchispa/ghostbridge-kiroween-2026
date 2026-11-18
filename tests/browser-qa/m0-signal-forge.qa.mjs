@@ -121,12 +121,16 @@ try {
     await b.viewport(1440, 900); await open(b, srv.origin, 'Browser lab');
     await b.click('#signal-forge');
     await b.eval(`document.getElementById('forge-gap').focus()`);
+    // Details recorded so a failure can be diagnosed afterwards (qa-auditor finding L2): values, focus and whether the page was replaced.
+    const ctx = async () => JSON.stringify({active: await b.eval(`document.activeElement?.id || document.activeElement?.tagName`), hidden: await b.prop('#forge-panel', 'hidden'), reloads: b.reloads || 0, stray: (b.unexpectedNavigations || []).length});
     const g0 = +(await b.prop('#forge-gap', 'value')); await b.key('ArrowRight', 'ArrowRight', 39);
-    check('A30 ArrowRight on the delay slider changes the value and the live preview', +(await b.prop('#forge-gap', 'value')) === g0 + 1 && (await b.text('#forge-gap-value')) === (g0 + 1) + ' s');
+    const g1 = +(await b.prop('#forge-gap', 'value')), gText = await b.text('#forge-gap-value');
+    check('A30 ArrowRight on the delay slider changes the value and the live preview', g1 === g0 + 1 && gText === (g0 + 1) + ' s', `before=${g0} after=${g1} label=${gText} ${await ctx()}`);
     await b.eval(`document.getElementById('forge-camera').focus()`); await b.key(' ', 'Space', 32, ' ');
-    check('A31 Space toggles the camera checkbox', (await b.prop('#forge-camera', 'checked')) === true);
+    const cam = await b.prop('#forge-camera', 'checked');
+    check('A31 Space toggles the camera checkbox', cam === true, `checked=${cam} ${await ctx()}`);
     await b.eval(`document.getElementById('forge-close').focus()`); await b.key('Enter', 'Enter', 13, '\r');
-    check('A32 Close hides the panel and returns focus to the launcher', (await b.prop('#forge-panel', 'hidden')) === true && (await b.eval(`document.activeElement?.id`)) === 'signal-forge');
+    check('A32 Close hides the panel and returns focus to the launcher', (await b.prop('#forge-panel', 'hidden')) === true && (await b.eval(`document.activeElement?.id`)) === 'signal-forge', await ctx());
   });
 
   // ---------- B. mobile 390 ----------

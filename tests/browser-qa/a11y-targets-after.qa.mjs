@@ -93,7 +93,7 @@ for (const [name, w, h, mobile] of [['d1440', 1440, 900, false], ['d1280', 1280,
 
 const s = rec.summary();
 writeFileSync(path.join(OUT, 'a11y-targets-after.json'), JSON.stringify({summary: {pass: s.pass, fail: s.fail, total: s.total}, results: s.results, detail}, null, 1));
-writeReport(path.join(OUT, 'REPORT.md'), 'a11y targets after (phase 6)', s,
+writeReport(path.join(OUT, 'a11y-targets-REPORT.md'), 'a11y targets after (phase 6)', s,
   'Synthetic data, headless Chrome via CDP, local server. Inline-link exception (WCAG 2.5.8): display:inline <a> inside a block with other text.');
 await srv.close();
 process.exit(s.fail ? 1 : 0);
