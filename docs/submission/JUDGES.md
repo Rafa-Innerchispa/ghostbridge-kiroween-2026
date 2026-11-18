@@ -2,6 +2,8 @@
 
 **Five signals. One explained incident. Evidence you can verify.**
 
+*(The "five signals" are the five events of the Night Watch scenario: door held open, long presence, camera offline, door closed, access granted. The building shows four sources; each boundary challenge records three events.)*
+
 Live demo: https://ghostbridge.innerchispa.us/ (runs entirely in your browser; synthetic data; nothing to install)
 Source: https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026 (MIT) · Category: **Resurrection**
 
@@ -87,12 +89,12 @@ Every row links to files in the repository. "Verified" means checked by tests or
 | Steering | Product rules (synthetic only, honest labels, local-first) and UI rules (no innerHTML, no third-party requests, one contact) enforced by tests | Verified | `.kiro/steering/`, `tests/control_room_wiring.test.mjs` |
 | Agent hooks | PreToolUse guard on every shell call (blocked force-push and destructive commands, including Kiro's own attempt to self-approve a merge); PostFileSave hook re-runs reconstruction tests and logs the result | Executed and verified | `.kiro/hooks/`, `docs/evidence/agentic-validation/REPORT.md` §4 |
 | Custom agents | `ui-director` built the accessibility fixes, Time Machine and Trust Lab views and the premium visual system; `qa-auditor` audited independently and found real defects that were then fixed and re-audited | Executed and verified | `.kiro/agents/`, `docs/evidence/agentic-validation/sub-executions.json`, `docs/evidence/phase6/qa-auditor-*.md` |
-| Property-based tests | Seeded generators over the rule boundaries, the scene, the Time Machine and tamper detection; deliberate mutations caught 8 of 8 | Verified | `tests/property.test.mjs`, `tests/time_machine.test.mjs`, `tests/trust_lab.test.mjs` |
+| Property-based tests | Seeded generators over the rule boundaries, the scene, the Time Machine and tamper detection; 8 deliberate code mutations of the Time Machine and Trust Lab models were all caught by the tests | Verified | `tests/property.test.mjs`, `tests/time_machine.test.mjs`, `tests/trust_lab.test.mjs`; mutation run: `tools/mutation-check.ps1`, log `docs/evidence/phase6/mutation-check.log` |
 | MCP | Read-only stdio server over the real engine; 14 real calls from a Kiro session; a Kiro-side discrepancy (empty objects lost in structured arguments) led to the `rows_json` input, then verified from Kiro | Executed and verified | `ghostbridge/mcp_server.py`, `docs/evidence/phase6/mcp-from-kiro.md` |
 | Powers | Not used (no compatible local power; official ones need external accounts) | Not used | |
-| Kiro Crew | No native Crew app was built | Not built | |
+| Kiro Crew | No native Crew app was built. A Crew app specification exists in `.kiro/specs/ghostbridge-crew-app/`, but it was prepared by ChatGPT as task input and was not implemented | Not built | |
 
-Test totals on the released code: 188 Python tests and 382 Node tests in CI; 18 syntax checks; 520 real-Chrome checks run by hand, including 14 against the live site.
+Test totals: 188 Python tests and 382 Node tests run in CI on every change; 18 syntax checks. Real-Chrome suites run by hand (not in CI, which has no browser), each with its own report: Phase 6 experience 159, independent audit 39, accessibility targets 39, skip link 32, Signal Forge focus 40, Signal Forge 56, Control Room 141 (556 checks on the final design, 0 retries), plus 14 checks against the live site.
 
 ## Limitations
 

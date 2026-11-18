@@ -10,7 +10,7 @@ Checked by Kiro's main session on 2026-11-18. "PASS" means measured in this sess
 | 4 | Python tests | PASS | 188 OK |
 | 5 | Node tests | PASS | 382 of 382, 19 files |
 | 6 | Syntax checks | PASS | 18 of 18 modules |
-| 7 | Browser QA on the Phase 7 branch | see `docs/evidence/premium/STATUS.md` | |
+| 7 | Browser QA on the Phase 7 branch (1440, 1024 and 390 px, reduced motion, keyboard) | PASS | 7 suites, 556 checks, 0 retries; `docs/evidence/premium/STATUS.md` |
 | 8 | `.kiro/` at the repository root and not ignored by Git | PASS | `tests/hooks.test.mjs` fails if `.gitignore` ignores `.kiro` |
 | 9 | MIT license detected by GitHub | PASS | repository About panel |
 | 10 | No secrets, tokens or personal paths in tracked files | PASS (scan) | pattern scan of tracked files; GitGuardian on every PR |
