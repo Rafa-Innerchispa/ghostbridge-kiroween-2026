@@ -1,0 +1,9 @@
+KILLED   fail=1 docs\time_machine.mjs :: const heldAt = door.sec + DOOR_HELD_THRESHOLD;
+KILLED   fail=2 docs\time_machine.mjs :: holdPass = hold >= DOOR_HELD_THRESHOLD
+KILLED   fail=1 docs\time_machine.mjs :: windowPass = gap <= WINDOW_SECONDS
+KILLED   fail=2 docs\time_machine.mjs :: caseId: good?.id ?? null
+KILLED   fail=5 docs\trust_lab.mjs :: else if (recomputed === null || r.hash !== recomputed)
+KILLED   fail=6 docs\trust_lab.mjs :: if (failedAt !== null) { out.push
+KILLED   fail=4 docs\trust_lab.mjs :: const copy = structuredClone(rows);
+KILLED   fail=1 docs\trust_lab.mjs :: else if (r.previous !== previous)
+DONE
