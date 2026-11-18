@@ -4,9 +4,10 @@ import {correlate} from './correlator.mjs';
 import {parseRelayCsv,parseAccessWebhook} from './fixture_replay.mjs';
 import {RELAY_NIGHT_CSV,ACCESS_DENIED_JSON} from './fixtures.js';
 import {buildReconstruction} from './reconstruction.mjs';
+import {FORGE_DEFAULTS,makeForgeEvents,evaluateForge} from './signal_forge.mjs';
 import {mountReconstruction,mountReconstructionError} from './reconstruction-view.mjs';
 const $=id=>document.getElementById(id),key='ghostbridge-ledger-v1';
-let rows=[],busy=false,last=null,local=false,caseRenderToken=0;
+let rows=[],busy=false,last=null,local=false,caseRenderToken=0,lastForge=null;
 
 // Interactive reconstruction: UI-only, read-only projection. Never stored or exported.
 let recon=null,reconToken=0;
@@ -188,12 +189,93 @@ async function runLegacyBridgeDemo(){
   }finally{busy=false;document.querySelectorAll('button').forEach(b=>b.disabled=false);}
 }
 
+
+/** Interactive Signal Forge. Uses the same canonical contract, ledger and correlator.
+ *  Authored by ChatGPT direct execution; not a Kiro IDE contribution. */
+function forgeConfig(){
+ return {delaySeconds:Number($('forge-gap').value),holdSeconds:Number($('forge-hold').value),cameraOffline:$('forge-camera').checked};
+}
+function previewForge(){
+ const cfg=forgeConfig(),decision=evaluateForge(cfg);
+ $('forge-gap-value').textContent=cfg.delaySeconds+' s';
+ $('forge-hold-value').textContent=cfg.holdSeconds+' s';
+ const box=$('forge-preview');
+ box.classList.toggle('is-fail',!decision.willCorrelate);
+ box.textContent=(decision.willCorrelate?'✓ Predicted correlation. ':'⊘ No correlation predicted. ')+decision.explanation+' Click Run investigation to verify with real ledger hashes.';
+}
+function forgePreset(delay,hold){
+ $('forge-gap').value=String(delay);$('forge-hold').value=String(hold);
+ previewForge();$('forge-gap').focus();
+}
+async function runForge(replay=false){
+ if(busy)return;
+ closeReconstruction();
+ busy=true;
+ document.querySelectorAll('button').forEach(b=>b.disabled=true);
+ try{
+  const config=replay?lastForge:forgeConfig();
+  if(!config)throw new Error('No previous Signal Forge investigation to replay');
+  const evs=makeForgeEvents(config);
+  if(!replay){
+   // This is a clearly labeled synthetic lab action; do not touch physical devices.
+   if(local)await api('reset',{});
+   rows=[];activeSeverity='all';last=null;save();
+  }
+  let added=0;
+  for(const e of evs){
+   if(local){
+    const result=await api('events',e);
+    if(result.created)added++;
+   }else if(await append(rows,e))added++;
+  }
+  if(local)rows=(await api('state')).ledger;
+  else save();
+  const integrity=await verify(rows);
+  if(!integrity.valid)throw new Error('Source evidence SHA-256 chain verification failed');
+  const cases=local?(await api('cases')).cases:await correlate(rows);
+  const expectation=evaluateForge(config);
+  if((cases.length>0)!==expectation.willCorrelate)throw new Error('Correlation engine and threshold explanation disagree');
+  const outcome=cases.length
+   ?'✓ CORRELATED: '+cases.length+' high-priority case. Source evidence: '+cases[0].event_ids.join(' + ')+'; SHA-256 records '+cases[0].evidence_hashes.map(h=>h.slice(0,16)+'…').join(' / ')+'.'
+   :'⊘ NO CORRELATED CASE: '+expectation.explanation;
+  $('forge-result').classList.toggle('is-match',cases.length>0);
+  $('forge-result').classList.toggle('is-no-match',!cases.length);
+  $('forge-result').textContent=outcome+'\n'+(replay?'Replay: ':'Investigation: ')+added+' new events, '+rows.length+' records total. Integrity VERIFIED. Try changing the controls and running again.';
+  $('integrity-label').textContent='Verified';
+  last='forge';lastForge={...config};
+  status('Signal Forge '+(replay?'replay':'investigation')+': '+added+' new synthetic events; '+cases.length+' actual correlated case(s). Source ledger verified.');
+  render();
+  $('forge-result').scrollIntoView({block:'nearest',behavior:'auto'});
+ }catch(e){
+  if(local){try{rows=(await api('state')).ledger;}catch{}}
+  status('Signal Forge error: '+e.message,true);
+  $('forge-result').textContent='Investigation failed: '+e.message;
+  render();
+ }finally{
+  busy=false;document.querySelectorAll('button').forEach(b=>b.disabled=false);
+  render();
+ }
+}
+$('signal-forge').onclick=()=>{
+ const panel=$('forge-panel');panel.hidden=false;
+ previewForge();$('forge-gap').focus();
+ panel.scrollIntoView({block:'start',behavior:'smooth'});
+};
+$('forge-close').onclick=()=>{$('forge-panel').hidden=true;$('signal-forge').focus();};
+$('forge-gap').addEventListener('input',previewForge);
+$('forge-hold').addEventListener('input',previewForge);
+$('forge-camera').addEventListener('change',previewForge);
+$('forge-pass').onclick=()=>forgePreset(299,120);
+$('forge-fail').onclick=()=>forgePreset(301,119);
+$('forge-run').onclick=()=>runForge(false);
+previewForge();
+
 for(const name of ['night','normal','denied'])$(name).onclick=()=>run(name);
-$('replay').onclick=()=>last==='legacy'?runLegacyBridgeDemo():run(last,true);
+$('replay').onclick=()=>last==='legacy'?runLegacyBridgeDemo():last==='forge'?runForge(true):run(last,true);
 const lbBtn=$('legacy-bridge');if(lbBtn)lbBtn.onclick=runLegacyBridgeDemo;
 $('verify').onclick=async()=>{const r=await verify(rows);$('integrity-label').textContent=r.valid?'Verified':'FAILED';$('inspection').textContent=JSON.stringify(r,null,2);status(r.valid?`Verified ${r.checked} ledger records against their chain. See the head hash below.`:'Integrity check failed. Export this ledger for investigation.',!r.valid);};
 $('tamper').onclick=async()=>{if(!rows.length){status('Run a scenario before testing tamper detection.');return;}const copy=structuredClone(rows);copy[0].payload.event.data.tampered=true;const r=await verify(copy);$('inspection').textContent=JSON.stringify(r,null,2);status(!r.valid?'Tampering detected in a disposable copy. Your original evidence was not changed.':'Unexpected result: tamper test did not fail.',r.valid);};
-$('reset').onclick=async()=>{try{closeReconstruction();if(local)await api('reset',{});rows=[];last=null;activeSeverity='all';save();render();$('integrity-label').textContent='Unchecked';$('inspection').textContent='Lab reset. Select a scenario.';status('Synthetic lab cleared. Choose a new scenario.');}catch(e){status(e.message,true);}};
+$('reset').onclick=async()=>{try{closeReconstruction();if(local)await api('reset',{});rows=[];last=null;lastForge=null;activeSeverity='all';save();render();$('integrity-label').textContent='Unchecked';$('inspection').textContent='Lab reset. Select a scenario.';status('Synthetic lab cleared. Choose a new scenario.');}catch(e){status(e.message,true);}};
 $('export').onclick=async()=>{const blob=new Blob([JSON.stringify({schema:'ghostbridge-evidence-v1',mode:local?'LOCAL_SYNTHETIC':'BROWSER_SYNTHETIC',exported_at:new Date().toISOString(),integrity:await verify(rows),ledger:rows},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='ghostbridge-evidence.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);status('Evidence JSON exported. Includes events, explanations, hashes and current verification.');};
 
 for(const v of ['all','high','medium']){const btn=$('filter-'+v);if(btn)btn.onclick=()=>{activeSeverity=v;render();};}
