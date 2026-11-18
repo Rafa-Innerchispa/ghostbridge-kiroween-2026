@@ -6,7 +6,7 @@ Session `sess_7ff31803-702e-41e9-b5b1-55b645f7262e`, Kiro IDE, Autopilot. The wo
 |---|---|
 | Installed (config present) | YES |
 | Connected (tools discovered by Kiro) | YES: `list_scenarios`, `run_scenario`, `forge_boundary`, `verify_ledger` |
-| Invoked from Kiro | YES, 7 calls, results below |
+| Invoked from Kiro | YES, 11 calls in this session (1 to 7 below, 8 to 11 in the follow-up) |
 
 ## Calls and results
 | # | Tool and arguments | Result returned through Kiro | As expected? |
@@ -26,7 +26,7 @@ Session `sess_7ff31803-702e-41e9-b5b1-55b645f7262e`, Kiro IDE, Autopilot. The wo
 
 **Finding:** in every call, a row whose event carries an empty object `"data": {}` failed and every row without one verified. The empty object is most likely dropped between the agent's tool call and the server, which changes the hashed bytes. Verification is correct to fail. One observation is **not explained**: in call 9 the agent sent row 2 without `"incident": null` and it still verified, which suggests the payload was changed in transit in more than one way. The exact transformation is not proven.
 
-**Fix (in PR #16):** `verify_ledger` accepts `rows_json`, the ledger as JSON text, which travels unchanged; it stays strict and adds a `hint` when the failing row lacks `data` or `incident`. Covered by `tests/test_mcp_server.py` (19 of 19). Kiro had not loaded this version by the end of the session (call 10 returned the old error), so **`rows_json` from Kiro is NOT PROVEN yet**. To close: in a new Kiro turn, call `verify_ledger` with `rows_json` set to the text of `rows.json` from `python tests/mcp_demo_client.py` or any GhostBridge export.
+**Fix (in PR #16):** `verify_ledger` accepts `rows_json`, the ledger as JSON text, which travels unchanged; it stays strict and adds a `hint` when the failing row lacks `data` or `incident`. Covered by `tests/test_mcp_server.py` (19 of 19). Kiro had not loaded this version by the end of the session (calls 10 and 11 returned the old error, `rows must be a list`), so **`rows_json` from Kiro is NOT PROVEN yet**. To close: in a new Kiro turn, call `verify_ledger` with `rows_json` set to the text of `rows.json` from `python tests/mcp_demo_client.py` or any GhostBridge export.
 
 ## The verify_ledger discrepancy (first observation)
 The same rows verify locally (`valid: true, checked 3`), and tampering row 2 locally fails at row 2. Through Kiro the tool reported a failure at row 1, which locally happens only when `seq` is not an integer (for example the string "1"). Two causes are possible and **neither is proven**: Kiro's MCP client encoding the loosely typed `items: object` argument differently, or the agent's own tool arguments (the agent also omitted `incident: null` on rows 2 and 3, which would fail at row 2, not row 1).

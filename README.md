@@ -4,14 +4,14 @@
 GhostBridge turns **synthetic** signals from different generations of building
 systems into explainable incidents and inspectable evidence. A local-first
 **Resurrection**-category project for Kiroween 2026 by InnerChispa LLC: legacy relays, card
-readers and cameras, brought back as one explained, verifiable incident.
+readers and cameras (simulated with synthetic data), brought back as one explained, verifiable incident.
 
 **Status (November 17, 2026):** a stack of four draft PRs adds the immersive Control Room and the
 competition features on top of `main`: [#10 Signal Forge](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/10) (ChatGPT/Codex),
 [#14 Immersive Control Room](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/14),
 [#15 agentic validation](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/15) and
 [#16 Incident Time Machine and Evidence Trust Lab](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/16) (Kiro).
-On the #16 head: **188 Python and 381 Node tests**, 18 syntax checks, CI green, plus 506 real-Chrome checks run by hand.
+On the #16 head: **188 Python and 382 Node tests**, 18 syntax checks, CI green, plus 506 real-Chrome checks run by hand.
 The stack is **not merged or deployed yet**, so the public site still shows `main`. Judges: see the
 [judge guide](docs/submission/JUDGE_GUIDE.md). Full history below and in [Kiro evidence](docs/KIRO_EVIDENCE.md).
 

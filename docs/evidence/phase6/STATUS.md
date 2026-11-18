@@ -32,7 +32,7 @@ ui-director run A (accessibility), ui-director run B (views), qa-auditor Phase 6
 Logs: `final-qa/`. The older-phase evidence under `docs/evidence/control-room/` and `agentic-validation/` was restored, not overwritten.
 
 ## MCP from Kiro
-Installed, connected and invoked from Kiro (7 calls). `list_scenarios`, `forge_boundary` 299/120 and 301/119, and `run_scenario` with a tamper demo returned the expected results. `verify_ledger` returned an unexpected failure at row 1 for a ledger that verifies locally; open, see `mcp-from-kiro.md`.
+Installed, connected and invoked from Kiro (11 calls over the session, all listed in `mcp-from-kiro.md`). `list_scenarios`, `forge_boundary` 299/120 and 301/119, and `run_scenario` with a tamper demo returned the expected results. `verify_ledger` returned an unexpected failure at row 1 for a ledger that verifies locally; open, see `mcp-from-kiro.md`.
 
 ## Closing round (2026-11-17, Kiro main session)
 | Item | Change | Evidence |
@@ -40,11 +40,15 @@ Installed, connected and invoked from Kiro (7 calls). `list_scenarios`, `forge_b
 | `verify_ledger` through Kiro | cause narrowed to empty objects lost in transit; new `rows_json` input and `hint` | 19/19 MCP tests; Kiro-side `rows_json` call **not proven** (server not reloaded yet), see `mcp-from-kiro.md` |
 | Time Machine loses the chosen beat when the case ids arrive late | keeps the beat when only the cases changed | new test fails without the fix, passes with it |
 | AU5.1 partly a weakening | AU5.2 and AU5.3 require Run and Close to be focusable, in view, uncovered and at least 40 px on mobile | audit 39/39 |
-| AU1.B.3 gap ("no" anywhere excused a claim) | negation must govern the claim; any case id in a near-miss caption fails | rule checked on 6 sample sentences; audit 39/39 |
+| AU1.B.3 gap ("no" anywhere excused a claim) | negation must govern the claim; any case id in a near-miss caption fails | rule checked by hand on 6 sample sentences (throwaway script, not kept) and by qa-auditor on 8 (`qa-auditor-closing.md`); audit 39/39 |
 | L1 shared `REPORT.md` | a11y script writes `a11y-targets-REPORT.md` | |
 | L2 m0 A30 to A32 without details | values, focus, reloads and stray navigations recorded | m0 56/56 |
 | README said Frankenstein, stale status and Pages URL | Resurrection, current status, `ghostbridge.innerchispa.us` | |
-Final counts: Python 188, Node 381 in 19 files, `node --check` 18/18; Chrome: Phase 6 159/159, audit 39/39, a11y 39/39, skip link 32/32, Forge focus 40/40, m0 56/56, m5 141/141 (506 checks, 0 retries).
+Final counts: Python 188, Node 382 in 19 files, `node --check` 18/18; Chrome: Phase 6 159/159, audit 39/39, a11y 39/39, skip link 32/32, Forge focus 40/40, m0 56/56, m5 141/141 (506 checks, 0 retries).
+
+## qa-auditor closing review (`qa-auditor-closing.md`): PASS WITH FINDINGS, all low
+Fixed: deep nesting in `rows_json` or a payload now returns a tool error, not an internal error; the Time Machine keeps a beat only while the building still shows it and lets a running Play continue; the MCP call count (11, not 7); "synthetic" added to the README lead; the sample-sentence check described as it was. Each fix has a test where it is code.
+Accepted, not changed: the near-miss rule excuses a sentence that contains a governing negation phrase anywhere in it, and the mobile Run/Close checks cover 390 px only.
 
 ## Open items
 - `verify_ledger` with `rows_json` from Kiro: one call in a new turn.
