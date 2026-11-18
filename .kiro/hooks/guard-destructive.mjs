@@ -45,35 +45,9 @@ const RULES = [
 const RECURSIVE_DELETE = /\b(Remove-Item|ri|del|rd|rmdir)\b[^\n]*(-Recurse|\/s\b)|\brm\s+(?:-\S+\s+)*-[a-zA-Z]*[rR]/i;
 const SAFE_DELETE_SCOPE = /(ghostbridge-kiroween-2026|[\\/]Temp[\\/]|\$env:TEMP|%TEMP%|gbqa-|gbpy-|gbfont|node_modules)/i;
 
-/**
- * Owner-approved merges. The owner may approve specific PR numbers, for a limited time, in a file OUTSIDE the repository
- * (default: <system temp>/ghostbridge-approved-merges.json, override with GB_MERGE_APPROVALS), shaped like
- *   {"approvedBy": "owner", "prs": [10, 14], "expires": "2026-11-19T00:00:00Z"}
- * Only the exact form `gh pr merge <N> --merge` (optionally with --repo owner/name) is allowed, and only when N is listed and the
- * approval has not expired. --admin, --squash, --rebase, --delete-branch, --auto and every other blocked action stay blocked.
- */
-const APPROVED_MERGE = /^\s*gh\s+pr\s+merge\s+(\d+)\s+--merge(\s+--repo\s+[\w.-]+\/[\w.-]+)?\s*$/i;
-export function approvedMerge(s, approvals, now = Date.now()) {
-  const m = String(s).match(APPROVED_MERGE);
-  if (!m || !approvals || approvals.approvedBy !== 'owner' || !Array.isArray(approvals.prs)) return false;
-  const exp = Date.parse(approvals.expires);
-  if (!Number.isFinite(exp) || exp <= now) return false;
-  return approvals.prs.map(Number).includes(Number(m[1]));
-}
-async function loadApprovals() {
-  try {
-    const {readFileSync} = await import('node:fs');
-    const {tmpdir} = await import('node:os');
-    const {join} = await import('node:path');
-    return JSON.parse(readFileSync(process.env.GB_MERGE_APPROVALS || join(tmpdir(), 'ghostbridge-approved-merges.json'), 'utf8'));
-  } catch { return null; }
-}
-
 /** @param {string} text command / tool input text. @returns {string|null} reason to block, or null to allow. */
-export function evaluate(text, {approvals = null, now = Date.now(), command = null} = {}) {
+export function evaluate(text) {
   const s = String(text);
-  // The exception is judged on the bare command string, so nothing can be appended or chained after the merge.
-  if (approvedMerge(command ?? s, approvals, now)) return null;
   for (const [re, why] of RULES) if (re.test(s)) return why;
   if (RECURSIVE_DELETE.test(s) && !SAFE_DELETE_SCOPE.test(s)) return 'recursive delete outside the project or the temp folder is blocked';
   return null;
@@ -88,17 +62,15 @@ async function readStdin() {
 // Run only when executed as a hook (not when imported by the unit test).
 if (import.meta.url === `file:///${process.argv[1]?.replace(/\\/g, '/')}` || process.argv[1]?.endsWith('guard-destructive.mjs')) {
   const raw = await readStdin();
-  let text = raw, command = null;
+  let text = raw;
   try {
     const j = JSON.parse(raw);
     const input = j.tool_input ?? j.toolInput ?? j.input ?? j.arguments ?? j;
-    if (input && typeof input === 'object' && typeof input.command === 'string') command = input.command;
     text = typeof input === 'string' ? input : JSON.stringify(input);
     // JSON.stringify escapes backslashes and newlines; decode so patterns see the real command.
     text = text.replace(/\\\\/g, '\\').replace(/\\n/g, '\n').replace(/\\"/g, '"');
   } catch { /* not JSON: scan the raw text */ }
-  // The approval is read only for a command that looks like a merge, so ordinary calls never touch the file.
-  const why = evaluate(text, {command, approvals: /\bgh\s+pr\s+merge\b/i.test(text) ? await loadApprovals() : null});
+  const why = evaluate(text);
   if (why) {
     process.stderr.write(`GhostBridge guard blocked this action: ${why}.\nIf this is intentional, ask the owner to run it manually.\n`);
     process.exit(2);
