@@ -32,7 +32,7 @@ ui-director run A (accessibility), ui-director run B (views), qa-auditor Phase 6
 Logs: `final-qa/`. The older-phase evidence under `docs/evidence/control-room/` and `agentic-validation/` was restored, not overwritten.
 
 ## MCP from Kiro
-Installed, connected and invoked from Kiro (11 calls over the session, all listed in `mcp-from-kiro.md`). `list_scenarios`, `forge_boundary` 299/120 and 301/119, and `run_scenario` with a tamper demo returned the expected results. `verify_ledger` returned an unexpected failure at row 1 for a ledger that verifies locally; open, see `mcp-from-kiro.md`.
+Installed, connected and invoked from Kiro (12 calls over the session, all listed in `mcp-from-kiro.md`). `list_scenarios`, `forge_boundary` 299/120 and 301/119, and `run_scenario` with a tamper demo returned the expected results. `verify_ledger` returned an unexpected failure at row 1 for a ledger that verifies locally; open, see `mcp-from-kiro.md`.
 
 ## Closing round (2026-11-17, Kiro main session)
 | Item | Change | Evidence |
