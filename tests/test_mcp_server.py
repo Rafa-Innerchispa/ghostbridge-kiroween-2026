@@ -204,6 +204,16 @@ class ToolTests(unittest.TestCase):
         out, err = call("verify_ledger", {"rows_json": "[]"})
         self.assertFalse(err)
         self.assertEqual((out["valid"], out["checked"]), (True, 0))
+        # qa-auditor closing review: deep nesting is a clean tool error, both as text and inside a row's payload.
+        out, err = call("verify_ledger", {"rows_json": "[" * 400_000 + "]" * 400_000})
+        self.assertTrue(err)
+        self.assertIn("nested too deeply", out["error"])
+        deep = cur = {}
+        for _ in range(5000):
+            cur["x"] = {}; cur = cur["x"]
+        out, err = call("verify_ledger", {"rows": [{"seq": 1, "previous": "0" * 64, "hash": "0" * 64, "payload": deep}]})
+        self.assertTrue(err)
+        self.assertIn("nested too deeply", out["error"])
 
     def test_verify_ledger_is_bounded(self):
         _, err = call("verify_ledger", {"rows": [{}] * (m.MAX_LEDGER_ROWS + 1)})

@@ -172,9 +172,14 @@ def tool_verify_ledger(args: dict) -> dict:
             rows = json.loads(text)
         except json.JSONDecodeError as exc:
             raise ToolError(f"rows_json is not valid JSON: {exc.msg} at character {exc.pos}") from exc
+        except RecursionError as exc:   # qa-auditor closing review: deeply nested text must be a tool error, not an internal error
+            raise ToolError("rows_json is nested too deeply to be a ledger") from exc
     else:
         rows = args["rows"]
-    result = verify_rows(rows)
+    try:
+        result = verify_rows(rows)
+    except RecursionError as exc:      # a payload nested deeply enough to exhaust canonical JSON encoding
+        raise ToolError("a ledger row is nested too deeply to verify") from exc
     if not result["valid"] and "failed_at" in result and isinstance(rows, list) and 0 < result["failed_at"] <= len(rows):
         row = rows[result["failed_at"] - 1]
         event = row.get("payload", {}).get("event") if isinstance(row, dict) and isinstance(row.get("payload"), dict) else None
