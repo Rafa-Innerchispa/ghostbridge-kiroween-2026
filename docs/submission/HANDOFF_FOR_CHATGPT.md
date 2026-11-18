@@ -111,7 +111,9 @@ Usar **"Create a merge commit"**, no "Squash". Con squash, cada PR siguiente vol
 4. **PR #16:** cambiar su base a `main`, esperar el CI verde, y luego Ready y merge.
 5. **Revisar el sitio publicado:** abrir `https://ghostbridge.innerchispa.us/` y ejecutar los retos A y B, la Time Machine, el Trust Lab y `?present=1`. Si se quiere, Kiro puede volver a correr las pruebas de Chrome contra la versión integrada.
 
-Equivalente con `gh`, para usar solo tras la aprobación:
+**Forma recomendada (un solo comando del propietario):** `powershell -NoProfile -ExecutionPolicy Bypass -File tools\integrate-stack.ps1`. Muestra los cuatro PR y pide escribir `YES`. Después cambia cada base a `main`, integra con merge commit y espera a que el CI y Pages terminen bien antes de seguir. Se detiene ante el primer fallo. Kiro no puede ejecutarlo: su guarda bloquea los merges, y Kiro también bloqueó que el agente se diera a sí mismo una aprobación.
+
+Equivalente manual con `gh`, para usar solo tras la aprobación:
 ```
 gh pr ready 10 && gh pr merge 10 --merge
 gh pr edit 14 --base main && gh pr checks 14 --watch && gh pr ready 14 && gh pr merge 14 --merge
