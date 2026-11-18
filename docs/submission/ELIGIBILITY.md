@@ -10,7 +10,7 @@ Checked 2026-11-12 by Kiro against the public overview page https://kiroween.dev
 | `/.kiro` at the repository root | PASS | specs, steering, hooks, agents, mcp under `.kiro/`. |
 | `.kiro` or its subfolders not in `.gitignore` | PASS (fixed) | PR #15 had added `.kiro/hooks/logs/`; removed in `2dffd0c`; `tests/hooks.test.mjs` now fails if it comes back. |
 | URL to a working app | NOT VERIFIED | GitHub Pages is configured at `https://ghostbridge.innerchispa.us/` (built from `main` by workflow). The PR stack #10/#14/#15/Phase 6 is **not** on `main`, so the public site does not show this work yet. Publishing needs owner approval. |
-| Category selected | NOT DONE | Recommended: Resurrection (README still says "Frankenstein"; align before submitting). |
+| Category selected | NOT DONE (on Devpost) | README now says Resurrection (PR #16). The owner selects the category in the Devpost form. |
 | Text description | NOT DONE | Draft material: this folder. |
 | Demo video under 3 minutes, public on YouTube | NOT DONE | Script: `VIDEO_SCRIPT.md`. |
 | Write-up on how Kiro was used | PARTIAL | `docs/KIRO_EVIDENCE.md` (phases 1 to 5) plus `docs/evidence/agentic-validation/REPORT.md`. Needs a one-page judge version. |
@@ -22,5 +22,5 @@ Checked 2026-11-12 by Kiro against the public overview page https://kiroween.dev
 
 ## Open risks before submission
 1. The public site shows `main`, not the draft PR stack. Judges would see an older app unless the stack is merged and deployed.
-2. README category text says Frankenstein; the strategy is Resurrection.
-3. MCP is not yet connected in Kiro (owner/Antigravity step). Powers: none installed; do not claim them.
+2. ~~README category text says Frankenstein~~ fixed in PR #16 (Resurrection).
+3. MCP: connected and invoked from Kiro on 2026-11-17 (see `docs/evidence/phase6/mcp-from-kiro.md`). Powers: none installed; do not claim them. Kiro Crew: no native app; do not enter that bonus.

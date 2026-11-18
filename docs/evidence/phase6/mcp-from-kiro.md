@@ -18,7 +18,17 @@ Session `sess_7ff31803-702e-41e9-b5b1-55b645f7262e`, Kiro IDE, Autopilot. The wo
 | 5 | `run_scenario {"Night"}` | refused: `name must be one of: night, normal, denied` (isError) | yes, input validation |
 | 6 to 7 | `verify_ledger` with a 3-row ledger built by the Python engine | `valid: false, checked 0, failed_at 1` | **NO** |
 
-## The verify_ledger discrepancy (open)
+## Follow-up the same day (after Kiro reloaded the server with the typed schema and failure reasons)
+| # | Call | Result | Reading |
+|---|---|---|---|
+| 8 | `verify_ledger rows` (3 rows; row 1 has `"data": {}`) | `failed_at 1`, reason "stored hash does not match the SHA-256 recomputed from this row's payload" | the type of `seq` is not the cause (the new code would say so) |
+| 9 | `verify_ledger rows` (new 3-row ledger: row 1 has no empty object, row 3 has `"data": {}`) | `checked 2, failed_at 3`, same reason | rows without an empty object verify; the row with `{}` fails |
+
+**Finding:** in every call, a row whose event carries an empty object `"data": {}` failed and every row without one verified. The empty object is most likely dropped between the agent's tool call and the server, which changes the hashed bytes. Verification is correct to fail. One observation is **not explained**: in call 9 the agent sent row 2 without `"incident": null` and it still verified, which suggests the payload was changed in transit in more than one way. The exact transformation is not proven.
+
+**Fix (in PR #16):** `verify_ledger` accepts `rows_json`, the ledger as JSON text, which travels unchanged; it stays strict and adds a `hint` when the failing row lacks `data` or `incident`. Covered by `tests/test_mcp_server.py` (19 of 19). Kiro had not loaded this version by the end of the session (call 10 returned the old error), so **`rows_json` from Kiro is NOT PROVEN yet**. To close: in a new Kiro turn, call `verify_ledger` with `rows_json` set to the text of `rows.json` from `python tests/mcp_demo_client.py` or any GhostBridge export.
+
+## The verify_ledger discrepancy (first observation)
 The same rows verify locally (`valid: true, checked 3`), and tampering row 2 locally fails at row 2. Through Kiro the tool reported a failure at row 1, which locally happens only when `seq` is not an integer (for example the string "1"). Two causes are possible and **neither is proven**: Kiro's MCP client encoding the loosely typed `items: object` argument differently, or the agent's own tool arguments (the agent also omitted `incident: null` on rows 2 and 3, which would fail at row 2, not row 1).
 Change made: `verify_ledger` now declares typed row fields (`seq` integer, 64-char `previous` and `hash`, `payload` object) and returns a `reason` for every failure; it stays strict. Covered by `tests/test_mcp_server.py` (17 of 17). Kiro's running server process still has the old code; it reloads when Kiro restarts or when `.kiro/settings/mcp.json` changes. **To close:** restart Kiro, then call `verify_ledger` again with rows that include `incident: null`, and record the `reason`.
 

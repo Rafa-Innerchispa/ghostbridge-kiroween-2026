@@ -9,9 +9,9 @@
 Headless Chrome over CDP. Browser-only mode is served from 127.0.0.2; local mode is the real Python + SQLite server on a throwaway database. Each scenario runs on a fresh browser.
 
 **Measurements**
-- Idle page: 2568 DOM nodes, 1.9 MB JS heap, 296 KB of subresources, load 533 ms.
+- Idle page: 2568 DOM nodes, 1.9 MB JS heap, 297 KB of subresources, load 248 ms.
 - Forge drawer at 1440x900: content overflow 0px.
-- Showcase observed timeline (seconds from Play): {"beat1":0.4,"denied":6.2,"door":14.1,"held":26.9,"case":26.9,"recon":32.3,"evidenceMode":42.2,"responseMode":48.1,"joined":49.3,"vision":53.5,"done":58.4}; total 58.4 s.
+- Showcase observed timeline (seconds from Play): {"beat1":0.4,"denied":6.3,"door":14.1,"held":27,"case":27,"recon":32.4,"evidenceMode":42.4,"responseMode":48.5,"joined":49.3,"vision":53.5,"done":58.4}; total 58.4 s.
 - Measured text contrast (computed colour vs nearest solid background): source name 7.81:1, source time 9.49:1, tab hint 19.94:1, lede 17.23:1, gauge note 7.71:1, board answer 13.76:1, vision paragraph 7.85:1, outcome text 7.85:1, fine print 8.13:1, challenge note 6.41:1. Sampled elements only, not every pixel; gradients and the scene are not measured.
 
 **Limits:** one browser engine (Chrome); 390 px is device emulation, not a real phone; contrast is sampled, not exhaustive; no screen reader was used.
@@ -28,7 +28,7 @@ Headless Chrome over CDP. Browser-only mode is served from 127.0.0.2; local mode
 | PASS | S1.8 both fonts are loaded from the vendored files | {"sg":true,"dm":true,"loaded":["DM Sans","Space Grotesk"]} |
 | PASS | S1.9 ZERO third-party requests (no Google Fonts, no CDN) | [] |
 | PASS | S1.10 no failed requests at all, including the favicon | [] |
-| PASS | S1.11 light page: under 3000 DOM nodes, under 80 MB heap, under 1.2 MB of subresources | 2568 nodes, 1.9 MB, 303415 B |
+| PASS | S1.11 light page: under 3000 DOM nodes, under 80 MB heap, under 1.2 MB of subresources | 2568 nodes, 1.9 MB, 304073 B |
 | PASS | S1.12 Tab moves door -> reader with a visible focus ring | {"node":"reader","outline":"solid","w":"3px"} |
 | PASS | S1: no console errors or exceptions |  |
 | PASS | S2.1 Forge opens INSIDE the stage beside the building, rule gauges docked with it, headline hidden | {"inDrawer":true,"rulesInDrawer":true,"copy":"hidden","forge":"true"} |
@@ -81,9 +81,9 @@ Headless Chrome over CDP. Browser-only mode is served from 127.0.0.2; local mode
 | PASS | S3b: no console errors or exceptions |  |
 | PASS | S4.1 ?present=1 opens the Showcase overlay ready to play, nothing running yet | {"hidden":false,"status":"idle","body":"off","title":"Watch the building speak.","play":"▶ Play"} |
 | PASS | S4.2 the run reaches "done" in 45-65 s of wall time | total=58.4s |
-| PASS | S4.3 the BEAT ORDER follows the real ledger: denied < door < case < reconstruction < evidence < response < vision | {"beat1":0.4,"denied":6.2,"door":14.1,"held":26.9,"case":26.9,"recon":32.3,"evidenceMode":42.2,"responseMode":48.1,"joined":49.3,"vision":53.5,"done":58.4} |
-| PASS | S4.4 the denial is recorded only after beat 1 and the door only after the denial (events arrive one at a time) | {"beat1":0.4,"denied":6.2,"door":14.1,"held":26.9,"case":26.9,"recon":32.3,"evidenceMode":42.2,"responseMode":48.1,"joined":49.3,"vision":53.5,"done":58.4} |
-| PASS | S4.5 the door beat shows the door only OPEN with no link and no case chip; door turns amber and the case appears in the correlation beat, 6+ s later | {"doorSnap":{"door":"open","link":"none","chip":true},"seen":{"beat1":0.4,"denied":6.2,"door":14.1,"held":26.9,"case":26.9,"recon":32.3,"evidenceMode":42.2,"res |
+| PASS | S4.3 the BEAT ORDER follows the real ledger: denied < door < case < reconstruction < evidence < response < vision | {"beat1":0.4,"denied":6.3,"door":14.1,"held":27,"case":27,"recon":32.4,"evidenceMode":42.4,"responseMode":48.5,"joined":49.3,"vision":53.5,"done":58.4} |
+| PASS | S4.4 the denial is recorded only after beat 1 and the door only after the denial (events arrive one at a time) | {"beat1":0.4,"denied":6.3,"door":14.1,"held":27,"case":27,"recon":32.4,"evidenceMode":42.4,"responseMode":48.5,"joined":49.3,"vision":53.5,"done":58.4} |
+| PASS | S4.5 the door beat shows the door only OPEN with no link and no case chip; door turns amber and the case appears in the correlation beat, 6+ s later | {"doorSnap":{"door":"open","link":"none","chip":true},"seen":{"beat1":0.4,"denied":6.3,"door":14.1,"held":27,"case":27,"recon":32.4,"evidenceMode":42.4,"respons |
 | PASS | S4.6 the evidence beat switches to Evidence mode; the response beat joins the signals |  |
 | PASS | S4.7 final ledger: exactly the 3 real forge events (denied, later door, earlier door) and one case | ["forge:denied","forge:later-door","forge:earlier-door"] |
 | PASS | S4.8 the chain verifies after the run and the case count is 1 | {"events":3,"incidents":3,"cases":1,"integrity":"Verified"} |
@@ -119,8 +119,8 @@ Headless Chrome over CDP. Browser-only mode is served from 127.0.0.2; local mode
 | PASS | S5: no console errors or exceptions |  |
 | PASS | S6.1 headline and primary actions are inside the 720 px screen | {"cta":{"top":386,"bottom":447,"left":44,"right":374,"w":330,"h":61,"display":"block","visibility":"visible"},"hl":{"top":204,"bottom":324,"left":44,"right":604 |
 | PASS | S6.2 no horizontal overflow at 1280 | {"scrollW":1280,"clientW":1280,"bad":[]} |
-| PASS | S6.3 forging at 1280x720: the Run button is reachable inside the screen | {"top":404,"bottom":470,"left":59,"right":569,"w":510,"h":66,"display":"grid","visibility":"visible"} |
-| PASS | S6.4 the drawer stays on the left, the building on the right (no overlap with the facade) | {"top":39,"bottom":573,"left":44,"right":584,"w":540,"h":534,"display":"block","visibility":"visible"} |
+| PASS | S6.3 forging at 1280x720: the Run button is reachable inside the screen | {"top":423,"bottom":489,"left":59,"right":569,"w":510,"h":66,"display":"grid","visibility":"visible"} |
+| PASS | S6.4 the drawer stays on the left, the building on the right (no overlap with the facade) | {"top":58,"bottom":592,"left":44,"right":584,"w":540,"h":534,"display":"block","visibility":"visible"} |
 | PASS | S6.5 case state visible at 1280 |  |
 | PASS | S6: no console errors or exceptions |  |
 | PASS | S7.1 reduced motion: no pulse animation, no link or layer transitions | {"ring":"none","link":"0s","alarm":"0s","layer":"0s"} |

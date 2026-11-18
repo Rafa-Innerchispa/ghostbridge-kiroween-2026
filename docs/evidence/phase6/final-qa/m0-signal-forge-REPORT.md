@@ -51,9 +51,9 @@ Run against branch `feat/signal-forge-interactive` BEFORE any Control Room chang
 | PASS | A27 Access Denied unchanged = 1/1/0 | {"events":1,"incidents":1,"cases":0,"integrity":"Verified"} |
 | PASS | A28 Legacy Bridge unchanged = 5/3/1 | {"events":5,"incidents":3,"cases":1,"integrity":"Verified"} |
 | PASS | A29 regression session had no console errors |  |
-| PASS | A30 ArrowRight on the delay slider changes the value and the live preview |  |
-| PASS | A31 Space toggles the camera checkbox |  |
-| PASS | A32 Close hides the panel and returns focus to the launcher |  |
+| PASS | A30 ArrowRight on the delay slider changes the value and the live preview | before=270 after=271 label=271 s {"active":"forge-gap","hidden":false,"reloads":1,"stray":0} |
+| PASS | A31 Space toggles the camera checkbox | checked=true {"active":"forge-camera","hidden":false,"reloads":1,"stray":0} |
+| PASS | A32 Close hides the panel and returns focus to the launcher | {"active":"signal-forge","hidden":true,"reloads":1,"stray":0} |
 | PASS | B1 390px: no horizontal overflow with the Forge panel open | {"scrollW":390,"clientW":390,"bad":[]} |
 | PASS | B2 390px: Forge buttons are at least 40 px tall | [] |
 | PASS | B3 390px: slider targets at least 24 px | [28,28] |

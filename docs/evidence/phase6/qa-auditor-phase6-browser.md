@@ -1,6 +1,6 @@
 # qa-auditor Phase 6 independent browser audit
 
-**37 passed, 0 failed, 37 checks.**
+**39 passed, 0 failed, 39 checks.**
 
 **Harness retries:** 0
 
@@ -49,3 +49,5 @@ Third-party/unknown requests seen by the static server: []
 | PASS | AU4.2 Play advances on its own (so the reduced-motion no-advance result is meaningful) | 1 |
 | PASS | AU4.3 no console errors |  |
 | PASS | AU5.1 after opening the Forge on mobile, the focused first slider is in view and not covered | {"focused":true,"top":420,"bottom":448,"inView":true,"hitIsGap":true} |
+| PASS | AU5.2 on mobile, #forge-run can be focused, is in view, not covered and at least 40 px tall | {"focused":true,"inView":true,"h":66,"hit":"forge-run","hitIsButton":true} |
+| PASS | AU5.3 on mobile, #forge-close can be focused, is in view, not covered and at least 40 px tall | {"focused":true,"inView":true,"h":44,"hit":"forge-close","hitIsButton":true} |

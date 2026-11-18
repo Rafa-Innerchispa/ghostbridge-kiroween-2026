@@ -1,0 +1,45 @@
+PASS AU1.A.0 ledger rows exist in localStorage
+PASS AU1.A.1 ledger rows link to the previous hash (previous)
+PASS AU1.A.2 eight beats
+PASS AU1.A.3 every id, row number, hash, time and seconds value in all 8 captions traces to the ledger
+PASS AU1.A.4 captions cite at least two ledger events overall
+PASS AU1.A.5 every case id in a caption also appears outside the caption on the page
+PASS AU1.A.7 no console errors
+PASS AU1.B.0 ledger rows exist in localStorage
+PASS AU1.B.1 ledger rows link to the previous hash (previous)
+PASS AU1.B.2 eight beats
+PASS AU1.B.3 every id, row number, hash, time and seconds value in all 8 captions traces to the ledger
+PASS AU1.B.4 captions cite at least two ledger events overall
+PASS AU1.B.5 near miss: no case id appears in any caption
+PASS AU1.B.7 no console errors
+INFO AU2 Restore before any experiment: {"disabled":true,"opacity":"0.45","color":"rgb(238, 244, 233)"}
+PASS AU2.-1 with no experiment Restore is disabled and looks disabled (opacity < 1)
+PASS AU2.0 baseline: indicator says Verified
+PASS AU2.1 11 tamper experiments: lab reports the right row, ledger bytes, indicator and surrounding DOM unchanged
+PASS AU2.2 zero localStorage writes (setItem/removeItem/clear) during all experiments
+PASS AU2.3 zero fetch/XHR calls and zero new server requests during experiments
+PASS AU2.4 after reload with a tamper left on screen: ledger bytes identical, indicator Verified
+PASS AU2.5 the lab holds no stored state (storage keys unchanged)
+PASS AU2.6 after reload the lab chain of the real ledger shows every block verified
+PASS AU2.7 no console errors
+PASS AU3.0 prefers-reduced-motion: reduce is in effect
+PASS AU3.1 Play and Pause are disabled and the region explains reduced motion in words
+PASS AU3.2 3.5 s after pressing Play nothing is current and the cursor never moved
+PASS AU3.3 Next moves exactly one beat and 2.8 s later nothing advanced by itself
+PASS AU3.4 html scroll-behavior is auto (no smooth scrolling) under reduce
+PASS AU3.5 scrollIntoView requests under reduce: at least one made and none "smooth"
+PASS AU3.6 no running CSS animation or transition inside the Time Machine or Trust Lab
+PASS AU3.7 no element in either region has a non-zero transition or animation duration
+PASS AU3.8 control: after switching the preference off, scrollIntoView does ask for smooth (page reads the preference at click time)
+INFO AU3.9 live preference change without reload: Play disabled = true (true means the preference is read once at load)
+PASS AU3.10 no console errors
+PASS AU4.1 Play is enabled without the preference
+PASS AU4.2 Play advances on its own (so the reduced-motion no-advance result is meaningful)
+PASS AU4.3 no console errors
+INFO AU5 {"rect":{"top":25,"h":532},"overflowY":"visible","maxH":"none","scrollH":530,"clientH":530,"points":[{"f":0.1,"y":78,"inPanel":false,"hit":"rect.cr-facade"},{"f":0.2,"y":132,"inPanel":false,"hit":"rect.cr-podium"},{"f":0.3,"y":185,"inPanel":false,"hit":"rect."},{"f":0.4,"y":238,"inPanel":true,"hit":"LABEL.forge-camera"},{"f":0.5,"y":291,"inPanel":true,"hit":"DIV.forge-presets"},{"f":0.6,"y":345,"inPanel":true,"hit":"forge-preview.forge-preview"},{"f":0.7,"y":398,"inPanel":true,"hit":"forge-preview.forge-preview"},{"f":0.8,"y":451,"inPanel":true,"hit":"SMALL."},{"f":0.9,"y":504,"inPanel":true,"hit":"forge-result.forge-result"}]}
+INFO AU5.0 (by design: pinned scene) points under the scene after forced scroll: [{"f":0.1,"y":78,"inPanel":false,"hit":"rect.cr-facade"},{"f":0.2,"y":132,"inPanel":false,"hit":"rect.cr-podium"},{"f":0.3,"y":185,"inPanel":false,"hit":"rect."}]
+PASS AU5.1 after opening the Forge on mobile, the focused first slider is in view and not covered
+PASS AU5.2 on mobile, #forge-run can be focused, is in view, not covered and at least 40 px tall
+PASS AU5.3 on mobile, #forge-close can be focused, is in view, not covered and at least 40 px tall
+
+Phase 6 independent audit: 39 passed, 0 failed, 39 total
