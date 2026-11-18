@@ -313,6 +313,12 @@ export function mountControlRoom({doc = document, bridge, reducedMotion = false}
       root.setAttribute('data-forge', String(!forge.hidden));
       dock(!forge.hidden);
       refresh();
+      // The drawer is display:none until data-forge is set above, so app.js's synchronous focus() was ignored. Move focus now,
+      // but only from body or the opener, never from a control the user is already using.
+      if (!forge.hidden) {
+        const doc = root.ownerDocument, active = doc && doc.activeElement;
+        if (!active || active === doc.body || active === $('signal-forge')) $('forge-gap').focus();
+      }
     }).observe(forge, {attributes: true, attributeFilter: ['hidden']});
     root.setAttribute('data-forge', String(!forge.hidden));
   }

@@ -1,0 +1,313 @@
+{
+  "summary": {
+    "pass": 40,
+    "fail": 0,
+    "total": 40
+  },
+  "results": [
+    {
+      "name": "d1440 F1 programmatic click on #signal-forge -> focus on #forge-gap",
+      "ok": true,
+      "detail": "INPUT#forge-gap"
+    },
+    {
+      "name": "d1440 F2 input event on #forge-hold keeps focus on #forge-hold (no theft)",
+      "ok": true,
+      "detail": "INPUT#forge-hold"
+    },
+    {
+      "name": "d1440 F2b camera toggle keeps focus on #forge-camera (no theft)",
+      "ok": true,
+      "detail": "INPUT#forge-camera"
+    },
+    {
+      "name": "d1440 F2c #forge-pass moves focus to #forge-gap only via the app.js preset behaviour",
+      "ok": true,
+      "detail": "INPUT#forge-gap"
+    },
+    {
+      "name": "d1440 F2d #forge-fail same preset behaviour",
+      "ok": true,
+      "detail": "INPUT#forge-gap"
+    },
+    {
+      "name": "d1440 F3 Close hides panel and returns focus to #signal-forge",
+      "ok": true,
+      "detail": "true BUTTON#signal-forge"
+    },
+    {
+      "name": "d1440 F3b reopen after Close focuses #forge-gap again",
+      "ok": true,
+      "detail": "INPUT#forge-gap"
+    },
+    {
+      "name": "d1440 F3c second Close still lands on #signal-forge, not #forge-gap",
+      "ok": true,
+      "detail": "BUTTON#signal-forge"
+    },
+    {
+      "name": "d1440 no console errors during forge focus flow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "d1440 F1b real mouse click on #signal-forge -> focus on #forge-gap",
+      "ok": true,
+      "detail": "INPUT#forge-gap"
+    },
+    {
+      "name": "d1440 F1c keyboard Enter on #signal-forge -> focus on #forge-gap",
+      "ok": true,
+      "detail": "INPUT#forge-gap"
+    },
+    {
+      "name": "d1440 F1c #forge-gap focus ring visible (:focus-visible and outline/box-shadow present)",
+      "ok": true,
+      "detail": "{\"id\":\"forge-gap\",\"focusVisible\":true,\"outline\":\"solid 3px rgb(186, 174, 235)\",\"shadow\":\"none\"}"
+    },
+    {
+      "name": "d1440 F1c #forge-gap is inside the viewport after opening",
+      "ok": true,
+      "detail": "{\"top\":334,\"bottom\":362,\"h\":900}"
+    },
+    {
+      "name": "d1440 F5 Tab from #forge-gap moves on (no trap)",
+      "ok": true,
+      "detail": "INPUT#forge-hold"
+    },
+    {
+      "name": "d1440 F4 first Tab lands on the skip link",
+      "ok": true,
+      "detail": "{\"cls\":\"skip-link\",\"href\":\"#control-room\"}"
+    },
+    {
+      "name": "d1440 F6 Challenge A -> 3 events, 1 case",
+      "ok": true,
+      "detail": "{\"events\":\"3\",\"cases\":\"1\"}"
+    },
+    {
+      "name": "d1440 F6 Challenge B -> 3 events, 0 cases",
+      "ok": true,
+      "detail": "{\"events\":\"3\",\"cases\":\"0\"}"
+    },
+    {
+      "name": "d1440 F6 Close still works after challenges",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "d1440 no console errors during challenges",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "d1440 F6 Challenge B from a fresh page -> 3 events, 0 cases",
+      "ok": true,
+      "detail": "{\"events\":\"3\",\"cases\":\"0\"}"
+    },
+    {
+      "name": "m390 F1 programmatic click on #signal-forge -> focus on #forge-gap",
+      "ok": true,
+      "detail": "INPUT#forge-gap"
+    },
+    {
+      "name": "m390 F2 input event on #forge-hold keeps focus on #forge-hold (no theft)",
+      "ok": true,
+      "detail": "INPUT#forge-hold"
+    },
+    {
+      "name": "m390 F2b camera toggle keeps focus on #forge-camera (no theft)",
+      "ok": true,
+      "detail": "INPUT#forge-camera"
+    },
+    {
+      "name": "m390 F2c #forge-pass moves focus to #forge-gap only via the app.js preset behaviour",
+      "ok": true,
+      "detail": "INPUT#forge-gap"
+    },
+    {
+      "name": "m390 F2d #forge-fail same preset behaviour",
+      "ok": true,
+      "detail": "INPUT#forge-gap"
+    },
+    {
+      "name": "m390 F3 Close hides panel and returns focus to #signal-forge",
+      "ok": true,
+      "detail": "true BUTTON#signal-forge"
+    },
+    {
+      "name": "m390 F3b reopen after Close focuses #forge-gap again",
+      "ok": true,
+      "detail": "INPUT#forge-gap"
+    },
+    {
+      "name": "m390 F3c second Close still lands on #signal-forge, not #forge-gap",
+      "ok": true,
+      "detail": "BUTTON#signal-forge"
+    },
+    {
+      "name": "m390 no console errors during forge focus flow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "m390 F1b real mouse click on #signal-forge -> focus on #forge-gap",
+      "ok": true,
+      "detail": "INPUT#forge-gap"
+    },
+    {
+      "name": "m390 F1c keyboard Enter on #signal-forge -> focus on #forge-gap",
+      "ok": true,
+      "detail": "INPUT#forge-gap"
+    },
+    {
+      "name": "m390 F1c #forge-gap focus ring visible (:focus-visible and outline/box-shadow present)",
+      "ok": true,
+      "detail": "{\"id\":\"forge-gap\",\"focusVisible\":true,\"outline\":\"solid 3px rgb(186, 174, 235)\",\"shadow\":\"none\"}"
+    },
+    {
+      "name": "m390 F1c #forge-gap is inside the viewport after opening",
+      "ok": true,
+      "detail": "{\"top\":420,\"bottom\":448,\"h\":844}"
+    },
+    {
+      "name": "m390 F5 Tab from #forge-gap moves on (no trap)",
+      "ok": true,
+      "detail": "INPUT#forge-hold"
+    },
+    {
+      "name": "m390 F4 first Tab lands on the skip link",
+      "ok": true,
+      "detail": "{\"cls\":\"skip-link\",\"href\":\"#control-room\"}"
+    },
+    {
+      "name": "m390 F6 Challenge A -> 3 events, 1 case",
+      "ok": true,
+      "detail": "{\"events\":\"3\",\"cases\":\"1\"}"
+    },
+    {
+      "name": "m390 F6 Challenge B -> 3 events, 0 cases",
+      "ok": true,
+      "detail": "{\"events\":\"3\",\"cases\":\"0\"}"
+    },
+    {
+      "name": "m390 F6 Close still works after challenges",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "m390 no console errors during challenges",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "m390 F6 Challenge B from a fresh page -> 3 events, 0 cases",
+      "ok": true,
+      "detail": "{\"events\":\"3\",\"cases\":\"0\"}"
+    }
+  ],
+  "detail": {
+    "d1440": {
+      "start": "BODY#",
+      "afterOpenProgrammatic": "INPUT#forge-gap",
+      "scrollYAfterOpen": 0,
+      "afterHoldInput": "INPUT#forge-hold",
+      "afterCamera": "INPUT#forge-camera",
+      "afterPass": "INPUT#forge-gap",
+      "afterFail": "INPUT#forge-gap",
+      "afterClose": "BUTTON#signal-forge",
+      "hiddenAfterClose": true,
+      "reopen": "INPUT#forge-gap",
+      "closeFocus2": "BUTTON#signal-forge",
+      "errors": [],
+      "afterOpenMouse": "INPUT#forge-gap",
+      "afterOpenKeyboard": "INPUT#forge-gap",
+      "ring": {
+        "id": "forge-gap",
+        "focusVisible": true,
+        "outline": "solid 3px rgb(186, 174, 235)",
+        "shadow": "none"
+      },
+      "inView": {
+        "top": 334,
+        "bottom": 362,
+        "h": 900
+      },
+      "shot": "<repo>/docs/evidence/agentic-validation/forge-focus-open-1440.png",
+      "tabNext": "INPUT#forge-hold",
+      "firstTab": {
+        "cls": "skip-link",
+        "href": "#control-room"
+      },
+      "chal": {
+        "a": {
+          "events": "3",
+          "cases": "1"
+        },
+        "aFocus": "INPUT#forge-gap",
+        "aForgeHidden": false,
+        "b": {
+          "events": "3",
+          "cases": "0"
+        },
+        "bFocus": "INPUT#forge-gap"
+      },
+      "errors2": [],
+      "chalBFirst": {
+        "events": "3",
+        "cases": "0"
+      }
+    },
+    "m390": {
+      "start": "BODY#",
+      "afterOpenProgrammatic": "INPUT#forge-gap",
+      "scrollYAfterOpen": 679,
+      "afterHoldInput": "INPUT#forge-hold",
+      "afterCamera": "INPUT#forge-camera",
+      "afterPass": "INPUT#forge-gap",
+      "afterFail": "INPUT#forge-gap",
+      "afterClose": "BUTTON#signal-forge",
+      "hiddenAfterClose": true,
+      "reopen": "INPUT#forge-gap",
+      "closeFocus2": "BUTTON#signal-forge",
+      "errors": [],
+      "afterOpenMouse": "INPUT#forge-gap",
+      "afterOpenKeyboard": "INPUT#forge-gap",
+      "ring": {
+        "id": "forge-gap",
+        "focusVisible": true,
+        "outline": "solid 3px rgb(186, 174, 235)",
+        "shadow": "none"
+      },
+      "inView": {
+        "top": 420,
+        "bottom": 448,
+        "h": 844
+      },
+      "shot": "<repo>/docs/evidence/agentic-validation/forge-focus-open-390.png",
+      "tabNext": "INPUT#forge-hold",
+      "firstTab": {
+        "cls": "skip-link",
+        "href": "#control-room"
+      },
+      "chal": {
+        "a": {
+          "events": "3",
+          "cases": "1"
+        },
+        "aFocus": "INPUT#forge-gap",
+        "aForgeHidden": false,
+        "b": {
+          "events": "3",
+          "cases": "0"
+        },
+        "bFocus": "INPUT#forge-gap"
+      },
+      "errors2": [],
+      "chalBFirst": {
+        "events": "3",
+        "cases": "0"
+      }
+    }
+  }
+}

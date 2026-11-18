@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "ghostbridge-evidence": {
+      "command": "python",
+      "args": ["-m", "ghostbridge.mcp_server"],
+      "env": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "disabled": false,
+      "autoApprove": ["list_scenarios", "run_scenario", "forge_boundary", "verify_ledger"]
+    }
+  }
+}

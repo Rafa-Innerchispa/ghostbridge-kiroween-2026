@@ -8,7 +8,7 @@
       "matcher": "(docs[\\\\/](reconstruction|reconstruction-view|playback)\\.mjs|tests[\\\\/](reconstruction|reconstruction-view|playback)\\.test\\.mjs)$",
       "action": {
         "type": "command",
-        "command": "node --test tests/reconstruction.test.mjs tests/reconstruction-view.test.mjs tests/playback.test.mjs",
+        "command": "node .kiro/hooks/run-reconstruction-tests.mjs",
         "timeout": 60
       }
     }

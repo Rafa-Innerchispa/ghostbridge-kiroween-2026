@@ -1,0 +1,157 @@
+{
+ "note": "Extracted by script from the local Kiro session log. The parent log records each invoke_sub_agent call with the agent name; the sub-execution log records the tool calls the agent made but does not repeat the agent name.",
+ "sessionId": "sess_7ff31803-702e-41e9-b5b1-55b645f7262e",
+ "agentMode": "vibe",
+ "autopilot": true,
+ "invocations": {
+  "0ddb0d67-404d-4d0f-be13-d636da5361df": {
+   "agent": "ui-director",
+   "startedAt": "2026-11-12T07:41:08.578Z",
+   "promptChars": 2752,
+   "promptFirstLine": "You are being invoked as ui-director for GhostBridge, branch feat/kiro-agentic-validation (working dir = repo root). Do one bounded accessib",
+   "completedAt": "2026-11-12T07:43:18.124Z",
+   "responseChars": 3429
+  },
+  "d02bccbd-ef21-4966-93b8-a2513f2bf63e": {
+   "agent": "qa-auditor",
+   "startedAt": "2026-11-12T07:51:44.016Z",
+   "promptChars": 2725,
+   "promptFirstLine": "You are being invoked as qa-auditor, ROUND 1, in a run separate from ui-director. Branch feat/kiro-agentic-validation (repo root is cwd). Au",
+   "completedAt": "2026-11-12T08:04:38.637Z",
+   "responseChars": 3645
+  },
+  "fb47f92b-809e-4fba-95b6-5fcc85dd673d": {
+   "agent": "ui-director",
+   "startedAt": "2026-11-12T08:06:30.570Z",
+   "promptChars": 2935,
+   "promptFirstLine": "You are ui-director, ROUND 2 (fix pass after an independent audit). Branch feat/kiro-agentic-validation. qa-auditor's report is at docs/evid",
+   "completedAt": "2026-11-12T08:09:49.826Z",
+   "responseChars": 2218
+  },
+  "cd48b68d-1188-49ce-b144-d8e47e1bf648": {
+   "agent": "qa-auditor",
+   "startedAt": "2026-11-12T08:09:58.564Z",
+   "promptChars": 2270,
+   "promptFirstLine": "You are qa-auditor, ROUND 2, a fresh run separate from round 1 and from ui-director. Branch feat/kiro-agentic-validation. In round 1 you rep",
+   "completedAt": "2026-11-12T08:24:27.129Z",
+   "responseChars": 3695
+  }
+ },
+ "subExecutions": [
+  {
+   "subExecutionId": "0ddb0d67-404d-4d0f-be13-d636da5361df",
+   "agent": "ui-director",
+   "startedAt": "2026-11-12T07:41:08.578Z",
+   "completedAt": "2026-11-12T07:43:18.124Z",
+   "firstEvent": "2026-11-12T07:41:08.595Z",
+   "lastEvent": "2026-11-12T07:43:18.074Z",
+   "toolCalls": 22,
+   "tools": {
+    "list_directory": 2,
+    "read_file": 3,
+    "grep_search": 1,
+    "execute_pwsh": 11,
+    "fs_append": 1,
+    "str_replace": 3,
+    "fs_write": 1
+   },
+   "filesWritten": [
+    "docs/control_room.css",
+    "docs/index.html",
+    "tests/a11y_targets.test.mjs"
+   ],
+   "hookInvocations": 11,
+   "hookNames": [
+    "Guard against destructive commands"
+   ],
+   "hookStatuses": [
+    "completed"
+   ]
+  },
+  {
+   "subExecutionId": "d02bccbd-ef21-4966-93b8-a2513f2bf63e",
+   "agent": "qa-auditor",
+   "startedAt": "2026-11-12T07:51:44.016Z",
+   "completedAt": "2026-11-12T08:04:38.637Z",
+   "firstEvent": "2026-11-12T07:51:44.024Z",
+   "lastEvent": "2026-11-12T08:04:38.603Z",
+   "toolCalls": 29,
+   "tools": {
+    "read_file": 9,
+    "execute_pwsh": 14,
+    "control_pwsh_process": 1,
+    "fs_write": 2,
+    "grep_search": 2,
+    "list_directory": 1
+   },
+   "filesWritten": [
+    "<repo>/tests/browser-qa/skip-link-audit.qa.mjs",
+    "<repo>/docs/evidence/agentic-validation/qa-auditor-round1.md"
+   ],
+   "hookInvocations": 15,
+   "hookNames": [
+    "Guard against destructive commands"
+   ],
+   "hookStatuses": [
+    "completed"
+   ]
+  },
+  {
+   "subExecutionId": "fb47f92b-809e-4fba-95b6-5fcc85dd673d",
+   "agent": "ui-director",
+   "startedAt": "2026-11-12T08:06:30.570Z",
+   "completedAt": "2026-11-12T08:09:49.826Z",
+   "firstEvent": "2026-11-12T08:06:30.594Z",
+   "lastEvent": "2026-11-12T08:09:49.804Z",
+   "toolCalls": 13,
+   "tools": {
+    "grep_search": 2,
+    "execute_pwsh": 9,
+    "read_file": 1,
+    "str_replace": 1
+   },
+   "filesWritten": [
+    "<repo>/docs/control_room_view.mjs"
+   ],
+   "hookInvocations": 9,
+   "hookNames": [
+    "Guard against destructive commands"
+   ],
+   "hookStatuses": [
+    "completed"
+   ]
+  },
+  {
+   "subExecutionId": "cd48b68d-1188-49ce-b144-d8e47e1bf648",
+   "agent": "qa-auditor",
+   "startedAt": "2026-11-12T08:09:58.564Z",
+   "completedAt": "2026-11-12T08:24:27.129Z",
+   "firstEvent": "2026-11-12T08:09:58.578Z",
+   "lastEvent": "2026-11-12T08:24:27.075Z",
+   "toolCalls": 40,
+   "tools": {
+    "execute_pwsh": 18,
+    "read_file": 8,
+    "control_pwsh_process": 2,
+    "grep_search": 2,
+    "fs_write": 3,
+    "list_processes": 1,
+    "delete_file": 1,
+    "str_replace": 5
+   },
+   "filesWritten": [
+    "<repo>/tests/browser-qa/forge-focus-audit.qa.mjs",
+    "<repo>/tests/browser-qa/_probe_tmp.qa.mjs",
+    "null",
+    "<repo>/docs/evidence/agentic-validation/qa-auditor-round2.md"
+   ],
+   "hookInvocations": 20,
+   "hookNames": [
+    "Guard against destructive commands"
+   ],
+   "hookStatuses": [
+    "completed"
+   ]
+  }
+ ]
+}
