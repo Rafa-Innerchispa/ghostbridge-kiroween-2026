@@ -23,4 +23,4 @@ Checked 2026-11-12 by Kiro against the public overview page https://kiroween.dev
 ## Open risks before submission
 1. The public site shows `main`, not the draft PR stack. Judges would see an older app unless the stack is merged and deployed.
 2. ~~README category text says Frankenstein~~ fixed in PR #16 (Resurrection).
-3. MCP: connected and invoked from Kiro on 2026-11-17 (see `docs/evidence/phase6/mcp-from-kiro.md`). Powers: none installed; do not claim them. Kiro Crew: no native app; do not enter that bonus.
+3. MCP: connected, invoked and all four tools verified from Kiro (last on 2026-11-18) (see `docs/evidence/phase6/mcp-from-kiro.md`). Powers: none installed; do not claim them. Kiro Crew: no native app; do not enter that bonus.

@@ -580,7 +580,7 @@ Full evidence and the IMPLEMENTED / EXECUTED / VERIFIED / NOT PROVEN table: [`do
 
 - **Incident Time Machine and Evidence Trust Lab.** Pure models by the Kiro main session; views by the `ui-director` custom agent; audited twice by `qa-auditor`.
 - **Real defects found by qa-auditor and fixed:** derived times shown as recorded, wrong authorship headers, and a Restore button left enabled because `app.js` re-enables every button after a run.
-- **MCP from Kiro:** connected and invoked (12 calls); `verify_ledger` has one open discrepancy ([`mcp-from-kiro.md`](evidence/phase6/mcp-from-kiro.md)).
+- **MCP from Kiro:** connected and invoked (14 calls); all four tools verified from Kiro after `verify_ledger` gained a `rows_json` input ([`mcp-from-kiro.md`](evidence/phase6/mcp-from-kiro.md)).
 - **Eligibility:** `.kiro/hooks/logs/` removed from `.gitignore` on PR #15 (`2dffd0c`).
 - **Totals (closing round):** Python 188, Node 382 in 19 files, `node --check` 18/18; Chrome QA 159, 39, 39, 32, 40, 56 and 141 checks (506), all passing, 0 retries.
 - **Not done:** Kiro Power, Kiro Crew app, public deploy, video, Devpost entry.

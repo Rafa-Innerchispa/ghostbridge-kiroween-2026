@@ -32,7 +32,7 @@ ui-director run A (accessibility), ui-director run B (views), qa-auditor Phase 6
 Logs: `final-qa/`. The older-phase evidence under `docs/evidence/control-room/` and `agentic-validation/` was restored, not overwritten.
 
 ## MCP from Kiro
-Installed, connected and invoked from Kiro (12 calls over the session, all listed in `mcp-from-kiro.md`). `list_scenarios`, `forge_boundary` 299/120 and 301/119, and `run_scenario` with a tamper demo returned the expected results. `verify_ledger` returned an unexpected failure at row 1 for a ledger that verifies locally; open, see `mcp-from-kiro.md`.
+Installed, connected and invoked from Kiro (14 calls over the session; all four tools verified, all listed in `mcp-from-kiro.md`). `list_scenarios`, `forge_boundary` 299/120 and 301/119, and `run_scenario` with a tamper demo returned the expected results. `verify_ledger` returned an unexpected failure at row 1 for a ledger that verifies locally; open, see `mcp-from-kiro.md`.
 
 ## Closing round (2026-11-17, Kiro main session)
 | Item | Change | Evidence |
@@ -51,5 +51,5 @@ Fixed: deep nesting in `rows_json` or a payload now returns a tool error, not an
 Accepted, not changed: the near-miss rule excuses a sentence that contains a governing negation phrase anywhere in it, and the mobile Run/Close checks cover 390 px only.
 
 ## Open items
-- `verify_ledger` with `rows_json` from Kiro: one call in a new turn.
+None technical. `verify_ledger` with `rows_json` from Kiro was verified on 2026-11-18 (calls 13 and 14).
 - Twice during this phase the Kiro shell stopped responding after a long qa-auditor run, and a Kiro restart was needed.

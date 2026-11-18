@@ -52,7 +52,7 @@ Las pruebas de Chrome se ejecutan a mano y no forman parte del CI, porque el CI 
 | Agentes propios | EJECUTADO y VERIFICADO | `ui-director` corrió 4 veces y `qa-auditor` 5 veces, de forma real. El log de sesión registra `sub_agent_start` con el nombre. Ver `docs/evidence/agentic-validation/sub-executions.json`, `docs/evidence/phase6/qa-auditor-*.md` |
 | Bucle auditoría → corrección → reauditoría | VERIFICADO | qa-auditor encontró defectos reales que se corrigieron (ver lista abajo) |
 | Pruebas basadas en propiedades | VERIFICADO | semillas fijas: 400 configuraciones aleatorias, 231 exhaustivas y 300 manipulaciones del ledger; mutaciones deliberadas detectadas 8 de 8 |
-| MCP | EJECUTADO desde Kiro | instalado, conectado (Kiro descubrió las 4 herramientas) y con 12 llamadas reales. Una verificación sigue abierta (sección 5) |
+| MCP | VERIFICADO desde Kiro | instalado, conectado y con 14 llamadas reales. Las 4 herramientas devuelven lo esperado, incluido `verify_ledger`: ledger válido 3 de 3 y ledger alterado falla en la fila 2 |
 | Powers | NO USADO | no hay ninguno instalado; los oficiales requieren cuentas externas. No afirmarlo |
 | Kiro Crew | NO CONSTRUIDO | no existe una app nativa de Crew. En `main` hay un spec de Crew del propietario (`.kiro/specs/ghostbridge-crew-app/`), pero no está implementado. No postular a ese premio |
 | Créditos consumidos | NO MEDIBLE | la sesión no los expone. Revisar en https://kiro.dev/account/usage |
@@ -84,11 +84,11 @@ Guía del jurado: `docs/submission/JUDGE_GUIDE.md`.
 ## 5. Pendientes y riesgos (honestos)
 
 1. **El sitio público no muestra este trabajo.** `https://ghostbridge.innerchispa.us/` se construye desde `main`. Hay que integrar la pila (sección 6).
-2. **`verify_ledger` por `rows_json` desde Kiro: NO PROBADO.**
-   - **Lo observado:** las filas con un objeto vacío (`"data": {}`) fallan cuando se envían como estructura desde Kiro, y las filas sin él verifican. El objeto vacío se pierde en el camino.
-   - **La corrección:** el servidor acepta ahora el ledger como texto JSON (`rows_json`), que llega intacto, y sigue siendo estricto. Tiene 19 tests.
-   - **Por qué falta:** Kiro todavía ejecuta la versión anterior del servidor y no la recarga por su cuenta. El agente no puede reiniciarla, porque Kiro le bloquea escribir en `.kiro/settings/`.
-   - **Paso del propietario:** en Kiro, panel MCP → `ghostbridge-evidence` → reiniciar o reconectar (o reiniciar Kiro). Luego pedirle a Kiro que llame `verify_ledger` con `rows_json`.
+2. **`verify_ledger` desde Kiro: RESUELTO y VERIFICADO el 2026-11-18.**
+   - **Lo observado antes:** las filas con un objeto vacío (`"data": {}`) fallaban cuando se enviaban como estructura desde Kiro. El objeto vacío se pierde en el camino y eso cambia el hash.
+   - **La corrección:** el servidor acepta el ledger como texto JSON (`rows_json`), que llega intacto, y sigue siendo estricto. Tiene 19 tests.
+   - **La prueba desde Kiro:** después de que el propietario actualizó Kiro, un ledger válido de 3 filas verificó 3 de 3, con el mismo head que calculó el motor. La misma copia con la hora de la fila 2 alterada falló exactamente en la fila 2.
+   - **Nota para clientes MCP:** usar `rows_json` para verificar. El parámetro `rows` (estructura) sigue disponible, pero puede fallar si el cliente descarta objetos vacíos.
    - Detalle completo: `docs/evidence/phase6/mcp-from-kiro.md`.
 3. **`.kiro/inbox/win_kiro_bridge_e2e_probe.json`:** viene del puente de Antigravity. Está fuera del repositorio y no se modificó.
 4. **Borradores duplicados:** `main` tiene `docs/marketing/KIROWEEN_2026_BLOG_DRAFT.md` y `..._SOCIAL_BLITZ_DRAFT.md`, y la Fase 6 añadió `docs/submission/BLOG_AND_SOCIAL_DRAFTS.md`. Hay que unificarlos antes de publicar.

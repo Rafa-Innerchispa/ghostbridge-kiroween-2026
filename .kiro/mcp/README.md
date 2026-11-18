@@ -30,4 +30,4 @@ proposed configuration instead of an installed one. To enable it, copy `ghostbri
 automatically. The `autoApprove` list contains only the four read-only tools above. Then ask Kiro, for example,
 "use ghostbridge-evidence to check delay 301 and hold 119".
 
-**Update 2026-11-17:** the owner's tooling created `.kiro/settings/mcp.json`; Kiro discovered the four tools and they were invoked from a Kiro session. Results and one open discrepancy (`verify_ledger`) are in `docs/evidence/phase6/mcp-from-kiro.md`.
+**Update 2026-11-17:** the owner's tooling created `.kiro/settings/mcp.json`; Kiro discovered the four tools and they were invoked from a Kiro session. On 2026-11-18 all four tools were verified from Kiro, including `verify_ledger` through `rows_json` (valid ledger 3 of 3; tampered copy fails at row 2). Details in `docs/evidence/phase6/mcp-from-kiro.md`.
