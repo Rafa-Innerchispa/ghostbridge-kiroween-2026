@@ -28,4 +28,4 @@
 - New tests cover real ledger-derived reconstruction, 270s/300s boundary reasoning, source hashes, out-of-order events, empty/invalid ledgers, controls, reset/replay and accessibility.
 - CI and Pages checks must pass. Record a genuine Kiro session/provenance and screenshots in `docs/KIRO_EVIDENCE.md`.
 - Single PR `feat/evidence-reconstruction`, stop before merge. Independent review will be completed outside Kiro.
-- No purchases, paid third-party models, local InnerOS production system, network scan, camera or customer data.
+- No purchases, paid third-party models, local company production systems, network scan, camera or customer data.

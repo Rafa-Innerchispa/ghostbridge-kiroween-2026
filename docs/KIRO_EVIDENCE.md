@@ -26,7 +26,7 @@ The following work was authored **by Kiro** in this session:
 
 ## Prompt submitted to Kiro
 
-> You are working on GhostBridge for Kiroween 2026. This is a new independent MIT-licensed project, currently using synthetic building signals only. Review AGENTS.md, KIRO.md, and both .kiro spec directories. Implement the incident severity filter according to .kiro/specs/incident-severity-filter/: All / High / Medium, default All, accessible controls. Filter Incident desk cards only, without changing full event and incident counters, evidence timeline, exported JSON, or SHA-256 ledger. Add dependency-free tests for mixed severities, zero matches, no incidents, reset, immutable input, and identical evidence verification. Run Python and Node tests, the JS syntax check, and check the browser lab. Capture your genuine Kiro session evidence in docs/KIRO_EVIDENCE.md, listing the Kiro product, prompt, file changes, tests, commit, screenshots, and limitations. Existing code/specs were previously prepared with Codex, so attribute Kiro only to what you actually implement now. Use only existing free credits; do not purchase or trigger cloud providers. No InnerOS production MCP, customer devices, credentials, or external agents. Work on a branch and show the diff before merging.
+> You are working on GhostBridge for Kiroween 2026. This is a new independent MIT-licensed project, currently using synthetic building signals only. Review AGENTS.md, KIRO.md, and both .kiro spec directories. Implement the incident severity filter according to .kiro/specs/incident-severity-filter/: All / High / Medium, default All, accessible controls. Filter Incident desk cards only, without changing full event and incident counters, evidence timeline, exported JSON, or SHA-256 ledger. Add dependency-free tests for mixed severities, zero matches, no incidents, reset, immutable input, and identical evidence verification. Run Python and Node tests, the JS syntax check, and check the browser lab. Capture your genuine Kiro session evidence in docs/KIRO_EVIDENCE.md, listing the Kiro product, prompt, file changes, tests, commit, screenshots, and limitations. Existing code/specs were previously prepared with Codex, so attribute Kiro only to what you actually implement now. Use only existing free credits; do not purchase or trigger cloud providers. No company production systems MCP, customer devices, credentials, or external agents. Work on a branch and show the diff before merging.
 
 ---
 
@@ -332,7 +332,7 @@ node --check docs/fixtures.js         → OK
 - No headless browser screenshot in this session; manual QA on GitHub Pages is required.
 - The Legacy Bridge Demo button is browser-only (offline fixture replay); it does not call `/api/adapters/access` or any live endpoint.
 - Cases are re-derived on every `/api/cases` call; not cached (acceptable for a lab with synthetic data volumes).
-- Real hardware, InnerOS, or production connections are not present.
+- Real hardware or production connections are not present.
 
 
 ---
@@ -356,7 +356,7 @@ The first Phase 2B correlator, Python /api/cases endpoint, JS parity implementat
 
 **Authoritative passing GitHub CI result on reviewed PR head** `266283ac5558cdade2c2efecacb2acc3cf9b2f4c`: **159 Python + 12 original Node + 17 severity-filter Node + 46 correlator Node + 5 JavaScript syntax checks = 239 checks, zero failures**, as verified from GitHub Actions job logs. The user-provided original Kiro session test report reflected the pre-review head (158 Python / 43 correlator Node).
 
-**Limitations:** All data sources remain synthetic. GitHub CI does not prove a live GitHub Pages load or browser/mobile interaction for the new case dashboard; a separate interactive QA session is needed before video and final Devpost submission. No production InnerOS, customer access controller, live camera or physical relay is connected.
+**Limitations:** All data sources remain synthetic. GitHub CI does not prove a live GitHub Pages load or browser/mobile interaction for the new case dashboard; a separate interactive QA session is needed before video and final Devpost submission. No production company systems, customer access controller, live camera or physical relay is connected.
 
 
 ---
@@ -391,7 +391,7 @@ Everything below this line that is marked **Kiro** was written in this session. 
 
 ### Prompt for this session
 
-> Continue GhostBridge from the latest main branch. Execute GitHub Issue #6: Interactive Evidence Reconstruction. Read AGENTS.md, KIRO.md, docs/WINNING_DEMO_STRATEGY.md, docs/DEMO_SCRIPT.md, and the complete .kiro/specs/evidence-reconstruction/ specification. Use Kiro IDE Autopilot and spec-driven development to build the premium, interactive 2.5D incident reconstruction directly into the working GhostBridge dashboard. Implement timeline playback, evidence-linked visualization, accessible controls, desktop/mobile responsiveness, and comprehensive tests. Preserve all existing functionality and SHA-256 ledger integrity. Use local execution and the available Kiro promotional credits. Create branch feat/evidence-reconstruction, implement, test, capture genuine Kiro evidence, push and open a PR. Stop before merging. Do not submit Devpost.
+> Continue GhostBridge from the latest main branch. Execute GitHub Issue #6: Interactive Evidence Reconstruction. Read AGENTS.md, KIRO.md, an internal planning document (not published), docs/DEMO_SCRIPT.md, and the complete .kiro/specs/evidence-reconstruction/ specification. Use Kiro IDE Autopilot and spec-driven development to build the premium, interactive 2.5D incident reconstruction directly into the working GhostBridge dashboard. Implement timeline playback, evidence-linked visualization, accessible controls, desktop/mobile responsiveness, and comprehensive tests. Preserve all existing functionality and SHA-256 ledger integrity. Use local execution and the available Kiro promotional credits. Create branch feat/evidence-reconstruction, implement, test, capture genuine Kiro evidence, push and open a PR. Stop before merging. Do not submit Devpost.
 
 ### What was built
 

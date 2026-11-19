@@ -1,7 +1,7 @@
 # Handoff — 2026-10-30
 
 Owner clarified no original ZIP exists: create GhostBridge from scratch. New code
-is independent of all InnerOS projects and production servers.
+is independent of all other company projects and production servers.
 
 Local folder: ghostbridge-kiroween-2026. Python stdlib only. Test result: 29 Python
 tests and 12 Node engine tests PASS; app.js syntax PASS. No browser visual QA yet.

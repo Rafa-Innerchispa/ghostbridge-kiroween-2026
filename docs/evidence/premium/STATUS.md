@@ -28,7 +28,7 @@ Before and after screenshots (1440, 1024, 390 px, 10 screens each): `before/` an
 | Chrome: Phase 6 experience / independent audit / a11y targets / skip link / Forge focus / m0 | 159/159, 39/39, 39/39, 32/32, 40/40, 56/56 |
 | Chrome: m5 Control Room | 141/141 |
 
-All seven Chrome suites above (556 checks) ran on the final CSS with **0 harness retries**.
+All seven Chrome suites above (506 checks; an earlier version said 556, an addition error: 159+39+39+32+40+56+141 = 506) ran on the final CSS with **0 harness retries**.
 
 **Root cause of the intermittent "Inspected target navigated or closed" failures (seen since Phase 4), found and fixed in this phase:** with a fresh profile, Chrome 157.0.8103.79 replaced the newly opened tab on its own in 4 of 4 trials; with background component updates and networking disabled (`--disable-component-update`, `--disable-background-networking` and related flags, now the default in `tests/browser-qa/lib.mjs`), 0 of 4. Before the fix, the same failure also occurred on unchanged `main` (S9 failed 2 of 3 runs), confirming it was the harness, not the product.
 

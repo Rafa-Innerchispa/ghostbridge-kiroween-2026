@@ -14,6 +14,5 @@
 - [ ] Run real Crew gateway locally, install/enable the app, inspect actual dashboard screenshot and click through agent response at desktop/mobile.
 - [ ] Add genuine Kiro IDE session evidence and Crew screenshots to `docs/KIRO_EVIDENCE.md` and `docs/evidence/`, with accurate source attribution, exact credit usage if visible and tests.
 - [ ] Commit/push PR `feat/kiro-crew-incident-desk`, stop before merge. Deliver a judge-ready GitHub app path, install instructions, live Crew task result, screenshot and tests.
-- [ ] Coordinate with InnerOS Issue #272 without assuming the local automation bridge is finished. The app works independently.
 
 **Proof threshold for Bonus eligibility:** real installable Crew-native app, actually enabled at local Crew Gateway with working dashboard+agent, public GitHub source and demo/evidence; only then add Best Kiro Crew App to Devpost.

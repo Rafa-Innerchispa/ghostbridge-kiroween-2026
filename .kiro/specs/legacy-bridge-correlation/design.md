@@ -67,7 +67,7 @@ The case object is **not** inserted into the existing ledger unless carefully ju
 
 PR A: adapters + source fixture parser + security + persistence tests; keep existing UI behavior.  
 PR B: deterministic case correlator, read-only API, JS parity, dashboard panel, browser tests and Kiro evidence.  
-Use standard-library Python and vanilla JS. No paid backend, external inference, dependencies or production InnerOS access.
+Use standard-library Python and vanilla JS. No paid backend, external inference, dependencies or production company systems.
 
 ## Required QA
 

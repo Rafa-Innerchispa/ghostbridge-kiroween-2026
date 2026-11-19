@@ -71,10 +71,10 @@ Native Crew agent consumes an explicitly bounded *case context JSON* and returns
 7. Real Gateway output: `kirocrew doctor`, `/api/apps` listing with app enabled, exact version, real session/task result. Sanitize host identifying details.
 8. Github PR CI green and no production impact; fork or branch only.
 
-## Integration with InnerOS (next stage)
+## Integration (next stage)
 
-InnerOS Issue #272 is separately building queue and executor adapters on the local AMD. GhostBridge Crew app should expose only documented app-controlled capabilities and not wait for the orchestration bridge to finish; the contest app can be independently installable. Later link InnnerOS approved ops task → Crew native agent → GitHub PR and Telegram, with idempotency and evidence. No localhost Gateway exposed publicly.
+Integrations with other systems are out of scope for this spec and will be specified separately.
 
 ## Authorship
 
-This plan is ChatGPT-written. Code must be built and recorded by actual Kiro IDE/CLI when possible. If Antigravity or Qwen changes code, record those contributions separately; do not claim they are Kiro-authored.
+This plan is ChatGPT-written. Code must be built and recorded by actual Kiro IDE/CLI when possible. If any other tool changes code, record those contributions separately; do not claim they are Kiro-authored.

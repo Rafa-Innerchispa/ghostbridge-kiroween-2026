@@ -25,7 +25,7 @@ Read existing `docs/app.js`, `docs/index.html`, `docs/styles.css`, `docs/engine.
 
 Slow camera pan over stylized building entrance → red denied reader → time advances → amber held-open door → connection line drawn between source indicators → one high-priority case panel with original evidence labels → sources light up / operator sees next action. Keep it readable and not magical.
 
-**Commercial film creative brief:** `docs/WINNING_DEMO_STRATEGY.md` and `docs/DEMO_SCRIPT.md`. The future mobile/enterprise console shots are video conceptualization and need **not** be built inside the MVP for this feature.
+**Commercial film creative brief:** an internal planning document (not published) and `docs/DEMO_SCRIPT.md`. The future mobile/enterprise console shots are video conceptualization and need **not** be built inside the MVP for this feature.
 
 ## Implementation approach
 

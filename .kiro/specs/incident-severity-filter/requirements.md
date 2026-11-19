@@ -39,4 +39,4 @@ As a judge or building operator exploring a **synthetic** shift, I want to view 
 - Implement using Kiro IDE or CLI signed in to the owner's authorized free personal account.
 - Capture the actual Kiro prompt, changed files, test output, commit SHA, and a real Kiro session reference/screenshot in `docs/KIRO_EVIDENCE.md`.
 - The existing application and initial `.kiro` specs were prepared with Codex; do not misattribute them to Kiro.
-- No customer data, real device access, production InnerOS MCP, secrets, purchases, or paid model routing.
+- No customer data, real device access, production company MCP servers, secrets, purchases, or paid model routing.

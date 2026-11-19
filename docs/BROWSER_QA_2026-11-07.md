@@ -41,4 +41,4 @@ The individual checks total 32 in the retained structured QA result.
 3. Record and publish a real project video under the hackathon time limit; Devpost does not yet have one.
 4. Confirm owner eligibility answers and submit the hackathon entry only after explicit authorization.
 
-These QA tests **do not** claim physical hardware integration, live detection, AI inference, legally certified evidence, or access to production InnerOS.
+These QA tests **do not** claim physical hardware integration, live detection, AI inference, legally certified evidence, or access to production company systems.
