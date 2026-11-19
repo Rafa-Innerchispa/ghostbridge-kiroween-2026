@@ -43,7 +43,7 @@ try {
   // ============ S1. first viewport, desktop 1440x900 ============
   await run('S1 first viewport 1440', async b => {
     await b.viewport(1440, 900); await open(b, srv.origin, 'Browser lab');
-    check('S1.1 hero headline, subline and two primary actions are present', (await b.eval(`document.getElementById('cr-title').innerText`)).replace(/\s+/g, ' ').includes('When buildings start talking') && (await b.text('.cr-sub')).includes('decisions you can trust') && (await b.text('#cr-forge')).includes('Forge an incident') && (await b.text('#cr-unfold')).includes('Watch an incident unfold'));
+    check('S1.1 hero headline, subline and two primary actions are present', (await b.eval(`document.getElementById('cr-title').innerText`)).replace(/\s+/g, ' ').includes('One explained incident') && (await b.eval(`document.getElementById('cr-title').innerText`)).includes('Evidence you can verify') && (await b.text('.cr-sub')).includes('decisions you can trust') && (await b.text('#cr-forge')).includes('Forge an incident') && (await b.text('#cr-unfold')).includes('Watch an incident unfold'));
     check('S1.2 Showcase Mode button is present', (await b.text('#cr-showcase')).includes('Showcase Mode'));
     const layers = await b.count('#cr-scene .cr-l'), markers = await b.count('#cr-scene .cr-marker'), nodes = await b.count('#cr-strip .cr-node');
     check('S1.3 the scene has 5 depth layers, 4 source markers and 4 source buttons', layers === 5 && markers === 4 && nodes === 4, `layers=${layers} markers=${markers} nodes=${nodes}`);
