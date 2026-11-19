@@ -11,7 +11,7 @@ Status words: IMPLEMENTED / EXECUTED / VERIFIED / NOT PROVEN.
 | `docs/verify/verify_evidence.py`: independent standard-library verifier (imports nothing from GhostBridge), served by the site | Kiro main session | VERIFIED: 3 Python tests (same head as the engine for every scenario; tamper; receipt) and a cross-language Node test (browser exports and receipts verified by the script, including a rewritten history) |
 | `powers/ghostbridge-evidence/`: Agent Plugins 1.0.0 Power with a self-contained MCP server and two skills | Kiro main session | VERIFIED as a package: 5 tests incl. a stdio round trip from a copy of the folder without the repository. **Install and use from Kiro: NOT PROVEN** (owner step) |
 | `docs/byo_view.mjs`, `docs/receipt_view.mjs`, wiring, CSS | ui-director run D | VERIFIED: 31 view tests; Chrome suite `phase8-verifiable` 89/89 |
-| Devpost texts, video script (2:45), judge guide, Cursor handoff and message contract | Kiro main session | written |
+| Devpost texts, video script (2:45), judge guide | Kiro main session | written |
 
 ## Measured results (Phase 8 head)
 | Suite | Result | Baseline (Phase 7) |
@@ -27,7 +27,7 @@ Screenshots: `byo-1440.png`, `byo-errors-1440.png`, `byo-390.png`, `seal-1440.pn
 | Finding | Fix |
 |---|---|
 | Agent run counts had no log behind them | `agent-runs.json`: every run from the Kiro session log (ui-director 6, qa-auditor 7 including this review) |
-| `docs/handoff/` would be published by Pages and contained InnerOS ids | moved to `handoff/` at the repo root; InnerOS ids, correlation id and idempotency key replaced by placeholders |
+| Coordination documents for other company systems were in the public repository | removed from the repository; kept privately by the owner |
 | Devpost text claimed the Power without the "not yet installed" condition | reworded: "packaged as a Kiro Power"; the Power bullet is marked "built and tested" with the owner note; release checklist row updated |
 | Verifier crashed on a receipt that is not an object; accepted `rows: true` | exit 2 for a non-object receipt; booleans rejected; 2 new assertions in `tests/test_verify_evidence.py` |
 | "About 100 lines" wording | "a short, single-file" |

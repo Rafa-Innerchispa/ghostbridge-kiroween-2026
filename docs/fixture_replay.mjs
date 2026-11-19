@@ -9,7 +9,7 @@
  *
  * IMPORTANT: This module runs entirely in the browser.
  *   - It does NOT make network calls.
- *   - It does NOT connect to physical hardware or InnerOS systems.
+ *   - It does NOT connect to physical hardware or company systems.
  *   - The "Legacy Bridge Demo" label must always accompany its output.
  *
  * Supported sources:

@@ -1,6 +1,6 @@
 # GhostBridge contributor instructions
 
-Independent Kiroween 2026 project. Use synthetic data only. Never connect InnerOS,
+Independent Kiroween 2026 project. Use synthetic data only. Never connect company internal systems,
 production servers, customer devices or credentials. No external inference required.
 Run `python -m unittest discover -s tests -v` and `node --test tests/browser.test.mjs`.
 Keep Python and browser event contracts/rules aligned. Label browser simulation

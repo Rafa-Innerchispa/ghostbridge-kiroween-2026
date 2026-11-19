@@ -18,7 +18,7 @@
 - Exactly one derived high-severity case with stable ID and source record hashes.
 - The earlier `relay:R001` occurs before the denial and must not be paired.
 - Replayed fixtures must add zero duplicates; original incident counts, SHA-256 chain, and export unchanged.
-- Python localhost runs through a loopback-only API; GitHub Pages uses entirely offline synthetic browser fixtures. Neither connects to customer hardware or production InnerOS.
+- Python localhost runs through a loopback-only API; GitHub Pages uses entirely offline synthetic browser fixtures. Neither connects to customer hardware or production company systems.
 
 ## Kiro credits
 
@@ -26,7 +26,7 @@ Owner confirmed successful one-use **4,000-credit Kiroween coupon redemption** o
 
 ## NOW: Owner-approved Kiro Crew App development (separate from released frontend)
 
-**Build task:** [GitHub Issue #12](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/issues/12) and [master execution order](docs/KIRO_CREW_EXECUTION_ORDER.md). Read all `.kiro/specs/ghostbridge-crew-app/` requirements/design/tasks. Use **actual Kiro IDE/CLI and promotional credits** to author an installable native **GhostBridge Incident Desk for Kiro Crew** under `integrations/kirocrew/ghostbridge-incident-desk/`. Must use Crew SDK/Gateway, real agent, verified synthetic case, and one observed Crew automation with actual dashboard screenshots and test evidence. Work on `feat/kiro-crew-incident-desk`, stop before merge. Coordinate gateway/runtime installation with [InnerOS Kiro Bridge Issue #272](https://github.com/Rafa-Innerchispa/innerops-agentic-platform/issues/272) and Antigravity task `ops_9e95bcce2051`.
+**Build task:** [GitHub Issue #12](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/issues/12). Read all `.kiro/specs/ghostbridge-crew-app/` requirements/design/tasks. Use **actual Kiro IDE/CLI and promotional credits** to author an installable native **GhostBridge Incident Desk for Kiro Crew** under `integrations/kirocrew/ghostbridge-incident-desk/`. Must use Crew SDK/Gateway, real agent, verified synthetic case, and one observed Crew automation with actual dashboard screenshots and test evidence. Work on `feat/kiro-crew-incident-desk`, stop before merge.
 
 **Attribution:** These instructions/specs were written by ChatGPT; do not call them Kiro-produced code. Future app implementation is Kiro-authored only after a real session pushes commits. Do not run unbounded `--trust-all-tools`, reveal auth tokens, use production customer data or purchase new credits without consent.
 
@@ -46,6 +46,6 @@ Owner confirmed successful one-use **4,000-credit Kiroween coupon redemption** o
 4. Capture genuine Kiro IDE screen/recording and actual visible demo. Do not recreate images falsely.
 5. Produce a narrated English video **under three minutes**, plus suitable screenshots and project cover. Rewrite `docs/DEMO_SCRIPT.md` to include the actual correlated-case result and genuine Kiro contributions.
 6. Update Devpost **only on owner authorization**. Final hackathon submission remains unsubmitted until explicit owner approval and relevant form declarations.
-7. Post-freeze: production-grade device adapters or InnerOS read-only bridge are separate projects, not built for Kiroween unless explicitly approved.
+7. Post-freeze: production-grade device adapters or read-only bridges to other company systems are separate projects, not built for Kiroween unless explicitly approved.
 
 **Official Kiroween submission deadline:** December 4, 2026, 14:00 Pacific / 17:00 Ecuador. Build remains synthetic and local-first; no paid inference, customer credentials, real cameras, or physical actuation.

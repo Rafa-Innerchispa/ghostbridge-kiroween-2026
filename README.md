@@ -13,7 +13,7 @@ competition features on top of `main`: [#10 Signal Forge](https://github.com/Raf
 [#16 Incident Time Machine and Evidence Trust Lab](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/16) (Kiro).
 On the #16 head: **188 Python and 382 Node tests**, 18 syntax checks, CI green, plus 506 real-Chrome checks run by hand.
 The stack is **not merged or deployed yet**, so the public site still shows `main`. Judges: see the
-[judge guide](docs/submission/JUDGE_GUIDE.md). Complete status report and proposed integration order: [docs/submission/HANDOFF_FOR_CHATGPT.md](docs/submission/HANDOFF_FOR_CHATGPT.md). Full history below and in [Kiro evidence](docs/KIRO_EVIDENCE.md).
+[judge guide](docs/submission/JUDGE_GUIDE.md). Full history below and in [Kiro evidence](docs/KIRO_EVIDENCE.md).
 
 **Earlier status (November 10, 2026):** GhostBridge's **four reviewed Kiro development PRs are merged**: [#2 severity filtering](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/2), [#4 CSV/access adapters](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/4), [#5 correlated cases](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/5), and [#8 Interactive Evidence Reconstruction](https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026/pull/8). PR #8 adds a **ledger-driven 2.5D case replay**, Play/Pause/Step/Speed controls, exclusion reasoning, and a full SHA-256 inspector. Independent review found no blocker and merged it as `bc747644e36913fb2ce9a6dff66b65d394945fe7`. The last PR head and merge CI passed **159 Python + 157 Node tests + 8 syntax checks = 324 checks**, zero failures. Kiro reports 89 scripted Chrome checks and 14 headless-Chrome screenshots, not an independent live-site assessment. A one-off local Python error remains unexplained, but did not recur in CI. **Further feature coding and video generation are paused pending final public-site QA**; the previous visual concepts and preliminary video cuts are retained. The final video and official Devpost entry are pending.
 
@@ -79,7 +79,7 @@ a separate live anonymous-browser check remains outstanding.
 - **Cross-source case correlator:** access denied then held-open door within 300 seconds; stable SHA-256 case ID, linked source event IDs and existing evidence hashes, and a read-only Python `/api/cases` route.
 - Browser-only **Legacy Bridge Demo** with embedded offline fixtures, responsive correlated-case cards, full evidence export and local-only computation. No live device inputs or cloud AI.
 - **Interactive Evidence Reconstruction** (Kiro PR #8): read-only 2.5D incident sequence built from verified ledger rows, linked source hashes, causal checks, excluded events and accessible playback controls.
-- CI and Pages workflows prepared; no dependencies on InnerOS or other agents.
+- CI and Pages workflows prepared; no dependencies on other company systems or agents.
 - In the draft PR stack (not on `main` yet):
   - **Signal Forge** (PR #10, ChatGPT/Codex): compose your own denied-then-held-open incident.
   - **Immersive Control Room** (PR #14, Kiro): living SVG building driven only by the ledger, the 299/120 and 301/119 boundary challenges, four operator modes, before/after reveal, Showcase Mode (`?present=1`).

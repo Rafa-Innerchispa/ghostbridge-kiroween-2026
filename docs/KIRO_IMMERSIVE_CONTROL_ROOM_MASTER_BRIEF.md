@@ -12,7 +12,7 @@ Existing authentic Kiro IDE features: PRs #2 filter, #4 relay CSV/access JSON ad
 
 **Your workflow:** First inspect and validate PR #10 without overwriting or merging it. If you find real bugs, fix them in its own existing branch, test and document Kiro-authored patches transparently. Then create a separate **stacked feature branch** `feat/kiro-immersive-control-room` from the validated `feat/signal-forge-interactive` head; open its PR with base `feat/signal-forge-interactive` so main and the live public site remain unchanged. Do not merge either PR. When PR #10 later merges, retarget the stacked PR to main after fetch and conflict review. Never force-push, rewrite main or touch the competition submission without authorization.
 
-Read: `AGENTS.md`, `KIRO.md`, `README.md`, `docs/INNERCHISPA_VISUAL_PRODUCT_PLAYBOOK.md`, `docs/KIROWEEN_COMPETITIVE_REVIEW_2026-11-10.md`, `docs/WINNING_DEMO_STRATEGY.md`, `docs/DEMO_SCRIPT.md`, `docs/KIRO_EVIDENCE.md`, Issue #11, PR #10, and existing `.kiro/specs/evidence-reconstruction/` docs.
+Read: `AGENTS.md`, `KIRO.md`, `README.md`, an internal planning document (not published), an internal planning document (not published), an internal planning document (not published), `docs/DEMO_SCRIPT.md`, `docs/KIRO_EVIDENCE.md`, Issue #11, PR #10, and existing `.kiro/specs/evidence-reconstruction/` docs.
 
 ## Experience definition: “GhostBridge / The Building Speaks”
 

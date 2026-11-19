@@ -6,7 +6,7 @@ record → SQLite / browser storage → inspectable dashboard.
 Python: `core.py` validates and evaluates; `storage.py` owns persistence and chain;
 `engine.py` orchestrates; `simulator.py` generates deterministic fixtures;
 `server.py` exposes loopback HTTP. `docs/engine.mjs` mirrors rules for the static lab.
-No proprietary code was imported from InnerOS.
+No proprietary company code was imported.
 
 ## API
 

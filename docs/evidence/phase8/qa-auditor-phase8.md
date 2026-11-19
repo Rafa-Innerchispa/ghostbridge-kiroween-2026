@@ -26,12 +26,11 @@ Files my runs overwrote that are tracked: `docs/evidence/phase8/REPORT.md`, `rec
 ## Findings (by severity)
 
 ### High
-1. **Agent run counts cannot be traced.** `docs/submission/JUDGES.md:99` and `DEVPOST.md:34` claim ui-director 6 runs and qa-auditor 6+. The only log in the repo, `docs/evidence/agentic-validation/sub-executions.json`, lists 2 ui-director and 2 qa-auditor invocations. `docs/submission/HANDOFF_FOR_CHATGPT.md:52` says 4 and 5. The three sources disagree. Fix: cite a log for each run or use the counts the logs support, and add Phase 7/8 invocations to a committed log. This report is itself one more qa-auditor run, but nothing committed records it.
-2. **Handoff docs would become public.** `docs/` is published by Pages, and `docs/handoff/` is not excluded. They contain:
-   - Kiro session id `sess_7ff31803-702e-41e9-b5b1-55b645f7262e` (`CURSOR_HANDOFF_2026-11-18.md:53`; also in `sub-executions.json`, which is already public).
-   - InnerOS task id `<InnerOS order id>`, correlation id `<correlation id>` and idempotency key `<idempotency key>` (`KIRO_INNEROS_MESSAGE_CONTRACT.md:50-58`).
-   - The internal inbox path and status (`CURSOR_HANDOFF:55-61`) and mentions of "Antigravity", the owner's Windows machine and InnerOS orchestration.
-   The product rule says "No proprietary InnerOS code ... Do not connect InnerOS". Fix: move `docs/handoff/` outside `docs/` (for example `.kiro/handoff/`, which Pages does not serve), or remove the ids and replace them with placeholders like `<task_id>`. The Pages exclusion is a deploy-setting decision, so the owner must confirm which one.
+1. **Agent run counts cannot be traced.** `docs/submission/JUDGES.md:99` and `DEVPOST.md:34` claim ui-director 6 runs and qa-auditor 6+. The only log in the repo, `docs/evidence/agentic-validation/sub-executions.json`, lists 2 ui-director and 2 qa-auditor invocations. `docs/submission/an internal status note:52` says 4 and 5. The three sources disagree. Fix: cite a log for each run or use the counts the logs support, and add Phase 7/8 invocations to a committed log. This report is itself one more qa-auditor run, but nothing committed records it.
+2. **Handoff docs would become public.** `docs/` is published by Pages, and `the handoff folder` is not excluded. They contain:
+   - Kiro session id `sess_7ff31803-702e-41e9-b5b1-55b645f7262e` (`the internal handoff:53`; also in `sub-executions.json`, which is already public).
+   - Internal coordination details (paths, tool names, machine details).
+   The product rule forbids publishing company-internal material. Fix: keep coordination documents out of the public repository.
 3. **Power status wording in DEVPOST.** `DEVPOST.md:38` says "packages that MCP server with two skills", with an owner note to keep it only if the Power was installed and invoked. `phase8/STATUS.md:27` says the Power is not installed and there is no record of invocation. The sentence should stay out until that evidence exists. `DEVPOST.md:29` also says "our own MCP server and Kiro Power" with no condition. Fix: remove "and Kiro Power" from line 29 and line 38 until install and invocation are recorded. `submission/ELIGIBILITY.md:26` ("Powers: none installed") is consistent with STATUS.md and should be updated at the same time, not before.
 
 ### Medium
@@ -81,7 +80,7 @@ Contrast ratios were not measured by me. The script states text >= 12 px and bod
 | 22 syntax checks | my run: 22 OK | confirmed |
 | Chrome 595 = 89+159+39+39+32+40+56+141 | arithmetic correct; only the 89 re-run | partly verified |
 | Phase 8 additions (+3, +5, +7, +7, +14, +17 = 382 -> 427) | `STATUS.md:19-22`: 382+45 = 427; 188+8 = 196 | arithmetic consistent |
-| ui-director 6 runs, qa-auditor 6+ | `sub-executions.json` has 2 + 2; `HANDOFF_FOR_CHATGPT.md:52` has 4 + 5 | **not supported** (finding 1) |
+| ui-director 6 runs, qa-auditor 6+ | `sub-executions.json` has 2 + 2; `an internal status note:52` has 4 + 5 | **not supported** (finding 1) |
 | 14 MCP calls from Kiro | `docs/evidence/phase6/mcp-from-kiro.md` | confirmed; the file itself says "14 calls" and lists rows to 14 |
 | `case:cfd83deb8d3af576` for Challenge A | `mcp-from-kiro.md` row 2 (299/120). I did not run the browser forge for this id. | matches the recorded MCP id; browser value not re-run |
 | Scene 7: changing 22:02:59 to 22:03:01 removes the case | I ran `correlate()` on the template: 1 case (`case:a93f7500c95c4f92`); with 22:03:01: `[]` | confirmed. Note the template case id differs from the Challenge A id, so the video should not say it is the same. The camera outage and denial incidents remain after the change, only the case disappears. |
@@ -90,7 +89,7 @@ Contrast ratios were not measured by me. The script states text >= 12 px and bod
 | Crew "not built" | `JUDGES.md:103`, `ELIGIBILITY.md:21` | honest |
 | Attribution: lab, engine, Signal Forge by ChatGPT/Codex; later work by Kiro | `DEVPOST.md:29`, `ELIGIBILITY.md:18` | consistent across docs. I did not check git authorship. |
 | One contact `info@innerchispa.us` | grep of the reviewed docs | no other addresses found in the files reviewed |
-| "No secrets" in handoff (`CURSOR_HANDOFF:3`) | contents | no credentials or tokens found, but ids listed in finding 2 are internal |
+| "No secrets" in handoff (`the internal handoff:3`) | contents | no credentials or tokens found, but ids listed in finding 2 are internal |
 | Own log "never leaves your browser" | module and browser QA | confirmed (0 third-party requests) |
 | `RELEASE_CHECKLIST.md:19` "Powers and Crew not claimed: PASS" | `DEVPOST.md:29,38` mention Power | **contradicted** until finding 3 is fixed |
 
@@ -103,4 +102,4 @@ Contrast ratios were not measured by me. The script states text >= 12 px and bod
 - Did not check git authorship for attribution claims, and did not scan the whole repo for secrets (only reviewed docs and handoff files).
 - `.kiro/inbox/` is untracked; I did not open it.
 
-> Note by Kiro's main session: the InnerOS identifiers quoted in this finding were replaced by placeholders here as well, because this repository is public.
+> Note by Kiro's main session: identifiers and details of other company systems quoted in this report were removed, because this repository is public; the coordination documents were taken out of the repository.

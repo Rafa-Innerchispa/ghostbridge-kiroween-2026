@@ -4,7 +4,7 @@
 
 ## Goal
 
-Demonstrate that two **distinct source formats and ingestion paths**, representing different generations of building technology, can produce normalized events and an **explainable cross-signal security case**. This goes beyond manually pressing simulated scenario buttons. Keep every source synthetic and local: no customer devices, production InnerOS MCP, credentials, cloud inference, subscriptions or paid services are needed.
+Demonstrate that two **distinct source formats and ingestion paths**, representing different generations of building technology, can produce normalized events and an **explainable cross-signal security case**. This goes beyond manually pressing simulated scenario buttons. Keep every source synthetic and local: no customer devices, production company MCP servers, credentials, cloud inference, subscriptions or paid services are needed.
 
 ## R1 — real ingest boundaries for two fixture-backed formats
 
@@ -34,7 +34,7 @@ Demonstrate that two **distinct source formats and ingestion paths**, representi
 - Strict input schemas, caps on payload and file sizes, invalid timestamp rejection, safe filename handling, no path traversal or unsafe shell execution.
 - Clear idempotency on source IDs. Reject conflicting duplicate IDs; do not silently alter existing evidence.
 - No actual ONVIF or Wiegand device connection is claimed unless implemented and physically verified later in a separately approved task.
-- No changes to InnerOS, customer cameras, production databases, firewall, server resources, or secrets. No external paid coding agents.
+- No changes to company systems, customer cameras, production databases, firewall, server resources, or secrets. No external paid coding agents.
 
 ## R5 — test and delivery gates
 

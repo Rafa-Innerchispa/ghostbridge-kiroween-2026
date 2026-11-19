@@ -12,4 +12,4 @@
 - [ ] 8. Push the Kiro-authored branch, open PR with evidence, ensure CI passes, then merge after review.
 - [ ] 9. Verify GitHub Pages anonymous deploy and update Devpost write-up to describe **actual** Kiro use.
 
-**Safety**: no production connections, InnerOS orchestration, agents external to Kiro, subscriptions, paid inference, or live devices. Do not auto-submit Devpost.
+**Safety**: no production connections, external orchestration, agents external to Kiro, subscriptions, paid inference, or live devices. Do not auto-submit Devpost.

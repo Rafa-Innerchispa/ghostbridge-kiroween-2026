@@ -2,7 +2,7 @@
 
 Implementation started from scratch after owner clarified there was no ZIP or prior
 GhostBridge code. 30 initial source/documentation/fixture files; later additions
-are visible in Git history. No existing InnerOS source was copied.
+are visible in Git history. No existing company source was copied.
 
 ## Executed
 

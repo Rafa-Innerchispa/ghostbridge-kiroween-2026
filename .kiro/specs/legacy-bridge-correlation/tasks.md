@@ -32,5 +32,5 @@
 
 - [x] Owner reports seeing **Kiroupon successfully redeemed!** on their personal Kiro account (2026-11-09).
 - [ ] Independently verify the credited promotional balance in the Kiro usage dashboard. Do not publish the one-use code URL.
-- [ ] No unattended loops, no Cursor/Codex delegation, no paid model fallback, no real cameras or InnerOS production.
+- [ ] No unattended loops, no Cursor/Codex delegation, no paid model fallback, no real cameras or company production systems.
 - [ ] Final narrated YouTube demo and Devpost submission are separate gates; require owner's explicit final approval.
