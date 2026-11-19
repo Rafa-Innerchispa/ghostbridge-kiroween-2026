@@ -52,8 +52,10 @@ def verify_rows(rows):
 
 
 def check_receipt(rows, receipt):
+    if not isinstance(receipt, dict):
+        return False, "the receipt is not a valid ghostbridge-receipt-v1"
     n, head = receipt.get("rows"), receipt.get("head")
-    if receipt.get("schema") != "ghostbridge-receipt-v1" or not isinstance(n, int) or n < 1 or not isinstance(head, str) or len(head) != 64:
+    if receipt.get("schema") != "ghostbridge-receipt-v1" or isinstance(n, bool) or not isinstance(n, int) or n < 1 or not isinstance(head, str) or len(head) != 64:
         return False, "the receipt is not a valid ghostbridge-receipt-v1"
     if len(rows) < n:
         return False, f"truncated: {n} rows were sealed, only {len(rows)} remain"
@@ -87,6 +89,8 @@ def main(argv):
     rows = doc if isinstance(doc, list) else doc.get("ledger") if isinstance(doc, dict) else None
     if not isinstance(rows, list):
         print("could not read input: expected a GhostBridge evidence export with a 'ledger' list"); return 2
+    if receipt is not None and not isinstance(receipt, dict):
+        print("could not read input: the receipt must be a JSON object"); return 2
 
     ok, checked, head, problem = verify_rows(rows)
     if not ok:

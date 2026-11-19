@@ -82,6 +82,13 @@ class IndependentVerifierTests(unittest.TestCase):
             self.assertEqual(p.returncode, 1)
             self.assertIn("truncated", p.stdout)
             self.assertEqual(run().returncode, 2)
+            # qa-auditor Phase 8: a receipt that is not an object is unreadable input (2), and a boolean row count is not a count.
+            (d / "list.json").write_text("[1]", encoding="utf-8")
+            self.assertEqual(run(export, "--receipt", d / "list.json").returncode, 2)
+            (d / "bool.json").write_text(json.dumps({**receipt, "rows": True, "head": rows[0]["hash"]}), encoding="utf-8")
+            p = run(export, "--receipt", d / "bool.json")
+            self.assertEqual(p.returncode, 1)
+            self.assertIn("not a valid", p.stdout)
 
 
 if __name__ == "__main__":
