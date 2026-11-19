@@ -4,14 +4,14 @@
 
 *(The "five signals" are the five events of the Night Watch scenario: door held open, long presence, camera offline, door closed, access granted. The building shows four sources; each boundary challenge records three events.)*
 
-Live demo: https://ghostbridge.innerchispa.us/ (runs entirely in your browser; synthetic data; nothing to install)
+Live demo: https://ghostbridge.innerchispa.us/ (runs entirely in your browser; nothing to install; nothing you type leaves the page)
 Source: https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026 (MIT) · Category: **Resurrection**
 
 ---
 
 ## Elevator pitch
 
-Older buildings run on equipment that was never meant to talk to each other: a relay on the door, a card reader on another controller, a camera on a third system. Each one raises its own alarm, and a night operator has to decide, alone and fast, which alarms belong together. GhostBridge brings those old signals back to life without replacing the hardware. It records every signal in a tamper-evident SHA-256 chain, links related signals with deterministic rules an operator can read, and replays the incident moment by moment, so the conclusion can be checked rather than trusted. Today it is a working proof of concept on synthetic data; the adapters for real panels are the next step.
+Older buildings run on equipment that was never meant to talk to each other: a relay on the door, a card reader on another controller, a camera on a third system. Each raises its own alarm, and a night operator must decide, alone and fast, which alarms belong together. GhostBridge brings those old signals back to life without replacing the hardware. It seals every signal in a tamper-evident SHA-256 chain, links related signals with deterministic rules an operator can read, replays the incident moment by moment, and lets anyone check the evidence with their own tools. **Don't trust us: bring your own log, seal it, and verify it without GhostBridge.**
 
 ## Who it is for
 
@@ -19,85 +19,93 @@ Older buildings run on equipment that was never meant to talk to each other: a r
 - **The night-shift operator** who sees several unrelated alarms and must decide which ones are one event.
 - **Property managers and auditors** who later need to show what happened, in what order, and that the record was not changed afterwards.
 
-## The problem it addresses
+## The problem
 
-- **Replacing legacy hardware is expensive and disruptive.** Doors, readers and cameras are wired into the building; swapping them means construction work, downtime and new training. Many buildings keep them for years.
-- **Fragmented alerts are hard to investigate.** Each system reports in its own format and its own timeline. "Badge rejected" and "door held open" arrive as two unrelated alarms, minutes apart, on different screens.
-- **An explanation is only useful if it can be checked.** If a tool says "these two events are one incident", the operator and later an auditor need to see why, and need to know the underlying records were not edited.
+- **Replacing legacy hardware is expensive and disruptive.** Doors, readers and cameras are wired into the building; swapping them means construction, downtime and retraining.
+- **Fragmented alerts are hard to investigate.** "Badge rejected" and "door held open" arrive as two unrelated alarms, minutes apart, on different screens.
+- **An explanation is only useful if it can be checked.** If a tool says "these two events are one incident", an auditor needs to see why, and to know the records were not edited afterwards.
 
-## How GhostBridge helps (what is demonstrated)
+## What is demonstrated
 
-| Capability | What you can see in the demo |
+| Capability | What you can do in the demo |
 |---|---|
-| Normalize old and new signals into one event contract | Relay CSV and access-controller JSON become the same event format (Legacy Bridge Demo) |
+| One event contract for old and new signals | Relay CSV and access-controller JSON become the same event format (Legacy Bridge Demo) |
+| **Your own data** | **Your own log**: write or upload a CSV of events for the four sources; every line is checked against the strict contract and imported all-or-nothing, in your browser |
 | Tamper-evident record | Every event is sealed in a SHA-256 chain; **Verify chain** recomputes every link |
-| Deterministic, readable correlation | Rule: an *Access denied* followed within **300 s** by a door **held open ≥ 120 s** forms one case |
+| Deterministic, readable correlation | An *Access denied* followed within **300 s** by a door **held open ≥ 120 s** forms one case |
 | Exact boundaries | **299 s / 120 s** forms a case; **301 s / 119 s** does not, and the app says which condition failed and by how much |
 | Moment-by-moment replay | **Incident Time Machine**: eight beats drive the building scene; computed moments are labelled *derived, not recorded* |
 | Evidence you can attack | **Evidence Trust Lab**: change one field in an isolated copy; the copy fails at that exact row while the original stays verified |
+| **Evidence that survives a rewrite** | **Seal this ledger** downloads a receipt (head hash and row count). Checking against it tells *matches*, *extended*, *truncated* and **rewritten** apart, even if someone recomputed every hash |
+| **Verification without GhostBridge** | A short, single-file, standard-library Python verifier that imports no GhostBridge code: `python verify_evidence.py ghostbridge-evidence.json --receipt ghostbridge-receipt.json` |
 | Advisory response | Next steps for a human operator; GhostBridge never controls a door, camera or person |
 
-**Not claimed:** no real hardware, camera feed or customer system is connected; ONVIF, Wiegand and physical relay integrations are future work. No AI model or cloud inference runs. The chain is local and tamper-evident, not an external certification or legal-grade signature.
+**Not claimed:** no real hardware, camera feed or customer system is connected; ONVIF, Wiegand and physical relay integrations are future work. No AI model or cloud inference runs. The chain and the receipt are local and tamper-evident, not a legal signature or an external timestamp. Built-in scenarios use synthetic events; your own log is your data, processed only in your browser.
 
-## Judge walkthrough (under 1 minute to understand, under 3 to explore)
+## Judge walkthrough (under 1 minute to understand, under 4 to explore)
 
-Open the live demo. Use **Reset** in the Signal lab toolbar at any time to return to an empty ledger. For a hands-off overview, press **Showcase Mode** (about one minute).
+Open the live demo. **Reset** (Signal lab toolbar) returns to an empty ledger at any time. For a hands-off overview, press **Showcase Mode** (about one minute).
 
 | Step | Do this | What it shows |
 |---|---|---|
-| A | Look at the Control Room | A quiet building: four sources, no signals yet |
-| B to D | Press **Challenge A · 299 s · 120 s** | The reader shows *Access denied*; the door opens; only once it has been open 120 s does the case link appear. Rule check: 1 s inside the window, 0 s above the threshold |
-| E | Press **Challenge B · 301 s · 119 s** | No case. Each condition fails by 1 s, and the text says so |
-| F | Press Challenge A again, open **Timeline** and step through the **Incident Time Machine** | Each beat moves the building to that moment; beat 6 shows the case id and the two evidence hashes |
-| G | Open **Evidence** and press **Verify chain** | Every row recomputed and verified |
-| H to I | Open **Evidence Trust Lab**, pick row 2, field *Timestamp*, press **Tamper a copy** | *Altered copy: fails at row 2*; stored vs recomputed hash shown; the original ledger is untouched |
-| J | Press **Restore** | Back to the original, verified ledger |
-| Bonus | Open **Response** and press **Connect the signals** | Before: separate alarms. After: one explained incident with advisory next steps |
+| 1 | Look at the Control Room | A quiet building: four sources, no signals yet |
+| 2 to 4 | **Challenge A · 299 s · 120 s** | *Access denied*; the door opens; only after 120 s held open does the case link appear |
+| 5 | **Challenge B · 301 s · 119 s** | No case; each condition fails by 1 s, and the text says so |
+| 6 | Challenge A again, **Timeline** → **Incident Time Machine** | Each beat moves the building to that moment; beat 6 shows the case id and the two evidence hashes |
+| 7 | **Evidence** → **Verify chain** | Every row recomputed and verified |
+| 8 to 9 | **Evidence Trust Lab**: row 2, *Timestamp*, **Tamper a copy** | *Altered copy: fails at row 2*; stored vs recomputed hash; original untouched |
+| 10 | **Restore** | Back to the original, verified ledger |
+| 11 | **Seal this ledger**, **Download receipt**; run Challenge B; **Check against this ledger** | The old receipt now reports a failure: the history it sealed is gone |
+| 12 | **Your own log** → **Use the template** → edit a time → **Check** → **Import into the lab** | Your own events, sealed and correlated by the same rules. Break a line and see the exact line number |
+| 13 | **Export evidence JSON**, download the verifier, run it | Your own machine confirms the head hash, with no GhostBridge code |
 
-## Architecture (one picture)
+## Architecture
 
 ```
-  Synthetic sources                   GhostBridge core (same rules in Python and the browser)
-  ─────────────────                   ─────────────────────────────────────────────────────────
+  Sources                              GhostBridge core (the same rules in Python and the browser)
+  ───────                              ───────────────────────────────────────────────────────────
   Relay CSV  ───────┐                 ┌──────────────┐   ┌───────────────────┐   ┌──────────────┐
   Access JSON ──────┼── adapters ───▶ │ event        │──▶│ SHA-256 chained    │──▶│ deterministic │
-  Scenario events ──┤   (validate,    │ contract     │   │ ledger (SQLite or  │   │ correlator    │
-  Signal Forge ─────┘    normalize)   │ (strict)     │   │ browser storage)   │   │ 300 s / 120 s │
+  Scenarios / Forge ┤   (validate,    │ contract     │   │ ledger (SQLite or  │   │ correlator    │
+  Your own log ─────┘    normalize)   │ (strict)     │   │ browser storage)   │   │ 300 s / 120 s │
                                       └──────────────┘   └─────────┬─────────┘   └──────┬───────┘
                                                                    │ rows + hashes      │ cases
                                                                    ▼                    ▼
-                                ┌──────────────────────────────────────────────────────────────┐
-                                │ Control Room (pure functions of the ledger): building scene,  │
-                                │ Rule check, Time Machine, Trust Lab, Reconstruction, Response │
-                                └──────────────────────────────────────────────────────────────┘
-                                                                   │
-                         read-only MCP server (stdio) ─────────────┘  list_scenarios · run_scenario
-                         used by Kiro during development               forge_boundary · verify_ledger
+                          ┌─────────────────────────────────────────────────────────────────────┐
+                          │ Control Room (pure functions of the ledger): building scene, Rule    │
+                          │ check, Time Machine, Trust Lab, Seal and verify, Reconstruction       │
+                          └──────────────────────────────┬──────────────────────────────────────┘
+                                                         │ export JSON + receipt
+                                                         ▼
+                          independent verifier (standard-library Python, no GhostBridge code)
+
+  Kiro side: read-only MCP server (stdio) over the same engine, packaged as the GhostBridge Evidence Power
+             (list_scenarios · run_scenario · forge_boundary · verify_ledger, plus audit and explain skills)
 ```
 
 - Browser edition: static files on GitHub Pages, Web Crypto SHA-256, localStorage. No server, no third-party requests.
 - Local edition: `python -m ghostbridge` serves the same UI with SQLite, bound to 127.0.0.1 only.
-- Python and JavaScript produce identical hashes, case ids and evidence hashes (100-configuration parity fixture).
+- Python and JavaScript produce identical hashes, case ids and evidence hashes (100-configuration parity fixture); the independent verifier is cross-checked against both.
 
 ## Built with Kiro: feature and evidence matrix
 
-Every row links to files in the repository. "Verified" means checked by tests or an independent run, not only by an agent's statement.
+"Verified" means checked by tests or an independent run, not only by an agent's statement.
 
 | Kiro feature | How it was used | Status | Evidence |
 |---|---|---|---|
 | Specs | Requirements (EARS), design and tasks per feature; tasks ticked only after validation | Verified | `.kiro/specs/*/` |
-| Steering | Product rules (synthetic only, honest labels, local-first) and UI rules (no innerHTML, no third-party requests, one contact) enforced by tests | Verified | `.kiro/steering/`, `tests/control_room_wiring.test.mjs` |
-| Agent hooks | PreToolUse guard on every shell call (blocked force-push and destructive commands, including Kiro's own attempt to self-approve a merge); PostFileSave hook re-runs reconstruction tests and logs the result | Executed and verified | `.kiro/hooks/`, `docs/evidence/agentic-validation/REPORT.md` §4 |
-| Custom agents | `ui-director` built the accessibility fixes, Time Machine and Trust Lab views and the premium visual system; `qa-auditor` audited independently and found real defects that were then fixed and re-audited | Executed and verified | `.kiro/agents/`, `docs/evidence/agentic-validation/sub-executions.json`, `docs/evidence/phase6/qa-auditor-*.md` |
-| Property-based tests | Seeded generators over the rule boundaries, the scene, the Time Machine and tamper detection; 8 deliberate code mutations of the Time Machine and Trust Lab models were all caught by the tests | Verified | `tests/property.test.mjs`, `tests/time_machine.test.mjs`, `tests/trust_lab.test.mjs`; mutation run: `tools/mutation-check.ps1`, log `docs/evidence/phase6/mutation-check.log` |
-| MCP | Read-only stdio server over the real engine; 14 real calls from a Kiro session; a Kiro-side discrepancy (empty objects lost in structured arguments) led to the `rows_json` input, then verified from Kiro | Executed and verified | `ghostbridge/mcp_server.py`, `docs/evidence/phase6/mcp-from-kiro.md` |
-| Powers | Not used (no compatible local power; official ones need external accounts) | Not used | |
-| Kiro Crew | No native Crew app was built. A Crew app specification exists in `.kiro/specs/ghostbridge-crew-app/`, but it was prepared by ChatGPT as task input and was not implemented | Not built | |
+| Steering | Product rules (synthetic data, honest labels, local-first) and UI rules (no innerHTML, no third-party requests, one contact) enforced by tests | Verified | `.kiro/steering/`, `tests/control_room_wiring.test.mjs` |
+| Agent hooks | PreToolUse guard on every shell call (blocked force-push and recursive deletes outside the project; Kiro's own safety layer separately refused to let the agent write itself a merge approval); PostFileSave hook re-runs the reconstruction tests and logs the result | Executed and verified | `.kiro/hooks/`, `docs/evidence/agentic-validation/REPORT.md` §4 |
+| Custom agents | `ui-director` (6 runs) built the accessibility fixes, Time Machine and Trust Lab views, the visual system and the Bring-your-own-log and Seal views; `qa-auditor` (7 runs) audited independently and found real defects that were fixed and re-audited | Executed and verified | `.kiro/agents/`, `docs/evidence/phase8/agent-runs.json` (every run, from the Kiro session log), `docs/evidence/phase6/qa-auditor-*.md`, `docs/evidence/premium/qa-auditor-phase7.md` |
+| Property-based tests | Seeded generators over the rule boundaries, the scene, the Time Machine, tamper detection and receipt rewrites; 8 deliberate code mutations all caught | Verified | `tests/property.test.mjs`, `tests/time_machine.test.mjs`, `tests/trust_lab.test.mjs`, `tests/evidence_receipt.test.mjs`; `tools/mutation-check.ps1` |
+| MCP | Read-only stdio server over the real engine; 14 real calls from a Kiro session; a discrepancy found from Kiro (empty objects lost in structured arguments) led to the `rows_json` input, then verified from Kiro | Executed and verified | `ghostbridge/mcp_server.py`, `docs/evidence/phase6/mcp-from-kiro.md` |
+| Powers | **GhostBridge Evidence Power**: an Agent Plugins 1.0.0 power with the MCP server bundled (self-contained) and two skills (`audit-evidence`, `explain-case`); manifest checked against the schema, and a real stdio round trip from a copy of the folder | Built and tested; **installation and invocation from Kiro: see `docs/evidence/phase8/STATUS.md`** | `powers/ghostbridge-evidence/`, `tests/test_power.py` |
+| Kiro Crew | No native Crew app was built. A Crew specification in `.kiro/specs/ghostbridge-crew-app/` was prepared by ChatGPT as task input and not implemented | Not built | |
 
-Test totals: 188 Python tests and 382 Node tests run in CI on every change; 18 syntax checks. Real-Chrome suites run by hand (not in CI, which has no browser), each with its own report: Phase 6 experience 159, independent audit 39, accessibility targets 39, skip link 32, Signal Forge focus 40, Signal Forge 56, Control Room 141 (556 checks on the final design, 0 retries), plus 14 checks against the live site.
+Test totals: 196 Python tests and 427 Node tests run in CI on every change; 22 syntax checks. Real-Chrome suites run by hand (CI has no browser): Phase 8 verifiable evidence 89, Phase 6 experience 159, independent audit 39, accessibility targets 39, skip link 32, Signal Forge focus 40, Signal Forge 56, Control Room 141: 595 checks, 0 retries.
 
 ## Limitations
 
-Synthetic data only. Tested in Chrome (desktop, 1024 px and 390 px emulation); no screen reader test, so no WCAG claim. The local chain detects edits, deletions and reordering, but a full rewrite of the chain cannot be detected without an independently stored head. Kiro credit usage is not reported because it was not measurable from the session.
+Built-in data is synthetic. Tested in Chrome (desktop, 1024 px and 390 px emulation); no screen reader test, so no WCAG claim. A receipt protects only what was sealed, and only if it is kept where the ledger's owner cannot change it. Kiro credit usage is not reported because it was not measurable from the session.
 
 Contact: info@innerchispa.us · InnerChispa LLC

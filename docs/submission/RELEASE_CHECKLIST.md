@@ -10,13 +10,13 @@ Checked by Kiro's main session on 2026-11-18. "PASS" means measured in this sess
 | 4 | Python tests | PASS | 188 OK |
 | 5 | Node tests | PASS | 382 of 382, 19 files |
 | 6 | Syntax checks | PASS | 18 of 18 modules |
-| 7 | Browser QA on the Phase 7 branch (1440, 1024 and 390 px, reduced motion, keyboard) | PASS | 7 suites, 556 checks, 0 retries; `docs/evidence/premium/STATUS.md` |
+| 7 | Browser QA on the Phase 7 branch (1440, 1024 and 390 px, reduced motion, keyboard) | PASS | 7 suites, 506 checks, 0 retries (an earlier version of this file said 556: an addition error); `docs/evidence/premium/STATUS.md` |
 | 8 | `.kiro/` at the repository root and not ignored by Git | PASS | `tests/hooks.test.mjs` fails if `.gitignore` ignores `.kiro` |
 | 9 | MIT license detected by GitHub | PASS | repository About panel |
 | 10 | No secrets, tokens or personal paths in tracked files | PASS (scan) | pattern scan of tracked files; GitGuardian on every PR |
 | 11 | Only contact address is `info@innerchispa.us` | PASS | steering rule and `tests/control_room_wiring.test.mjs` |
 | 12 | Synthetic data labelled; no hardware, AI or certification claims | PASS | page copy, `docs/submission/JUDGES.md` "Not claimed" |
-| 13 | Kiro Powers and Kiro Crew not claimed | PASS | `JUDGES.md` matrix says "Not used" / "Not built" |
+| 13 | Kiro Power claimed only as built and tested until its use in Kiro is recorded; Kiro Crew not claimed | PASS | `JUDGES.md` matrix; `DEVPOST.md` Power sentence is conditional; Crew "Not built" |
 | 14 | Judge documentation in English | PASS | `docs/submission/JUDGES.md` |
 | 15 | Video under 3 minutes, public on YouTube | OWNER | script: `docs/submission/VIDEO_SCRIPT.md` |
 | 16 | Devpost form: category Resurrection, repo URL, demo URL, video URL, Kiro write-up | OWNER | paste from `JUDGES.md` |

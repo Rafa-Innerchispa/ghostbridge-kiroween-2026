@@ -49,7 +49,7 @@ Las pruebas de Chrome se ejecutan a mano y no forman parte del CI, porque el CI 
 | Specs | VERIFICADO | `.kiro/specs/*/` (requirements, design, tasks por funcionalidad) |
 | Steering | VERIFICADO | `.kiro/steering/` y tests que hacen cumplir sus reglas |
 | Hooks | EJECUTADO y VERIFICADO | `guard-destructive` se ejecutó en cada comando de shell y bloqueó comandos de prueba, entre ellos un force-push. `reconstruction-tests-on-save` se disparó al guardar y dejó un log con 82/82. Ver `docs/evidence/agentic-validation/REPORT.md` sección 4 |
-| Agentes propios | EJECUTADO y VERIFICADO | `ui-director` corrió 4 veces y `qa-auditor` 5 veces, de forma real. El log de sesión registra `sub_agent_start` con el nombre. Ver `docs/evidence/agentic-validation/sub-executions.json`, `docs/evidence/phase6/qa-auditor-*.md` |
+| Agentes propios | EJECUTADO y VERIFICADO | `ui-director` corrió 4 veces y `qa-auditor` 5 veces hasta el 18-nov (al 19-nov: 6 y 7; lista completa en `docs/evidence/phase8/agent-runs.json`). El log de sesión registra `sub_agent_start` con el nombre. Ver `docs/evidence/agentic-validation/sub-executions.json`, `docs/evidence/phase6/qa-auditor-*.md` |
 | Bucle auditoría → corrección → reauditoría | VERIFICADO | qa-auditor encontró defectos reales que se corrigieron (ver lista abajo) |
 | Pruebas basadas en propiedades | VERIFICADO | semillas fijas: 400 configuraciones aleatorias, 231 exhaustivas y 300 manipulaciones del ledger; mutaciones deliberadas detectadas 8 de 8 |
 | MCP | VERIFICADO desde Kiro | instalado, conectado y con 14 llamadas reales. Las 4 herramientas devuelven lo esperado, incluido `verify_ledger`: ledger válido 3 de 3 y ledger alterado falla en la fila 2 |
