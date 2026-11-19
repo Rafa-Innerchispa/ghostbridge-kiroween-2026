@@ -15,6 +15,8 @@ import {buildScene, applyScene, sceneSummary} from './control_room_scene.mjs';
 import {evaluateForge, FORGE_BOUNDS} from './signal_forge.mjs';
 import {mountTimeMachine} from './time_machine_view.mjs';
 import {mountTrustLab} from './trust_lab_view.mjs';
+import {mountByoLog} from './byo_view.mjs';
+import {mountReceipt} from './receipt_view.mjs';
 
 export const MODES = Object.freeze(['building', 'timeline', 'evidence', 'response']);
 const KIND_WORD = {anchor: 'Anchor: access denied', match: 'Matched: door held open', near: 'Near miss: rule not met', excluded: 'Not linked', event: 'Recorded event'};
@@ -38,7 +40,7 @@ export function mountControlRoom({doc = document, bridge, reducedMotion = false}
 
   const state = {mode: 'building', selected: null, cursor: null, joined: false};
   const sig = {rows: null, caption: ''};
-  let timeMachine = null, trustLab = null;   // mounted below; they read the same rows and move the same cursor
+  let timeMachine = null, trustLab = null, byoLog = null, receipt = null;   // mounted below; they read the same rows and move the same cursor
   let sweepToken = 0;
 
   // ---------- scene ----------
@@ -286,6 +288,8 @@ export function mountControlRoom({doc = document, bridge, reducedMotion = false}
     $('cr-stage').setAttribute('data-idle', String(scene.idle));
     if (timeMachine) timeMachine.refresh();
     if (trustLab) trustLab.refresh();
+    if (receipt) receipt.refresh();
+    if (byoLog) byoLog.refresh();
   }
 
   // ---------- controls ----------
@@ -371,10 +375,14 @@ export function mountControlRoom({doc = document, bridge, reducedMotion = false}
   const tmHost = $('cr-tm'), labHost = $('cr-tl-lab');
   if (tmHost) timeMachine = mountTimeMachine({doc, host: tmHost, getRows: () => bridge.getRows(), getCases: () => bridge.getCases(), getCursor: () => state.cursor, setCursor, reducedMotion});
   if (labHost) trustLab = mountTrustLab({doc, host: labHost, getRows: () => bridge.getRows()});
+  // Verifiable evidence (models: evidence_receipt.mjs, byo_log.mjs).
+  const rcHost = $('cr-rc'), byoHost = $('cr-byo');
+  if (rcHost) receipt = mountReceipt({doc, host: rcHost, getRows: () => bridge.getRows()});
+  if (byoHost) byoLog = mountByoLog({doc, host: byoHost, bridge});
 
   setMode('building'); setJoined(false); refresh();
   return {
-    refresh, setMode, timeMachine, trustLab, select, setCursor, setJoined, openForge, unfold, MODES,
+    refresh, setMode, timeMachine, trustLab, receipt, byoLog, select, setCursor, setJoined, openForge, unfold, MODES,
     get state() { return {...state}; },
     focusStage() { root.scrollIntoView({block: 'start', behavior: reducedMotion ? 'auto' : 'smooth'}); },
     cancelSweep() { sweepToken++; },

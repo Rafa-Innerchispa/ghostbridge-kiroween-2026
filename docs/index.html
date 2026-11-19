@@ -27,6 +27,7 @@
 <div class="cr-panel" role="tabpanel" id="cr-panel-evidence" aria-labelledby="cr-tab-evidence" tabindex="0" hidden><p class="fine">Every source event keeps its own SHA-256 hash, chained to the one before it. This is a local chain, not an external signature.</p>
 <div class="cr-actions"><button type="button" id="cr-ev-recon" disabled>&#9678; Open reconstruction</button><button type="button" id="cr-ev-verify">&#10003; Verify chain</button><button type="button" id="cr-ev-export">&#8595; Export evidence JSON</button></div><p class="cr-note" id="cr-ev-note" role="status" aria-live="polite"></p>
 <ol class="cr-ev-list" id="cr-ev-list"></ol>
+<section class="cr-rc" id="cr-rc" role="region" aria-label="Seal and verify"></section>
 <section class="cr-tl-lab" id="cr-tl-lab" role="region" aria-label="Evidence Trust Lab"></section></div>
 <div class="cr-panel" role="tabpanel" id="cr-panel-response" aria-labelledby="cr-tab-response" tabindex="0" hidden>
 <section class="cr-ba" id="cr-ba" data-joined="false" aria-label="Before and after"><div class="cr-ba-col"><h4>Before &middot; disconnected alarms <span id="cr-ba-count">0</span></h4><ul class="cr-alarms" id="cr-ba-alarms"></ul></div><div class="cr-ba-mid"><button type="button" id="cr-ba-toggle" aria-pressed="false" class="primary">Connect the signals</button></div><div class="cr-ba-col cr-ba-out"><h4>After &middot; GhostBridge</h4><div class="cr-outcome" id="cr-ba-outcome" data-kind="none"></div></div></section>
@@ -41,6 +42,7 @@
 <div class="cr-challenges" role="group" aria-label="Boundary challenges"><p class="cr-chal-title">Try the boundary</p>
 <button type="button" id="cr-chal-a" class="cr-chal"><strong>Challenge A</strong><span>299 s &middot; 120 s</span><small>Inside the window and above the threshold. Case formed.</small></button>
 <button type="button" id="cr-chal-b" class="cr-chal"><strong>Challenge B</strong><span>301 s &middot; 119 s</span><small>One second outside both limits. No case.</small></button></div>
+<div class="cr-byo" id="cr-byo"></div>
 </aside>
 </div>
 <div id="cr-recon-slot"></div>
