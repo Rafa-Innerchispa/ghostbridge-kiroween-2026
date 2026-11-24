@@ -29,7 +29,7 @@ No API keys, accounts or downloads. Python 3.11+, Node 22+.
 | Steering | `.kiro/steering/` (product rules, control-room rules) |
 | Hooks | `.kiro/hooks/` and `docs/evidence/agentic-validation/REPORT.md` section 4 (observed firings and blocks) |
 | Custom agents | `.kiro/agents/`; real invocations and the audit, fix, re-audit loop in `docs/evidence/agentic-validation/` and `docs/evidence/phase6/` |
-| Property-based tests | `tests/property.test.mjs`, `tests/time_machine.test.mjs`, `tests/trust_lab.test.mjs` (seeded) |
+| Property-based tests | `tests/property.test.mjs`, `tests/time_machine.test.mjs`, `tests/trust_lab.test.mjs` (seeded); `tests/test_properties.py` (Python engine, browser engine and independent verifier agree; spec `.kiro/specs/evidence-properties/`) |
 | MCP | `ghostbridge/mcp_server.py`, `.kiro/mcp/README.md`; tested with a standalone client. Kiro-side connection: see README status. |
 | History | `docs/KIRO_EVIDENCE.md` |
 
