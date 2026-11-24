@@ -1,0 +1,137 @@
+{
+ "url": "https://ghostbridge.innerchispa.us/",
+ "label": "ghostbridge",
+ "at": "2026-11-19T06:04:26.842Z",
+ "viewports": {
+  "390": {
+   "title": "GhostBridge · Signals become evidence",
+   "h1Text": "Five signals. One explained incident. Evidence you can verify.",
+   "h1": {
+    "font": "\"Space Grotesk\", sans-serif",
+    "size": "40px",
+    "weight": "600",
+    "lh": "43.2px",
+    "ls": "-1px",
+    "color": "rgb(232, 237, 240)"
+   },
+   "h2": {
+    "font": "\"Space Grotesk\", sans-serif",
+    "size": "30px",
+    "weight": "500",
+    "lh": "32.4px",
+    "ls": "-1.5px",
+    "color": "rgb(232, 237, 240)"
+   },
+   "body": {
+    "font": "\"DM Sans\", system-ui, sans-serif",
+    "size": "12.5px",
+    "weight": "400",
+    "lh": "19.375px",
+    "ls": "normal",
+    "color": "rgb(214, 226, 224)"
+   },
+   "button": {
+    "font": "\"DM Sans\", sans-serif",
+    "size": "13px",
+    "weight": "600",
+    "lh": "normal",
+    "ls": "normal",
+    "color": "rgb(255, 255, 255)"
+   },
+   "bg": "rgb(13, 17, 20)",
+   "pageHeight": 8798,
+   "sections": 18,
+   "images": 0,
+   "imageSample": [],
+   "canvases": 0,
+   "videos": 0,
+   "svgs": 2,
+   "runningAnimations": 0,
+   "fonts": [
+    "DM Sans",
+    "Space Grotesk"
+   ],
+   "libs": {
+    "gsap": false,
+    "lenis": false,
+    "three": false,
+    "framer": false,
+    "webflow": false,
+    "lottie": false
+   },
+   "requests": 27,
+   "transferKB": 156,
+   "thirdPartyHosts": [],
+   "shadowedElements": 0,
+   "backdropBlurElements": 0,
+   "lcpMs": 384,
+   "domNodes": 1447,
+   "jsHeapMB": 1.9
+  },
+  "1440": {
+   "title": "GhostBridge · Signals become evidence",
+   "h1Text": "Five signals. One explained incident. Evidence you can verify.",
+   "h1": {
+    "font": "\"Space Grotesk\", sans-serif",
+    "size": "50.4px",
+    "weight": "600",
+    "lh": "54.432px",
+    "ls": "-1.5px",
+    "color": "rgb(232, 237, 240)"
+   },
+   "h2": {
+    "font": "\"Space Grotesk\", sans-serif",
+    "size": "52px",
+    "weight": "500",
+    "lh": "56.16px",
+    "ls": "-1.5px",
+    "color": "rgb(232, 237, 240)"
+   },
+   "body": {
+    "font": "\"DM Sans\", system-ui, sans-serif",
+    "size": "12.5px",
+    "weight": "400",
+    "lh": "19.375px",
+    "ls": "normal",
+    "color": "rgb(214, 226, 224)"
+   },
+   "button": {
+    "font": "\"DM Sans\", sans-serif",
+    "size": "13px",
+    "weight": "600",
+    "lh": "normal",
+    "ls": "normal",
+    "color": "rgb(255, 255, 255)"
+   },
+   "bg": "rgb(13, 17, 20)",
+   "pageHeight": 5412,
+   "sections": 18,
+   "images": 0,
+   "imageSample": [],
+   "canvases": 0,
+   "videos": 0,
+   "svgs": 2,
+   "runningAnimations": 0,
+   "fonts": [
+    "DM Sans",
+    "Space Grotesk"
+   ],
+   "libs": {
+    "gsap": false,
+    "lenis": false,
+    "three": false,
+    "framer": false,
+    "webflow": false,
+    "lottie": false
+   },
+   "requests": 27,
+   "transferKB": 156,
+   "thirdPartyHosts": [],
+   "shadowedElements": 0,
+   "backdropBlurElements": 0,
+   "lcpMs": 300,
+   "domNodes": 1446,
+   "jsHeapMB": 1.9
+  }
+ }
+}
