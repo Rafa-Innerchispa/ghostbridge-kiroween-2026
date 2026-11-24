@@ -1,0 +1,109 @@
+<!doctype html>
+<!--
+  GhostBridge hero backdrop plate. Original artwork: pure SVG and CSS, no images, no fonts, no scripts.
+  Contemporary architecture at dusk: sky gradient, distant skyline, a lit glass pavilion, a slender tower,
+  a wet plaza with reflections, very fine grain. No people, no logos, no neon, no real place.
+  Rendered to docs/img/*.webp by tools/render-hero/render.mjs (2880 x 1440). The horizon sits at 75 % of the height
+  (y = 1080) so it lines up with the horizon of the live building drawn on top of it.
+-->
+<html lang="en"><head><meta charset="utf-8"><title>GhostBridge hero backdrop (art source)</title>
+<style>html,body{margin:0;height:100%;background:#05080b;overflow:hidden}svg{display:block;width:100vw;height:100vh}</style></head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2880 1440" preserveAspectRatio="none" role="img" aria-label="Dusk plaza with a lit glass pavilion and a slender tower. Illustration.">
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#060a13"/><stop offset=".28" stop-color="#0d1829"/><stop offset=".50" stop-color="#1b2c43"/>
+    <stop offset=".64" stop-color="#34455d"/><stop offset=".72" stop-color="#6b6a70"/><stop offset=".75" stop-color="#a08569"/>
+  </linearGradient>
+  <radialGradient id="horizonGlow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#d9a470" stop-opacity=".5"/><stop offset="1" stop-color="#d9a470" stop-opacity="0"/></radialGradient>
+  <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#27303d"/><stop offset=".12" stop-color="#151c27"/><stop offset=".5" stop-color="#0a0f16"/><stop offset="1" stop-color="#05080c"/>
+  </linearGradient>
+  <linearGradient id="warmGlass" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#8f6a3e"/><stop offset=".35" stop-color="#f0c88a"/><stop offset="1" stop-color="#d6a465"/>
+  </linearGradient>
+  <linearGradient id="warmGlassX" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#000" stop-opacity=".45"/><stop offset=".18" stop-color="#000" stop-opacity="0"/><stop offset=".82" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/>
+  </linearGradient>
+  <linearGradient id="coolGlass" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#2c4a5c"/><stop offset=".45" stop-color="#16293a"/><stop offset="1" stop-color="#0c1824"/>
+  </linearGradient>
+  <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#cfe3f0" stop-opacity=".26"/><stop offset=".35" stop-color="#cfe3f0" stop-opacity="0"/><stop offset="1" stop-color="#cfe3f0" stop-opacity=".06"/></linearGradient>
+  <linearGradient id="fadeDown" x1="0" y1="1080" x2="0" y2="1440" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset=".55" stop-color="#fff" stop-opacity=".25"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  <linearGradient id="streak" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd9a0" stop-opacity=".7"/><stop offset="1" stop-color="#ffd9a0" stop-opacity="0"/></linearGradient>
+  <linearGradient id="calmLeft" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#05080b" stop-opacity=".9"/><stop offset=".55" stop-color="#05080b" stop-opacity=".7"/><stop offset="1" stop-color="#05080b" stop-opacity="0"/></linearGradient>
+  <radialGradient id="vignette" cx=".5" cy=".5" r=".75"><stop offset=".55" stop-color="#03050a" stop-opacity="0"/><stop offset="1" stop-color="#03050a" stop-opacity=".55"/></radialGradient>
+
+  <pattern id="win" width="22" height="26" patternUnits="userSpaceOnUse"><rect x="0" y="9" width="22" height="7" fill="#f2dcb2"/></pattern>
+  <linearGradient id="farFill" x1="0" y1="700" x2="0" y2="1080" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#1a2639"/><stop offset="1" stop-color="#4a4b5a"/></linearGradient>
+  <linearGradient id="nearFill" x1="0" y1="700" x2="0" y2="1080" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#0e1724"/><stop offset="1" stop-color="#242a38"/></linearGradient>
+  <pattern id="mullion" width="80" height="10" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="4" height="10" fill="#0a0e14"/></pattern>
+  <pattern id="fins" width="26" height="10" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="2.5" height="10" fill="#050810" opacity=".55"/></pattern>
+  <pattern id="floors" width="10" height="38" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="10" height="2" fill="#050810" opacity=".6"/></pattern>
+
+  <filter id="litNoise" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+    <feTurbulence type="fractalNoise" baseFrequency=".012 .03" numOctaves="2" seed="11"/>
+    <feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  7 0 0 0 -3.2"/>
+  </filter>
+  <mask id="lit" maskUnits="userSpaceOnUse" x="0" y="0" width="2880" height="1440"><rect width="2880" height="1440" filter="url(#litNoise)"/></mask>
+  <filter id="blurS" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur stdDeviation="5 9"/></filter>
+  <filter id="blurM" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="22"/></filter>
+  <filter id="blurL" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="60"/></filter>
+  <filter id="haze" x="-5%" y="-30%" width="110%" height="160%"><feGaussianBlur stdDeviation="40 6"/></filter>
+  <filter id="grain" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+    <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="7"/>
+    <feColorMatrix type="matrix" values="1 0 0 0 0  1 0 0 0 0  1 0 0 0 0  0 0 0 0 1"/>
+  </filter>
+  <clipPath id="belowHorizon"><rect x="0" y="1080" width="2880" height="360"/></clipPath>
+  <mask id="reflectMask" maskUnits="userSpaceOnUse" x="0" y="1080" width="2880" height="360"><rect x="0" y="1080" width="2880" height="360" fill="url(#fadeDown)"/></mask>
+
+  <path id="farShape" d="M0 1080V820H120V1080ZM120 1080V900H210V1080ZM210 1080V750H350V1080ZM350 1080V870H430V1080ZM430 1080V930H540V1080ZM540 1080V790H610V1080ZM610 1080V880H740V1080ZM740 1080V720H840V1080ZM840 1080V840H930V1080ZM930 1080V910H1080V1080ZM1080 1080V780H1160V1080ZM1160 1080V860H1270V1080ZM1270 1080V910H1340V1080ZM1340 1080V820H1460V1080ZM1460 1080V750H1550V1080ZM1550 1080V880H1690V1080ZM1690 1080V800H1790V1080ZM1790 1080V890H1870V1080ZM1870 1080V730H2000V1080ZM2000 1080V850H2090V1080ZM2090 1080V900H2210V1080ZM2210 1080V780H2310V1080ZM2310 1080V870H2390V1080ZM2390 1080V700H2530V1080ZM2530 1080V820H2620V1080ZM2620 1080V890H2730V1080ZM2730 1080V770H2880V1080Z"/>
+  <path id="nearShape" d="M60 1080V760H210V1080ZM300 1080V850H410V1080ZM520 1080V690H680V1080ZM780 1080V810H900V1080ZM1000 1080V730H1170V1080ZM2290 1080V800H2410V1080ZM2330 1080V860H2470V1080ZM2860 1080V840H2880V1080Z"/>
+  <path id="towerShape" d="M2560 1080V240L2600 214H2778V1080Z"/>
+  <!-- Everything that stands on the plaza. Mirrored below the horizon for the wet-ground reflection. -->
+  <g id="arch">
+    <use href="#farShape" fill="url(#farFill)"/>
+    <use href="#farShape" fill="url(#win)" mask="url(#lit)" opacity=".22"/>
+    <use href="#nearShape" fill="url(#nearFill)"/>
+    <use href="#nearShape" fill="url(#win)" mask="url(#lit)" opacity=".42"/>
+    <!-- slender tower with fins and lit floors -->
+    <use href="#towerShape" fill="url(#coolGlass)"/>
+    <use href="#towerShape" fill="url(#fins)"/>
+    <use href="#towerShape" fill="url(#floors)"/>
+    <use href="#towerShape" fill="url(#win)" mask="url(#lit)" opacity=".55"/>
+    <use href="#towerShape" fill="url(#sheen)"/>
+    <rect x="2560" y="236" width="40" height="844" fill="#07101a" opacity=".5"/>
+    <rect x="2600" y="212" width="178" height="4" fill="#9fb4c6" opacity=".5"/>
+  </g>
+</defs>
+
+<!-- sky -->
+<rect width="2880" height="1080" fill="url(#sky)"/>
+<ellipse cx="1500" cy="1070" rx="1700" ry="300" fill="url(#horizonGlow)"/>
+<g filter="url(#haze)" opacity=".42"><rect x="-100" y="905" width="1500" height="14" fill="#c9a37c"/><rect x="900" y="860" width="1700" height="10" fill="#b7977a"/><rect x="1600" y="955" width="1400" height="12" fill="#d3ab81"/><rect x="200" y="780" width="1100" height="8" fill="#7f8da4"/></g>
+<g filter="url(#haze)" opacity=".16"><rect x="300" y="560" width="1200" height="8" fill="#9fb1c8"/><rect x="1800" y="640" width="1000" height="7" fill="#9fb1c8"/></g>
+
+<!-- ground, then architecture, then its reflection (a calm dark fade is added over the left third, behind the copy) -->
+<rect x="0" y="1080" width="2880" height="360" fill="url(#ground)"/>
+<use href="#arch"/>
+<g clip-path="url(#belowHorizon)"><g mask="url(#reflectMask)"><use href="#arch" transform="translate(0 2160) scale(1 -1)" opacity=".5" filter="url(#blurS)"/></g></g>
+
+<rect x="0" y="560" width="1800" height="520" fill="url(#calmLeft)"/>
+<!-- wet-plaza light: lobby reflection under the live building, long highlights, paving joints -->
+<g clip-path="url(#belowHorizon)">
+  <ellipse cx="2040" cy="1190" rx="300" ry="120" fill="#e8b878" opacity=".28" filter="url(#blurL)"/>
+  <rect x="1978" y="1084" width="124" height="356" fill="url(#streak)" opacity=".55" filter="url(#blurM)"/>
+  <rect x="2015" y="1084" width="50" height="300" fill="url(#streak)" opacity=".5" filter="url(#blurS)"/>
+  <g fill="#cfe0f0" opacity=".07" filter="url(#blurS)"><rect x="1350" y="1112" width="1250" height="5"/><rect x="1500" y="1168" width="1000" height="4"/><rect x="1180" y="1240" width="1500" height="4"/><rect x="1400" y="1330" width="1200" height="3"/></g>
+  <g stroke="#9fb4c8" stroke-opacity=".05" stroke-width="2" fill="none">
+    <path d="M2040 1080L-1070 1440M2040 1080L-570 1440M2040 1080L-70 1440M2040 1080L430 1440M2040 1080L930 1440M2040 1080L1430 1440M2040 1080L1930 1440M2040 1080L2430 1440M2040 1080L2930 1440M2040 1080L3430 1440M2040 1080L3930 1440M2040 1080L4430 1440M2040 1080L4930 1440"/>
+    <path d="M0 1106H2880M0 1142H2880M0 1196H2880M0 1272H2880M0 1376H2880"/>
+  </g>
+</g>
+<rect y="1078" width="2880" height="3" fill="#c8a47e" opacity=".22"/>
+
+<!-- finish: vignette and very fine grain -->
+<rect width="2880" height="1440" fill="url(#vignette)"/>
+<rect width="2880" height="1440" filter="url(#grain)" opacity=".16" style="mix-blend-mode:soft-light"/>
+</svg>
+</body></html>
