@@ -56,20 +56,37 @@ function building(doc) {
   b.append(s(doc, 'rect', {x: -520, y: 420, width: 1480, height: 150, fill: 'url(#crGround)'}), ...lines,
     s(doc, 'line', {x1: -520, y1: 420, x2: 960, y2: 420, class: 'cr-horizon'}));
 
-  // tower facade
+  // tower facade: glass curtain wall. Thin mullions at the bay lines, 36 px panes with a vertical reflection gradient,
+  // slab spandrels between floors with a lit top edge, and a few warm interiors at varied brightness. Decorative only.
   b.append(s(doc, 'rect', {x: 250, y: 48, width: 460, height: 254, fill: 'url(#crFacade)', class: 'cr-facade'}),
     s(doc, 'rect', {x: 240, y: 38, width: 480, height: 10, class: 'cr-crown'}),
     s(doc, 'rect', {x: 240, y: 47, width: 480, height: 2, class: 'cr-crown-line'}));
-  for (let k = 1; k < 9; k++) b.append(s(doc, 'line', {x1: 250 + k * 51.1, y1: 48, x2: 250 + k * 51.1, y2: 300, class: 'cr-fin'}));
+  for (let r = 0; r < 5; r++) {
+    b.append(s(doc, 'rect', {x: 250, y: 90 + r * 49, width: 460, height: 13, class: 'cr-spandrel', fill: 'url(#crSpandrel)'}),
+      s(doc, 'rect', {x: 250, y: 90 + r * 49, width: 460, height: 1.2, class: 'cr-slab-edge'}));
+  }
   for (let r = 0; r < 5; r++) {
     for (let c = 0; c < 9; c++) {
       const lit = ((r * 7 + c * 13 + r * c) % 5) < 2, teal = (r + c) % 3 === 0;
-      b.append(s(doc, 'rect', {x: 263 + c * 50.1, y: 62 + r * 48, width: 34, height: 26, rx: 1.5, class: lit ? (teal ? 'cr-win cr-win-teal' : 'cr-win cr-win-warm') : 'cr-win'}));
+      const tone = 1 + ((r * 5 + c * 3) % 3), x = 252 + c * 51.1, y = 54 + r * 49;
+      b.append(s(doc, 'rect', {x, y, width: 47.1, height: 36, class: lit ? (teal ? 'cr-win cr-win-teal' : 'cr-win cr-win-warm') : 'cr-win', 'data-tone': tone}));
+      if (lit && !teal) b.append(s(doc, 'rect', {x: x + 6, y: y + 5, width: 35, height: 1.6, class: 'cr-win-lamp', 'data-tone': tone}));
     }
   }
-
+  for (let k = 1; k < 9; k++) b.append(s(doc, 'line', {x1: 250 + k * 51.1, y1: 48, x2: 250 + k * 51.1, y2: 302, class: 'cr-fin'}));
+  b.append(s(doc, 'rect', {x: 250, y: 48, width: 460, height: 254, fill: 'url(#crSheen)', class: 'cr-sheen', 'pointer-events': 'none'}));
   // glass podium, lobby glow and mullions
   b.append(s(doc, 'rect', {x: 250, y: 302, width: 460, height: 118, fill: 'url(#crGlass)', class: 'cr-podium'}),
+    s(doc, 'g', {class: 'cr-lobby-int'},
+      s(doc, 'rect', {x: 428, y: 308, width: 104, height: 112, fill: 'url(#crInterior)'}),
+      s(doc, 'rect', {x: 428, y: 308, width: 104, height: 7, fill: '#2a1c0d', opacity: 0.8}),
+      s(doc, 'rect', {x: 440, y: 316, width: 80, height: 2, fill: '#fff1d2', opacity: 0.85}),
+      s(doc, 'rect', {x: 452, y: 330, width: 56, height: 1.6, fill: '#fff1d2', opacity: 0.45}),
+      s(doc, 'rect', {x: 436, y: 378, width: 88, height: 2, fill: '#fbe3b5', opacity: 0.5}),
+      s(doc, 'rect', {x: 462, y: 366, width: 36, height: 12, fill: '#8a6334', opacity: 0.75}),
+      s(doc, 'rect', {x: 462, y: 366, width: 36, height: 2, fill: '#ffe2aa', opacity: 0.7}),
+      s(doc, 'rect', {x: 428, y: 396, width: 104, height: 24, fill: 'url(#crInteriorFloor)'}),
+      s(doc, 'rect', {x: 428, y: 308, width: 104, height: 112, fill: 'url(#crInteriorShade)'})),
     s(doc, 'rect', {x: 424, y: 304, width: 112, height: 116, fill: 'url(#crLobby)', class: 'cr-lobby'}));
   for (let k = 0; k < 10; k++) {
     const x = 262 + k * 46;
@@ -81,6 +98,15 @@ function building(doc) {
   b.append(s(doc, 'polygon', {points: pts([[228, 288], [732, 288], [724, 302], [236, 302]]), class: 'cr-canopy'}),
     s(doc, 'polygon', {points: pts([[236, 302], [724, 302], [724, 308], [236, 308]]), class: 'cr-canopy-edge'}),
     s(doc, 'line', {x1: 240, y1: 306, x2: 720, y2: 306, class: 'cr-canopy-light'}));
+
+  // soffit with a soft downlight line and warm light washing the glass below it (static)
+  b.append(s(doc, 'rect', {x: 236, y: 308, width: 488, height: 5, fill: 'url(#crSoffit)', class: 'cr-soffit'}));
+  for (let k = 0; k < 9; k++) b.append(s(doc, 'polygon', {points: pts([[262 + k * 52 - 4, 313], [262 + k * 52 + 4, 313], [262 + k * 52 + 22, 352], [262 + k * 52 - 22, 352]]), fill: 'url(#crDownlight)', class: 'cr-downlight'}));
+
+  // ambient occlusion where the building meets the ground, and a soft reflection of the lobby on the wet ground (static)
+  b.append(s(doc, 'rect', {x: 226, y: 414, width: 508, height: 24, fill: 'url(#crAO)', class: 'cr-ao'}),
+    s(doc, 'polygon', {points: pts([[424, 421], [536, 421], [560, 500], [400, 500]]), fill: 'url(#crReflect)', class: 'cr-reflect'}),
+    s(doc, 'ellipse', {cx: 480, cy: 426, rx: 150, ry: 9, fill: 'url(#crReflectPool)', class: 'cr-reflect-pool'}));
 
   // light spill on the ground when the door is open
   b.append(s(doc, 'polygon', {points: pts([[424, 420], [536, 420], [606, 538], [354, 538]]), class: 'cr-spill'}));
@@ -129,13 +155,7 @@ function building(doc) {
 function foreground(doc) {
   return s(doc, 'g', {class: 'cr-l cr-l-fg', 'data-depth': 6},
     s(doc, 'ellipse', {cx: -10, cy: 590, rx: 230, ry: 100, fill: '#04070a', opacity: 0.92}),
-    s(doc, 'ellipse', {cx: 1380, cy: 590, rx: 200, ry: 90, fill: '#04070a', opacity: 0.92}),
-    s(doc, 'rect', {x: 552, y: 486, width: 16, height: 52, rx: 3, class: 'cr-bollard'}),
-    s(doc, 'circle', {cx: 560, cy: 486, r: 6, class: 'cr-bollard-light'}),
-    s(doc, 'circle', {cx: 560, cy: 486, r: 22, class: 'cr-bollard-glow'}),
-    s(doc, 'rect', {x: 1276, y: 478, width: 16, height: 60, rx: 3, class: 'cr-bollard'}),
-    s(doc, 'circle', {cx: 1284, cy: 478, r: 6, class: 'cr-bollard-light'}),
-    s(doc, 'circle', {cx: 1284, cy: 478, r: 22, class: 'cr-bollard-glow'}));
+    s(doc, 'ellipse', {cx: 1380, cy: 590, rx: 200, ry: 90, fill: '#04070a', opacity: 0.92}));
 }
 
 function markers(doc) {
@@ -159,10 +179,24 @@ export function buildScene(doc) {
   const desc = s(doc, 'desc', {id: 'cr-svg-desc'}); desc.textContent = 'No signals recorded yet.';
   const defs = s(doc, 'defs', {},
     s(doc, 'linearGradient', {id: 'crSky', x1: 0, y1: 0, x2: 0, y2: 1}, stop(doc, 0, '#04070a'), stop(doc, 0.55, '#0c161c'), stop(doc, 1, '#17282f')),
-    s(doc, 'linearGradient', {id: 'crGround', x1: 0, y1: 0, x2: 0, y2: 1}, stop(doc, 0, '#101a1f'), stop(doc, 1, '#06090b')),
-    s(doc, 'linearGradient', {id: 'crFacade', x1: 0, y1: 0, x2: 1, y2: 0}, stop(doc, 0, '#141e24'), stop(doc, 0.5, '#1d2b32'), stop(doc, 1, '#111a20')),
-    s(doc, 'linearGradient', {id: 'crGlass', x1: 0, y1: 0, x2: 0, y2: 1}, stop(doc, 0, '#1a3b44'), stop(doc, 1, '#0b1a20')),
-    s(doc, 'radialGradient', {id: 'crLobby', cx: '50%', cy: '55%', r: '75%'}, stop(doc, 0, '#ffe2ae', 0.95), stop(doc, 1, '#6b4a1c', 0.35)),
+    s(doc, 'linearGradient', {id: 'crGround', x1: 0, y1: 0, x2: 0, y2: 1}, stop(doc, 0, '#1b2430', 0.5), stop(doc, 0.35, '#0d141b', 0.86), stop(doc, 1, '#05080b', 0.96)),
+    s(doc, 'linearGradient', {id: 'crFacade', x1: 0, y1: 0, x2: 1, y2: 0}, stop(doc, 0, '#18222a'), stop(doc, 0.32, '#26373f'), stop(doc, 0.5, '#1e2d35'), stop(doc, 0.78, '#2a3c45'), stop(doc, 1, '#121c22')),
+    s(doc, 'linearGradient', {id: 'crGlass', x1: 0, y1: 0, x2: 0, y2: 1}, stop(doc, 0, '#2a5663'), stop(doc, 0.55, '#143038'), stop(doc, 1, '#2a2a22')),
+    s(doc, 'radialGradient', {id: 'crLobby', cx: '50%', cy: '55%', r: '75%'}, stop(doc, 0, '#fff0cf', 1), stop(doc, 0.6, '#f3c883', 0.92), stop(doc, 1, '#8a5f27', 0.5)),
+    s(doc, 'linearGradient', {id: 'crPane', x1: 0, y1: 0, x2: 0, y2: 1}, stop(doc, 0, '#35616d'), stop(doc, 0.4, '#1b3640'), stop(doc, 1, '#0b161c')),
+    s(doc, 'linearGradient', {id: 'crRoom1', x1: 0, y1: 0, x2: 0, y2: 1}, stop(doc, 0, '#7a5a34'), stop(doc, 0.5, '#f1cf93'), stop(doc, 1, '#c99d5f')),
+    s(doc, 'linearGradient', {id: 'crRoom2', x1: 0, y1: 0, x2: 0, y2: 1}, stop(doc, 0, '#5d4630'), stop(doc, 0.5, '#d4b27c'), stop(doc, 1, '#9b7a4c')),
+    s(doc, 'linearGradient', {id: 'crRoom3', x1: 0, y1: 0, x2: 0, y2: 1}, stop(doc, 0, '#463a2d'), stop(doc, 0.55, '#a98f68'), stop(doc, 1, '#6e5a3e')),
+    s(doc, 'linearGradient', {id: 'crSpandrel', x1: 0, y1: 0, x2: 0, y2: 1}, stop(doc, 0, '#3b4c55'), stop(doc, 0.2, '#1a262d'), stop(doc, 1, '#0e171c')),
+    s(doc, 'linearGradient', {id: 'crSheen', x1: 0, y1: 0, x2: 1, y2: 1}, stop(doc, 0, '#cfe3f0', 0.16), stop(doc, 0.3, '#cfe3f0', 0), stop(doc, 0.7, '#cfe3f0', 0.04), stop(doc, 1, '#000', 0.28)),
+    s(doc, 'linearGradient', {id: 'crInterior', x1: 0, y1: 0, x2: 0, y2: 1}, stop(doc, 0, '#4a331b'), stop(doc, 0.3, '#d9b074'), stop(doc, 0.75, '#f3d7a2'), stop(doc, 1, '#b98d53')),
+    s(doc, 'linearGradient', {id: 'crInteriorFloor', x1: 0, y1: 0, x2: 0, y2: 1}, stop(doc, 0, '#e8c68c', 0.9), stop(doc, 1, '#5f4524', 0.95)),
+    s(doc, 'linearGradient', {id: 'crInteriorShade', x1: 0, y1: 0, x2: 1, y2: 0}, stop(doc, 0, '#000', 0.5), stop(doc, 0.25, '#000', 0.05), stop(doc, 0.75, '#000', 0.05), stop(doc, 1, '#000', 0.5)),
+    s(doc, 'linearGradient', {id: 'crSoffit', x1: 0, y1: 0, x2: 0, y2: 1}, stop(doc, 0, '#05090c'), stop(doc, 0.6, '#101a20'), stop(doc, 1, '#ffe9bf', 0.7)),
+    s(doc, 'linearGradient', {id: 'crDownlight', x1: 0, y1: 0, x2: 0, y2: 1}, stop(doc, 0, '#ffe3b0', 0.34), stop(doc, 1, '#ffe3b0', 0)),
+    s(doc, 'linearGradient', {id: 'crAO', x1: 0, y1: 0, x2: 0, y2: 1}, stop(doc, 0, '#000', 0), stop(doc, 0.45, '#000', 0.55), stop(doc, 1, '#000', 0)),
+    s(doc, 'linearGradient', {id: 'crReflect', x1: 0, y1: 0, x2: 0, y2: 1}, stop(doc, 0, '#f3d49a', 0.34), stop(doc, 1, '#f3d49a', 0)),
+    s(doc, 'radialGradient', {id: 'crReflectPool', cx: '50%', cy: '50%', r: '50%'}, stop(doc, 0, '#f3d49a', 0.35), stop(doc, 1, '#f3d49a', 0)),
     s(doc, 'linearGradient', {id: 'crCone', x1: 0, y1: 0, x2: 0, y2: 1}, stop(doc, 0, '#7fe3d0', 0.26), stop(doc, 1, '#7fe3d0', 0)),
     s(doc, 'radialGradient', {id: 'crVignette', cx: '50%', cy: '50%', r: '75%'}, stop(doc, 0.55, '#000', 0), stop(doc, 1, '#000', 0.62)));
 

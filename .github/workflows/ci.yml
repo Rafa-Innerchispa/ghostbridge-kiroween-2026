@@ -37,6 +37,7 @@ jobs:
       - run: node --check docs/byo_log.mjs
       - run: node --check docs/byo_view.mjs
       - run: node --check docs/receipt_view.mjs
+      - run: node --check docs/motion.mjs
       - run: node --test tests/browser.test.mjs
       - run: node --test tests/filter.test.mjs
       - run: node --test tests/correlator.test.mjs
@@ -60,3 +61,4 @@ jobs:
       - run: node --test tests/byo_log.test.mjs
       - run: node --test tests/byo_view.test.mjs
       - run: node --test tests/receipt_view.test.mjs
+      - run: node --test tests/motion.test.mjs

@@ -33,9 +33,10 @@ Development was spec-driven in Kiro IDE (Autopilot), with custom agents, hooks, 
 - **Steering:** product rules (synthetic data, honest labels, local-first) and UI rules (no innerHTML, no third-party requests, one contact address), several enforced by tests.
 - **Custom agents:** `ui-director` built views and the visual system (6 runs); `qa-auditor` reviewed independently (7 runs; every run is listed in `docs/evidence/phase8/agent-runs.json`) and found real defects: lost keyboard focus, computed times shown as recorded, a Restore button enabled with nothing to restore, wrong authorship headers, misused status colours. Each was fixed and re-audited.
 - **Agent hooks:** a PreToolUse guard on every shell call blocks force-pushes and destructive commands; a PostFileSave hook re-runs the reconstruction tests and logs the result.
-- **Property-based testing:** seeded generators over the rule boundaries, the scene, the Time Machine, tamper detection and receipt rewrites; 8 deliberate code mutations were all caught.
+- **Property-based testing:** seeded generators over the rule boundaries, the scene, the Time Machine, tamper detection and receipt rewrites; 8 deliberate code mutations were all caught. A second set generates random ledgers and checks that the three separate implementations of the rules (Python engine, browser engine, independent verifier) agree on hashes, cases, the first tampered row and receipt verdicts.
+- **Spec-driven:** that cross-implementation work has its own spec (`.kiro/specs/evidence-properties/`), and a PostFileSave hook re-runs it whenever a rule file or the Power's engine copy is saved.
 - **MCP:** a read-only stdio server over the real engine (`list_scenarios`, `run_scenario`, `forge_boundary`, `verify_ledger`); 14 real calls from Kiro, which exposed and then verified a fix for empty JSON objects lost in structured arguments.
-- **Kiro Power (built and tested; see the note):** the **GhostBridge Evidence Power** packages that MCP server with two skills (audit a ledger or receipt; explain a case decision), self-contained per Agent Plugins 1.0.0. *(Owner: keep this sentence only if the Power was installed and invoked in Kiro; see `docs/evidence/phase8/STATUS.md`.)*
+- **Kiro Power (built and tested; see the note):** the **GhostBridge Evidence Power** packages that MCP server with three skills (audit a ledger or receipt; explain a case decision; walk through one incident end to end into an audit hand-off), self-contained per Agent Plugins 1.0.0. *(Owner: keep this sentence only if the Power was installed and invoked in Kiro; see `docs/evidence/phase8/STATUS.md`.)*
 
 ## Challenges we ran into
 - **The rule's physics.** The first replay drew the case link the instant the door opened; the rule needs 120 s of hold, so the scene now models the threshold.
@@ -47,7 +48,7 @@ Development was spec-driven in Kiro IDE (Autopilot), with custom agents, hooks, 
 - Evidence a judge can verify without trusting us: their own log, their own machine, a script with no GhostBridge code.
 - Exact, explained boundaries: 299/120 forms a case; 301/119 fails by one second on each condition, and the app says so.
 - An honest record: every Kiro claim links to a file, a test or a log; what was not built is labelled "not built".
-- 196 Python and 427 Node tests in CI and 595 real-browser checks, all passing.
+- 204 Python and 433 Node tests in CI and 595 real-browser checks, all passing.
 
 ## What we learned
 Explanations beat verdicts: an operator trusts "1 second outside the window" more than a score. An independent auditor agent is most useful when it is allowed to disagree. And "verifiable" has to mean verifiable by someone else, with their own tools.

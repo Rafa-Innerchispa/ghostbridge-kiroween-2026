@@ -19,7 +19,7 @@ for (const [tag, w, h, mobile] of [['1440', 1440, 900, false], ['1024', 1024, 76
   await withBrowser(rec, tag, async b => {
     await b.viewport(w, h, mobile);
     await b.goto(URL_, ready);
-    const shot = (name, sel) => b.shot(path.join(OUT, `${tag}-${name}.png`), sel, 500);
+    const shot = (name, sel) => b.shot(path.join(OUT, `${tag}-${name}.png`), sel, 1400);   // 1400 ms: let the 520 ms band entrance finish
     await top(b); await shot('01-hero');
     await b.click('#cr-chal-a'); await settled(b);
     // On a phone the scene sits below the hero copy, so show the scene itself (qa-auditor Phase 7 finding).
@@ -39,7 +39,7 @@ for (const [tag, w, h, mobile] of [['1440', 1440, 900, false], ['1024', 1024, 76
     await b.click('#cr-chal-b'); await settled(b);
     if (mobile) await at(b, '#cr-scene'); else await top(b);
     await shot('08-near-miss-301-119');
-    for (const [sel, name] of [['#vision', '09-vision'], ['footer', '10-footer']]) { if (await at(b, sel)) await shot(name); }
+    for (const [sel, name] of [['#vision', '09-vision'], ['footer', '10-footer'], ['#how', '11-value-band'], ['#architecture', '12-architecture-band']]) { if (await at(b, sel)) await shot(name); }
     const n = await b.eval(`[...document.querySelectorAll('main section[id], body > section[id], section[id]')].map(s=>s.id).join(',')`);
     console.log(`SECTIONS ${tag}: ${n}`);
   });
