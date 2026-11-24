@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "ghostbridge-evidence",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Audit tamper-evident building-security evidence with GhostBridge: verify SHA-256 ledgers, explain why a denied access and a held-open door do or do not form a case, and demonstrate tamper detection. Local, read-only, synthetic data only.",
   "author": {
     "name": "InnerChispa LLC",
@@ -11,5 +11,5 @@
   "homepage": "https://ghostbridge.innerchispa.us/",
   "repository": "https://github.com/Rafa-Innerchispa/ghostbridge-kiroween-2026",
   "license": "MIT",
-  "keywords": ["ghostbridge", "evidence", "ledger", "audit", "tamper", "sha-256", "incident", "correlation", "building security", "access control", "door held open", "verify ledger"]
+  "keywords": ["ghostbridge", "evidence", "ledger", "audit", "tamper", "sha-256", "incident", "correlation", "building security", "access control", "door held open", "verify ledger", "investigate incident", "audit report"]
 }
