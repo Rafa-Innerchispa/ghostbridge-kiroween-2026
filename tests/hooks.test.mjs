@@ -73,6 +73,34 @@ test('reconstruction runner runs the three suites, passes, and appends one JSON 
   } finally { rmSync(dir, {recursive: true, force: true}); }
 });
 
+test('evidence-properties hook matcher selects the rule files of all three implementations and the Power copy, nothing else', () => {
+  const h = defs.find(d => d.file === 'evidence-properties-on-save.json');
+  assert.equal(h.trigger, 'PostFileSave');
+  const re = new RegExp(h.matcher);
+  for (const p of ['ghostbridge/correlator.py', 'ghostbridge\\core.py', 'ghostbridge/storage.py', 'docs/engine.mjs', 'docs\\correlator.mjs',
+    'docs/evidence_receipt.mjs', 'docs/verify/verify_evidence.py', 'powers/ghostbridge-evidence/server/ghostbridge/correlator.py',
+    'tests/test_properties.py', 'tests/helpers/js_oracle.mjs']) assert.ok(re.test(p), p);
+  for (const p of ['docs/app.js', 'docs/premium.css', 'docs/control_room.mjs', 'ghostbridge/server.py', 'tests/test_core.py', 'README.md',
+    'powers/ghostbridge-evidence/README.md']) assert.ok(!re.test(p), p);
+});
+
+test('evidence-properties runner passes and appends one JSON log line', () => {
+  const dir = mkdtempSync(path.join(os.tmpdir(), 'gb-hook-'));
+  const log = path.join(dir, 'hook.log');
+  try {
+    const r = spawnSync(process.execPath, [path.join(HOOKS, 'run-evidence-properties.mjs')], {cwd: ROOT, encoding: 'utf8', env: {...process.env, GB_HOOK_LOG: log}, timeout: 58000});
+    assert.equal(r.status, 0, r.stdout + r.stderr);
+    const lines = readFileSync(log, 'utf8').trim().split('\n');
+    assert.equal(lines.length, 1);
+    const rec = JSON.parse(lines[0]);
+    assert.equal(rec.hook, 'evidence-properties-on-save');
+    assert.equal(rec.exit, 0, lines[0]);
+    assert.equal(rec.fail, 0, lines[0]);
+    assert.ok(rec.tests >= 8, JSON.stringify(rec));
+    assert.match(rec.command, /-m unittest tests\.test_properties tests\.test_power$/);
+  } finally { rmSync(dir, {recursive: true, force: true}); }
+});
+
 test('Kiroween eligibility: .gitignore never ignores .kiro or any of its subfolders, and the runner logs outside the repo', () => {
   const lines = readFileSync(path.join(ROOT, '.gitignore'), 'utf8').split(/\r?\n/).map(l => l.trim()).filter(l => l && !l.startsWith('#'));
   for (const l of lines) assert.ok(!/(^|[\\/*!])\.kiro(\b|$)/.test(l.replace(/^!/, '')) || l.startsWith('!'), `.gitignore must not ignore .kiro: ${l}`);
