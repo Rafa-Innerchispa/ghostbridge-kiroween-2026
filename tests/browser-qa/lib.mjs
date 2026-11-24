@@ -19,7 +19,7 @@ import {fileURLToPath} from 'node:url';
 export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 export const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-const MIME = {'.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.mjs': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json', '.png': 'image/png', '.svg': 'image/svg+xml', '.md': 'text/markdown'};
+const MIME = {'.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.mjs': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json', '.png': 'image/png', '.webp': 'image/webp', '.woff2': 'font/woff2', '.svg': 'image/svg+xml', '.md': 'text/markdown'};
 
 /** Static server for docs/ on 127.0.0.2 (browser-only mode). Logs every request path. */
 export function serveDocs({port = 0, dir = path.join(ROOT, 'docs')} = {}) {

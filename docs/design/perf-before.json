@@ -1,0 +1,124 @@
+{
+ "label": "before",
+ "dir": "gb-perf-main/docs",
+ "runs": {
+  "1440": {
+   "median": {
+    "lcp": 280,
+    "lcpEl": "h1#cr-title",
+    "nav": 4,
+    "fcp": 280,
+    "cls": 0.0071,
+    "long": 0,
+    "longMs": 0,
+    "kb": 348,
+    "req": 27,
+    "lcpAfterDoc": 276,
+    "domNodes": 1459,
+    "heapMB": 1.8,
+    "frames": 293,
+    "p50": 16.7,
+    "p95": 16.7,
+    "over33": 0
+   },
+   "failed": 9,
+   "samples": [
+    {
+     "lcp": 280,
+     "lcpEl": "h1#cr-title",
+     "nav": 4,
+     "fcp": 280,
+     "cls": 0.0071,
+     "long": 0,
+     "longMs": 0,
+     "kb": 348,
+     "req": 27,
+     "lcpAfterDoc": 276,
+     "domNodes": 1459,
+     "heapMB": 1.8,
+     "frames": 293,
+     "p50": 16.7,
+     "p95": 16.7,
+     "over33": 0
+    }
+   ]
+  },
+  "390-cpu4x": {
+   "median": {
+    "lcp": 11540,
+    "lcpEl": "h1#cr-title",
+    "nav": 9749,
+    "fcp": 11540,
+    "cls": 0,
+    "long": 1,
+    "longMs": 366,
+    "kb": 348,
+    "req": 27,
+    "lcpAfterDoc": 1791,
+    "domNodes": 1447,
+    "heapMB": 1.8,
+    "frames": 260,
+    "p50": 16.7,
+    "p95": 16.8,
+    "over33": 1
+   },
+   "failed": 7,
+   "samples": [
+    {
+     "lcp": 31084,
+     "lcpEl": "h1#cr-title",
+     "nav": 28537,
+     "fcp": 31084,
+     "cls": 0,
+     "long": 1,
+     "longMs": 557,
+     "kb": 348,
+     "req": 27,
+     "lcpAfterDoc": 2547,
+     "domNodes": 1447,
+     "heapMB": 1.8,
+     "frames": 108,
+     "p50": 16.7,
+     "p95": 16.8,
+     "over33": 3
+    },
+    {
+     "lcp": 11540,
+     "lcpEl": "h1#cr-title",
+     "nav": 9749,
+     "fcp": 11540,
+     "cls": 0,
+     "long": 1,
+     "longMs": 366,
+     "kb": 348,
+     "req": 27,
+     "lcpAfterDoc": 1791,
+     "domNodes": 1447,
+     "heapMB": 1.8,
+     "frames": 260,
+     "p50": 16.7,
+     "p95": 16.8,
+     "over33": 1
+    },
+    {
+     "lcp": 876,
+     "lcpEl": "h1#cr-title",
+     "nav": 6,
+     "fcp": 876,
+     "cls": 0,
+     "long": 1,
+     "longMs": 246,
+     "kb": 348,
+     "req": 27,
+     "lcpAfterDoc": 870,
+     "domNodes": 1447,
+     "heapMB": 1.8,
+     "frames": 277,
+     "p50": 16.7,
+     "p95": 16.8,
+     "over33": 1
+    }
+   ]
+  }
+ }
+}

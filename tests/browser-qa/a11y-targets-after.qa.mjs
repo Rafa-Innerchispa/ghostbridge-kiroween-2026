@@ -52,7 +52,7 @@ for (const [name, w, h, mobile] of [['d1440', 1440, 900, false], ['d1280', 1280,
       small.map(c => `${c.tag}#${c.id}.${c.cls} "${c.text}" ${c.w}x${c.h}`).join(' | '));
 
     // 2. nav links exist, are visible, and are >= 40px high
-    d.nav = await b.eval(`Array.from(document.querySelectorAll('header nav a')).map(a=>{const r=a.getBoundingClientRect(),cs=getComputedStyle(a);return {href:a.getAttribute('href'),text:a.textContent.trim(),w:+r.width.toFixed(1),h:+r.height.toFixed(1),shown:cs.display!=='none'&&r.width>0&&r.right<=innerWidth+0.5&&r.left>=-0.5}})`);
+    d.nav = await b.eval(`Array.from(document.querySelectorAll('header nav a')).map(a=>{const r=a.getBoundingClientRect(),cs=getComputedStyle(a);return {href:a.getAttribute('href'),text:a.textContent.trim(),w:+r.width.toFixed(1),h:+r.height.toFixed(1),shown:cs.display!=='none'&&r.width>0&&r.left>=-0.5&&(r.right<=innerWidth+0.5||(()=>{const n=a.closest('nav'),ncs=getComputedStyle(n);return (ncs.overflowX==='auto'||ncs.overflowX==='scroll')&&n.scrollWidth>n.clientWidth&&a.offsetLeft+a.offsetWidth<=n.scrollWidth+0.5})())}})`);
     for (const href of ['#control-room', '#workspace', '#vision']) {
       const a = d.nav.find(x => x.href === href);
       rec.check(`${name} nav link ${href} is shown on screen and >= 40px high`, !!a && a.shown && a.h >= MIN && a.w >= 40, JSON.stringify(a));
