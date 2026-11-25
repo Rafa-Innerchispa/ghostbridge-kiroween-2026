@@ -4,7 +4,8 @@
  */
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {STORAGE_KEY, readPaused, writePaused, motionAllowed, initMotion} from '../docs/motion.mjs';
+import {readFileSync} from 'node:fs';
+import {STORAGE_KEY, readPaused, writePaused, motionAllowed, initMotion, TILT_MAX, tiltFor, countValue, activeSection, SECTIONS} from '../docs/motion.mjs';
 
 const store = (init = {}) => { const m = {...init}; return {getItem: k => (k in m ? m[k] : null), setItem: (k, v) => { m[k] = v; }, m}; };
 
@@ -56,4 +57,39 @@ test('a stored pause or prefers-reduced-motion means no entrance and motion off'
   assert.equal(reduced.attrs['data-motion'], 'off'); assert.ok(!reduced.band.cls.has('is-armed'));
   assert.equal(m.button.attrs['aria-disabled'], 'true');
   m.button.listeners.click(); assert.deepEqual(reduced.storage.m, {});
+});
+
+test('depth: tilt never exceeds 6 degrees and is centred at rest', () => {
+  assert.equal(TILT_MAX, 6);
+  assert.deepEqual(tiltFor(0.5, 0.5), {rx: 0, ry: 0});
+  for (const [x, y] of [[0, 0], [1, 1], [0, 1], [1, 0], [-3, 9], [4, -7]]) { const t = tiltFor(x, y); assert.ok(Math.abs(t.rx) <= 6 && Math.abs(t.ry) <= 6, JSON.stringify(t)); }
+  assert.equal(tiltFor(1, 0.5).ry, 6); assert.equal(tiltFor(0.5, 0).rx, 6);
+});
+
+test('depth: count-up is monotonic, integer, and ends on the exact markup value', () => {
+  let prev = -1;
+  for (let i = 0; i <= 10; i++) { const v = countValue(300, i / 10); assert.ok(Number.isInteger(v) && v >= prev); prev = v; }
+  assert.equal(countValue(300, 0), 0); assert.equal(countValue(300, 1), 300); assert.equal(countValue(120, 5), 120); assert.equal(countValue(10, -1), 0);
+});
+
+test('depth: the section rail follows the scroll position and covers real page sections', () => {
+  assert.deepEqual(SECTIONS.map(s => s.id), ['control-room', 'how', 'architecture', 'workspace', 'vision']);
+  assert.equal(activeSection([0, 900, 1800, 2700, 3600], 800), 0);
+  assert.equal(activeSection([-1200, 100, 900, 1800, 2700], 800), 1);
+  assert.equal(activeSection([-3000, -2000, -900, 200, 1100], 800), 3);
+  const html = readFileSync(new URL('../docs/index.html', import.meta.url), 'utf8');
+  for (const s of SECTIONS) assert.ok(html.includes('id="' + s.id + '"'), s.id);
+});
+
+test('depth.css: every animation and pointer transform is gated by data-motion="on" and no-preference; no remote requests', () => {
+  const css = readFileSync(new URL('../docs/depth.css', import.meta.url), 'utf8');
+  assert.ok(!/https?:\/\/(?!www\.w3\.org)/.test(css) && !/@import/.test(css), 'third-party request in depth.css');
+  const gated = css.slice(css.indexOf('@media(prefers-reduced-motion:no-preference)'));
+  const before = css.slice(0, css.indexOf('@media(prefers-reduced-motion:no-preference)'));
+  assert.ok(!/animation\s*:|animation-name/.test(before.replace(/\/\*[\s\S]*?\*\//g, '')), 'ungated animation');
+  for (const m of gated.matchAll(/(^|\})\s*(:root\[data-motion="on"\][^{]*)\{[^}]*animation:/g)) assert.ok(m[2].includes('data-motion="on"'));
+  assert.match(css, /:root\[data-motion="off"\]/);
+  const html = readFileSync(new URL('../docs/index.html', import.meta.url), 'utf8');
+  assert.match(html, /href="depth\.css"/);
+  assert.ok(!/<i class="cr-aurora"[^>]*>[^<]+</.test(html), 'hero light layers carry no text');
 });
