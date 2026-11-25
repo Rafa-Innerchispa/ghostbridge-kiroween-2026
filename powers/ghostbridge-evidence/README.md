@@ -12,7 +12,7 @@ Gives Kiro a read-only evidence auditor for GhostBridge ledgers: verify a SHA-25
 | `skills/explain-case/` | How to explain a case decision, including the 299/120 and 301/119 boundary |
 | `skills/incident-walkthrough/` | One incident end to end: rule, decision, edges, chain, tamper test and an audit hand-off with the independent verifier |
 
-Tools: `list_scenarios`, `run_scenario` (optional `tamper_seq`), `forge_boundary`, `verify_ledger` (`rows_json` preferred). All read-only, in memory, no network, no files, no device commands.
+Tools: `list_scenarios`, `run_scenario` (optional `tamper_seq`), `check_timing`, `verify_ledger` (`rows_json` preferred). All read-only, in memory, no network, no files, no device commands.
 
 ## Install
 - Kiro CLI: `kiro-cli powers install <path-to>/powers/ghostbridge-evidence` (also shows up in the IDE Powers panel).

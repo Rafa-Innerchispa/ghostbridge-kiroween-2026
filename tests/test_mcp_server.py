@@ -45,7 +45,7 @@ class ProtocolTests(unittest.TestCase):
 
     def test_tools_list_is_exactly_four_read_only_tools(self):
         tools = m.handle({"jsonrpc": "2.0", "id": 1, "method": "tools/list"})["result"]["tools"]
-        self.assertEqual(sorted(t["name"] for t in tools), ["forge_boundary", "list_scenarios", "run_scenario", "verify_ledger"])
+        self.assertEqual(sorted(t["name"] for t in tools), ["check_timing", "list_scenarios", "run_scenario", "verify_ledger"])
         for t in tools:
             self.assertTrue(t["annotations"]["readOnlyHint"])
             self.assertFalse(t["annotations"]["destructiveHint"])
@@ -88,13 +88,13 @@ class ToolTests(unittest.TestCase):
             self.assertTrue(err, bad)
 
     def test_boundary_299_120_forms_a_case_and_301_119_does_not(self):
-        out, err = call("forge_boundary", {"delay_seconds": 299, "hold_seconds": 120})
+        out, err = call("check_timing", {"delay_seconds": 299, "hold_seconds": 120})
         self.assertFalse(err)
         self.assertTrue(out["decision"]["case_formed"])
         self.assertEqual(out["decision"]["failed_conditions"], [])
         self.assertEqual(len(out["cases"]), 1)
         self.assertEqual(len(out["cases"][0]["evidence_hashes"]), 2)
-        out, err = call("forge_boundary", {"delay_seconds": 301, "hold_seconds": 119})
+        out, err = call("check_timing", {"delay_seconds": 301, "hold_seconds": 119})
         self.assertFalse(err)
         self.assertFalse(out["decision"]["case_formed"])
         self.assertEqual(out["cases"], [])
@@ -103,13 +103,13 @@ class ToolTests(unittest.TestCase):
         self.assertIn("1 s short", out["decision"]["failed_conditions"][1])
 
     def test_single_failed_condition_is_named_exactly(self):
-        out, _ = call("forge_boundary", {"delay_seconds": 301, "hold_seconds": 120})
+        out, _ = call("check_timing", {"delay_seconds": 301, "hold_seconds": 120})
         self.assertEqual(len(out["decision"]["failed_conditions"]), 1)
         self.assertIn("window", out["decision"]["failed_conditions"][0])
-        out, _ = call("forge_boundary", {"delay_seconds": 299, "hold_seconds": 119})
+        out, _ = call("check_timing", {"delay_seconds": 299, "hold_seconds": 119})
         self.assertEqual(len(out["decision"]["failed_conditions"]), 1)
         self.assertIn("threshold", out["decision"]["failed_conditions"][0])
-        out, _ = call("forge_boundary", {"delay_seconds": 300, "hold_seconds": 120})
+        out, _ = call("check_timing", {"delay_seconds": 300, "hold_seconds": 120})
         self.assertTrue(out["decision"]["case_formed"])
 
     def test_boundary_matches_the_javascript_generated_fixture(self):
@@ -118,7 +118,7 @@ class ToolTests(unittest.TestCase):
             cfg = entry["config"]
             if cfg["cameraOffline"] or not 1 <= cfg["delaySeconds"] <= 3600:
                 continue
-            out, err = call("forge_boundary", {"delay_seconds": cfg["delaySeconds"], "hold_seconds": cfg["holdSeconds"]})
+            out, err = call("check_timing", {"delay_seconds": cfg["delaySeconds"], "hold_seconds": cfg["holdSeconds"]})
             self.assertFalse(err, cfg)
             self.assertEqual(out["row_hashes"], entry["row_hashes"][:3], cfg)
             self.assertEqual([c["id"] for c in out["cases"]], [c["id"] for c in entry["cases"]], cfg)
@@ -132,7 +132,7 @@ class ToolTests(unittest.TestCase):
                     {"delay_seconds": "300", "hold_seconds": 120}, {"delay_seconds": True, "hold_seconds": 120},
                     {"delay_seconds": 300.5, "hold_seconds": 120}, {"delay_seconds": None, "hold_seconds": 120}]
         for args in bad_args:
-            _, err = call("forge_boundary", args)
+            _, err = call("check_timing", args)
             self.assertTrue(err, args)
 
     def test_verify_ledger_accepts_a_clean_chain_and_names_the_first_break(self):
@@ -236,7 +236,7 @@ class TransportTests(unittest.TestCase):
             {"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {"protocolVersion": "2025-06-18", "capabilities": {}, "clientInfo": {"name": "test", "version": "0"}}},
             {"jsonrpc": "2.0", "method": "notifications/initialized"},
             {"jsonrpc": "2.0", "id": 2, "method": "tools/list"},
-            {"jsonrpc": "2.0", "id": 3, "method": "tools/call", "params": {"name": "forge_boundary", "arguments": {"delay_seconds": 301, "hold_seconds": 119}}},
+            {"jsonrpc": "2.0", "id": 3, "method": "tools/call", "params": {"name": "check_timing", "arguments": {"delay_seconds": 301, "hold_seconds": 119}}},
         ]
         proc = subprocess.run([sys.executable, "-m", "ghostbridge.mcp_server"], cwd=ROOT, input="\n".join(json.dumps(r) for r in requests) + "\nnot json\n",
                               capture_output=True, text=True, timeout=30)

@@ -125,7 +125,7 @@ def tool_run_scenario(args: dict) -> dict:
         store.close()
 
 
-def tool_forge_boundary(args: dict) -> dict:
+def tool_check_timing(args: dict) -> dict:
     delay = _int(args, "delay_seconds", 1, 3600)
     hold = _int(args, "hold_seconds", 0, 86400)
     anchor = datetime.strptime(FORGE_ANCHOR_UTC, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
@@ -227,9 +227,9 @@ TOOLS = {
             "additionalProperties": False,
         },
     },
-    "forge_boundary": {
-        "fn": tool_forge_boundary,
-        "description": "Ask whether a denied access followed by a door held open forms a case, for a chosen delay after the denial and hold time. 299/120 forms a case; 301/119 does not. Returns the case and evidence hashes, or the exact failed condition.",
+    "check_timing": {
+        "fn": tool_check_timing,
+        "description": "Check the case rule for one timing: does a denied access followed by a door held open form a case, for a chosen delay after the denial and hold time? It runs the real rule on a small synthetic example ledger built in memory for this question only and discarded afterwards; it never creates, changes or stores evidence. 299/120 forms a case; 301/119 does not. Returns the case and its hashes in that example ledger, or the exact failed condition.",
         "inputSchema": {
             "type": "object",
             "properties": {
