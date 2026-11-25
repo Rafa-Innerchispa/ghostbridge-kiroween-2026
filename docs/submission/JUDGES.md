@@ -80,7 +80,7 @@ Open the live demo. **Reset** (Signal lab toolbar) returns to an empty ledger at
                           independent verifier (standard-library Python, no GhostBridge code)
 
   Kiro side: read-only MCP server (stdio) over the same engine, packaged as the GhostBridge Evidence Power
-             (list_scenarios · run_scenario · forge_boundary · verify_ledger, plus audit and explain skills)
+             (list_scenarios · run_scenario · check_timing · verify_ledger, plus audit, explain and walkthrough skills; `check_timing` was called `forge_boundary` until 2026-11-25 and older evidence files use that name)
 ```
 
 - Browser edition: static files on GitHub Pages, Web Crypto SHA-256, localStorage. No server, no third-party requests.

@@ -9,13 +9,13 @@ The goal is a short audit report an investigator could hand to someone else. Eve
 Call `list_scenarios` once and state the rule with the limits it returns (window and hold threshold). Take the user's timing ("denied, then the door opened 4 minutes later and stayed open 2 minutes") as `delay_seconds` and `hold_seconds`. If none was given, use the reference incident: `delay_seconds: 270`, `hold_seconds: 130`.
 
 ## Step 2: The decision
-Call `forge_boundary` with that timing. It builds a small synthetic ledger (an earlier door opening, the denial, the later door opening) and runs the real rule.
+Call `check_timing` with that timing. It builds a small synthetic example ledger in memory (an earlier door opening, the denial, the later door opening), runs the real rule and discards the ledger. It is a read-only "what would the rule decide" check: it never creates, changes or stores evidence, so say the case id and hashes belong to that example ledger.
 - Case formed (`decision.case_formed: true`): give the case `id`, both `event_ids`, both `evidence_hashes` and the case `explanation`.
 - No case: quote every `decision.failed_conditions` entry word for word.
-- Then show the edges in one small table by calling `forge_boundary` twice more: 299/120 (case) and 301/119 (no case, each condition missed by one second). Run both; do not assume.
+- Then show the edges in one small table by calling `check_timing` twice more: 299/120 (case) and 301/119 (no case, each condition missed by one second). Run both; do not assume.
 
 ## Step 3: The evidence chain
-From the same `forge_boundary` result report `integrity`: `valid`, `checked` and `head`. The second evidence hash of a case is the hash of the door row, so for the reference incident it equals `head`; say so only if the two values are actually equal. Explain in one sentence: each row's SHA-256 covers its content and the previous row's hash, so any later edit breaks the chain from that row on.
+From the same `check_timing` result report `integrity`: `valid`, `checked` and `head`. The second evidence hash of a case is the hash of the door row, so for the reference incident it equals `head`; say so only if the two values are actually equal. Explain in one sentence: each row's SHA-256 covers its content and the previous row's hash, so any later edit breaks the chain from that row on.
 If the user has their own export (`ghostbridge-evidence.json`), also call `verify_ledger` with **`rows_json`** set to its `ledger` list as JSON text, exactly as written, and report the result.
 
 ## Step 4: Prove it detects tampering

@@ -52,9 +52,9 @@ def main() -> int:
         expect("initialize returns server ghostbridge-evidence", init["result"]["serverInfo"]["name"] == "ghostbridge-evidence")
         tools = send({"jsonrpc": "2.0", "id": 2, "method": "tools/list"})["result"]["tools"]
         expect("tools/list returns 4 read-only tools", len(tools) == 4 and all(t["annotations"]["readOnlyHint"] for t in tools))
-        a, err = tool(3, "forge_boundary", delay_seconds=299, hold_seconds=120)
+        a, err = tool(3, "check_timing", delay_seconds=299, hold_seconds=120)
         expect("299/120 forms exactly one case with two evidence hashes", not err and a["decision"]["case_formed"] and len(a["cases"]) == 1 and len(a["cases"][0]["evidence_hashes"]) == 2)
-        b, err = tool(4, "forge_boundary", delay_seconds=301, hold_seconds=119)
+        b, err = tool(4, "check_timing", delay_seconds=301, hold_seconds=119)
         expect("301/119 forms no case and names both failed conditions", not err and not b["decision"]["case_formed"] and len(b["decision"]["failed_conditions"]) == 2)
         n, err = tool(5, "run_scenario", name="night", tamper_seq=2)
         expect("night scenario verifies clean, tampered copy is detected at position 2", not err and n["integrity"]["valid"] and n["tamper_demo"]["verification_after_tamper"]["failed_at"] == 2)

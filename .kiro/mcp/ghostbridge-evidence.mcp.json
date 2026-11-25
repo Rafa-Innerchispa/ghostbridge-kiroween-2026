@@ -7,7 +7,7 @@
         "PYTHONDONTWRITEBYTECODE": "1"
       },
       "disabled": false,
-      "autoApprove": ["list_scenarios", "run_scenario", "forge_boundary", "verify_ledger"]
+      "autoApprove": ["list_scenarios", "run_scenario", "check_timing", "verify_ledger"]
     }
   }
 }

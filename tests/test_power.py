@@ -55,7 +55,7 @@ class PowerManifestTests(unittest.TestCase):
             m = re.match(r"^---\nname: ([a-z0-9-]+)\ndescription: (.+?)\n---\n", text.replace("\r\n", "\n"), re.S)
             self.assertIsNotNone(m, f.name)
             self.assertEqual(m.group(1), f.parent.name)
-            self.assertIn("rows_json" if f.parent.name == "audit-evidence" else "forge_boundary", text)
+            self.assertIn("rows_json" if f.parent.name == "audit-evidence" else "check_timing", text)
 
     def test_bundled_engine_is_a_verbatim_copy_of_the_repository_engine(self):
         for name in MODULES:
@@ -76,14 +76,14 @@ class PowerServerTests(unittest.TestCase):
                 {"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {"protocolVersion": "2025-06-18", "capabilities": {}, "clientInfo": {"name": "t", "version": "0"}}},
                 {"jsonrpc": "2.0", "method": "notifications/initialized"},
                 {"jsonrpc": "2.0", "id": 2, "method": "tools/list"},
-                {"jsonrpc": "2.0", "id": 3, "method": "tools/call", "params": {"name": "forge_boundary", "arguments": {"delay_seconds": 299, "hold_seconds": 120}}},
+                {"jsonrpc": "2.0", "id": 3, "method": "tools/call", "params": {"name": "check_timing", "arguments": {"delay_seconds": 299, "hold_seconds": 120}}},
             ]
             p = subprocess.run([sys.executable, *s["args"]], cwd=copy / s["cwd"], env=env, input="\n".join(map(json.dumps, reqs)) + "\n",
                                capture_output=True, text=True, timeout=30)
             self.assertEqual(p.returncode, 0, p.stderr)
             self.assertIn("Evidence Power", p.stderr)
             replies = [json.loads(line) for line in p.stdout.splitlines()]
-            self.assertEqual(sorted(t["name"] for t in replies[1]["result"]["tools"]), ["forge_boundary", "list_scenarios", "run_scenario", "verify_ledger"])
+            self.assertEqual(sorted(t["name"] for t in replies[1]["result"]["tools"]), ["check_timing", "list_scenarios", "run_scenario", "verify_ledger"])
             out = json.loads(replies[2]["result"]["content"][0]["text"])
             self.assertEqual(out["cases"][0]["id"], "case:cfd83deb8d3af576")
 

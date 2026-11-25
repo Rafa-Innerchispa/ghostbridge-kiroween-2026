@@ -13,7 +13,7 @@ Never state a decision from memory. Ask the tool.
 
 ## Steps
 1. Call `list_scenarios` once to confirm the current rule limits (`window_seconds`, `door_held_threshold_seconds`).
-2. For the user's timing, call `forge_boundary` with `delay_seconds` (time from the denial to the door opening) and `hold_seconds`.
+2. For the user's timing, call `check_timing` with `delay_seconds` (time from the denial to the door opening) and `hold_seconds`.
 3. Report:
    - `decision.case_formed`
    - if a case formed: the case `id`, the two `event_ids` and the two `evidence_hashes`
