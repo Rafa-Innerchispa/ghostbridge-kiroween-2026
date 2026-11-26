@@ -1,4 +1,4 @@
-"""python -m ghostbridge.homelab <command>. One-shot commands only: nothing runs in the background."""
+﻿"""python -m ghostbridge.homelab <command>. One-shot commands only: nothing runs in the background."""
 import argparse
 import csv
 import json
@@ -9,6 +9,7 @@ from .ha_client import HAClient, SafetyError
 from .importer import build_events, read_rows
 from .ledger import export_evidence, load_events, open_store
 from .rules import derive_cases
+from .watch import run_watch
 
 
 def _print(value):
@@ -33,6 +34,14 @@ def main(argv=None):
     note = sub.add_parser("ha-notify", help="task 4: show a message in the HA sidebar (dry run unless --confirm)")
     note.add_argument("--message", required=True)
     note.add_argument("--confirm", action="store_true")
+    light = sub.add_parser("ha-light", help="task 5: turn an allowlisted light on or off (dry run unless --confirm)")
+    light.add_argument("--entity", required=True)
+    light.add_argument("--state", choices=["on", "off"], required=True)
+    light.add_argument("--confirm", action="store_true")
+    watch = sub.add_parser("watch", help="task 6: foreground watcher that alerts proactively, then stops")
+    watch.add_argument("--minutes", type=int, default=10, help="1 to 240")
+    watch.add_argument("--interval", type=int, default=15, help="seconds, minimum 5")
+    watch.add_argument("--confirm", action="store_true", help="really send notifications and the alert light")
     args = parser.parse_args(argv)
     try:
         cfg = load_config(args.config)
@@ -51,7 +60,7 @@ def main(argv=None):
             else:
                 _print(export_evidence(store, cfg, args.out))
         else:
-            client = HAClient()
+            client = HAClient(allowed_lights=cfg["allowed_lights"])
             if args.cmd == "ha-ping":
                 _print(client.ping())
             elif args.cmd == "ha-snapshot":
@@ -63,6 +72,11 @@ def main(argv=None):
                     writer.writeheader()
                     writer.writerows(rows)
                 _print({"rows": len(rows), "out": args.out})
+            elif args.cmd == "ha-light":
+                _print(client.light(args.entity, args.state == "on", confirm=args.confirm))
+            elif args.cmd == "watch":
+                store = open_store(cfg)
+                _print(run_watch(client, cfg, store, args.minutes, args.interval, args.confirm))
             elif args.cmd == "ha-notify":
                 _print(client.notify("GhostBridge", args.message, confirm=args.confirm))
     except (SafetyError, ValueError, OSError) as exc:
@@ -73,3 +87,5 @@ def main(argv=None):
 
 if __name__ == "__main__":
     sys.exit(main())
+
+

@@ -7,7 +7,7 @@ Local-only. Imports the owner's own Home Assistant history into a private SHA-25
 
 1. `homelab.json` in `%USERPROFILE%\GhostBridge-privado` (or `GHOSTBRIDGE_HOME_CONFIG`): zones (entity id -> id, name, kind
    `contact` or `motion`, `expected_open` daily windows in local time, `stuck_after_hours`), `timezone_offset_hours`,
-   and `sensor_faults` the owner confirmed (zone, since, reason).
+   and `sensor_faults` the owner confirmed (zone, since, reason). Optional: `alarm_entity` (read only), `allowed_lights`, `alert_light` (must be in `allowed_lights`).
 2. For live commands only: set `GHOSTBRIDGE_HA_URL` and `GHOSTBRIDGE_HA_TOKEN` in the environment. Use a token from a
    non-admin Home Assistant user. Non-local hosts are refused unless `GHOSTBRIDGE_HA_ALLOW_REMOTE=1`.
 
@@ -20,18 +20,22 @@ Local-only. Imports the owner's own Home Assistant history into a private SHA-25
 | `ha-ping` | Connection check. | read |
 | `ha-snapshot` | Current state of the configured zones. | read |
 | `ha-history --since T --out f.csv` | Zone history as an importer-ready CSV. | read |
-| `ha-notify --message M [--confirm]` | Message in the HA sidebar. Dry run unless `--confirm`. | write, one service |
+| `ha-notify --message M [--confirm]` | Message in the HA sidebar. Dry run unless `--confirm`. | write |
+| `ha-light --entity light.x --state on|off [--confirm]` | Switch a light listed in `allowed_lights`. Dry run unless `--confirm`. | write |
+| `watch [--minutes N] [--interval S] [--confirm]` | Foreground watcher, 1 to 240 minutes, at least 5 s between reads. Alerts once per open episode; without `--confirm` it only reports. | read, write with `--confirm` |
 
 ## What it will not do
 
-Arm, disarm, lock, unlock, switch or restart anything. Those services are refused before any request is sent.
+Arm, disarm, lock, unlock, operate covers or switches, or restart anything. Lights outside `allowed_lights` are refused too. Those services are refused before any request is sent.
 Entities starting with `person.`, `device_tracker.` or `zone.` are never imported.
 
 ## Rules
 
 - `open-outside-schedule`: open 120 s or more, with at least 120 s outside the zone's expected hours.
 - `sensor-fault`: open, and the owner recorded a fault for that sensor. Reported as a fault, not a door event.
+- `armed-door-open` (watcher only): the alarm is armed or triggered and a contact is open.
 - `sensor-suspect`: open longer than `stuck_after_hours` with no close.
 
 Importer rules: `unavailable` and `unknown` are ignored, a repeated state is a duplicate, the first state of an entity
 is a baseline. All three are counted in the import summary.
+

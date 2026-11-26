@@ -45,6 +45,15 @@ def validate_config(cfg, path=None):
         for window in zone.get("expected_open", []):
             if not (isinstance(window, list) and len(window) == 2):
                 raise ValueError(f"{entity}: expected_open entries are [\"HH:MM\", \"HH:MM\"]")
+    cfg.setdefault("allowed_lights", [])
+    cfg.setdefault("alert_light", None)
+    cfg.setdefault("alarm_entity", None)
+    if any(not str(e).startswith("light.") for e in cfg["allowed_lights"]):
+        raise ValueError("allowed_lights may only contain light.* entities")
+    if cfg["alert_light"] and cfg["alert_light"] not in cfg["allowed_lights"]:
+        raise ValueError("alert_light must also be listed in allowed_lights")
+    if cfg["alarm_entity"] and not str(cfg["alarm_entity"]).startswith("alarm_control_panel."):
+        raise ValueError("alarm_entity must be an alarm_control_panel.* entity (read only)")
     cfg.setdefault("timezone_offset_hours", 0)
     cfg.setdefault("sensor_faults", [])
     base = Path(path).parent if path else DEFAULT_PRIVATE_DIR

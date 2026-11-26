@@ -8,5 +8,6 @@ first, explainable, testable and honest. No proprietary company code, real devic
 production servers or customer data. Use existing Kiro credits only for bounded
 work. No purchases or autonomous repeated jobs. Do not fabricate Kiro evidence.
 Home lab exception (owner-authorized 2026-11-25): local-only import of the owner's own Home Assistant history and
-read-only state, with one confirmed notification write. No tokens, real exports or ledgers in the repo.
+read-only state, confirmed notifications and allowlisted lights, and a bounded foreground watcher. No tokens, real exports or ledgers in the repo.
+
 

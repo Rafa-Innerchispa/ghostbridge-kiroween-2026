@@ -1,7 +1,8 @@
-"""Controlled Home Assistant client.
+﻿"""Controlled Home Assistant client.
 
-Reads states and history. The only write is persistent_notification.create (a message in the HA sidebar), which needs
-explicit confirmation. Every other service, including alarm, lock, cover, switch and light, is refused in code.
+Reads states and history. Writes are limited to persistent_notification.create (a message in the HA sidebar) and
+light.turn_on / light.turn_off for lights the owner listed in config.allowed_lights, each needing explicit confirmation.
+Every other service, including alarm, lock, cover and switch, is refused in code.
 The URL and token come from environment variables and are never printed or stored.
 """
 import ipaddress
@@ -16,6 +17,7 @@ from .config import EXCLUDED_PREFIXES
 READ_EXACT = {"/api/", "/api/states"}
 READ_PREFIXES = ("/api/states/", "/api/history/period/")
 WRITE_ALLOWED = {"/api/services/persistent_notification/create"}
+LIGHT_ROUTES = {"/api/services/light/turn_on", "/api/services/light/turn_off"}
 
 
 class SafetyError(Exception):
@@ -45,7 +47,7 @@ def _check_host(url, allow_remote):
 
 
 class HAClient:
-    def __init__(self, url=None, token=None, timeout=10, allow_remote=None):
+    def __init__(self, url=None, token=None, timeout=10, allow_remote=None, allowed_lights=()):
         url = url or os.environ.get("GHOSTBRIDGE_HA_URL", "")
         token = token or os.environ.get("GHOSTBRIDGE_HA_TOKEN", "")
         if not url or not token:
@@ -56,6 +58,9 @@ class HAClient:
         self._base = url.rstrip("/")
         self._token = token
         self._timeout = timeout
+        self._lights = frozenset(allowed_lights)
+        if any(not str(light).startswith("light.") for light in self._lights):
+            raise SafetyError("allowed_lights may only contain light.* entities")
         self._opener = urllib.request.build_opener(_NoRedirect)
 
     def __repr__(self):
@@ -67,7 +72,12 @@ class HAClient:
             if route not in READ_EXACT and not route.startswith(READ_PREFIXES):
                 raise SafetyError(f"GET {route} is not on the read allowlist")
         elif method == "POST":
-            if route not in WRITE_ALLOWED:
+            if route in LIGHT_ROUTES:
+                entity = body.get("entity_id") if isinstance(body, dict) else None
+                if (not isinstance(body, dict) or set(body) != {"entity_id"}
+                        or not isinstance(entity, str) or entity not in self._lights):
+                    raise SafetyError(f"{entity!r} is not on the allowed_lights list")
+            elif route not in WRITE_ALLOWED:
                 raise SafetyError(f"POST {route} is not on the write allowlist")
         else:
             raise SafetyError(f"{method} is not allowed")
@@ -115,3 +125,16 @@ class HAClient:
             return {"dry_run": True, "would_post": "/api/services/persistent_notification/create", "body": body}
         self._request("POST", "/api/services/persistent_notification/create", body)
         return {"dry_run": False, "sent": True}
+
+    # Task 5: switch one allowlisted light on or off. Needs confirm=True; otherwise a dry run.
+    def light(self, entity_id, on, confirm=False):
+        route = "/api/services/light/" + ("turn_on" if on else "turn_off")
+        body = {"entity_id": entity_id}
+        if entity_id not in self._lights:
+            raise SafetyError(f"{entity_id!r} is not on the allowed_lights list")
+        if not confirm:
+            return {"dry_run": True, "would_post": route, "body": body}
+        self._request("POST", route, body)
+        return {"dry_run": False, "sent": True, "entity_id": entity_id, "on": bool(on)}
+
+
