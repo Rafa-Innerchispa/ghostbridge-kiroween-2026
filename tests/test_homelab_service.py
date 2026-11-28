@@ -4,7 +4,10 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
-from fastapi.testclient import TestClient
+try:
+    from fastapi.testclient import TestClient
+except ImportError:  # the private service is optional; CI and the public site do not install fastapi
+    raise unittest.SkipTest("fastapi is not installed; skipping the optional private service tests")
 
 from ghostbridge.homelab.config import validate_config
 from ghostbridge.homelab.ledger import open_store, load_events
@@ -58,6 +61,7 @@ class ServiceTests(unittest.TestCase):
     def tearDown(self):
         service._cfg = None
         service._store = None
+        self.store.close()  # Windows cannot delete an open SQLite file
         self.tmp.cleanup()
 
     def test_health_endpoint(self):
