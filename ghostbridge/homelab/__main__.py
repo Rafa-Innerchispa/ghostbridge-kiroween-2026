@@ -42,6 +42,9 @@ def main(argv=None):
     watch.add_argument("--minutes", type=int, default=10, help="1 to 240")
     watch.add_argument("--interval", type=int, default=15, help="seconds, minimum 5")
     watch.add_argument("--confirm", action="store_true", help="really send notifications and the alert light")
+    srv = sub.add_parser("service", help="task 7: run private read-only FastAPI service")
+    srv.add_argument("--host", default="127.0.0.1", help="host to bind (default 127.0.0.1)")
+    srv.add_argument("--port", type=int, default=8770, help="port to bind (default 8770)")
     args = parser.parse_args(argv)
     try:
         cfg = load_config(args.config)
@@ -59,6 +62,11 @@ def main(argv=None):
                 _print(derive_cases(store.rows(), cfg))
             else:
                 _print(export_evidence(store, cfg, args.out))
+        elif args.cmd == "service":
+            import uvicorn
+            from .service import app
+            print(f"Starting GhostBridge private read-only service on {args.host}:{args.port}")
+            uvicorn.run(app, host=args.host, port=args.port, log_level="info")
         else:
             client = HAClient(allowed_lights=cfg["allowed_lights"])
             if args.cmd == "ha-ping":
